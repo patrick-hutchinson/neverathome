@@ -3,7 +3,7 @@
 import Text from "@/components/Text";
 import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
 import MediaPair from "@/components/MediaPair/MediaPair";
-import FeaturePreview from "@/components/FeaturePreview/FeaturePreview";
+import Figure from "@/components/Figure/Figure";
 
 import styles from "./WorkshopPage.module.css";
 
@@ -31,12 +31,12 @@ const WorkshopPage = ({ page, events, site }) => {
         </h2>
       </section>
 
-      <h3>Features</h3>
+      <h3>Workshops</h3>
       {Array.from({ length: Math.ceil(page.features.length / 2) }).map((_, i) => (
         <section key={i}>
           <MediaPair>
             {page.features.slice(i * 2, i * 2 + 2).map((feature, index) => (
-              <FeaturePreview key={index} feature={feature} />
+              <Figure key={index} item={feature} />
             ))}
           </MediaPair>
         </section>

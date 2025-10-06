@@ -10,6 +10,7 @@ import {
   eventsQuery,
   artistQuery,
   workshopsQuery,
+  studiosQuery,
 } from "./queries";
 
 export async function getSiteData() {
@@ -26,6 +27,10 @@ export async function getContact() {
 
 export async function getWorkshopsPage() {
   return client.fetch(workshopsQuery);
+}
+
+export async function getStudiosPage() {
+  return client.fetch(studiosQuery);
 }
 
 export async function getArtists() {

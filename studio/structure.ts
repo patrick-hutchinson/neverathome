@@ -1,7 +1,7 @@
 import type {StructureResolver} from 'sanity/structure'
 
 // Define singleton document IDs here
-const singletons = ['site', 'home', 'contact', 'events', 'workshops']
+const singletons = ['site', 'home', 'contact', 'events', 'workshops', 'studios']
 
 // Add other types you want to hide from Desk here
 const hiddenTypes = [...singletons, 'mux.videoAsset']
@@ -18,6 +18,7 @@ export const structure: StructureResolver = (S, context) =>
       S.listItem()
         .title('Workshops')
         .child(S.document().schemaType('workshops').documentId('workshops')),
+      S.listItem().title('Studios').child(S.document().schemaType('studios').documentId('studios')),
 
       // Definitions folder
       S.listItem()

@@ -100,6 +100,20 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
   }
 }`;
 
+export const studiosQuery = `*[_type=="studios"][0]{
+  ${thumbnailFragment},
+  description,
+  studios[]->{
+    title,
+    description,
+    "type": select(
+      type == "sharedStudio" => "Shared Studio",
+      type == "artistStudio" => "Artist Studio"
+    ),
+    ${thumbnailFragment}
+  }
+}`;
+
 export const artistQuery = `*[_type=="artist"]{
   name,
   occupation,

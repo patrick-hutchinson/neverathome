@@ -34,6 +34,9 @@ const Header = () => {
           <li>
             <Link href="/workshops">Workshops</Link>
           </li>
+          <li>
+            <Link href="/studios">Studios</Link>
+          </li>
         </ul>
       </nav>
     </header>

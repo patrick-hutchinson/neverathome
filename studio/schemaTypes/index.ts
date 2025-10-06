@@ -6,6 +6,7 @@ import {home} from './singletons/home'
 import {contact} from './singletons/contact'
 import {events} from './singletons/events'
 import {workshops} from './singletons/workshops'
+import {studios} from './singletons/studios'
 
 // Collections
 import {event} from './collections/event'
@@ -13,6 +14,7 @@ import {highlight} from './collections/highlight'
 import {feature} from './collections/feature'
 import {location} from './collections/location'
 import {artist} from './collections/artist'
+import {studio} from './collections/studio'
 
 // Definitions
 import {eventType} from './definitions/eventType'
@@ -36,5 +38,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     events,
     artist,
     workshops,
+    studios,
+    studio,
   ],
 }

@@ -3,7 +3,7 @@
 import styles from "./HomePage.module.css";
 import MediaMarquee from "@/components/MediaMarquee/MediaMarquee";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
-import FeaturePreview from "@/components/FeaturePreview/FeaturePreview";
+import Figure from "@/components/Figure/Figure";
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
@@ -32,7 +32,7 @@ const HomePage = ({ data, site }) => {
         <h3>Features</h3>
         <MediaPair>
           {data.features.map((feature, index) => (
-            <FeaturePreview key={index} feature={feature} />
+            <Figure key={index} item={feature} />
           ))}
         </MediaPair>
       </section>

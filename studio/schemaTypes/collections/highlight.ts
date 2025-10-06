@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {thumbnail} from './types/thumbnail'
+import {thumbnail} from '../types/thumbnail'
 import type {ValidationContext} from 'sanity'
 
 export const highlight = defineType({
