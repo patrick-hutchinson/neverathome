@@ -1,0 +1,24 @@
+.feature {
+  position: relative;
+}
+
+header.header {
+  display: grid;
+  grid-template-columns: 100px auto;
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  color: #fff;
+}
+
+header.header a,
+header.header a:visited {
+  color: #fff;
+}
+
+ul.links {
+  display: flex;
+  flex-direction: column;
+}

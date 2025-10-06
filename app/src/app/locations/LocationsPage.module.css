@@ -1,0 +1,42 @@
+.preview {
+  display: grid;
+  grid-template-columns: 200px auto auto;
+}
+
+.preview > div:last-child {
+  justify-self: end;
+  align-self: flex-end; /* keep your existing vertical alignment */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+}
+
+/* Large Format Screens */
+@media screen and (min-width: 2560px) {
+}

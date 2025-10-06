@@ -1,0 +1,74 @@
+import {defineField, defineType} from 'sanity'
+import {thumbnail} from './types/thumbnail'
+import type {ValidationContext} from 'sanity'
+
+export const highlight = defineType({
+  name: 'highlight',
+  title: 'Highlights',
+  type: 'document',
+  fields: [
+    defineField({name: 'title', title: 'Title', type: 'string'}),
+    defineField({
+      name: 'startDate',
+      title: 'Start Date',
+      type: 'datetime',
+    }),
+    defineField({
+      name: 'endDate',
+      title: 'End Date',
+      type: 'datetime',
+      validation: (Rule) =>
+        Rule.custom((endDate, context: ValidationContext) => {
+          const startDate = (context.parent as {startDate?: string})?.startDate
+          if (endDate && startDate && endDate < startDate) {
+            return 'End date must be after start date'
+          }
+          return true
+        }),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'links',
+      title: 'Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'title', title: 'Title', type: 'string'},
+            {name: 'link', title: 'url', type: 'string'},
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'tag',
+      title: 'Tag',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'In The Media', value: 'inTheMedia'},
+          {title: 'Visits', value: 'visits'},
+          {title: 'Upcoming', value: 'upcoming'},
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'thumbnail',
+    }),
+  ],
+})

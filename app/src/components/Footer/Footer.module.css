@@ -1,0 +1,35 @@
+footer.footer {
+  position: relative;
+  height: 250px;
+  width: 100vw;
+
+  /* left: calc(-1 * var(--margin)); */
+  /* bottom: calc(-1 * var(--margin)); */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--foreground);
+  color: var(--background);
+
+  padding: var(--margin);
+}
+
+footer.footer a,
+footer.footer a:visited {
+  color: var(--background);
+}
+
+.main,
+.legal {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.main > .resources,
+.main > .newsletter {
+  display: flex;
+  flex-direction: column;
+}

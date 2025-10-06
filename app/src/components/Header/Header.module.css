@@ -1,0 +1,35 @@
+header.header {
+  position: sticky;
+  z-index: 5;
+  top: 0px;
+  left: 0px;
+
+  width: 100vw;
+  height: 30px;
+
+  display: flex;
+  justify-content: space-between;
+  color: var(--background);
+  mix-blend-mode: difference;
+
+  background: #151515;
+}
+
+.marquee {
+  width: 100px;
+}
+
+header.header nav {
+  padding: 0 var(--margin);
+}
+
+header.header a,
+header.header a:visited {
+  color: var(--background);
+}
+
+nav.nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: var(--margin);
+}

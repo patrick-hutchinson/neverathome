@@ -1,0 +1,44 @@
+ul.marquee_inner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.marquee_outer {
+  overflow: hidden;
+}
+
+li.marqueeItem {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 25%; /* subtract gap proportionally */
+  position: relative;
+  padding: 0 1.5px;
+}
+
+header.header {
+  display: grid;
+  grid-template-columns: 100px auto;
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  color: #fff;
+}
+
+header.header a,
+header.header a:visited {
+  color: #fff;
+}
+
+ul.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  background: #000;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}

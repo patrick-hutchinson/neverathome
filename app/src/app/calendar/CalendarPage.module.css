@@ -1,0 +1,14 @@
+.filterMenu {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+
+.filterMenu button {
+  opacity: 0.3;
+}
+
+.filterMenu button.active {
+  opacity: 1;
+}

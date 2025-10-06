@@ -1,0 +1,19 @@
+section.section:first-of-type {
+  margin-top: 100vh;
+}
+
+section.section:not(:last-child) {
+  margin-bottom: 450px;
+}
+
+section.section h3 {
+  margin-bottom: var(--margin);
+}
+
+.marquee {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  mix-blend-mode: difference;
+}
