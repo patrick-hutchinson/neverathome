@@ -5,12 +5,14 @@ import {site} from './site'
 import {home} from './singletons/home'
 import {contact} from './singletons/contact'
 import {events} from './singletons/events'
+import {workshops} from './singletons/workshops'
 
 // Collections
 import {event} from './collections/event'
 import {highlight} from './collections/highlight'
 import {feature} from './collections/feature'
 import {location} from './collections/location'
+import {artist} from './collections/artist'
 
 // Definitions
 import {eventType} from './definitions/eventType'
@@ -32,5 +34,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     colorPair,
     location,
     events,
+    artist,
+    workshops,
   ],
 }

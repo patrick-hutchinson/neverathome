@@ -86,6 +86,30 @@ export const contactQuery = `*[_type=="contact"][0]{
   },
 }`;
 
+export const workshopsQuery = `*[_type=="workshops"][0]{
+  description,
+  features[]->{
+    description,
+    subtitle,
+    links,
+    "tag": select(
+      tag == "location" => "The Location",
+      tag == "visits" => "Visits"
+    ),
+    ${thumbnailFragment}
+  }
+}`;
+
+export const artistQuery = `*[_type=="artist"]{
+  name,
+  occupation,
+  email,
+  phone,
+  location[]->{
+    title,
+  }
+}`;
+
 export const eventsQuery = `*[_type=="events"][0]{
   ${thumbnailFragment},
   description,

@@ -11,8 +11,6 @@ header.header {
   justify-content: space-between;
   color: var(--background);
   mix-blend-mode: difference;
-
-  background: #151515;
 }
 
 .marquee {

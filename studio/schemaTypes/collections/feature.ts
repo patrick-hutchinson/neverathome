@@ -1,11 +1,16 @@
 import {defineField, defineType} from 'sanity'
-import {thumbnail} from './types/thumbnail'
+import {thumbnail} from '../types/thumbnail'
 
 export const feature = defineType({
   name: 'feature',
   title: 'Feature',
   type: 'document',
   fields: [
+    defineField({
+      name: 'title',
+      title: 'title',
+      type: 'string',
+    }),
     defineField({
       name: 'description',
       title: 'Description',

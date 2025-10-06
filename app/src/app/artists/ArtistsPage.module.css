@@ -1,0 +1,6 @@
+main.main {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; /* space between list and info */
+  align-items: flex-start; /* align items to the top */
+}

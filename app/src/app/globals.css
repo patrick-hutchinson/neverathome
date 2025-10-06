@@ -91,6 +91,14 @@ main {
   color: var(--background) !important;
 }
 
+section:not(:last-child) {
+  margin-bottom: 150px;
+}
+
+section h3 {
+  margin-bottom: var(--margin);
+}
+
 footer.invert {
   color: var(--foreground) !important;
   background: var(--background) !important;

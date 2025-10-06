@@ -10,36 +10,32 @@ import MediaPair from "@/components/MediaPair/MediaPair";
 import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
 
 const HomePage = ({ data, site }) => {
-  const Section = ({ children }) => {
-    return <section className={styles.section}>{children}</section>;
-  };
-
   return (
     <main>
       <ImageShuffle images={data.images} />
 
-      <Section>
+      <section>
         <h3>Highlights</h3>
         <MediaMarquee highlights={data.highlights} />
-      </Section>
+      </section>
 
-      <Section>
+      <section>
         <h3>Calendar</h3>
         <ul>
           {data.events.map((event, index) => (
             <CalendarEntry key={index} event={event} colors={site.colorPairs} />
           ))}
         </ul>
-      </Section>
+      </section>
 
-      <Section>
+      <section>
         <h3>Features</h3>
         <MediaPair>
           {data.features.map((feature, index) => (
             <FeaturePreview key={index} feature={feature} />
           ))}
         </MediaPair>
-      </Section>
+      </section>
 
       <TextMarquee className={styles.marquee} text="NeverAtHome" fontSize={130} />
     </main>
