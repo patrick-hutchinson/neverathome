@@ -87,7 +87,9 @@ main {
 }
 
 .invert a,
-.invert a:visited {
+.invert a:visited,
+.invert button,
+.invert button:visited {
   color: var(--background) !important;
 }
 
@@ -99,13 +101,15 @@ section h3 {
   margin-bottom: var(--margin);
 }
 
-footer.invert {
+.invert footer {
   color: var(--foreground) !important;
   background: var(--background) !important;
 }
 
-footer.invert a,
-footer.invert a:visited {
+.invert footer a,
+.invert footer a:visited,
+.invert footer button,
+.invert footer button:visited {
   color: var(--foreground) !important;
 }
 

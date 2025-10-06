@@ -2,21 +2,13 @@
 
 import styles from "./Footer.module.css";
 
-import { usePathname } from "next/navigation";
-
 import Text from "@/components/Text";
 
 const year = new Date().getFullYear();
 
 const Footer = ({ site }) => {
-  const pathname = usePathname();
-
-  const invertedPages = ["about", "contact", "calendar"];
-
   return (
-    <footer
-      className={`${styles.footer} ${invertedPages.some((page) => pathname.startsWith(`/${page}`)) ? "invert" : ""}`}
-    >
+    <footer className={styles.footer}>
       <div className={styles.main}>
         <div>
           <a href={site.googleMaps}>

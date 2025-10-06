@@ -14,7 +14,7 @@ const HomePage = ({ data, site }) => {
     <main>
       <ImageShuffle images={data.images} />
 
-      <section>
+      <section className={styles.section}>
         <h3>Highlights</h3>
         <MediaMarquee highlights={data.highlights} />
       </section>

@@ -3,7 +3,7 @@ import Text from "@/components/Text";
 
 const ContactPage = ({ contact }) => {
   return (
-    <main className="invert">
+    <main>
       <div className="ff2">
         <Text text={contact.bio} />
       </div>

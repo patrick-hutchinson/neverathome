@@ -29,6 +29,17 @@ const StudiosPage = ({ page, site }) => {
           </MediaPair>
         </section>
       ))}
+
+      <section>
+        <h2 style={{ display: "flex", flexDirection: "column" }}>
+          Interested to be part of the family?
+          <input placeholder="First Name" />
+          <input placeholder="Last Name" />
+          <input placeholder="Description" />
+          <input placeholder="Emial" />
+          Subscribe here
+        </h2>
+      </section>
     </main>
   );
 };
