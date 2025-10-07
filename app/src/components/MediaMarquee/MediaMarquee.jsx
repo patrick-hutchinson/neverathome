@@ -43,7 +43,9 @@ const MediaMarquee = ({ highlights }) => {
               <div className={`${highlight.imageIsSmall ? styles.smallImage : ""} ${styles.media}`}>
                 <Media medium={highlight.thumbnail} />
               </div>
-              <Text text={highlight.description} />
+              <div className={styles.text}>
+                <Text text={highlight.description} />
+              </div>
             </li>
           );
         })}

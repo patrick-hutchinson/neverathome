@@ -13,7 +13,7 @@ li.marqueeItem {
   flex-direction: column;
   flex: 0 0 25%; /* subtract gap proportionally */
   position: relative;
-  padding: 0 1.5px;
+  padding: 0 calc(var(--gap) / 2);
 }
 
 header.header {
@@ -25,7 +25,7 @@ header.header {
   left: 0px;
   z-index: 2;
   color: #fff;
-  padding: 0px 4px;
+  padding: calc(var(--margin) / 3) calc(var(--margin) / 2);
 }
 
 header.header a,
@@ -50,4 +50,9 @@ ul.links {
 .media.smallImage div {
   height: 200px !important;
   width: 200px !important;
+}
+
+.text {
+  margin-top: calc(var(--margin) / 2);
+  padding-right: var(--margin);
 }

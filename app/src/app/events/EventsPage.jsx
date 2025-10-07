@@ -6,14 +6,13 @@ import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
 import MediaMarquee from "@/components/MediaMarquee/MediaMarquee";
 
 import styles from "./EventsPage.module.css";
+import CoverMedia from "@/components/CoverMedia";
 
 const EventsPage = ({ page, site }) => {
   return (
     <main>
       <section>
-        <div className={styles.media}>
-          <Media medium={page.thumbnail} />
-        </div>
+        <CoverMedia medium={page.thumbnail} />
 
         <div className="two-column">
           <Text text={page.description} />

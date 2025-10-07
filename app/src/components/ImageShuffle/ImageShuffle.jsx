@@ -34,6 +34,7 @@ const ImageShuffle = ({ images }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }} // fade-out duration
+          style={{ zIndex: 20 }}
         >
           <Media medium={images[index]} />
         </motion.div>

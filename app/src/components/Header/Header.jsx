@@ -17,26 +17,40 @@ const Header = () => {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Link href="/calendar">Calendar</Link>
+            <ul className={styles.nav_section}>
+              <Link href="/about">About</Link>
+            </ul>
           </li>
+
           <li>
-            <Link href="/contact">Contact</Link>
+            <ul className={styles.nav_section}>
+              <li>
+                <Link href="/studios">Studios</Link>
+                <span>{", "}</span>
+              </li>
+
+              <li>
+                <Link href="/workshops">Workshops</Link>
+                <span>{", "}</span>
+              </li>
+
+              <li>
+                <Link href="/events">Events</Link>
+              </li>
+            </ul>
           </li>
-          <li>
-            <Link href="/locations">Locations</Link>
-          </li>
-          <li>
-            <Link href="/events">Events</Link>
-          </li>
-          <li>
-            <Link href="/artists">Artists</Link>
-          </li>
-          <li>
-            <Link href="/workshops">Workshops</Link>
-          </li>
-          <li>
-            <Link href="/studios">Studios</Link>
-          </li>
+
+          <ul style={{ gap: "30px" }}>
+            <li>
+              <Link href="/artists">Artists</Link>
+            </li>
+            <li>
+              <Link href="/locations">Locations</Link>
+            </li>
+            <li>
+              <Link href="/calendar">Calendar</Link>
+            </li>
+          </ul>
         </ul>
       </nav>
     </header>

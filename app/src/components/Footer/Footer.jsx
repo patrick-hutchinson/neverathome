@@ -4,6 +4,8 @@ import styles from "./Footer.module.css";
 
 import Text from "@/components/Text";
 
+import React from "react";
+
 const year = new Date().getFullYear();
 
 const Footer = ({ site }) => {
@@ -18,7 +20,10 @@ const Footer = ({ site }) => {
         </div>
         <div className={styles.newsletter}>
           Get the latest Updates, News & Stories
-          <input placeholder="Subscribe here" />
+          <input placeholder="First Name" />
+          <input placeholder="Last Name" />
+          <input placeholder="Email" />
+          <button>Subscribe</button>
         </div>
         <div className={styles.resources}>
           <a href="#">Rental Rooms.pdf</a>
@@ -26,20 +31,27 @@ const Footer = ({ site }) => {
         </div>
       </div>
 
-      <div className={styles.legal}>
+      <div className={`${styles.legal} ff4`}>
         <div>
           <div>{`${site.title} © ${year}`}</div>
         </div>
-        <a href="#">Imprint</a>
-        <ul>
-          {site.socials.map((social, index) => (
-            <li key={index}>
-              <a href={social.link} target="_blank" rel="noopener noreferrer">
-                {social.platform}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div />
+        <div style={{ display: "flex" }}>
+          <span style={{ marginRight: "4px" }}>
+            <a href="#">Imprint</a>
+            {", "}
+          </span>
+          <ul>
+            {site.socials.map((social, index) => (
+              <li key={index}>
+                <a href={social.link} target="_blank" rel="noopener noreferrer">
+                  {social.platform}
+                </a>
+                {index < site.socials.length - 1 && ", "}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </footer>
   );

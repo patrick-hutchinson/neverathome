@@ -18,14 +18,16 @@ footer.footer {
 }
 
 footer.footer a,
-footer.footer a:visited {
+footer.footer a:visited,
+footer.footer button,
+footer.footer button:visited {
   color: var(--background);
 }
 
 .main,
 .legal {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 50% 30% auto;
   flex-direction: row;
 }
 

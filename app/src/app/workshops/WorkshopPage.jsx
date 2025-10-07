@@ -3,7 +3,9 @@
 import Text from "@/components/Text";
 import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
 import MediaPair from "@/components/MediaPair/MediaPair";
-import InteractiveFigure from "@/components/InteractiveFigure/InteractiveFigure";
+import Figure from "@/components/Figure/Figure";
+
+import styles from "./WorkshopPage.module.css";
 
 const WorkshopPage = ({ page, events, site }) => {
   console.log(page);
@@ -29,16 +31,18 @@ const WorkshopPage = ({ page, events, site }) => {
         </h2>
       </section>
 
-      <h3>Workshops</h3>
-      {Array.from({ length: Math.ceil(page.features.length / 2) }).map((_, i) => (
-        <section key={i}>
-          <MediaPair>
-            {page.features.slice(i * 2, i * 2 + 2).map((feature, index) => (
-              <InteractiveFigure key={index} item={feature} colors={site.colorPairs} />
-            ))}
-          </MediaPair>
-        </section>
-      ))}
+      <section>
+        <h3>Features</h3>
+        {Array.from({ length: Math.ceil(page.features.length / 2) }).map((_, i) => (
+          <div key={i} className={styles.feature_container}>
+            <MediaPair>
+              {page.features.slice(i * 2, i * 2 + 2).map((feature, index) => (
+                <Figure key={index} item={feature} colors={site.colorPairs} />
+              ))}
+            </MediaPair>
+          </div>
+        ))}
+      </section>
     </main>
   );
 };

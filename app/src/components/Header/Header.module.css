@@ -5,29 +5,31 @@ header.header {
   left: 0px;
 
   width: 100vw;
-  height: 30px;
 
   display: flex;
   justify-content: space-between;
-  color: var(--background);
-  mix-blend-mode: difference;
+  color: var(--foreground);
+  background: var(--background);
+
+  padding: var(--margin);
+  height: var(--header-height);
 }
 
 .marquee {
   width: 100px;
 }
 
-header.header nav {
-  padding: 0 var(--margin);
-}
-
 header.header a,
 header.header a:visited {
-  color: var(--background);
+  color: var(--foreground);
 }
 
 nav.nav ul {
   display: flex;
   flex-direction: row;
-  gap: var(--margin);
+  gap: 4px;
+}
+
+ul.nav_section {
+  margin-right: 30px;
 }

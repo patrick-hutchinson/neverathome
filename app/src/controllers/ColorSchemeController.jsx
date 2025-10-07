@@ -15,13 +15,5 @@ export default function ColorSchemeController() {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    if (pathname.includes("/calendar")) {
-      document.querySelector("header").classList.add("no-filter");
-    } else {
-      document.querySelector("header").classList.remove("no-filter");
-    }
-  }, [pathname]);
-
   return null;
 }

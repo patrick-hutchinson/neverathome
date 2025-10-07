@@ -3,18 +3,17 @@
 import Media from "@/components/Media";
 import Text from "@/components/Text";
 import MediaPair from "@/components/MediaPair/MediaPair";
-import InteractiveFigure from "@/components/InteractiveFigure/InteractiveFigure";
+import Figure from "@/components/Figure/Figure";
 
 import styles from "./StudiosPage.module.css";
+import CoverMedia from "@/components/CoverMedia";
 
 const StudiosPage = ({ page, site }) => {
   console.log(page);
   return (
     <main>
       <section>
-        <div className={styles.media}>
-          <Media medium={page.thumbnail} />
-        </div>
+        <CoverMedia medium={page.thumbnail} />
         <Text text={page.description} />
       </section>
 
@@ -24,7 +23,7 @@ const StudiosPage = ({ page, site }) => {
         <section key={index}>
           <MediaPair>
             {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
-              <InteractiveFigure key={index} item={studio} colors={site.colorPairs} />
+              <Figure key={index} item={studio} colors={site.colorPairs} />
             ))}
           </MediaPair>
         </section>

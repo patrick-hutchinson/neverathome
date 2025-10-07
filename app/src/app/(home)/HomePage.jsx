@@ -3,12 +3,12 @@
 import styles from "./HomePage.module.css";
 import MediaMarquee from "@/components/MediaMarquee/MediaMarquee";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
-import Figure from "@/components/Figure/Figure";
+
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
 import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
-import InteractiveFigure from "@/components/InteractiveFigure/InteractiveFigure";
+import Figure from "@/components/Figure/Figure";
 
 const HomePage = ({ data, site }) => {
   return (
@@ -33,7 +33,7 @@ const HomePage = ({ data, site }) => {
         <h3>Features</h3>
         <MediaPair>
           {data.features.map((feature, index) => (
-            <InteractiveFigure key={index} item={feature} colors={site.colorPairs} />
+            <Figure key={index} item={feature} colors={site.colorPairs} />
           ))}
         </MediaPair>
       </section>
