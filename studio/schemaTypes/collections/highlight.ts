@@ -70,5 +70,11 @@ export const highlight = defineType({
       title: 'Thumbnail',
       type: 'thumbnail',
     }),
+    defineField({
+      name: 'imageIsSmall',
+      title: 'Image is Small?',
+      type: 'boolean',
+      description: 'Mark this image if it should appear smaller on the home page.',
+    }),
   ],
 })

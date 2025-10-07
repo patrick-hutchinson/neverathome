@@ -15,7 +15,9 @@ const EventsPage = ({ page, site }) => {
           <Media medium={page.thumbnail} />
         </div>
 
-        <Text text={page.description} />
+        <div className="two-column">
+          <Text text={page.description} />
+        </div>
       </section>
 
       <section>
@@ -30,7 +32,7 @@ const EventsPage = ({ page, site }) => {
             <CalendarEntry key={index} event={event} colors={site.colorPairs} />
           ))}
         </ul>
-        <h2>
+        <h2 style={{ marginTop: "20px" }}>
           <a href="/calendar">Go to the Calendar</a>
         </h2>
       </section>

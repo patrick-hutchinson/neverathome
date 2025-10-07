@@ -53,9 +53,11 @@ export const homeQuery = `*[_type=="home"][0]{
       tag == "visits" => "Visits",
       tag == "upcoming" => "Upcoming"
     ),
-    ${thumbnailFragment}
+    ${thumbnailFragment},
+    imageIsSmall
   },
   features[]->{
+    title,
     description,
     subtitle,
     links,
@@ -89,6 +91,7 @@ export const contactQuery = `*[_type=="contact"][0]{
 export const workshopsQuery = `*[_type=="workshops"][0]{
   description,
   features[]->{
+    title,
     description,
     subtitle,
     links,
@@ -150,7 +153,8 @@ export const eventsQuery = `*[_type=="events"][0]{
       tag == "visits" => "Visits",
       tag == "upcoming" => "Upcoming"
     ),
-    ${thumbnailFragment}
+    ${thumbnailFragment},
+    imageIsSmall
   },
 }`;
 
@@ -208,10 +212,12 @@ export const highlightQuery = `*[_type=="highlight"]{
     tag == "visits" => "Visits",
     tag == "upcoming" => "Upcoming"
   ),
-  ${thumbnailFragment}
+  ${thumbnailFragment},
+  imageIsSmall
 }`;
 
 export const featureQuery = `*[_type=="feature"]{
+  title,
   description,
   subtitle,
   links,

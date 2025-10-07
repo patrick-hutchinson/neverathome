@@ -3,6 +3,7 @@ import styles from "./CalendarEntry.module.css";
 import { motion } from "framer-motion";
 
 import FormatDate from "../FormatDate";
+import Media from "../Media";
 
 const CalendarEntry = ({ event, colors }) => {
   return (
@@ -13,7 +14,7 @@ const CalendarEntry = ({ event, colors }) => {
         return {
           background: colors[random].background.value,
           color: colors[random].text.value,
-          transition: { duration: 0 },
+          transition: { duration: 0.5 },
         };
       }}
       initial={{ opacity: 0 }}
@@ -21,7 +22,10 @@ const CalendarEntry = ({ event, colors }) => {
       exit={{ opacity: 0 }}
     >
       <span>{event.type}</span>
-      <FormatDate date={event.startDate} />
+      <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+        <FormatDate date={event.startDate} />
+        <Media medium={event.thumbnail} />
+      </div>
       <span>{event.title}</span>
     </motion.li>
   );

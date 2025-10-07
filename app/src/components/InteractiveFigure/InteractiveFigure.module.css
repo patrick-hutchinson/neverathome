@@ -3,7 +3,7 @@
 }
 
 .media {
-  z-index: 4;
+  z-index: 2;
 }
 
 .card {
@@ -12,8 +12,30 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+header.header {
+  display: grid;
+  grid-template-columns: 100px auto;
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  color: #fff;
+  padding: 0px 2px;
+}
+
+header.header a,
+header.header a:visited {
+  color: #fff;
+}
+
+ul.links {
+  display: flex;
+  flex-direction: column;
 }

@@ -40,7 +40,7 @@ const MediaMarquee = ({ highlights }) => {
                   ))}
                 </ul>
               </header>
-              <div className={styles.media}>
+              <div className={`${highlight.imageIsSmall ? styles.smallImage : ""} ${styles.media}`}>
                 <Media medium={highlight.thumbnail} />
               </div>
               <Text text={highlight.description} />

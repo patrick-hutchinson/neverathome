@@ -12,18 +12,18 @@
   --paragraph-spacing-xl: 0;
 
   --font-size-l: clamp(3rem, calc(2.44rem + 1vw), 6rem);
-  --line-height-l: 1.1;
+  --line-height-l: 1;
   --letter-spacing-l: -0.02rem;
   --paragraph-spacing-l: 0;
   --text-indent-l: 6rem;
 
   --font-size-m: clamp(1.77rem, calc(1.77rem + 0.036vw), 2.2rem);
-  --line-height-m: clamp(1.78rem, calc(1.78rem + 0.035vw), 2.5rem);
+  --line-height-m: clamp(1.78rem, calc(2rem + 0.035vw), 2.5rem);
   --letter-spacing-m: 0.03rem;
   --paragraph-spacing-m: 0;
 
   --font-size-longcopy: clamp(1.5rem, calc(1.336rem + 0.0114vw), 2rem);
-  --line-height-longcopy: clamp(2rem, calc(1.836rem + 0.0114vw), 2.5rem);
+  --line-height-longcopy: clamp(1.85rem, calc(1.836rem + 0.0114vw), 2.5rem);
   --letter-spacing-longcopym: 0.03rem;
   --paragraph-spacing-longcopy: 0;
 
@@ -74,8 +74,19 @@ body {
   font-weight: 375;
 }
 
+header.no-filter {
+  mix-blend-mode: normal !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+header.no-filter a,
+header.no-filter a:visited {
+  color: var(--foreground) !important;
+}
+
 main {
-  padding: var(--margin);
+  padding: 0 var(--margin);
 
   /* subtract <Header /> height */
   min-height: calc(100vh - 30px);
@@ -93,7 +104,7 @@ main {
   color: var(--background) !important;
 }
 
-section:not(:last-child) {
+section {
   margin-bottom: 150px;
 }
 
@@ -215,6 +226,14 @@ input,
 fieldset,
 label {
   all: unset;
+}
+
+.two-column {
+  columns: 2;
+  gap: var(--margin);
+  padding: 0 20% 0 10%;
+  font-size: var(--font-size-longcopy);
+  line-height: var(--line-height-longcopy);
 }
 
 @media (hover: hover) and (pointer: fine) {

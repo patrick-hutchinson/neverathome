@@ -8,6 +8,7 @@ import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
 import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
+import InteractiveFigure from "@/components/InteractiveFigure/InteractiveFigure";
 
 const HomePage = ({ data, site }) => {
   return (
@@ -32,7 +33,7 @@ const HomePage = ({ data, site }) => {
         <h3>Features</h3>
         <MediaPair>
           {data.features.map((feature, index) => (
-            <Figure key={index} item={feature} />
+            <InteractiveFigure key={index} item={feature} colors={site.colorPairs} />
           ))}
         </MediaPair>
       </section>

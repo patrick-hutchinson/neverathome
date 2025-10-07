@@ -3,6 +3,11 @@
   flex-direction: row;
 
   justify-content: space-between;
+  position: sticky;
+  top: 30px;
+  background: var(--background);
+  height: 40px;
+  z-index: 1;
 }
 
 .filterMenu button {
@@ -11,4 +16,14 @@
 
 .filterMenu button.active {
   opacity: 1;
+}
+
+.pinned {
+  position: sticky;
+  top: 70px;
+  z-index: 1;
+}
+
+.calendar_section {
+  margin-bottom: 100px;
 }

@@ -8,12 +8,12 @@ const ContactPage = ({ contact }) => {
         <Text text={contact.bio} />
       </div>
 
-      <div style={{ display: "flex", alignItems: "flex-end" }}>
+      <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
         <div style={{ width: "200px", height: "auto" }}>
           <Media medium={contact.image} />
         </div>
 
-        <ul className="ff4" style={{ display: "flex", justifyContent: "space-evenly", width: "space-available" }}>
+        <ul className="ff4" style={{ display: "flex", justifyContent: "space-evenly", width: "100%" }}>
           {contact.teamMembers?.map((teamMember, index) => (
             <li key={index} style={{ display: "flex", flexDirection: "column" }}>
               {teamMember.name} <br />

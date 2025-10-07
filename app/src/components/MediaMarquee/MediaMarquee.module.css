@@ -25,6 +25,7 @@ header.header {
   left: 0px;
   z-index: 2;
   color: #fff;
+  padding: 0px 4px;
 }
 
 header.header a,
@@ -41,4 +42,12 @@ ul.links {
   background: #000;
   width: 100%;
   aspect-ratio: 4 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media.smallImage div {
+  height: 200px !important;
+  width: 200px !important;
 }

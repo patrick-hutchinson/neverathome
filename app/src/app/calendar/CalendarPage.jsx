@@ -103,17 +103,15 @@ const CalendarPage = ({ events, site }) => {
   const pinned = events.find((event) => event.pinned);
 
   return (
-    <div>
+    <main>
       <FilterMenu />
 
       <div className={styles.calendar}>
-        <h3>Pinned:</h3>
         <div className={styles.pinned}>
           <CalendarEntry event={pinned} colors={site.colorPairs} />
         </div>
 
-        <h3>Current</h3>
-        <ul>
+        <ul className={styles.calendar_section}>
           <AnimatePresence>
             {current.map((event) => (
               <CalendarEntry key={event._id} event={event} colors={site.colorPairs} />
@@ -122,7 +120,7 @@ const CalendarPage = ({ events, site }) => {
         </ul>
 
         <h3>Archived</h3>
-        <ul>
+        <ul className={styles.calendar_section}>
           <AnimatePresence>
             {archived.map((event) => (
               <CalendarEntry key={event._id} event={event} colors={site.colorPairs} />
@@ -130,7 +128,7 @@ const CalendarPage = ({ events, site }) => {
           </AnimatePresence>
         </ul>
       </div>
-    </div>
+    </main>
   );
 };
 
