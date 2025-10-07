@@ -4,8 +4,13 @@
 
   background: var(--foreground);
   color: var(--background);
-
   border-bottom: 1px solid var(--background);
   /* padding-bottom: var(--font-size-m); */
   padding: 2px 3px var(--font-size-m) 3px;
+}
+
+.event.invert {
+  background: var(--background);
+  color: var(--foreground);
+  border-bottom: 1px solid var(--foreground);
 }

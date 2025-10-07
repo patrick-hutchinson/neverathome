@@ -4,11 +4,14 @@ import { motion } from "framer-motion";
 
 import FormatDate from "../FormatDate";
 import Media from "../Media";
+import { usePathname } from "next/navigation";
 
 const CalendarEntry = ({ event, colors }) => {
+  const pathname = usePathname();
+  const isWorkshopPage = pathname.includes("/workshops");
   return (
     <motion.li
-      className={styles.event}
+      className={`${styles.event} ${isWorkshopPage ? styles.invert : null}`}
       whileHover={() => {
         const random = Math.floor(Math.random() * colors.length);
         return {

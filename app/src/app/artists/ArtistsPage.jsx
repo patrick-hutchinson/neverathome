@@ -18,7 +18,7 @@ const ArtistsPage = ({ artists }) => {
         ))}
       </ul>
 
-      <div className={styles.info}>
+      <div className={`${styles.info} ff4`}>
         <ul>
           {currentArtist?.occupation && <li>{currentArtist.occupation}</li>}
           {currentArtist?.email && <li>{currentArtist.email}</li>}
