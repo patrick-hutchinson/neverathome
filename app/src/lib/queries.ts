@@ -1,4 +1,5 @@
 import { thumbnailFragment } from "./fragments";
+import { galleryFragment } from "./fragments";
 
 export const siteQuery = `*[_type=="site"][0]{
   title,
@@ -37,6 +38,7 @@ export const homeQuery = `*[_type=="home"][0]{
     endDate,
     title,
     city,
+    "colorPair": colorPair[0]->{_id, text, background},
     location,
     ${thumbnailFragment}
   },
@@ -90,6 +92,8 @@ export const contactQuery = `*[_type=="contact"][0]{
 
 export const workshopsQuery = `*[_type=="workshops"][0]{
   description,
+  facilities,
+  subtext,
   features[]->{
     title,
     description,
@@ -122,9 +126,7 @@ export const artistQuery = `*[_type=="artist"]{
   occupation,
   email,
   phone,
-  location[]->{
-    title,
-  }
+  "location": coalesce(location[0]->title, "Unknown location")
 }`;
 
 export const eventsQuery = `*[_type=="events"][0]{
@@ -136,6 +138,7 @@ export const eventsQuery = `*[_type=="events"][0]{
     startDate,
     endDate,
     title,
+    "colorPair": colorPair[0]->{_id, text, background},
     city,
     location,
     ${thumbnailFragment}
@@ -164,39 +167,24 @@ export const locationQuery = `*[_type=="location"]{
   address,
   description,
   currentLocation,
-  gallery[]{
-    "type": select(defined(image) => "image", defined(video) => "video"),
-    "_id": select(
-      defined(image.asset) => image.asset->_id,
-      defined(video.asset) => video.asset->_id,
-      true => null
-    ),
-    "url": select(defined(image.asset) => image.asset->url, true => null),
-    "lqip": select(defined(image.asset) => image.asset->metadata.lqip, true => null),
-    "width": select(defined(image.asset) => image.asset->metadata.dimensions.width, true => null),
-    "height": select(defined(image.asset) => image.asset->metadata.dimensions.height, true => null),
-    "status": select(defined(video.asset) => video.asset->status, true => null),
-    "assetId": select(defined(video.asset) => video.asset->assetId, true => null),
-    "playbackId": select(defined(video.asset) => video.asset->playbackId, true => null),
-    "aspect_ratio": select(
-      defined(video.asset) => video.asset->data.aspect_ratio,
-      defined(image) => null
-    )
-  },
+  ${galleryFragment},
   moveInDate,
   moveOutDate,
 }`;
 
 export const eventQuery = `*[_type=="event"]{
   _id,
+  title,
+  pinned,
   "type": type->title,
   startDate,
   endDate,
-  title,
   city,
+  "colorPair": colorPair[0]->{_id, text, background},
   location,
   ${thumbnailFragment},
-  pinned
+  ${galleryFragment},
+  report
 }`;
 
 export const highlightQuery = `*[_type=="highlight"]{
@@ -223,7 +211,7 @@ export const featureQuery = `*[_type=="feature"]{
   links,
   "tag": select(
     tag == "location" => "The Location",
-    tag == "visits" => "Visits",
+    tag == "visits" => "Visits"
   ),
   ${thumbnailFragment}
 }`;

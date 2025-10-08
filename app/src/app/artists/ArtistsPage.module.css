@@ -1,6 +1,39 @@
-main.main {
-  display: flex;
-  width: 100%;
-  justify-content: space-between; /* space between list and info */
-  align-items: flex-start; /* align items to the top */
+.artists {
+  margin-top: 8px;
+}
+
+.info {
+  position: absolute;
+  left: calc(100vw - 200px);
+
+  top: calc(var(--header-height) + var(--margin) + 40px);
+}
+
+.filtering {
+  position: sticky;
+  top: var(--header-height);
+
+  height: 40px;
+
+  display: grid;
+  grid-template-columns: 200px auto;
+
+  background: var(--foreground);
+  color: var(--background);
+
+  z-index: 1;
+  padding: 2px 3px var(--font-size-m) 3px;
+  border-bottom: 2px solid var(--background);
+}
+
+.filtering button {
+  opacity: 0.3;
+}
+
+.filtering button.active {
+  opacity: 1;
+}
+
+button.all {
+  margin-right: 30px;
 }

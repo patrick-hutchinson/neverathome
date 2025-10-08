@@ -10,7 +10,6 @@ const Figure = ({ item, colors, ratio }) => {
   const [random, setRandom] = useState(null);
   const [hovered, setHovered] = useState(false);
 
-  console.log(ratio, "ratio");
   return (
     <div className={styles.figure}>
       <motion.div
@@ -50,7 +49,8 @@ const Figure = ({ item, colors, ratio }) => {
           <Media medium={item.thumbnail} />
         </div>
       </motion.div>
-      <Text text={item.description} />
+
+      <Text text={item.description} className={styles.description} />
     </div>
   );
 };

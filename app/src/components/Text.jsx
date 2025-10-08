@@ -1,8 +1,8 @@
 import { PortableText } from "@portabletext/react";
 
-const Text = ({ text, fontSize }) => {
+const Text = ({ text, fontSize, className }) => {
   return (
-    <div className={fontSize}>
+    <div className={`${className} ${fontSize}`}>
       <PortableText
         value={text}
         components={{

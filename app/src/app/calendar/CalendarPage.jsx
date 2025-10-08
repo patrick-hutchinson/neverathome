@@ -1,14 +1,21 @@
 "use client";
 
-import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
+import EventHeader from "@/components/EventHeader/EventHeader";
 import Filtering from "@/components/Filtering/Filtering";
 
 import styles from "./CalendarPage.module.css";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Collapse from "@/components/Collapsible/Collapse";
+import Media from "@/components/Media";
+import Text from "@/components/Text";
+import MediaPair from "@/components/MediaPair/MediaPair";
 
-const CalendarPage = ({ events, site }) => {
+const CalendarPage = ({ events }) => {
+  let [expandedElement, setExpandedElement] = useState(null);
+
+  const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
+
   const [query, setQuery] = useState("");
 
   // Find all occuring event types
@@ -47,11 +54,26 @@ const CalendarPage = ({ events, site }) => {
   });
 
   // 2️⃣ Split filtered events into current & archived
-  const archived = filteredEvents.filter((event) => event.endDate && new Date(event.endDate) < now);
-  const current = filteredEvents.filter((event) => !event.endDate || new Date(event.endDate) >= now);
+  const archived = filteredEvents
+    .filter((event) => event.endDate && new Date(event.endDate) < now)
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+
+  const current = filteredEvents
+    .filter((event) => !event.endDate || new Date(event.endDate) >= now)
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
   // 3️⃣ Find pinned event
   const pinned = events.find((event) => event.pinned);
+
+  const Gallery = ({ event }) => (
+    <ul className={styles.gallery}>
+      {event.gallery?.map((medium, index) => (
+        <li key={index}>
+          <Media medium={medium} />
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <main>
@@ -68,13 +90,13 @@ const CalendarPage = ({ events, site }) => {
 
       <div className={styles.calendar}>
         <div className={styles.pinned}>
-          <CalendarEntry event={pinned} colors={site.colorPairs} />
+          <EventHeader event={pinned} />
         </div>
 
         <ul className={styles.calendar_section}>
           <AnimatePresence>
             {current.map((event) => (
-              <CalendarEntry key={event._id} event={event} colors={site.colorPairs} />
+              <EventHeader key={event._id} event={event} />
             ))}
           </AnimatePresence>
         </ul>
@@ -82,14 +104,28 @@ const CalendarPage = ({ events, site }) => {
         <h3>Archived</h3>
         <ul className={styles.calendar_section}>
           <AnimatePresence>
-            {archived.map((event) => (
-              <div key={event._id}>
-                <CalendarEntry event={event} colors={site.colorPairs} />
-                <Collapse>
-                  <div className={styles.content}></div>
-                </Collapse>
-              </div>
-            ))}
+            {archived.map((event) => {
+              const isExpandable = event.gallery;
+              let isExpanded = event._id === expandedElement;
+
+              return (
+                <div key={event._id} onClick={() => handleExpand(event._id)}>
+                  <EventHeader event={event} isExpandable={isExpandable} isExpanded={isExpanded} />
+                  <Collapse isExpanded={isExpanded} id={event._id}>
+                    <MediaPair>
+                      <div
+                        style={{
+                          marginLeft: "calc(200px + 3px)",
+                        }}
+                      >
+                        <Text text={event.report} fontSize="ff-t" />
+                      </div>
+                      <Gallery event={event} />
+                    </MediaPair>
+                  </Collapse>
+                </div>
+              );
+            })}
           </AnimatePresence>
         </ul>
       </div>

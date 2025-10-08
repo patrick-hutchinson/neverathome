@@ -1,12 +1,17 @@
 .event {
   display: grid;
-  grid-template-columns: 200px 330px auto;
+  grid-template-columns: 200px 330px auto auto;
 
   background: var(--foreground);
   color: var(--background);
   border-bottom: var(--gap) solid var(--background);
-  /* padding-bottom: var(--font-size-m); */
-  padding: 2px 3px var(--font-size-m) 3px;
+  padding: calc(var(--margin) / 1.5);
+  padding-bottom: calc(var(--margin));
+}
+
+.expand {
+  display: flex;
+  justify-content: end;
 }
 
 .event.invert {

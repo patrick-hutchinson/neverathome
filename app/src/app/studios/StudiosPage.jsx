@@ -14,20 +14,22 @@ const StudiosPage = ({ page, site }) => {
     <main>
       <section>
         <CoverMedia medium={page.thumbnail} />
-        <Text text={page.description} />
+        <div style={{ marginLeft: "300px" }}>
+          <Text text={page.description} fontSize="ff-t" />
+        </div>
       </section>
 
       <h3>Workshops</h3>
 
-      {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
-        <section key={index}>
-          <MediaPair>
+      <section className={styles.features}>
+        {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
+          <MediaPair key={index}>
             {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
               <Figure key={index} item={studio} colors={site.colorPairs} ratio={4 / 3} />
             ))}
           </MediaPair>
-        </section>
-      ))}
+        ))}
+      </section>
 
       <section>
         <h2 style={{ display: "flex", flexDirection: "column" }}>

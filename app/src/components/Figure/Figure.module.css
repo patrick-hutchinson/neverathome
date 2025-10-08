@@ -42,3 +42,7 @@ ul.links {
   display: flex;
   flex-direction: column;
 }
+
+.description {
+  padding-right: var(--margin);
+}

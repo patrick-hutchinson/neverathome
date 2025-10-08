@@ -5,6 +5,7 @@ export const colorPair = defineType({
   title: 'Color Pair',
   type: 'document',
   fields: [
+    defineField({name: 'name', title: 'Name', type: 'string'}),
     defineField({
       name: 'text',
       title: 'Text Color',
@@ -16,7 +17,4 @@ export const colorPair = defineType({
       type: 'simplerColor',
     }),
   ],
-  preview: {
-    prepare: () => ({title: 'Color Pair'}),
-  },
 })

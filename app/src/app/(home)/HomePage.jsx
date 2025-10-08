@@ -7,7 +7,7 @@ import TextMarquee from "@/components/TextMarquee/TextMarquee";
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
-import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
+import EventHeader from "@/components/EventHeader/EventHeader";
 import Figure from "@/components/Figure/Figure";
 
 const HomePage = ({ data, site }) => {
@@ -24,7 +24,7 @@ const HomePage = ({ data, site }) => {
         <h3>Calendar</h3>
         <ul>
           {data.events.map((event, index) => (
-            <CalendarEntry key={index} event={event} colors={site.colorPairs} />
+            <EventHeader key={index} event={event} colors={site.colorPairs} />
           ))}
         </ul>
       </section>

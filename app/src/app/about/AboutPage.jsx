@@ -6,9 +6,7 @@ import styles from "./AboutPage.module.css";
 const AboutPage = ({ contact }) => {
   return (
     <main className={styles.main}>
-      <div className="ff2">
-        <Text text={contact.bio} />
-      </div>
+      <Text text={contact.bio} fontSize="ff2" />
 
       <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
         <div style={{ width: "200px", height: "auto" }}>
@@ -22,6 +20,7 @@ const AboutPage = ({ contact }) => {
             justifyContent: "space-evenly",
             width: "100%",
             padding: "var(--margin)",
+            paddingBottom: 0,
             gap: "var(--margin)",
           }}
         >

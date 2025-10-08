@@ -60,7 +60,7 @@ export const structure: StructureResolver = (S, context) =>
                 .child(
                   S.documentTypeList('event')
                     .title('Current / Upcoming')
-                    .filter('_type == "event" && (!endDate || endDate >= now())')
+                    .filter('_type == "event" && (coalesce(endDate, startDate) >= now())')
                     .defaultOrdering([{field: 'startDate', direction: 'asc'}]),
                 ),
               S.listItem()
@@ -68,7 +68,7 @@ export const structure: StructureResolver = (S, context) =>
                 .child(
                   S.documentTypeList('event')
                     .title('Past Events')
-                    .filter('endDate < now()')
+                    .filter('coalesce(endDate, startDate) < now()')
                     .defaultOrdering([{field: 'startDate', direction: 'desc'}]),
                 ),
             ]),

@@ -209,6 +209,8 @@ h5,
   font-size: var(--font-size-longcopy);
   line-height: var(--line-height-longcopy);
   letter-spacing: var(--letter-spacing-longcopym);
+  max-width: 580px;
+  padding: var(--margin);
 }
 
 a,
@@ -234,9 +236,11 @@ label {
 .two-column {
   columns: 2;
   gap: var(--margin);
-  padding: 0 20% 0 10%;
+  margin: 0 20% 0 200px;
   font-size: var(--font-size-longcopy);
   line-height: var(--line-height-longcopy);
+  max-width: 1000px;
+  padding-top: var(--margin);
 }
 
 @media (hover: hover) and (pointer: fine) {

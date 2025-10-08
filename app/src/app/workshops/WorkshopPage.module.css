@@ -1,3 +1,20 @@
 .feature_container:first-of-type {
   margin-bottom: 100px;
 }
+
+.facilities {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+.facilities h4 {
+  margin-top: calc(var(--font-size-l) - var(--font-size-m));
+}
+
+section.introduction {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - var(--header-height));
+  padding-bottom: calc(var(--margin) * 4);
+  margin-bottom: 200px;
+}

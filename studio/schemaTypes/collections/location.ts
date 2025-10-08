@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {thumbnail} from '../types/thumbnail'
+import {gallery} from '../types/gallery'
 import type {ValidationContext} from 'sanity'
 
 export const location = defineType({
@@ -16,35 +17,7 @@ export const location = defineType({
       type: 'boolean',
       description: 'Is this the location where you are currently based?',
     }),
-    defineField({
-      name: 'gallery',
-      title: 'Image & Video Gallery',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {name: 'image', type: 'image', hidden: ({parent}) => !!parent?.video},
-            {name: 'video', type: 'mux.video', hidden: ({parent}) => !!parent?.image},
-          ],
-          preview: {
-            select: {
-              image: 'image',
-              video: 'video',
-            },
-            prepare({image, video}) {
-              return {
-                title: image ? 'Image' : 'Video',
-                media: image || video,
-              }
-            },
-          },
-        },
-      ],
-      options: {
-        layout: 'grid',
-      },
-    }),
+    gallery,
     defineField({
       name: 'moveInDate',
       title: 'Move In Date',

@@ -22,6 +22,7 @@ import {eventType} from './definitions/eventType'
 // Object types
 import {thumbnail} from './types/thumbnail'
 import {colorPair} from './types/colorPair'
+import {gallery} from './types/gallery'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -40,5 +41,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     workshops,
     studios,
     studio,
+    gallery,
   ],
 }

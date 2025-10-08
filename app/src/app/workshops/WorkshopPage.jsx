@@ -1,7 +1,7 @@
 "use client";
 
 import Text from "@/components/Text";
-import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
+import EventHeader from "@/components/EventHeader/EventHeader";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 
@@ -13,17 +13,28 @@ const WorkshopPage = ({ page, events, site }) => {
 
   return (
     <main>
-      <section>
+      <section className={styles.introduction}>
         <h2>
           <Text text={page.description} />
+          <div className={styles.facilities}>
+            <h4>Facilities</h4>
+            <ul>
+              {page.facilities.map((facility, index) => (
+                <li key={index}>{facility}</li>
+              ))}
+            </ul>
+          </div>
         </h2>
+        <div className="two-column">
+          <Text text={page.subtext} fontSize="ff4" />
+        </div>
       </section>
 
       <section>
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((event, index) => (
-            <CalendarEntry key={index} event={event} colors={site.colorPairs} />
+            <EventHeader key={index} event={event} colors={site.colorPairs} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

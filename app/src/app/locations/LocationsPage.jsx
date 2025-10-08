@@ -5,9 +5,10 @@ import styles from "./LocationsPage.module.css";
 import Text from "@/components/Text";
 import Media from "@/components/Media";
 import FormatDate from "@/components/FormatDate";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Collapse from "@/components/Collapsible/Collapse";
+import MediaPair from "@/components/MediaPair/MediaPair";
 
 const LocationsPage = ({ locations }) => {
   let [expandedElement, setExpandedElement] = useState(locations[0]._id);
@@ -51,20 +52,17 @@ const LocationsPage = ({ locations }) => {
                 <div>{isExpanded ? "CLOSE" : "OPEN"}</div>
               </div>
               <Collapse isExpanded={isExpanded} id={location._id}>
-                <div className={styles.content}>
+                <MediaPair>
                   <div
                     style={{
-                      maxWidth: "500px",
                       marginLeft: "calc(200px + 3px)",
-                      marginTop: "var(--margin)",
-                      paddingRight: "var(--margin)",
                     }}
                   >
                     <Text text={location.description} fontSize="ff-t" />
                   </div>
 
                   <Gallery location={location} />
-                </div>
+                </MediaPair>
               </Collapse>
             </li>
           );

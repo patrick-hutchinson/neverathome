@@ -7,7 +7,6 @@
   background: var(--background);
   height: 40px;
   z-index: 1;
-  padding: 2px 3px var(--font-size-m) 3px;
 }
 
 .filtering button {

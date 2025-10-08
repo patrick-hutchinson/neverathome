@@ -2,7 +2,7 @@
 
 import Media from "@/components/Media";
 import Text from "@/components/Text";
-import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
+import EventHeader from "@/components/EventHeader/EventHeader";
 import MediaMarquee from "@/components/MediaMarquee/MediaMarquee";
 
 import styles from "./EventsPage.module.css";
@@ -28,7 +28,7 @@ const EventsPage = ({ page, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {page.events.map((event, index) => (
-            <CalendarEntry key={index} event={event} colors={site.colorPairs} />
+            <EventHeader key={index} event={event} colors={site.colorPairs} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

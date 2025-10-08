@@ -12,6 +12,21 @@ export const workshops = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
+      name: 'facilities',
+      title: 'Facilities',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        sortable: true, // 👈 enables drag-and-drop reordering
+      },
+    }),
+    defineField({
+      name: 'subtext',
+      title: 'Subtext',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+    defineField({
       name: 'features',
       title: 'Selected Features',
       type: 'array',

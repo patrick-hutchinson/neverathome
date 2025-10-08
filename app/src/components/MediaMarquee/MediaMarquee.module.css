@@ -53,6 +53,6 @@ ul.links {
 }
 
 .text {
-  margin-top: calc(var(--margin) / 2);
+  margin-top: calc(var(--margin) / 3);
   padding-right: var(--margin);
 }

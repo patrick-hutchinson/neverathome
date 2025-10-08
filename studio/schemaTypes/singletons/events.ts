@@ -34,6 +34,6 @@ export const events = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({title: 'About Page'}),
+    prepare: () => ({title: 'Event Page'}),
   },
 })

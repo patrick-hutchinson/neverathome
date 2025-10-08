@@ -4,3 +4,7 @@
   left: calc(-1 * var(--margin));
   top: calc(-1 * var(--margin));
 }
+
+.features > div:first-of-type {
+  margin-bottom: 100px;
+}
