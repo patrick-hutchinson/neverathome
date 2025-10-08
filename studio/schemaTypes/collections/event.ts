@@ -7,7 +7,7 @@ import {CalendarIcon} from '@sanity/icons'
 
 export const event = defineType({
   name: 'event',
-  title: 'Event',
+  title: 'Events',
   type: 'document',
   icon: CalendarIcon,
   fields: [

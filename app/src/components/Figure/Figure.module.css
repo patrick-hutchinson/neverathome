@@ -1,8 +1,11 @@
 .media_wrapper {
   position: relative;
+  width: 100%;
 }
 
 .media {
+  width: 100%; /* full width of parent */
+  position: relative; /* for Media content if it’s absolute/fills container */
   z-index: 2;
 }
 

@@ -3,7 +3,7 @@ import {thumbnail} from '../types/thumbnail'
 
 export const feature = defineType({
   name: 'feature',
-  title: 'Feature',
+  title: 'Features',
   type: 'document',
   fields: [
     defineField({

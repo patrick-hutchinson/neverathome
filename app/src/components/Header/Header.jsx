@@ -1,11 +1,14 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import TextMarquee from "../TextMarquee/TextMarquee";
 
 import styles from "./Header.module.css";
 import Link from "next/link";
 
 const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header className={styles.header}>
       <Link href="/">

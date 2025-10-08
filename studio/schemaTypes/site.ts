@@ -1,12 +1,12 @@
 import {defineField, defineType} from 'sanity'
-import {DesktopIcon} from '@sanity/icons'
+
 import {colorPair} from './types/colorPair'
 
 export const site = defineType({
   name: 'site',
   title: 'Site',
   type: 'document',
-  icon: DesktopIcon,
+
   fields: [
     defineField({
       name: 'title',

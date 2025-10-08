@@ -1,26 +1,7 @@
-.filterMenu {
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-  position: sticky;
-  top: 30px;
-  background: var(--background);
-  height: 40px;
-  z-index: 1;
-}
-
-.filterMenu button {
-  opacity: 0.3;
-}
-
-.filterMenu button.active {
-  opacity: 1;
-}
-
 .pinned {
   position: sticky;
-  top: 70px;
+  /* Header Height + Filter Menu Height */
+  top: calc(var(--header-height) + 40px);
   z-index: 1;
 }
 

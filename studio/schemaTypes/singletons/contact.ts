@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export const contact = defineType({
   name: 'contact',
-  title: 'Contact',
+  title: 'About',
   type: 'document',
   fields: [
     defineField({
@@ -34,6 +34,6 @@ export const contact = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({title: 'Contact Page'}),
+    prepare: () => ({title: 'About Page'}),
   },
 })

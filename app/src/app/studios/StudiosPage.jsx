@@ -23,7 +23,7 @@ const StudiosPage = ({ page, site }) => {
         <section key={index}>
           <MediaPair>
             {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
-              <Figure key={index} item={studio} colors={site.colorPairs} />
+              <Figure key={index} item={studio} colors={site.colorPairs} ratio={4 / 3} />
             ))}
           </MediaPair>
         </section>

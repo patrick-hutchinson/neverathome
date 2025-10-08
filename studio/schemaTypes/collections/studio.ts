@@ -3,7 +3,7 @@ import {thumbnail} from '../types/thumbnail'
 
 export const studio = defineType({
   name: 'studio',
-  title: 'Studio',
+  title: 'Studios',
   type: 'document',
 
   fields: [

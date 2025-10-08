@@ -1,15 +1,17 @@
 "use client";
 
 import CalendarEntry from "@/components/CalendarEntry/CalendarEntry";
+import Filtering from "@/components/Filtering/Filtering";
 
 import styles from "./CalendarPage.module.css";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import Collapse from "@/components/Collapsible/Collapse";
 
 const CalendarPage = ({ events, site }) => {
   const [query, setQuery] = useState("");
 
-  // Find all event types
+  // Find all occuring event types
   const types = [...new Set(events.map((event) => event.type))];
 
   // Find all occuring years
@@ -22,62 +24,11 @@ const CalendarPage = ({ events, site }) => {
         return years;
       })
     ),
-  ];
+  ].sort((a, b) => a - b);
 
   // Create an array that stores the active filters
   let [activeTypes, setActiveTypes] = useState([...types]);
   let [activeYears, setActiveYears] = useState([...years]);
-
-  function handleTypes(type) {
-    setActiveTypes(
-      (prev) =>
-        prev.includes(type)
-          ? prev.filter((t) => t !== type) // remove if already active
-          : [...prev, type] // add if not active
-    );
-  }
-
-  function handleYears(year) {
-    setActiveYears(
-      (prev) =>
-        prev.includes(year)
-          ? prev.filter((t) => t !== year) // remove if already active
-          : [...prev, year] // add if not active
-    );
-  }
-
-  const FilterMenu = () => {
-    return (
-      <form className={styles.filterMenu}>
-        <fieldset>
-          {types.map((type, index) => (
-            <span key={index}>
-              <button onClick={() => handleTypes(type)} className={activeTypes.includes(type) ? styles.active : ""}>
-                {type}
-              </button>
-              {index < types.length - 1 && ", "}
-            </span>
-          ))}
-        </fieldset>
-
-        <fieldset>
-          {years.map((year, index) => (
-            <span key={index}>
-              <button onClick={() => handleYears(year)} className={activeYears.includes(year) ? styles.active : ""}>
-                {year}
-              </button>
-              {index < years.length - 1 && ", "}
-            </span>
-          ))}
-        </fieldset>
-
-        <label>
-          Search:
-          <input type="search" name="q" value={query} onChange={(e) => setQuery(e.target.value)} />
-        </label>
-      </form>
-    );
-  };
 
   const now = new Date();
 
@@ -104,7 +55,16 @@ const CalendarPage = ({ events, site }) => {
 
   return (
     <main>
-      <FilterMenu />
+      <Filtering
+        types={types}
+        years={years}
+        query={query}
+        setQuery={setQuery}
+        activeTypes={activeTypes}
+        activeYears={activeYears}
+        setActiveTypes={setActiveTypes}
+        setActiveYears={setActiveYears}
+      />
 
       <div className={styles.calendar}>
         <div className={styles.pinned}>
@@ -123,7 +83,12 @@ const CalendarPage = ({ events, site }) => {
         <ul className={styles.calendar_section}>
           <AnimatePresence>
             {archived.map((event) => (
-              <CalendarEntry key={event._id} event={event} colors={site.colorPairs} />
+              <div key={event._id}>
+                <CalendarEntry event={event} colors={site.colorPairs} />
+                <Collapse>
+                  <div className={styles.content}></div>
+                </Collapse>
+              </div>
             ))}
           </AnimatePresence>
         </ul>

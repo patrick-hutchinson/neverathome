@@ -4,7 +4,7 @@ import type {ValidationContext} from 'sanity'
 
 export const location = defineType({
   name: 'location',
-  title: 'Location',
+  title: 'Locations',
   type: 'document',
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string'}),

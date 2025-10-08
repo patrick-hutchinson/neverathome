@@ -1,0 +1,23 @@
+.filtering {
+  display: grid;
+
+  grid-template-columns: 200px 330px auto auto;
+  position: sticky;
+  top: var(--header-height);
+  background: var(--background);
+  height: 40px;
+  z-index: 1;
+  padding: 2px 3px var(--font-size-m) 3px;
+}
+
+.filtering button {
+  opacity: 0.3;
+}
+
+.filtering button.active {
+  opacity: 1;
+}
+
+button.all {
+  margin-right: 30px;
+}

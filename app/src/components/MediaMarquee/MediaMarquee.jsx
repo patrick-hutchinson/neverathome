@@ -27,6 +27,8 @@ const MediaMarquee = ({ highlights }) => {
       >
         {duplicate.map((highlight, index) => {
           return (
+            // Could potentially place Figure here
+
             <li key={index} className={styles.marqueeItem}>
               <header className={`${styles.header} ff4`}>
                 <span>{highlight.tag}</span>

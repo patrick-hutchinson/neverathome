@@ -6,14 +6,16 @@ import Text from "@/components/Text";
 
 import { motion } from "framer-motion";
 
-const Figure = ({ item, colors }) => {
+const Figure = ({ item, colors, ratio }) => {
   const [random, setRandom] = useState(null);
   const [hovered, setHovered] = useState(false);
+
+  console.log(ratio, "ratio");
   return (
     <div className={styles.figure}>
       <motion.div
         className={styles.media_wrapper}
-        style={{ position: "relative" }}
+        style={{ position: "relative", aspectRatio: ratio }}
         onMouseEnter={() => {
           setRandom(Math.floor(Math.random() * colors.length));
           setHovered(true);
@@ -44,7 +46,7 @@ const Figure = ({ item, colors }) => {
             ))}
           </ul>
         </header>
-        <div className={styles.media}>
+        <div className={styles.media} style={{ aspectRatio: ratio }}>
           <Media medium={item.thumbnail} />
         </div>
       </motion.div>
