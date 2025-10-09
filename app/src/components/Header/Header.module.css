@@ -33,3 +33,9 @@ nav.nav ul {
 ul.nav_section {
   margin-right: 30px;
 }
+
+.not_allowed {
+  pointer-events: none;
+  opacity: 0.2;
+  cursor: not-allowed !important;
+}

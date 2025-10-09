@@ -89,9 +89,11 @@ const CalendarPage = ({ events }) => {
       />
 
       <div className={styles.calendar}>
-        <div className={styles.pinned}>
-          <EventHeader event={pinned} />
-        </div>
+        {pinned && (
+          <div className={styles.pinned}>
+            <EventHeader event={pinned} />
+          </div>
+        )}
 
         <ul className={styles.calendar_section}>
           <AnimatePresence>
@@ -115,7 +117,9 @@ const CalendarPage = ({ events }) => {
                     <MediaPair>
                       <div
                         style={{
-                          marginLeft: "calc(200px + 3px)",
+                          marginLeft: "calc(195px)",
+                          position: "sticky",
+                          top: "0",
                         }}
                       >
                         <Text text={event.report} fontSize="ff-t" />

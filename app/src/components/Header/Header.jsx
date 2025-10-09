@@ -47,7 +47,7 @@ const Header = () => {
             <li>
               <Link href="/artists">Artists</Link>
             </li>
-            <li>
+            <li className={styles.not_allowed}>
               <Link href="/locations">Locations</Link>
             </li>
             <li>

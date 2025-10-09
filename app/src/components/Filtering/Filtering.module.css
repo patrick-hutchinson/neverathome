@@ -1,7 +1,7 @@
 .filtering {
   display: grid;
 
-  grid-template-columns: 200px 330px auto auto;
+  grid-template-columns: 209px 328px auto auto;
   position: sticky;
   top: var(--header-height);
   background: var(--background);
