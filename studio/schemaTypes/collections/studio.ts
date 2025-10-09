@@ -27,4 +27,23 @@ export const studio = defineType({
       },
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'thumbnail.image',
+      type: 'type',
+    },
+    prepare({title, media, type}: {title?: string; media?: any; type?: string}) {
+      const types: Record<string, string> = {
+        sharedStudio: 'Shared Studio',
+        artistStudio: 'Artist Studio',
+      }
+
+      return {
+        title,
+        subtitle: types[type ?? ''] || '',
+        media,
+      }
+    },
+  },
 })

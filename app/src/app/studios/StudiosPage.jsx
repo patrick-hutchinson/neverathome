@@ -25,7 +25,7 @@ const StudiosPage = ({ page, site }) => {
         {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
           <MediaPair key={index}>
             {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
-              <Figure key={index} item={studio} colors={site.colorPairs} ratio={4 / 3} />
+              <Figure key={index} item={studio} ratio={4 / 3} />
             ))}
           </MediaPair>
         ))}

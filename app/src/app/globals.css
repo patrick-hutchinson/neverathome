@@ -3,7 +3,7 @@
   --foreground: #000000;
   --link_color: #5d5a5a;
 
-  --margin: 12px;
+  --margin: 5px;
 
   /* largest */
   --font-size-xl: 42rem;
@@ -41,6 +41,7 @@
   --header-height: 45px;
 
   --gap: 2px;
+  --border: 1px;
 }
 
 * {

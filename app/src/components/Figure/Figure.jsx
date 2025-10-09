@@ -6,9 +6,10 @@ import Text from "@/components/Text";
 
 import { motion } from "framer-motion";
 
-const Figure = ({ item, colors, ratio }) => {
-  const [random, setRandom] = useState(null);
+const Figure = ({ item, ratio }) => {
   const [hovered, setHovered] = useState(false);
+
+  console.log(item, "figure");
 
   return (
     <div className={styles.figure}>
@@ -16,17 +17,16 @@ const Figure = ({ item, colors, ratio }) => {
         className={styles.media_wrapper}
         style={{ position: "relative", aspectRatio: ratio }}
         onMouseEnter={() => {
-          setRandom(Math.floor(Math.random() * colors.length));
           setHovered(true);
         }}
         onMouseLeave={() => setHovered(false)}
       >
-        {hovered && (
+        {hovered && item.colorPair && (
           <motion.div
             className={styles.card}
             style={{
-              background: colors[random].background.value,
-              color: colors[random].text.value,
+              background: item.colorPair?.background.value,
+              color: item.colorPair?.text.value,
               transition: { duration: 0 },
             }}
           >

@@ -26,7 +26,7 @@ const WorkshopPage = ({ page, events, site }) => {
           </div>
         </h2>
         <div className="two-column">
-          <Text text={page.subtext} fontSize="ff4" />
+          <Text text={page.subtext} />
         </div>
       </section>
 
@@ -34,7 +34,7 @@ const WorkshopPage = ({ page, events, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((event, index) => (
-            <EventHeader key={index} event={event} colors={site.colorPairs} />
+            <EventHeader key={index} event={event} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>
@@ -48,7 +48,7 @@ const WorkshopPage = ({ page, events, site }) => {
           <div key={i} className={styles.feature_container}>
             <MediaPair>
               {page.features.slice(i * 2, i * 2 + 2).map((feature, index) => (
-                <Figure key={index} item={feature} colors={site.colorPairs} />
+                <Figure key={index} item={feature} />
               ))}
             </MediaPair>
           </div>

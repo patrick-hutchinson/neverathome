@@ -24,7 +24,7 @@ const HomePage = ({ data, site }) => {
         <h3>Calendar</h3>
         <ul>
           {data.events.map((event, index) => (
-            <EventHeader key={index} event={event} colors={site.colorPairs} />
+            <EventHeader key={index} event={event} />
           ))}
         </ul>
       </section>
@@ -33,7 +33,7 @@ const HomePage = ({ data, site }) => {
         <h3>Features</h3>
         <MediaPair>
           {data.features.map((feature, index) => (
-            <Figure key={index} item={feature} colors={site.colorPairs} />
+            <Figure key={index} item={feature} />
           ))}
         </MediaPair>
       </section>

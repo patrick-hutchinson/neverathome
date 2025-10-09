@@ -50,9 +50,44 @@ export const feature = defineType({
       },
     }),
     defineField({
+      name: 'colorPair',
+      title: 'Selected Color Pair',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'colorPair'}]}],
+      validation: (Rule) => Rule.max(1).error('You can only select one highlight'),
+    }),
+    defineField({
       name: 'thumbnail',
       title: 'Thumbnail',
       type: 'thumbnail',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'thumbnail.image', // or 'thumbnail', depending on your thumbnail type
+      tag: 'tag',
+    },
+    prepare({
+      title,
+      media,
+      tag,
+    }: {
+      title?: string
+      media?: any
+      tag?: 'inTheMedia' | 'visits' | 'upcoming' | string
+    }) {
+      const tagLabels: Record<'inTheMedia' | 'visits' | 'upcoming', string> = {
+        inTheMedia: 'In The Media',
+        visits: 'Visits',
+        upcoming: 'Upcoming',
+      }
+
+      return {
+        title,
+        subtitle: tag ? tagLabels[tag as keyof typeof tagLabels] || '' : '',
+        media,
+      }
+    },
+  },
 })

@@ -27,18 +27,20 @@ export const structure: StructureResolver = (S, context) =>
           S.list()
             .title('Pages')
             .items([
-              S.listItem().title('Home').child(S.document().schemaType('home').documentId('home')),
               S.listItem()
-                .title('About')
+                .title('Home Page')
+                .child(S.document().schemaType('home').documentId('home')),
+              S.listItem()
+                .title('About Page')
                 .child(S.document().schemaType('contact').documentId('contact')),
               S.listItem()
-                .title('Events')
+                .title('Events Page')
                 .child(S.document().schemaType('events').documentId('events')),
               S.listItem()
-                .title('Workshops')
+                .title('Workshops Page')
                 .child(S.document().schemaType('workshops').documentId('workshops')),
               S.listItem()
-                .title('Studios')
+                .title('Studios Page')
                 .child(S.document().schemaType('studios').documentId('studios')),
             ]),
         ),
@@ -93,7 +95,7 @@ export const structure: StructureResolver = (S, context) =>
                 .schemaType('eventType')
                 .child(S.documentTypeList('eventType').title('Event Types')),
               S.listItem()
-                .title('Color Pair')
+                .title('Color Pairs')
                 .schemaType('colorPair')
                 .child(S.documentTypeList('colorPair').title('Color Pair')),
             ]),

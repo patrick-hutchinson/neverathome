@@ -20,7 +20,7 @@ const MediaMarquee = ({ highlights }) => {
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            ease: easeInOut,
+            ease: "linear",
             duration: 12, // total duration of one loop
           },
         }}

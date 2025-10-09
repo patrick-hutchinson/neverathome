@@ -8,3 +8,12 @@
 .calendar_section {
   margin-bottom: 100px;
 }
+
+.content {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.calendar section {
+  margin-bottom: 150px;
+}

@@ -6,12 +6,13 @@ import FormatDate from "../FormatDate";
 import Media from "../Media";
 import { usePathname } from "next/navigation";
 
-const EventHeader = ({ event, isExpanded, isExpandable }) => {
+const EventHeader = ({ event, isExpanded, isExpandable, onClick }) => {
   console.log(event);
   const pathname = usePathname();
   const isWorkshopPage = pathname.includes("/workshops");
   return (
     <motion.li
+      onClick={onClick}
       className={`${styles.event} ${isWorkshopPage ? styles.invert : null}`}
       whileHover={() => {
         return {
@@ -26,7 +27,7 @@ const EventHeader = ({ event, isExpanded, isExpandable }) => {
       style={{ cursor: isExpandable ? "pointer" : "default" }}
     >
       <span>{event.type}</span>
-      <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "170px", gap: "10px" }}>
         <FormatDate date={event.startDate} />
         <Media medium={event.thumbnail} />
       </div>

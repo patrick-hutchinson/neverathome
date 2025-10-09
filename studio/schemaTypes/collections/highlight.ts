@@ -77,4 +77,32 @@ export const highlight = defineType({
       description: 'Mark this image if it should appear smaller on the home page.',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'thumbnail.image', // or 'thumbnail', depending on your thumbnail type
+      tag: 'tag',
+    },
+    prepare({
+      title,
+      media,
+      tag,
+    }: {
+      title?: string
+      media?: any
+      tag?: 'inTheMedia' | 'visits' | 'upcoming' | string
+    }) {
+      const tagLabels: Record<'inTheMedia' | 'visits' | 'upcoming', string> = {
+        inTheMedia: 'In The Media',
+        visits: 'Visits',
+        upcoming: 'Upcoming',
+      }
+
+      return {
+        title,
+        subtitle: tag ? tagLabels[tag as keyof typeof tagLabels] || '' : '',
+        media,
+      }
+    },
+  },
 })

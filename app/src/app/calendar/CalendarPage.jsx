@@ -103,35 +103,44 @@ const CalendarPage = ({ events }) => {
           </AnimatePresence>
         </ul>
 
-        <h3>Archived</h3>
-        <ul className={styles.calendar_section}>
-          <AnimatePresence>
-            {archived.map((event) => {
-              const isExpandable = event.gallery;
-              let isExpanded = event._id === expandedElement;
+        <section>
+          <h3>Archived</h3>
+          <ul className={styles.calendar_section}>
+            <AnimatePresence>
+              {archived.map((event) => {
+                const isExpandable = event.gallery || event.info || event.report;
+                let isExpanded = event._id === expandedElement;
 
-              return (
-                <div key={event._id} onClick={() => handleExpand(event._id)}>
-                  <EventHeader event={event} isExpandable={isExpandable} isExpanded={isExpanded} />
-                  <Collapse isExpanded={isExpanded} id={event._id}>
-                    <MediaPair>
-                      <div
-                        style={{
-                          marginLeft: "calc(195px)",
-                          position: "sticky",
-                          top: "0",
-                        }}
-                      >
-                        <Text text={event.report} fontSize="ff-t" />
+                return (
+                  <div key={event._id}>
+                    <EventHeader
+                      event={event}
+                      isExpandable={isExpandable}
+                      isExpanded={isExpanded}
+                      onClick={() => handleExpand(event._id)}
+                    />
+                    <Collapse isExpanded={isExpanded} id={event._id}>
+                      <div className={styles.content}>
+                        <MediaPair>
+                          <div
+                            style={{
+                              marginLeft: "calc(195px)",
+                              position: "sticky",
+                              top: "0",
+                            }}
+                          >
+                            <Text text={event.report} fontSize="ff-t" />
+                          </div>
+                          <Gallery event={event} />
+                        </MediaPair>
                       </div>
-                      <Gallery event={event} />
-                    </MediaPair>
-                  </Collapse>
-                </div>
-              );
-            })}
-          </AnimatePresence>
-        </ul>
+                    </Collapse>
+                  </div>
+                );
+              })}
+            </AnimatePresence>
+          </ul>
+        </section>
       </div>
     </main>
   );

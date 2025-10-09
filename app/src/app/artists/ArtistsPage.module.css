@@ -13,8 +13,6 @@
   position: sticky;
   top: var(--header-height);
 
-  height: 40px;
-
   display: grid;
   grid-template-columns: 200px auto;
 
@@ -22,8 +20,9 @@
   color: var(--background);
 
   z-index: 1;
-  padding: 2px 3px var(--font-size-m) 3px;
-  border-bottom: 2px solid var(--background);
+  padding: 3px;
+  padding-bottom: 10px;
+  border-bottom: var(--border) solid var(--background);
 }
 
 .filtering button {

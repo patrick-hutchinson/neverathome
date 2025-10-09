@@ -2,7 +2,7 @@ import {defineType, defineField} from 'sanity'
 
 export const colorPair = defineType({
   name: 'colorPair',
-  title: 'Color Pair',
+  title: 'Color Pairs',
   type: 'document',
   fields: [
     defineField({name: 'name', title: 'Name', type: 'string'}),

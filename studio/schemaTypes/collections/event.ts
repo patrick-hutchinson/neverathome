@@ -19,12 +19,14 @@ export const event = defineType({
       type: 'boolean',
       description: 'Mark this event as pinned to highlight it.',
     }),
+
     defineField({
       name: 'type',
       title: 'Type',
       type: 'reference',
       to: [{type: 'eventType'}],
     }),
+    defineField({name: 'info', title: 'Event Info', type: 'array', of: [{type: 'block'}]}),
     defineField({
       name: 'startDate',
       title: 'Start Date',
@@ -60,4 +62,18 @@ export const event = defineType({
     gallery,
     defineField({name: 'report', title: 'Report', type: 'array', of: [{type: 'block'}]}),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'thumbnail.image', // adjust this path to match your thumbnail type
+      subtitle: 'city',
+    },
+    prepare({title, subtitle, media}) {
+      return {
+        title,
+        subtitle,
+        media,
+      }
+    },
+  },
 })

@@ -12,11 +12,6 @@ export const siteQuery = `*[_type=="site"][0]{
     platform,
     link
   },
-  colorPairs[]->{
-    _id,
-    text,
-    background
-  },
   supporters
 }`;
 
@@ -63,6 +58,7 @@ export const homeQuery = `*[_type=="home"][0]{
     description,
     subtitle,
     links,
+    "colorPair": colorPair[0]->{_id, text, background},
     "tag": select(
       tag == "location" => "The Location",
       tag == "visits" => "Visits"
@@ -95,6 +91,7 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
   facilities,
   subtext,
   features[]->{
+    "colorPair": colorPair[0]->{_id, text, background},
     title,
     description,
     subtitle,
@@ -208,6 +205,7 @@ export const featureQuery = `*[_type=="feature"]{
   title,
   description,
   subtitle,
+  "colorPair": colorPair[0]->{_id, text, background},
   links,
   "tag": select(
     tag == "location" => "The Location",

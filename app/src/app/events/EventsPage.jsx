@@ -28,7 +28,7 @@ const EventsPage = ({ page, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {page.events.map((event, index) => (
-            <EventHeader key={index} event={event} colors={site.colorPairs} />
+            <EventHeader key={index} event={event} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

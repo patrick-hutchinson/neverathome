@@ -52,12 +52,6 @@ export const site = defineType({
         },
       ],
     }),
-    defineField({
-      name: 'colorPairs',
-      title: 'Color Pairs',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'colorPair'}]}],
-    }),
   ],
   preview: {
     prepare: () => ({title: 'Site'}),
