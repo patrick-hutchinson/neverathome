@@ -9,16 +9,16 @@ const Collapse = ({ children, isExpanded, id }) => {
     if (ref.current && isExpanded) setHeight(ref.current.scrollHeight);
   }, [children]);
 
-  const duration = Math.min(Math.max(height / 3000, 0.4), 0.8);
+  const duration = Math.min(Math.max(height / 3000, 0.4), 0.3);
 
   return (
     <motion.div
-      style={{ overflow: "hidden" }}
+      style={{ overflow: "hidden", background: "#000" }}
       initial={false}
       animate={isExpanded ? "expanded" : "collapsed"}
       variants={{
         collapsed: { maxHeight: 0, transition: { duration: duration, delay: 0.4 } },
-        expanded: { maxHeight: height, transition: { duration: 0.3 } },
+        expanded: { maxHeight: height, transition: { duration: duration } },
       }}
     >
       <motion.div

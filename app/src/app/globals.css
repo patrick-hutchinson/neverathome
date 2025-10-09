@@ -214,6 +214,10 @@ h5,
   padding: var(--margin);
 }
 
+.ff-t p {
+  margin-bottom: 20px;
+}
+
 a,
 a:visited,
 button,

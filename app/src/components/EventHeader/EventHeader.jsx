@@ -13,7 +13,7 @@ const EventHeader = ({ event, isExpanded, isExpandable, onClick }) => {
   return (
     <motion.li
       onClick={onClick}
-      className={`${styles.event} ${isWorkshopPage ? styles.invert : null}`}
+      className={`${styles.event} ${isWorkshopPage ? styles.invert : null} ${isExpanded && styles.expanded}`}
       whileHover={() => {
         return {
           background: event.colorPair?.background.value,

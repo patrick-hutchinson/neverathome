@@ -174,6 +174,7 @@ export const eventQuery = `*[_type=="event"]{
   title,
   pinned,
   "type": type->title,
+  info,
   startDate,
   endDate,
   city,

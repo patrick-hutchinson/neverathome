@@ -12,8 +12,16 @@
 .content {
   background: var(--foreground);
   color: var(--background);
+  border-bottom: var(--border) var(--background) solid;
 }
 
 .calendar section {
   margin-bottom: 150px;
+}
+
+.info {
+  max-width: 800px;
+  margin-left: 528px;
+  padding-top: 10px;
+  padding-bottom: 40px;
 }

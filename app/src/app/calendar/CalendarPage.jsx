@@ -95,13 +95,33 @@ const CalendarPage = ({ events }) => {
           </div>
         )}
 
-        <ul className={styles.calendar_section}>
-          <AnimatePresence>
-            {current.map((event) => (
-              <EventHeader key={event._id} event={event} />
-            ))}
-          </AnimatePresence>
-        </ul>
+        <section>
+          <h3>Current</h3>
+          <ul className={styles.calendar_section}>
+            <AnimatePresence>
+              {current.map((event) => {
+                const isExpandable = event.info;
+                let isExpanded = event._id === expandedElement;
+
+                return (
+                  <div key={event.id}>
+                    <EventHeader
+                      event={event}
+                      isExpandable={isExpandable}
+                      isExpanded={isExpanded}
+                      onClick={() => handleExpand(event._id)}
+                    />
+                    <Collapse isExpanded={isExpanded} id={event._id}>
+                      <div className={styles.content}>
+                        <Text text={event.info} className={styles.info} fontSize="ff-t" />
+                      </div>
+                    </Collapse>
+                  </div>
+                );
+              })}
+            </AnimatePresence>
+          </ul>
+        </section>
 
         <section>
           <h3>Archived</h3>
