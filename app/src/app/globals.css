@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "TextgyreHeros";
+  src: url("/fonts/texgyreheros-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TextgyreHeros";
+  src: url("/fonts/texgyreheros-italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;
@@ -30,7 +46,7 @@
   --font-size-s: 1.3rem;
   --line-height-s: 1.5rem;
   --letter-spacing-s: 0.03rem;
-  --paragraph-spacing-s: 0;
+  --paragraph-spacing-s: 0rem;
 
   /* smallest */
   --font-size-xs: 0.8rem;
@@ -41,7 +57,7 @@
   --header-height: 45px;
 
   --gap: 2px;
-  --border: 1px;
+  --border: 1.5px;
 }
 
 * {
@@ -73,7 +89,7 @@ body {
 
   font-size: var(--font-size-m);
   line-height: var(--line-height-m);
-  font-family: HBMarginS, "Helvetica Neue", Arial, sans-serif;
+  font-family: TextgyreHeros, "Helvetica Neue", Arial, sans-serif;
   font-weight: 375;
 }
 
@@ -178,6 +194,10 @@ h4,
   letter-spacing: var(--letter-spacing-s);
   font-family: HBMarginM, "Helvetica Neue", Arial, sans-serif;
   font-weight: 450;
+}
+
+.ff4 p {
+  margin-bottom: var(--paragraph-spacing-s);
 }
 
 h5,

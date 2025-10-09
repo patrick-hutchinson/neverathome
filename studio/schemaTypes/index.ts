@@ -7,6 +7,7 @@ import {contact} from './singletons/contact'
 import {events} from './singletons/events'
 import {workshops} from './singletons/workshops'
 import {studios} from './singletons/studios'
+import {imprint} from './singletons/imprint'
 
 // Collections
 import {event} from './collections/event'
@@ -42,5 +43,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     studios,
     studio,
     gallery,
+    imprint,
   ],
 }

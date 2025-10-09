@@ -11,6 +11,7 @@ import {
   artistQuery,
   workshopsQuery,
   studiosQuery,
+  imprintQuery,
 } from "./queries";
 
 export async function getSiteData() {
@@ -39,6 +40,10 @@ export async function getArtists() {
 
 export async function getEventsPage() {
   return client.fetch(eventsQuery);
+}
+
+export async function getImprintPage() {
+  return client.fetch(imprintQuery);
 }
 
 export async function getLocations() {

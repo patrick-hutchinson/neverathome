@@ -27,7 +27,9 @@ const Footer = ({ site }) => {
         </div>
         <div className={styles.resources}>
           <a href="#">Rental Rooms.pdf</a>
-          <a href={site.googleMaps}>See Map</a>
+          <a href={site.googleMaps} target="_blank">
+            See Map
+          </a>
         </div>
       </div>
 

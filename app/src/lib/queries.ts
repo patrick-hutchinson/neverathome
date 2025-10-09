@@ -158,6 +158,10 @@ export const eventsQuery = `*[_type=="events"][0]{
   },
 }`;
 
+export const imprintQuery = `*[_type=="imprint"][0]{
+  imprint,
+}`;
+
 export const locationQuery = `*[_type=="location"]{
   _id,
   title,
