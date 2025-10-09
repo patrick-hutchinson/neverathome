@@ -9,8 +9,6 @@ const ArtistsPage = ({ artists }) => {
 
   const locations = [...new Set(artists.map((artist) => artist.location))];
 
-  console.log(locations, "location");
-
   let [activeLocations, setActiveLocations] = useState([...locations]);
 
   function handleLocations(location) {

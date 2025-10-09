@@ -33,6 +33,8 @@
   opacity: 1;
 }
 
-button.all {
+.filtering button.all {
   margin-right: 30px;
+  opacity: 1 !important;
+  color: var(--background);
 }

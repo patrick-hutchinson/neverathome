@@ -260,12 +260,12 @@ label {
 
 .two-column {
   columns: 2;
-  gap: var(--margin);
+  gap: 10px;
   margin: 0 20% 0 200px;
   font-size: var(--font-size-longcopy);
   line-height: var(--line-height-longcopy);
   max-width: 1000px;
-  padding-top: var(--margin);
+  padding-top: 10px;
 }
 
 @media (hover: hover) and (pointer: fine) {

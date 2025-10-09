@@ -9,8 +9,12 @@ import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import EventHeader from "@/components/EventHeader/EventHeader";
 import Figure from "@/components/Figure/Figure";
+import { useEffect } from "react";
 
 const HomePage = ({ data, site }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <main>
       <ImageShuffle images={data.images} />

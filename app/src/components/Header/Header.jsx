@@ -50,7 +50,7 @@ const Header = () => {
             <li className={styles.not_allowed}>
               <Link href="/locations">Locations</Link>
             </li>
-            <li>
+            <li style={{ cursor: "pointer" }}>
               <Link href="/calendar">Calendar</Link>
             </li>
           </ul>
