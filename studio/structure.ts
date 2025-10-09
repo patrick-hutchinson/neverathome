@@ -2,6 +2,7 @@ import type {StructureResolver} from 'sanity/structure'
 import {MasterDetailIcon} from '@sanity/icons'
 import {DashboardIcon} from '@sanity/icons'
 import {CalendarIcon} from '@sanity/icons'
+import {PinFilledIcon} from '@sanity/icons'
 
 // Define singleton document IDs here
 const singletons = ['site', 'home', 'contact', 'events', 'workshops', 'studios']
@@ -54,6 +55,7 @@ export const structure: StructureResolver = (S, context) =>
             .items([
               S.listItem()
                 .title('Pinned')
+                .icon(PinFilledIcon)
                 .child(
                   S.documentTypeList('event').title('Pinned').filter('_type == "event" && pinned'),
                 ),

@@ -1,8 +1,10 @@
 import {defineType, Rule} from 'sanity'
+import {TagIcon} from '@sanity/icons'
 
 export const eventType = defineType({
   name: 'eventType',
   title: 'Event Type',
+  icon: TagIcon,
   type: 'document',
   fields: [
     {

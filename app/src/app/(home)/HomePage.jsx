@@ -38,7 +38,7 @@ const HomePage = ({ data, site }) => {
         </MediaPair>
       </section>
 
-      <TextMarquee className={styles.marquee} text="NeverAtHome" fontSize={130} />
+      <TextMarquee className={styles.marquee} text="NeverAtHome" fontSize="ff1" />
     </main>
   );
 };

@@ -2,10 +2,12 @@ import {defineField, defineType} from 'sanity'
 import {thumbnail} from '../types/thumbnail'
 import {gallery} from '../types/gallery'
 import type {ValidationContext} from 'sanity'
+import {MarkerIcon} from '@sanity/icons'
 
 export const location = defineType({
   name: 'location',
   title: 'Locations',
+  icon: MarkerIcon,
   type: 'document',
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string'}),

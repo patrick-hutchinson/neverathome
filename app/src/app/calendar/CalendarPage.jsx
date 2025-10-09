@@ -12,6 +12,7 @@ import Text from "@/components/Text";
 import MediaPair from "@/components/MediaPair/MediaPair";
 
 const CalendarPage = ({ events }) => {
+  console.log(events, "events");
   let [expandedElement, setExpandedElement] = useState(null);
 
   const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
@@ -96,7 +97,7 @@ const CalendarPage = ({ events }) => {
         )}
 
         <section>
-          <h3>Current</h3>
+          {/* <h3>Current</h3> */}
           <ul className={styles.calendar_section}>
             <AnimatePresence>
               {current.map((event) => {
@@ -104,7 +105,7 @@ const CalendarPage = ({ events }) => {
                 let isExpanded = event._id === expandedElement;
 
                 return (
-                  <div key={event.id}>
+                  <div key={event._id}>
                     <EventHeader
                       event={event}
                       isExpandable={isExpandable}

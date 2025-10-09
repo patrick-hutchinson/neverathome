@@ -28,7 +28,7 @@ const TextMarquee = ({ text, fontSize, className }) => {
         {Array(4)
           .fill(text)
           .map((_, index) => (
-            <div key={index} style={{ fontSize: `${fontSize}px` }}>
+            <div key={index} className={fontSize}>
               {text}
             </div>
           ))}

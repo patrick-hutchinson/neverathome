@@ -18,6 +18,9 @@
 .calendar section {
   margin-bottom: 150px;
 }
+.calendar section:last-of-type {
+  margin-bottom: 180px;
+}
 
 .info {
   max-width: 800px;

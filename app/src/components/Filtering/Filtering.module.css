@@ -7,6 +7,7 @@
   background: var(--background);
   height: 40px;
   z-index: 1;
+  background: #eee;
 }
 
 .filtering button {
@@ -19,4 +20,5 @@
 
 button.all {
   margin-right: 30px;
+  opacity: 1;
 }

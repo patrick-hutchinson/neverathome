@@ -2,9 +2,12 @@ import {defineField, defineType} from 'sanity'
 import {thumbnail} from '../types/thumbnail'
 import type {ValidationContext} from 'sanity'
 
+import {SparkleIcon} from '@sanity/icons'
+
 export const highlight = defineType({
   name: 'highlight',
   title: 'Highlights',
+  icon: SparkleIcon,
   type: 'document',
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string'}),
