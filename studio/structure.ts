@@ -75,8 +75,16 @@ export const structure: StructureResolver = (S, context) =>
                 .child(
                   S.documentTypeList('event')
                     .title('Past Events')
-                    .filter('coalesce(endDate, startDate) < now()')
+                    .filter('_type == "event" && coalesce(endDate, startDate) < now()')
                     .defaultOrdering([{field: 'startDate', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .title('Drafts')
+                .child(
+                  S.documentTypeList('event')
+                    .title('Drafts / Undated')
+                    .filter('_type == "event" && !defined(startDate) && !defined(endDate)')
+                    .defaultOrdering([{field: '_createdAt', direction: 'desc'}]),
                 ),
             ]),
         ),
