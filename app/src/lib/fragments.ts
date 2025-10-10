@@ -20,9 +20,19 @@ export const thumbnailFragment = `
   }
 `;
 
-// fragments.ts
 export const galleryFragment = `
   gallery[]{
+    // Wrap image items
+    _type == "image" => {
+      "image": @,
+      "video": null
+    },
+    // Wrap video items
+    _type == "mux.video" => {
+      "image": null,
+      "video": @
+    }
+  }[]{
     "type": select(defined(image) => "image", defined(video) => "video"),
     "_id": select(
       defined(image.asset) => image.asset->_id,
