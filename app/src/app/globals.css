@@ -19,7 +19,7 @@
   --foreground: #000000;
   --link_color: #5d5a5a;
 
-  --margin: 5px;
+  --margin: 12px;
 
   /* largest */
   --font-size-xl: clamp(13rem, calc(12rem + 2vw), 20rem);

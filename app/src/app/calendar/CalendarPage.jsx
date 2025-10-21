@@ -129,6 +129,7 @@ const CalendarPage = ({ events }) => {
           <ul className={styles.calendar_section}>
             <AnimatePresence>
               {archived.map((event) => {
+                console.log(event.report, "report");
                 const isExpandable = event.gallery || event.info || event.report;
                 let isExpanded = event._id === expandedElement;
 
@@ -150,7 +151,7 @@ const CalendarPage = ({ events }) => {
                               top: "0",
                             }}
                           >
-                            <Text text={event.report} fontSize="ff-t" />
+                            <Text text={event.report} fontSize="ff3" />
                           </div>
                           <Gallery event={event} />
                         </MediaPair>
