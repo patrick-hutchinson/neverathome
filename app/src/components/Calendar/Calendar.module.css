@@ -62,8 +62,8 @@
   grid-column: 23 / end;
   display: flex;
   justify-content: end;
-  height: var(--line-height-3);
-  width: var(--line-height-3);
+  /* height: var(--line-height-3); */
+  /* width: var(--line-height-3); */
 }
 
 .event.past.expanded {

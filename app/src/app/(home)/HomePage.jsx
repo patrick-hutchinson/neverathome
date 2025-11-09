@@ -15,10 +15,11 @@ import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import { repeatArray } from "@/helpers/repeatArray";
 import Link from "next/link";
 
-const HomePage = ({ data, site }) => {
+const HomePage = ({ data }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <main>
       <ImageShuffle images={data.images} />
