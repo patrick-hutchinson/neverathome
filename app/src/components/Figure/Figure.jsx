@@ -33,7 +33,7 @@ const Figure = ({ item, ratio }) => {
             <h2>{item.title}</h2>
           </motion.div>
         )}
-        <header className={`${styles.header} ff4`}>
+        <header className={`${styles.header}`} typo="h4">
           <span>{item.tag}</span>
           <ul className={styles.links}>
             {item.links?.map((link, index) => (

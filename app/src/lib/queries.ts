@@ -12,6 +12,10 @@ export const siteQuery = `*[_type=="site"][0]{
     platform,
     link
   },
+  linktree[]{
+    platform,
+    link
+  },
   supporters
 }`;
 
@@ -35,7 +39,7 @@ export const homeQuery = `*[_type=="home"][0]{
     city,
     "colorPair": colorPair[0]->{_id, text, background},
     location,
-    ${thumbnailFragment}
+    ${thumbnailFragment},
   },
   highlights[]->{
     _id,
@@ -138,7 +142,7 @@ export const eventsQuery = `*[_type=="events"][0]{
     "colorPair": colorPair[0]->{_id, text, background},
     city,
     location,
-    ${thumbnailFragment}
+    ${thumbnailFragment},
   },
   highlights[]->{
     _id,
@@ -156,6 +160,10 @@ export const eventsQuery = `*[_type=="events"][0]{
     ${thumbnailFragment},
     imageIsSmall
   },
+  residencies{
+    text,
+    ${thumbnailFragment}
+  }
 }`;
 
 export const imprintQuery = `*[_type=="imprint"][0]{
@@ -181,6 +189,7 @@ export const eventQuery = `*[_type=="event"]{
   info,
   startDate,
   endDate,
+  ticketLink,
   city,
   "colorPair": colorPair[0]->{_id, text, background},
   location,

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const Collapse = ({ children, isExpanded, id }) => {
+const Collapse = ({ children, isExpanded, id, onScroll }) => {
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
 
@@ -13,12 +13,16 @@ const Collapse = ({ children, isExpanded, id }) => {
 
   return (
     <motion.div
-      style={{ overflow: "hidden", background: "#000" }}
+      onScroll={onScroll}
+      style={{ overflow: isExpanded ? "visible" : "hidden", background: "#000" }}
       initial={false}
       animate={isExpanded ? "expanded" : "collapsed"}
       variants={{
         collapsed: { maxHeight: 0, transition: { duration: duration, delay: 0.4 } },
-        expanded: { maxHeight: height, transition: { duration: duration } },
+        expanded: {
+          maxHeight: height,
+          transition: { duration: duration },
+        },
       }}
     >
       <motion.div
@@ -30,7 +34,7 @@ const Collapse = ({ children, isExpanded, id }) => {
           visible: { opacity: 1, transition: { duration: 0.4, delay: duration } },
           hidden: { opacity: 0, transition: { duration: 0.4 } },
         }}
-        style={{ overflowY: "scroll" }}
+        // style={{ overflowY: "scroll" }}
       >
         {children}
       </motion.div>

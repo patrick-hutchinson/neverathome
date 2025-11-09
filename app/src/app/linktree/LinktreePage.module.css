@@ -1,0 +1,8 @@
+.marquee {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  mix-blend-mode: difference;
+  z-index: 10;
+}

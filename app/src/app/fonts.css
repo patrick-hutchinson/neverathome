@@ -1,0 +1,134 @@
+@font-face {
+  font-family: "TextgyreHeros";
+  src: url("/fonts/texgyreheros-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TextgyreHeros";
+  src: url("/fonts/texgyreheros-italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* largest */
+  --font-size-1: clamp(13rem, calc(12rem + 2vw), 20rem);
+  --line-height-1: 1;
+  --letter-spacing-1: -0.5rem;
+  --paragraph-spacing-1: 0;
+
+  --font-size-2: clamp(3.6rem, calc(2.928rem + 1.2vw), 7.2rem);
+  --line-height-2: 1.05; /* leave this — it's unitless */
+  --letter-spacing-2: -0.024rem;
+  --paragraph-spacing-2: 0;
+  --text-indent-2: 7.2rem;
+
+  --font-size-3: clamp(1.77rem, calc(1.77rem + 0.036vw), 2.2rem);
+  --line-height-3: clamp(1.78rem, calc(2rem + 0.035vw), 2.5rem);
+  --letter-spacing-3: 0.03rem;
+  --paragraph-spacing-3: 0;
+
+  --font-size-longcopy: clamp(1.5rem, calc(1.336rem + 0.0114vw), 2rem);
+  --line-height-longcopy: clamp(1.85rem, calc(1.836rem + 0.0114vw), 2.5rem);
+  --letter-spacing-longcopy: 0.03rem;
+  --paragraph-spacing-longcopy: 0;
+
+  --font-size-4: 1.3rem;
+  --line-height-4: 1.5rem;
+  --letter-spacing-4: 0.03rem;
+  --paragraph-spacing-4: 1rem;
+
+  /* smallest */
+  --font-size-5: 0.8rem;
+  --line-height-5: 1rem;
+  --letter-spacing-5: 0.03rem;
+  --paragraph-spacing-5: 0;
+}
+
+h1,
+[typo="h1"] {
+  font-size: var(--font-size-1);
+  line-height: var(--line-height-1);
+  letter-spacing: var(--letter-spacing-1);
+}
+
+h2,
+[typo="h2"] {
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-2);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+[typo="h2"] p {
+  text-indent: var(--text-indent-2);
+}
+[typo="h2"] p:first-of-type {
+  text-indent: 0;
+}
+
+h3,
+[typo="h3"] {
+  font-size: var(--font-size-3);
+  line-height: var(--line-height-3);
+  letter-spacing: var(--letter-spacing-3);
+}
+
+h4,
+[typo="h4"] {
+  font-size: var(--font-size-4);
+  line-height: var(--line-height-4);
+  letter-spacing: var(--letter-spacing-4);
+  font-family: HBMarginM, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 450;
+}
+
+h5,
+[typo="h5"] {
+  font-family: HBMarginM, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+
+  font-size: var(--font-size-5);
+  line-height: var(--line-height-5);
+  letter-spacing: var(--letter-spacing-5);
+}
+
+h1 p,
+[typo="h1"] p {
+  margin-bottom: var(--paragraph-spacing-1);
+}
+
+h2 p,
+[typo="h2"] p {
+  margin-bottom: var(--paragraph-spacing-2);
+}
+
+h3 p,
+[typo="h3"] p {
+  margin-bottom: var(--paragraph-spacing-3);
+}
+
+h4 p,
+[typo="h4"] p {
+  margin-bottom: var(--paragraph-spacing-4);
+}
+
+h5 p,
+[typo="h5"] p {
+  margin-bottom: var(--paragraph-spacing-5);
+}
+
+[typo="longcopy"] {
+  font-size: var(--font-size-longcopy);
+  line-height: var(--line-height-longcopy);
+  letter-spacing: var(--letter-spacing-longcopy);
+  max-width: 580px;
+  padding: var(--margin);
+}
+
+[typo="longcopy"] p {
+  margin-bottom: 20px;
+}

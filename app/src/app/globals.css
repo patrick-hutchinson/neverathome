@@ -1,19 +1,3 @@
-@font-face {
-  font-family: "TextgyreHeros";
-  src: url("/fonts/texgyreheros-regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TextgyreHeros";
-  src: url("/fonts/texgyreheros-italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
 :root {
   --background: #ffffff;
   --foreground: #000000;
@@ -21,40 +5,8 @@
 
   --margin: 12px;
 
-  /* largest */
-  --font-size-xl: clamp(13rem, calc(12rem + 2vw), 20rem);
-  --line-height-xl: 1;
-  --letter-spacing-xl: -0.5rem;
-  --paragraph-spacing-xl: 0;
-
-  --font-size-l: clamp(3.6rem, calc(2.928rem + 1.2vw), 7.2rem);
-  --line-height-l: 1.05; /* leave this — it's unitless */
-  --letter-spacing-l: -0.024rem;
-  --paragraph-spacing-l: 0;
-  --text-indent-l: 7.2rem;
-
-  --font-size-m: clamp(1.77rem, calc(1.77rem + 0.036vw), 2.2rem);
-  --line-height-m: clamp(1.78rem, calc(2rem + 0.035vw), 2.5rem);
-  --letter-spacing-m: 0.03rem;
-  --paragraph-spacing-m: 0;
-
-  --font-size-longcopy: clamp(1.5rem, calc(1.336rem + 0.0114vw), 2rem);
-  --line-height-longcopy: clamp(1.85rem, calc(1.836rem + 0.0114vw), 2.5rem);
-  --letter-spacing-longcopym: 0.03rem;
-  --paragraph-spacing-longcopy: 0;
-
-  --font-size-s: 1.3rem;
-  --line-height-s: 1.5rem;
-  --letter-spacing-s: 0.03rem;
-  --paragraph-spacing-s: 0rem;
-
-  /* smallest */
-  --font-size-xs: 0.8rem;
-  --line-height-xs: 1rem;
-  --letter-spacing-xs: 0.03rem;
-  --paragraph-spacing-xs: 0;
-
   --header-height: 45px;
+  --filter-height: 40px;
 
   --gap: 2px;
   --border: 1.5px;
@@ -87,8 +39,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-size: var(--font-size-m);
-  line-height: var(--line-height-m);
+  font-size: var(--font-size-3);
+  line-height: var(--line-height-3);
   font-family: TextgyreHeros, "Helvetica Neue", Arial, sans-serif;
   font-weight: 375;
 }
@@ -123,7 +75,7 @@ section {
 }
 
 section h3 {
-  margin-bottom: var(--margin);
+  margin-bottom: calc(var(--margin) * 0.75);
 }
 
 .invert footer {
@@ -157,85 +109,6 @@ h4,
 h5 {
   margin: 0;
   font-weight: inherit;
-}
-
-h1,
-.ff1 {
-  font-size: var(--font-size-xl);
-  line-height: var(--line-height-xl);
-  letter-spacing: var(--letter-spacing-xl);
-}
-
-h2,
-.ff2 {
-  font-size: var(--font-size-l);
-  line-height: var(--line-height-l);
-  letter-spacing: var(--letter-spacing-l);
-}
-
-.ff2 p {
-  text-indent: var(--text-indent-l);
-}
-.ff2 p:first-of-type {
-  text-indent: 0;
-}
-
-h3,
-.ff3 {
-  font-size: var(--font-size-m);
-  line-height: var(--line-height-m);
-  letter-spacing: var(--letter-spacing-m);
-}
-
-h4,
-.ff4 {
-  font-size: var(--font-size-s);
-  line-height: var(--line-height-s);
-  letter-spacing: var(--letter-spacing-s);
-  font-family: HBMarginM, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 450;
-}
-
-.ff4 p {
-  margin-bottom: var(--paragraph-spacing-s);
-}
-
-h5,
-.ff5 {
-  font-family: HBMarginM, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
-
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  letter-spacing: var(--letter-spacing-xs);
-}
-
-.ff1 p {
-  margin-bottom: var(--paragraph-spacing-xl);
-}
-
-.ff2 p {
-  margin-bottom: var(--paragraph-spacing-l);
-}
-
-.ff3 p {
-  margin-bottom: var(--paragraph-spacing-m);
-}
-
-.ff4 p {
-  margin-bottom: var(--paragraph-spacing-s);
-}
-
-.ff-t {
-  font-size: var(--font-size-longcopy);
-  line-height: var(--line-height-longcopy);
-  letter-spacing: var(--letter-spacing-longcopym);
-  max-width: 580px;
-  padding: var(--margin);
-}
-
-.ff-t p {
-  margin-bottom: 20px;
 }
 
 a,
@@ -304,6 +177,11 @@ mux-player::part(control-bar) {
 
 mux-player .mux-spinner {
   display: none !important;
+}
+
+.unavailable {
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 /* Phones */

@@ -32,6 +32,15 @@ export const events = defineType({
       of: [{type: 'reference', to: [{type: 'event'}]}],
       validation: (Rule) => Rule.unique().error('You already selected this event'),
     }),
+    defineField({
+      name: 'residencies',
+      title: 'Residencies',
+      type: 'object',
+      fields: [
+        {name: 'thumbnail', title: 'Image', type: 'thumbnail'},
+        {name: 'text', title: 'Text', type: 'string'},
+      ],
+    }),
   ],
   preview: {
     prepare: () => ({title: 'Event Page'}),

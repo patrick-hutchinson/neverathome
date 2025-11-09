@@ -15,7 +15,7 @@ const StudiosPage = ({ page, site }) => {
       <section>
         <CoverMedia medium={page.thumbnail} />
         <div style={{ marginLeft: "300px" }}>
-          <Text text={page.description} fontSize="ff-t" />
+          <Text text={page.description} typo="longcopy" />
         </div>
       </section>
 

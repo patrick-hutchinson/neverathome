@@ -28,3 +28,46 @@
   padding-top: 10px;
   padding-bottom: 40px;
 }
+
+.description {
+  position: sticky;
+  top: 55px;
+  height: fit-content;
+}
+
+.mediaPair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin);
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .mediaPair {
+    padding: 0px 0px 10px 3px;
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+  }
+
+  .mediaPair .description {
+    grid-column: 4 / 12;
+  }
+  .mediaPair .gallery {
+    grid-column: 14 / end;
+  }
+  .description {
+    top: 35px;
+  }
+}
+
+/* Large Format Screens */
+@media screen and (min-width: 2560px) {
+}

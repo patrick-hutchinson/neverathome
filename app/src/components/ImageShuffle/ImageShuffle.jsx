@@ -20,7 +20,7 @@ const ImageShuffle = ({ images }) => {
         }
         return prevIndex + 1;
       });
-    }, 200);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [images]);

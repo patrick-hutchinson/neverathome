@@ -1,15 +1,18 @@
 "use client";
 
 import styles from "./HomePage.module.css";
-import MediaMarquee from "@/components/MediaMarquee/MediaMarquee";
+import Carousel from "@/components/Carousel/Carousel";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
 
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
-import EventHeader from "@/components/EventHeader/EventHeader";
+import { UpcomingEvent } from "@/components/Calendar/EventHeader";
 import Figure from "@/components/Figure/Figure";
 import { useEffect } from "react";
+import MiniFigure from "@/components/MiniFigure/MiniFigure";
+
+import { repeatArray } from "@/helpers/repeatArray";
 
 const HomePage = ({ data, site }) => {
   useEffect(() => {
@@ -21,14 +24,18 @@ const HomePage = ({ data, site }) => {
 
       <section className={styles.section}>
         <h3>Highlights</h3>
-        <MediaMarquee highlights={data.highlights} />
+        <Carousel>
+          {repeatArray(data.highlights).map((item, index) => (
+            <MiniFigure key={index} item={item} index={index} />
+          ))}
+        </Carousel>
       </section>
 
       <section>
         <h3>Calendar</h3>
         <ul>
           {data.events.map((event, index) => (
-            <EventHeader key={index} event={event} />
+            <UpcomingEvent key={index} event={event} />
           ))}
         </ul>
       </section>
@@ -42,7 +49,7 @@ const HomePage = ({ data, site }) => {
         </MediaPair>
       </section>
 
-      <TextMarquee className={styles.marquee} text="NeverAtHome" fontSize="ff1" />
+      <TextMarquee className={styles.marquee} text="NeverAtHome" typo="h1" />
     </main>
   );
 };

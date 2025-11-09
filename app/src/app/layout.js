@@ -2,6 +2,7 @@ import ScrollRestorationController from "@/controllers/ScrollRestorationControll
 import ColorSchemeController from "@/controllers/ColorSchemeController";
 import { StateProvider } from "@/context/StateContext";
 import "./globals.css";
+import "./fonts.css";
 
 import { getSiteData } from "@/lib/fetch";
 

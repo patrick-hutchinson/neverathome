@@ -1,21 +1,21 @@
 "use client";
 
-import EventHeader from "@/components/EventHeader/EventHeader";
-import Filtering from "@/components/Filtering/Filtering";
+import { useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+
+import { PastEvent, UpcomingEvent } from "@/components/Calendar/EventHeader";
+import Filtering from "@/components/Calendar/Filtering";
+import Collapse from "@/components/Collapsible/Collapse";
+
+import MediaPair from "@/components/MediaPair/MediaPair";
+import Text from "@/components/Text";
+
+import Gallery from "@/components/Calendar/Gallery";
 
 import styles from "./CalendarPage.module.css";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import Collapse from "@/components/Collapsible/Collapse";
-import Media from "@/components/Media";
-import Text from "@/components/Text";
-import MediaPair from "@/components/MediaPair/MediaPair";
 
 const CalendarPage = ({ events }) => {
-  console.log(events, "events");
   let [expandedElement, setExpandedElement] = useState(null);
-
-  const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
 
   const [query, setQuery] = useState("");
 
@@ -56,25 +56,31 @@ const CalendarPage = ({ events }) => {
 
   // 2️⃣ Split filtered events into current & archived
   const archived = filteredEvents
-    .filter((event) => event.endDate && new Date(event.endDate) < now)
+    .filter((event) => new Date(event.endDate || event.startDate) < now)
     .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
   const current = filteredEvents
-    .filter((event) => !event.endDate || new Date(event.endDate) >= now)
-    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+    .filter((event) => new Date(event.endDate || event.startDate) >= now)
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
   // 3️⃣ Find pinned event
   const pinned = events.find((event) => event.pinned);
 
-  const Gallery = ({ event }) => (
-    <ul className={styles.gallery}>
-      {event.gallery?.map((medium, index) => (
-        <li key={index}>
-          <Media medium={medium} />
-        </li>
-      ))}
-    </ul>
-  );
+  const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
+
+  let [finishedScroll, setFinishedScroll] = useState(false);
+
+  const handleContentScroll = (e) => {
+    const el = e.target;
+    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+    console.log("Distance from bottom:", distanceFromBottom);
+
+    if (distanceFromBottom === 0) {
+      setFinishedScroll(true);
+    } else {
+      setFinishedScroll(false);
+    }
+  };
 
   return (
     <main>
@@ -92,31 +98,19 @@ const CalendarPage = ({ events }) => {
       <div className={styles.calendar}>
         {pinned && (
           <div className={styles.pinned}>
-            <EventHeader event={pinned} />
+            <PastEvent event={pinned} />
           </div>
         )}
 
         <section>
-          {/* <h3>Current</h3> */}
           <ul className={styles.calendar_section}>
             <AnimatePresence>
               {current.map((event) => {
-                const isExpandable = event.info;
                 let isExpanded = event._id === expandedElement;
 
                 return (
                   <div key={event._id}>
-                    <EventHeader
-                      event={event}
-                      isExpandable={isExpandable}
-                      isExpanded={isExpanded}
-                      onClick={() => handleExpand(event._id)}
-                    />
-                    <Collapse isExpanded={isExpanded} id={event._id}>
-                      <div className={styles.content}>
-                        <Text text={event.info} className={styles.info} fontSize="ff-t" />
-                      </div>
-                    </Collapse>
+                    <UpcomingEvent isExpanded={isExpanded} event={event} onClick={() => handleExpand(event._id)} />
                   </div>
                 );
               })}
@@ -129,31 +123,44 @@ const CalendarPage = ({ events }) => {
           <ul className={styles.calendar_section}>
             <AnimatePresence>
               {archived.map((event) => {
-                console.log(event.report, "report");
-                const isExpandable = event.gallery || event.info || event.report;
                 let isExpanded = event._id === expandedElement;
-
+                const isExpandable = event.gallery || event.info;
+                const [currentlyInView, setCurrentlyInView] = useState(null);
                 return (
-                  <div key={event._id}>
-                    <EventHeader
+                  <div
+                    key={event._id}
+                    onScroll={(e) => handleContentScroll(e)}
+                    style={{
+                      // position: isExpanded && !finishedScroll && "sticky",
+                      top: isExpanded && "calc(var(--header-height) + var(--filter-height))",
+                      overflowY: "scroll",
+                      height:
+                        isExpanded && "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * 35px))))",
+                      background: "#000",
+                      pointerEvents: isExpandable ? "all" : "none",
+                    }}
+                  >
+                    <PastEvent
                       event={event}
-                      isExpandable={isExpandable}
                       isExpanded={isExpanded}
                       onClick={() => handleExpand(event._id)}
+                      currentlyInView={currentlyInView}
                     />
                     <Collapse isExpanded={isExpanded} id={event._id}>
-                      <div className={styles.content}>
-                        <MediaPair>
-                          <div
-                            style={{
-                              marginLeft: "calc(195px)",
-                              position: "sticky",
-                              top: "0",
-                            }}
-                          >
-                            <Text text={event.report} fontSize="ff3" />
-                          </div>
-                          <Gallery event={event} />
+                      <div
+                        className={styles.content}
+                        style={{
+                          minHeight:
+                            isExpanded &&
+                            "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (3 * 35px))))",
+                          background: isExpanded ? event.colorPair?.background.value : "#000",
+                          color: isExpanded ? event.colorPair?.text.value : "#fff",
+                          transition: "0.5s",
+                        }}
+                      >
+                        <MediaPair className={styles.mediaPair}>
+                          <Text text={event.info} className={styles.description} typo="h3" />
+                          <Gallery event={event} className={styles.gallery} setCurrentlyInView={setCurrentlyInView} />
                         </MediaPair>
                       </div>
                     </Collapse>

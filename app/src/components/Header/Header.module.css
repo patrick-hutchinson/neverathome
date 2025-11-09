@@ -39,3 +39,56 @@ ul.nav_section {
   opacity: 0.2;
   cursor: not-allowed !important;
 }
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu .marquee {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  mix-blend-mode: difference;
+  z-index: 10;
+  width: 100vw;
+}
+
+.menuButton {
+  position: relative;
+  z-index: 11;
+}
+
+.mobileMenu {
+  width: 100vw;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+}

@@ -2,10 +2,12 @@
 
 import Text from "@/components/Text";
 
+import styles from "./ImprintPage.module.css";
+
 const ImprintPage = ({ imprint }) => {
   return (
-    <main>
-      <Text text={imprint.imprint} className="ff4" />
+    <main className={styles.main}>
+      <Text className={`${styles.imprint}`} text={imprint.imprint} typo="h4" />
     </main>
   );
 };

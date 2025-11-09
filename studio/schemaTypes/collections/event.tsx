@@ -15,7 +15,12 @@ export const event = defineType({
   type: 'document',
   icon: CalendarIcon,
   fields: [
-    defineField({name: 'title', title: 'Title', type: 'string'}),
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (Rule) => Rule.required().error('A title is required'),
+    }),
     defineField({
       name: 'pinned',
       title: 'Pinned',
@@ -98,6 +103,7 @@ export const event = defineType({
       name: 'type',
       title: 'Type',
       type: 'reference',
+      validation: (Rule) => Rule.required().error('A title is required'),
       to: [{type: 'eventType'}],
     }),
     defineField({name: 'info', title: 'Event Info', type: 'array', of: [{type: 'block'}]}),
@@ -120,6 +126,13 @@ export const event = defineType({
         }),
     }),
     defineField({name: 'city', title: 'City', type: 'string'}),
+    defineField({
+      name: 'ticketLink',
+      title: 'Ticket Link',
+      type: 'string',
+      description:
+        "Hier Link zum Ticket Anbieter einfügen. Wenn leer, steht auf der Website 'Free Entry'",
+    }),
     defineField({
       name: 'colorPair',
       title: 'Selected Color Pair',

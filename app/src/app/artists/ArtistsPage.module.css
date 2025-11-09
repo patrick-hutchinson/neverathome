@@ -12,7 +12,7 @@
 .filtering {
   position: sticky;
   top: var(--header-height);
-
+  height: var(--filter-height);
   display: grid;
   grid-template-columns: 200px auto;
 

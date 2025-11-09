@@ -3,6 +3,7 @@
 import styles from "./Footer.module.css";
 
 import Text from "@/components/Text";
+import Link from "next/link";
 
 import React from "react";
 
@@ -25,22 +26,20 @@ const Footer = ({ site }) => {
           <input placeholder="Email" />
           <button>Subscribe</button>
         </div>
+
         <div className={styles.resources}>
-          <a href="#">Rental Rooms.pdf</a>
-          <a href={site.googleMaps} target="_blank">
-            See Map
-          </a>
+          <Link href="/linktree">Link Tree</Link>
         </div>
       </div>
 
-      <div className={`${styles.legal} ff4`}>
+      <div className={`${styles.legal}`} typo="h4">
         <div>
           <div>{`${site.title} © ${year}`}</div>
         </div>
         <div />
         <div style={{ display: "flex" }}>
           <span style={{ marginRight: "4px" }}>
-            <a href="#">Imprint</a>
+            <a href="/imprint">Imprint</a>
             {", "}
           </span>
           <ul>

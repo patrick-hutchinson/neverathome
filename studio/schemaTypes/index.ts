@@ -24,6 +24,9 @@ import {eventType} from './definitions/eventType'
 import {thumbnail} from './types/thumbnail'
 import {colorPair} from './types/colorPair'
 import {gallery} from './types/gallery'
+import {imageWithMetadata} from './types/imageWithMetadata'
+import {videoWithMetadata} from './types/videoWithMetadata'
+import {medium} from './types/medium'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -44,5 +47,8 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     studio,
     gallery,
     imprint,
+    imageWithMetadata,
+    videoWithMetadata,
+    medium,
   ],
 }

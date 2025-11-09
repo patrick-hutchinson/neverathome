@@ -8,7 +8,7 @@ import MuxPlayer from "@mux/mux-player-react";
 import { useInView } from "framer-motion";
 import { StateContext } from "@/context/StateContext";
 
-const Media = React.memo(({ medium }) => {
+const Media = React.memo(({ medium, className, objectFit }) => {
   if (!medium) return null; // Handle early return
 
   const { deviceDimensions } = useContext(StateContext);
@@ -36,7 +36,7 @@ const Media = React.memo(({ medium }) => {
   // Handle Sanity Image
   if (medium.type === "image") {
     return (
-      <div style={getMediaStyle(medium.width / medium.height)}>
+      <div style={getMediaStyle(medium.width / medium.height)} className={className}>
         <Image
           src={medium.url}
           alt="image"
@@ -52,7 +52,7 @@ const Media = React.memo(({ medium }) => {
             zIndex: 0,
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: objectFit ? objectFit : "cover",
           }}
         />
       </div>

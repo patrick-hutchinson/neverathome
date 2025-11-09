@@ -58,7 +58,7 @@ const LocationsPage = ({ locations }) => {
                       marginLeft: "calc(200px + 3px)",
                     }}
                   >
-                    <Text text={location.description} fontSize="ff-t" />
+                    <Text text={location.description} typo="longcopy" />
                   </div>
 
                   <Gallery location={location} />

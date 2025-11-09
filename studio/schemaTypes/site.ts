@@ -52,6 +52,20 @@ export const site = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'linktree',
+      title: 'Linktree',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'platform', title: 'Platform', type: 'string'},
+            {name: 'link', title: 'url', type: 'string'},
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     prepare: () => ({title: 'Site'}),
