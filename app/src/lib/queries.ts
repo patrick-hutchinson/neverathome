@@ -188,6 +188,7 @@ export const eventQuery = `*[_type=="event"]{
   title,
   pinned,
   "type": type->title,
+  teaser,
   info,
   startDate,
   endDate,
@@ -197,7 +198,6 @@ export const eventQuery = `*[_type=="event"]{
   location,
   ${thumbnailFragment},
   ${galleryFragment},
-  report,
   slug,
 }`;
 

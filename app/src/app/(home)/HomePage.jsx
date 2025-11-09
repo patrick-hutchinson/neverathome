@@ -13,7 +13,7 @@ import { useContext, useEffect } from "react";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 import { repeatArray } from "@/helpers/repeatArray";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import { StateContext } from "@/context/StateContext";
 
@@ -49,7 +49,7 @@ const HomePage = ({ data }) => {
         <ul>
           {data.events.map((event, index) => (
             <div key={index} onClick={() => handleNavigation(event)}>
-              <Event size="medium" event={event} enableRouting={false} />
+              <Event size="medium" event={event} />
             </div>
           ))}
         </ul>

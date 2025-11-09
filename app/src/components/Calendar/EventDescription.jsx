@@ -4,8 +4,10 @@ import Text from "@/components/Text";
 
 import styles from "./Calendar.module.css";
 
-const EventDescription = ({ event, setIsExpandable, isExpanded }) => {
+const EventDescription = ({ event, isExpanded }) => {
+  const [teaserHeight, setTeaserHeight] = useState(null);
   const [textHeight, setTextHeight] = useState(null);
+  const teaserRef = useRef(null);
   const textRef = useRef(null);
 
   useEffect(() => {
@@ -14,21 +16,28 @@ const EventDescription = ({ event, setIsExpandable, isExpanded }) => {
   }, [event]);
 
   useEffect(() => {
-    if (textHeight > 170) {
-      setIsExpandable(true);
-    }
-  }, [textHeight]);
+    if (!teaserRef.current) return undefined;
+    setTeaserHeight(teaserRef.current.scrollHeight);
+  }, [event]);
 
   return (
-    event.info && (
-      <div
-        ref={textRef}
-        className={styles.text}
-        style={{ maxHeight: isExpanded ? textHeight : "calc(var(--line-height-3) * 3)" }}
-      >
-        <Text text={event.info} />
+    <div
+      className={styles.text}
+      style={{
+        maxHeight: isExpanded ? textHeight : teaserHeight,
+        transition: "max-height 0.5s ease-in-out",
+      }}
+    >
+      <div ref={teaserRef}>
+        <Text text={event.teaser} />
       </div>
-    )
+
+      {event.info && (
+        <div ref={textRef} style={{ opacity: isExpanded ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
+          <Text text={event.info} typo="h3" />
+        </div>
+      )}
+    </div>
   );
 };
 

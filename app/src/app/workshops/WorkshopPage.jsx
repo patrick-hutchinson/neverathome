@@ -34,7 +34,7 @@ const WorkshopPage = ({ page, events, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((event, index) => (
-            <Event size="medium" key={index} event={event} enableRouting={false} />
+            <Event size="medium" key={index} event={event} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

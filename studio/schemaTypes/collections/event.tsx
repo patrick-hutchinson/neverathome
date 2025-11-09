@@ -106,6 +106,14 @@ export const event = defineType({
       to: [{type: 'eventType'}],
       validation: (Rule) => Rule.required().error('A type is required'),
     }),
+    defineField({
+      name: 'teaser',
+      title: 'Einleitung',
+      type: 'array',
+      of: [{type: 'block'}],
+      description:
+        'Dieser Text wird als Vorschau angezeigt, bevor der Kalendereintrag ausgeklappt ist.',
+    }),
     defineField({name: 'info', title: 'Event Info', type: 'array', of: [{type: 'block'}]}),
     defineField({
       name: 'startDate',
@@ -147,7 +155,6 @@ export const event = defineType({
       type: 'thumbnail',
     }),
     gallery,
-    defineField({name: 'report', title: 'Report', type: 'array', of: [{type: 'block'}]}),
     defineField({
       name: 'slug',
       title: 'url',

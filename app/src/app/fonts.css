@@ -30,7 +30,7 @@
   --font-size-3: clamp(1.77rem, calc(1.77rem + 0.036vw), 2.2rem);
   --line-height-3: clamp(1.78rem, calc(2rem + 0.035vw), 2.5rem);
   --letter-spacing-3: 0.03rem;
-  --paragraph-spacing-3: 0;
+  --paragraph-spacing-3: 10px;
 
   --font-size-longcopy: clamp(1.5rem, calc(1.336rem + 0.0114vw), 2rem);
   --line-height-longcopy: clamp(1.85rem, calc(1.836rem + 0.0114vw), 2.5rem);

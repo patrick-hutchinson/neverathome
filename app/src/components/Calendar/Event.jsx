@@ -21,29 +21,8 @@ import GalleryCounter from "./GalleryCounter";
 import styles from "./Calendar.module.css";
 import EventExpand from "./EventExpand";
 
-const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView, enableRouting }) => {
-  const { header_height, filter_height } = useContext(GlobalVariablesContext);
-
-  // 🔗 Handle Hash Generation
-  // const router = useRouter();
+const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView }) => {
   const ref = useRef(null);
-
-  // const top = header_height + filter_height;
-
-  // const isInView = useInView(ref, {
-  //   margin: `${top}px 0px -90% 0px`,
-  //   threshold: 0,
-  // });
-
-  // useEffect(() => {
-  //   if (!enableRouting) return;
-
-  //   if (isInView) {
-  //     console.log("upading hash!");
-  //     router.replace(`#${event.slug.current}`, { scroll: false });
-  //     setEventInView(event);
-  //   }
-  // }, [isInView]);
 
   switch (size) {
     case "small":
@@ -77,7 +56,7 @@ const SmallEvent = ({ event, ref }) => {
 };
 
 const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
-  const [isExpandable, setIsExpandable] = useState(false);
+  const [isExpandable, setIsExpandable] = useState(event.info);
 
   return (
     <motion.li

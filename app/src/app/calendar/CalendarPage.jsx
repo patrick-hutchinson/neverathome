@@ -22,15 +22,7 @@ import { motion } from "framer-motion";
 
 const CalendarPage = ({ events }) => {
   let [eventInView, setEventInView] = useState(null);
-  // let [expandedElement, setExpandedElement] = useState(null);
   const { expandedElement, setExpandedElement } = useContext(StateContext);
-
-  const { header_height, filter_height } = useContext(GlobalVariablesContext);
-
-  // useEffect(() => {
-  //   console.log("scrolling to hash!");
-  //   scrollToHash(header_height + filter_height);
-  // }, []);
 
   const [query, setQuery] = useState("");
 
@@ -132,7 +124,6 @@ const CalendarPage = ({ events }) => {
                       event={event}
                       onClick={() => handleExpand(event._id)}
                       setEventInView={setEventInView}
-                      enableRouting={true}
                     />
                   </div>
                 );
@@ -170,7 +161,6 @@ const CalendarPage = ({ events }) => {
                       onClick={() => handleExpand(event._id)}
                       imageInView={imageInView}
                       setEventInView={setEventInView}
-                      enableRouting={true}
                     />
                     <Collapse isExpanded={isExpanded} id={event._id}>
                       <div
