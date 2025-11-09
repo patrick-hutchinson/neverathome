@@ -1,7 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 
-import FormatDate from "../FormatDate";
 import Media from "../Media";
 import Text from "../Text";
 
@@ -11,7 +10,6 @@ import EventDate from "./EventDate";
 import EventType from "./EventType";
 
 import styles from "./Calendar.module.css";
-import { useEffect, useRef, useState } from "react";
 
 export const MicroEvent = ({ event }) => {
   return (
@@ -85,7 +83,15 @@ export const UpcomingEvent = ({ event, isExpanded, onClick }) => {
       <Description event={event} />
       <EventLink event={event} />
 
-      {isExpandable && <div className={styles.expand}>{isExpanded ? "-" : "+"}</div>}
+      {isExpandable && (
+        <motion.div
+          className={styles.expand}
+          animate={{ rotate: isExpanded ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          +
+        </motion.div>
+      )}
     </motion.li>
   );
 };
@@ -98,13 +104,15 @@ export const PastEvent = ({ event, isExpanded, onClick, currentlyInView }) => {
 
   useEffect(() => {
     if (isExpanded && eventRef.current) {
-      const top = eventRef.current.getBoundingClientRect().top + window.scrollY;
-      const offset = 85; // distance from top in px
+      setTimeout(() => {
+        const top = eventRef.current.getBoundingClientRect().top + window.scrollY;
+        const offset = 85; // distance from top in px
 
-      window.scrollTo({
-        top: top - offset,
-        behavior: "smooth",
-      });
+        window.scrollTo({
+          top: top - offset,
+          behavior: "smooth",
+        });
+      }, 1000);
     }
   }, [isExpanded]);
 
@@ -146,7 +154,15 @@ export const PastEvent = ({ event, isExpanded, onClick, currentlyInView }) => {
       <EventTitle event={event} />
       <GalleryCounter event={event} />
 
-      {isExpandable && <div className={styles.expand}>{isExpanded ? "-" : "+"}</div>}
+      {isExpandable && (
+        <motion.div
+          className={styles.expand}
+          animate={{ rotate: isExpanded ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          +
+        </motion.div>
+      )}
     </motion.li>
   );
 };

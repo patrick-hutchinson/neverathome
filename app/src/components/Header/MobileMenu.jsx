@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import TextMarquee from "../TextMarquee/TextMarquee";
@@ -12,6 +12,10 @@ const MobileMenu = () => {
   const pathname = usePathname();
 
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [pathname]);
 
   return (
     <>

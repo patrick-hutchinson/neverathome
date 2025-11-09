@@ -8,17 +8,40 @@ import Carousel from "@/components/Carousel/Carousel";
 import { repeatArray } from "@/helpers/repeatArray";
 
 import ContactCard from "@/components/ContactCard/ContactCard";
-import { useState } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 
 import FadePresence from "@/components/FadePresence";
+import { StateContext } from "@/context/StateContext";
 
 const AboutPage = ({ contact }) => {
+  const { isMobile } = useContext(StateContext);
+
   const [showImage, setShowImage] = useState(false);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    let timeout;
+
+    const handleScroll = () => {
+      setShowImage(true);
+      clearTimeout(timeout); // clear previous timeout
+      timeout = setTimeout(() => {
+        setShowImage(false);
+      }, 200);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout); // cleanup
+    };
+  }, [isMobile]);
 
   return (
     <main className={styles.main}>
       <Text text={contact.bio} typo="h2" />
-
       {showImage && (
         <FadePresence className={styles.image} motionKey="image">
           <Media medium={contact.image} />
