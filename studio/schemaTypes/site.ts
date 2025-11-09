@@ -29,6 +29,12 @@ export const site = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
+      name: 'openingHours',
+      title: 'Opening Hours',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+    defineField({
       name: 'googleMaps',
       title: 'Google Maps Link',
       type: 'string',

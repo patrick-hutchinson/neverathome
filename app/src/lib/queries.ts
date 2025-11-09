@@ -5,6 +5,7 @@ export const siteQuery = `*[_type=="site"][0]{
   title,
   description,
   address,
+  openingHours,
   googleMaps,
   email,
   about,

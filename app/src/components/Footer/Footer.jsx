@@ -16,15 +16,14 @@ const Footer = ({ site }) => {
         <div>
           <a href={site.googleMaps}>
             <Text text={site.address} />
+            <Text className={styles.openingHours} text={site.openingHours} />
           </a>
+          {/* <Text text={site.openingHours} /> */}
           {site.email}
         </div>
         <div className={styles.newsletter}>
           Get the latest Updates, News & Stories
-          <input placeholder="First Name" />
-          <input placeholder="Last Name" />
-          <input placeholder="Email" />
-          <button>Subscribe</button>
+          <button className={styles.not_allowed}>Subscribe Here</button>
         </div>
 
         <div className={styles.resources}>
@@ -37,12 +36,12 @@ const Footer = ({ site }) => {
           <div>{`${site.title} © ${year}`}</div>
         </div>
         <div />
-        <div style={{ display: "flex" }}>
+        <div className={styles.external} style={{ display: "flex" }}>
           <span style={{ marginRight: "4px" }}>
             <a href="/imprint">Imprint</a>
             {", "}
           </span>
-          <ul>
+          <ul className={styles.socials}>
             {site.socials.map((social, index) => (
               <li key={index}>
                 <a href={social.link} target="_blank" rel="noopener noreferrer">
