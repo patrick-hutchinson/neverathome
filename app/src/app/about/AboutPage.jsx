@@ -42,11 +42,9 @@ const AboutPage = ({ contact }) => {
   return (
     <main className={styles.main}>
       <Text text={contact.bio} typo="h2" />
-      {showImage && (
-        <FadePresence className={styles.image} motionKey="image">
-          <Media medium={contact.image} />
-        </FadePresence>
-      )}
+      <FadePresence className={styles.image} motionKey="image">
+        {showImage && <Media medium={contact.image} />}
+      </FadePresence>
 
       <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
         <Carousel>

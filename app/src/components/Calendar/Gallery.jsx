@@ -5,7 +5,7 @@ import Media from "@/components/Media";
 import styles from "./Calendar.module.css";
 
 const Gallery = ({ event, setCurrentlyInView, className }) => {
-  if (!event.gallery) return null;
+  if (!event.gallery) return undefined;
 
   return (
     <ul className={`${className} ${styles.gallery}`}>

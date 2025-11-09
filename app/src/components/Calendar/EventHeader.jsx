@@ -51,7 +51,6 @@ export const UpcomingEvent = ({ event, isExpanded, onClick }) => {
   useEffect(() => {
     if (!textRef.current) return undefined;
     setTextHeight(textRef.current.scrollHeight);
-    console.log(textRef.current.scrollHeight, "text height");
   }, [event]);
 
   useEffect(() => {
@@ -112,12 +111,12 @@ export const PastEvent = ({ event, isExpanded, onClick, currentlyInView }) => {
           top: top - offset,
           behavior: "smooth",
         });
-      }, 1000);
+      }, 800);
     }
   }, [isExpanded]);
 
   const GalleryCounter = ({ event }) => {
-    if (!event.gallery) return;
+    if (!event.gallery) return undefined;
     return (
       <div className={styles.counter}>
         {currentlyInView + 1}/{event.gallery?.length}

@@ -14,6 +14,8 @@ import Gallery from "@/components/Calendar/Gallery";
 
 import styles from "./CalendarPage.module.css";
 
+import { motion } from "framer-motion";
+
 const CalendarPage = ({ events }) => {
   let [expandedElement, setExpandedElement] = useState(null);
 
@@ -69,6 +71,7 @@ const CalendarPage = ({ events }) => {
   const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
 
   let [finishedScroll, setFinishedScroll] = useState(false);
+  const [currentlyInView, setCurrentlyInView] = useState(null);
 
   const handleContentScroll = (e) => {
     const el = e.target;
@@ -97,8 +100,8 @@ const CalendarPage = ({ events }) => {
 
       <div className={styles.calendar}>
         {pinned && (
-          <div className={styles.pinned}>
-            <PastEvent event={pinned} />
+          <div className={styles.pinned} style={{ pointerEvents: "none" }}>
+            <CurrentEvent event={pinned} />
           </div>
         )}
 
@@ -120,14 +123,14 @@ const CalendarPage = ({ events }) => {
 
         <section>
           <h3>Archived</h3>
-          <ul className={styles.calendar_section}>
+          <motion.ul className={styles.calendar_section}>
             <AnimatePresence>
               {archived.map((event) => {
                 let isExpanded = event._id === expandedElement;
                 const isExpandable = event.gallery || event.info;
-                const [currentlyInView, setCurrentlyInView] = useState(null);
+
                 return (
-                  <div
+                  <motion.div
                     key={event._id}
                     onScroll={(e) => handleContentScroll(e)}
                     style={{
@@ -164,11 +167,11 @@ const CalendarPage = ({ events }) => {
                         </MediaPair>
                       </div>
                     </Collapse>
-                  </div>
+                  </motion.div>
                 );
               })}
             </AnimatePresence>
-          </ul>
+          </motion.ul>
         </section>
       </div>
     </main>

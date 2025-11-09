@@ -85,7 +85,7 @@ ul.links {
 }
 
 /* Large Format Screens */
-@media screen and (min-width: 2560px) {
+@media screen and (min-width: 1280px) {
   .card {
     height: 560px;
   }

@@ -7,12 +7,13 @@ import TextMarquee from "@/components/TextMarquee/TextMarquee";
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
-import { UpcomingEvent } from "@/components/Calendar/EventHeader";
+import { MicroEvent, UpcomingEvent } from "@/components/Calendar/EventHeader";
 import Figure from "@/components/Figure/Figure";
 import { useEffect } from "react";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 import { repeatArray } from "@/helpers/repeatArray";
+import Link from "next/link";
 
 const HomePage = ({ data, site }) => {
   useEffect(() => {
@@ -35,7 +36,9 @@ const HomePage = ({ data, site }) => {
         <h3>Calendar</h3>
         <ul>
           {data.events.map((event, index) => (
-            <UpcomingEvent key={index} event={event} />
+            <Link href="/calendar">
+              <MicroEvent key={index} event={event} />
+            </Link>
           ))}
         </ul>
       </section>
