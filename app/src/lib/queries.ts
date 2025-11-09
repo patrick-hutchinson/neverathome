@@ -41,6 +41,7 @@ export const homeQuery = `*[_type=="home"][0]{
     "colorPair": colorPair[0]->{_id, text, background},
     location,
     ${thumbnailFragment},
+    slug,
   },
   highlights[]->{
     _id,
@@ -164,7 +165,7 @@ export const eventsQuery = `*[_type=="events"][0]{
   residencies{
     text,
     ${thumbnailFragment}
-  }
+  },
 }`;
 
 export const imprintQuery = `*[_type=="imprint"][0]{
@@ -196,7 +197,8 @@ export const eventQuery = `*[_type=="event"]{
   location,
   ${thumbnailFragment},
   ${galleryFragment},
-  report
+  report,
+  slug,
 }`;
 
 export const highlightQuery = `*[_type=="highlight"]{

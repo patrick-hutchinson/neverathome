@@ -1,7 +1,7 @@
 "use client";
 
 import Text from "@/components/Text";
-import { UpcomingEvent } from "@/components/Calendar/EventHeader";
+import Event from "@/components/Calendar/Event";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 
@@ -34,7 +34,7 @@ const WorkshopPage = ({ page, events, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((event, index) => (
-            <UpcomingEvent key={index} event={event} />
+            <Event size="medium" key={index} event={event} enableRouting={false} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

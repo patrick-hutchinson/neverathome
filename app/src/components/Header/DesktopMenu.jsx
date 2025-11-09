@@ -31,7 +31,7 @@ const DesktopMenu = () => {
         </li>
 
         <ul style={{ gap: "30px" }}>
-          <li className={styles.not_allowed}>
+          <li>
             <Link href="/artists">Artists</Link>
           </li>
           <li className={styles.not_allowed}>

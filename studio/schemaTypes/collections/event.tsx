@@ -103,8 +103,8 @@ export const event = defineType({
       name: 'type',
       title: 'Type',
       type: 'reference',
-      validation: (Rule) => Rule.required().error('A title is required'),
       to: [{type: 'eventType'}],
+      validation: (Rule) => Rule.required().error('A type is required'),
     }),
     defineField({name: 'info', title: 'Event Info', type: 'array', of: [{type: 'block'}]}),
     defineField({
@@ -148,6 +148,16 @@ export const event = defineType({
     }),
     gallery,
     defineField({name: 'report', title: 'Report', type: 'array', of: [{type: 'block'}]}),
+    defineField({
+      name: 'slug',
+      title: 'url',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
   ],
   preview: {
     select: {

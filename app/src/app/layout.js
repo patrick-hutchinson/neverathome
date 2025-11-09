@@ -1,6 +1,7 @@
 import ScrollRestorationController from "@/controllers/ScrollRestorationController";
 import ColorSchemeController from "@/controllers/ColorSchemeController";
 import { StateProvider } from "@/context/StateContext";
+import { GlobalVariablesProvider } from "@/context/GlobalVariablesContext";
 import "./globals.css";
 import "./fonts.css";
 
@@ -30,11 +31,13 @@ export default function RootLayout({ children, invert = false }) {
   return (
     <html lang="en">
       <StateProvider>
-        <body>
-          <Header />
-          {children}
-          <Footer site={site} />
-        </body>
+        <GlobalVariablesProvider>
+          <body>
+            <Header />
+            {children}
+            <Footer site={site} />
+          </body>
+        </GlobalVariablesProvider>
       </StateProvider>
       <ScrollRestorationController />
       <ColorSchemeController />

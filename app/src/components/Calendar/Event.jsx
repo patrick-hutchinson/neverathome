@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useContext } from "react";
 import { motion } from "framer-motion";
+
+import { useInView } from "framer-motion";
+import { useRouter } from "next/navigation";
+
+import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
+import { StateContext } from "@/context/StateContext";
 
 import Media from "../Media";
 import Text from "../Text";
@@ -8,12 +15,51 @@ import EventTitle from "./EventTitle";
 import EventLink from "./EventLink";
 import EventDate from "./EventDate";
 import EventType from "./EventType";
+import EventDescription from "./EventDescription";
+import GalleryCounter from "./GalleryCounter";
 
 import styles from "./Calendar.module.css";
+import EventExpand from "./EventExpand";
 
-export const MicroEvent = ({ event }) => {
+const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView, enableRouting }) => {
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
+  // 🔗 Handle Hash Generation
+  // const router = useRouter();
+  const ref = useRef(null);
+
+  // const top = header_height + filter_height;
+
+  // const isInView = useInView(ref, {
+  //   margin: `${top}px 0px -90% 0px`,
+  //   threshold: 0,
+  // });
+
+  // useEffect(() => {
+  //   if (!enableRouting) return;
+
+  //   if (isInView) {
+  //     console.log("upading hash!");
+  //     router.replace(`#${event.slug.current}`, { scroll: false });
+  //     setEventInView(event);
+  //   }
+  // }, [isInView]);
+
+  switch (size) {
+    case "small":
+      return <SmallEvent event={event} ref={ref} />;
+    case "medium":
+      return <MediumEvent event={event} ref={ref} isExpanded={isExpanded} onClick={onClick} />;
+    case "large":
+      return <LargeEvent event={event} ref={ref} isExpanded={isExpanded} onClick={onClick} imageInView={imageInView} />;
+  }
+};
+
+const SmallEvent = ({ event, ref }) => {
   return (
     <motion.li
+      id={event.slug.current}
+      ref={ref}
       className={`${styles.event}`}
       whileHover={() => {
         return {
@@ -30,38 +76,13 @@ export const MicroEvent = ({ event }) => {
   );
 };
 
-export const UpcomingEvent = ({ event, isExpanded, onClick }) => {
-  const eventRef = useRef(null);
-  const textRef = useRef(null);
-
-  const [textHeight, setTextHeight] = useState(null);
+const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
   const [isExpandable, setIsExpandable] = useState(false);
-
-  const Description = ({ event }) =>
-    event.info && (
-      <div
-        ref={textRef}
-        className={styles.text}
-        style={{ maxHeight: isExpanded ? textHeight : "calc(var(--line-height-3) * 3)" }}
-      >
-        <Text text={event.info} />
-      </div>
-    );
-
-  useEffect(() => {
-    if (!textRef.current) return undefined;
-    setTextHeight(textRef.current.scrollHeight);
-  }, [event]);
-
-  useEffect(() => {
-    if (textHeight > 170) {
-      setIsExpandable(true);
-    }
-  }, [textHeight]);
 
   return (
     <motion.li
-      ref={eventRef}
+      id={event.slug.current}
+      ref={ref}
       onClick={onClick}
       className={`${styles.event} ${styles.upcoming} ${isExpanded && styles.expanded}`}
       whileHover={() => {
@@ -79,32 +100,22 @@ export const UpcomingEvent = ({ event, isExpanded, onClick }) => {
       <EventDate event={event} />
       <Media objectFit="contain" className={styles.media} medium={event.thumbnail} />
       <EventTitle event={event} />
-      <Description event={event} />
+      <EventDescription event={event} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
       <EventLink event={event} />
 
-      {isExpandable && (
-        <motion.div
-          className={styles.expand}
-          animate={{ rotate: isExpanded ? 45 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          +
-        </motion.div>
-      )}
+      <EventExpand isExpandable={isExpandable} isExpanded={isExpanded} />
     </motion.li>
   );
 };
 
-export const PastEvent = ({ event, isExpanded, onClick, currentlyInView }) => {
+const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
   const isExpandable = event.gallery || event.info;
-  const eventRef = useRef(null);
 
-  console.log(isExpanded, "isExpanded");
-
+  // Scroll to Expanded Element
   useEffect(() => {
-    if (isExpanded && eventRef.current) {
+    if (isExpanded && ref.current) {
       setTimeout(() => {
-        const top = eventRef.current.getBoundingClientRect().top + window.scrollY;
+        const top = ref.current.getBoundingClientRect().top + window.scrollY;
         const offset = 85; // distance from top in px
 
         window.scrollTo({
@@ -115,18 +126,10 @@ export const PastEvent = ({ event, isExpanded, onClick, currentlyInView }) => {
     }
   }, [isExpanded]);
 
-  const GalleryCounter = ({ event }) => {
-    if (!event.gallery) return undefined;
-    return (
-      <div className={styles.counter}>
-        {currentlyInView + 1}/{event.gallery?.length}
-      </div>
-    );
-  };
-
   return (
     <motion.li
-      ref={eventRef}
+      id={event.slug.current}
+      ref={ref}
       onClick={onClick}
       className={`${styles.event} ${event.past} ${isExpanded && styles.expanded}`}
       whileHover={() => {
@@ -151,17 +154,11 @@ export const PastEvent = ({ event, isExpanded, onClick, currentlyInView }) => {
       <EventType event={event} />
       <EventDate event={event} />
       <EventTitle event={event} />
-      <GalleryCounter event={event} />
+      <GalleryCounter event={event} imageInView={imageInView} />
 
-      {isExpandable && (
-        <motion.div
-          className={styles.expand}
-          animate={{ rotate: isExpanded ? 45 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          +
-        </motion.div>
-      )}
+      <EventExpand isExpandable={isExpandable} isExpanded={isExpanded} />
     </motion.li>
   );
 };
+
+export default Event;

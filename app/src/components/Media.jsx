@@ -35,6 +35,7 @@ const Media = React.memo(({ medium, className, objectFit }) => {
 
   // Handle Sanity Image
   if (medium.type === "image") {
+    if (!medium.url) return;
     return (
       <div style={getMediaStyle(medium.width / medium.height)} className={className}>
         <Image

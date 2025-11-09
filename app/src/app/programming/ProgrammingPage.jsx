@@ -2,8 +2,8 @@
 
 import Media from "@/components/Media";
 import Text from "@/components/Text";
-import { UpcomingEvent } from "@/components/Calendar/EventHeader";
-import { MicroEvent } from "@/components/Calendar/EventHeader";
+import Event from "@/components/Calendar/Event";
+
 import MediaMarquee from "@/components/Carousel/Carousel";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
@@ -47,7 +47,7 @@ const ProgrammingPage = ({ page, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {page.events.map((event, index) => (
-            <MicroEvent key={index} event={event} />
+            <Event size="medium" key={index} event={event} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

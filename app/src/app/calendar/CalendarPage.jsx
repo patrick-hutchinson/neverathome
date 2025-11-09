@@ -1,9 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { PastEvent, UpcomingEvent } from "@/components/Calendar/EventHeader";
+import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
+import { StateContext } from "@/context/StateContext";
+
+import Event from "@/components/Calendar/Event";
 import Filtering from "@/components/Calendar/Filtering";
 import Collapse from "@/components/Collapsible/Collapse";
 
@@ -14,10 +17,20 @@ import Gallery from "@/components/Calendar/Gallery";
 
 import styles from "./CalendarPage.module.css";
 
+import { scrollToHash } from "@/helpers/scrollToHash";
 import { motion } from "framer-motion";
 
 const CalendarPage = ({ events }) => {
-  let [expandedElement, setExpandedElement] = useState(null);
+  let [eventInView, setEventInView] = useState(null);
+  // let [expandedElement, setExpandedElement] = useState(null);
+  const { expandedElement, setExpandedElement } = useContext(StateContext);
+
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
+  // useEffect(() => {
+  //   console.log("scrolling to hash!");
+  //   scrollToHash(header_height + filter_height);
+  // }, []);
 
   const [query, setQuery] = useState("");
 
@@ -71,7 +84,7 @@ const CalendarPage = ({ events }) => {
   const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
 
   let [finishedScroll, setFinishedScroll] = useState(false);
-  const [currentlyInView, setCurrentlyInView] = useState(null);
+  const [imageInView, setImageInView] = useState(null);
 
   const handleContentScroll = (e) => {
     const el = e.target;
@@ -113,7 +126,14 @@ const CalendarPage = ({ events }) => {
 
                 return (
                   <div key={event._id}>
-                    <UpcomingEvent isExpanded={isExpanded} event={event} onClick={() => handleExpand(event._id)} />
+                    <Event
+                      size="medium"
+                      isExpanded={isExpanded}
+                      event={event}
+                      onClick={() => handleExpand(event._id)}
+                      setEventInView={setEventInView}
+                      enableRouting={true}
+                    />
                   </div>
                 );
               })}
@@ -143,11 +163,14 @@ const CalendarPage = ({ events }) => {
                       pointerEvents: isExpandable ? "all" : "none",
                     }}
                   >
-                    <PastEvent
+                    <Event
+                      size="large"
                       event={event}
                       isExpanded={isExpanded}
                       onClick={() => handleExpand(event._id)}
-                      currentlyInView={currentlyInView}
+                      imageInView={imageInView}
+                      setEventInView={setEventInView}
+                      enableRouting={true}
                     />
                     <Collapse isExpanded={isExpanded} id={event._id}>
                       <div
@@ -163,7 +186,7 @@ const CalendarPage = ({ events }) => {
                       >
                         <MediaPair className={styles.mediaPair}>
                           <Text text={event.info} className={styles.description} typo="h3" />
-                          <Gallery event={event} className={styles.gallery} setCurrentlyInView={setCurrentlyInView} />
+                          <Gallery event={event} className={styles.gallery} setImageInView={setImageInView} />
                         </MediaPair>
                       </div>
                     </Collapse>

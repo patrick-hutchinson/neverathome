@@ -4,19 +4,19 @@ import { useInView } from "framer-motion";
 import Media from "@/components/Media";
 import styles from "./Calendar.module.css";
 
-const Gallery = ({ event, setCurrentlyInView, className }) => {
+const Gallery = ({ event, setImageInView, className }) => {
   if (!event.gallery) return undefined;
 
   return (
     <ul className={`${className} ${styles.gallery}`}>
       {event.gallery.map((medium, index) => (
-        <GalleryItem key={index} medium={medium} index={index} setCurrentlyInView={setCurrentlyInView} />
+        <GalleryItem key={index} medium={medium} index={index} setImageInView={setImageInView} />
       ))}
     </ul>
   );
 };
 
-const GalleryItem = ({ medium, index, setCurrentlyInView }) => {
+const GalleryItem = ({ medium, index, setImageInView }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     margin: "-10% 0px -90% 0px",
@@ -24,10 +24,10 @@ const GalleryItem = ({ medium, index, setCurrentlyInView }) => {
 
   useEffect(() => {
     if (isInView) {
-      setCurrentlyInView(index);
+      setImageInView(index);
       console.log("Active media index:", index);
     }
-  }, [isInView, index, setCurrentlyInView]);
+  }, [isInView, index, setImageInView]);
 
   return (
     <li ref={ref}>
