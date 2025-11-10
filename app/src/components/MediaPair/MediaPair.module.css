@@ -12,15 +12,15 @@
 
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
-}
-
-/* Desktop */
-@media screen and (min-width: 1280px) {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--gap);
   }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
 }
 
 /* Large Format Screens */

@@ -10,7 +10,7 @@ import MediaPair from "@/components/MediaPair/MediaPair";
 import Event from "@/components/Calendar/Event";
 import Figure from "@/components/Figure/Figure";
 import { useContext, useEffect } from "react";
-import MiniFigure from "@/components/MiniFigure/MiniFigure";
+import MiniFigure from "@/components/Slide/Slide";
 
 import { repeatArray } from "@/helpers/repeatArray";
 

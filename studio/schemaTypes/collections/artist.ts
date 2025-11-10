@@ -9,6 +9,12 @@ export const artist = defineType({
     defineField({name: 'occupation', title: 'Profession/Role', type: 'string'}),
     defineField({name: 'email', title: 'Email', type: 'string'}),
     defineField({name: 'website', title: 'Website', type: 'string'}),
+    defineField({
+      name: 'websites',
+      title: 'Website/s',
+      type: 'array',
+      of: [{name: 'website', title: 'Website', type: 'string'}],
+    }),
     defineField({name: 'phone', title: 'Phone', type: 'string'}),
     defineField({
       name: 'socials',

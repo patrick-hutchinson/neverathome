@@ -1,10 +1,10 @@
-li.marqueeItem {
+li.slide {
   display: flex;
   flex-direction: column;
-  flex: 0 0 100%; /* subtract gap proportionally */
+  flex: 0 0 100%;
   position: relative;
-  padding: 0 calc(var(--gap) / 2);
-  max-width: 100%;
+  /* aspect-ratio: 4 / 5; */
+  padding-left: 1.5px;
 }
 
 header.header {
@@ -32,15 +32,16 @@ ul.links {
 .media {
   background: #000;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 0.8 !important;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .media.smallImage div {
   height: auto !important;
-  width: auto !important;
+  /* width: auto !important; */
   max-height: calc(100% - var(--margin) * 4) !important;
   max-width: calc(100% - var(--margin) * 4) !important;
 }
@@ -50,39 +51,12 @@ ul.links {
   padding-right: var(--margin);
 }
 
-.title {
-  text-transform: uppercase;
-  font-size: var(--font-size-4);
-  line-height: var(--font-size-4);
-}
-
-.announcement .title {
-  font-size: var(--font-size-3);
-  line-height: var(--font-size-3);
-}
-.type {
-  text-transform: uppercase;
-}
-
-.card {
-  background: var(--foreground);
-  color: var(--background);
-  height: 280px;
-  width: auto;
-  margin: 6px 0 12px 0;
-  overflow: hidden;
-}
-
-.announcement .card {
-  padding: 12px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 235px;
-  white-space: wrap;
-
-  text-align: center;
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+  li.slide {
+    flex: 0 0 33%;
+    max-width: 33%;
+  }
 }
 
 /* Large Format Screens */
@@ -93,7 +67,7 @@ ul.links {
   .announcement .card {
     width: calc(0.8 * 560px);
   }
-  li.marqueeItem {
+  li.slide {
     flex: 0 0 25%;
     max-width: 25%;
   }

@@ -1,16 +1,26 @@
 "use client";
 
-import { useState, useEffect, useRef, useContext } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 import styles from "./TextMarquee.module.css";
 
 const TextMarquee = ({ text, typo, className }) => {
-  const [width, setWidth] = useState(null);
+  const [width, setWidth] = useState(0);
   const marquee = useRef(null);
 
+  // Measure and re-measure width on resize
   useEffect(() => {
-    setWidth(marquee.current.scrollWidth);
+    const el = marquee.current;
+    if (!el) return;
+
+    const updateWidth = () => setWidth(el.scrollWidth);
+    updateWidth();
+
+    const resizeObserver = new ResizeObserver(updateWidth);
+    resizeObserver.observe(el);
+
+    return () => resizeObserver.disconnect();
   }, [text]);
 
   return (

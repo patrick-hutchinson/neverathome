@@ -9,7 +9,8 @@ const Carousel = ({ children }) => {
   const [emblaRef] = useEmblaCarousel({ loop: true, dragFree: true, dragResistance: 1 }, [
     AutoScroll({
       playOnInit: true,
-      // stopOnInteraction: false, // <-- here
+      stopOnInteraction: false, // <-- here
+      stopOnMouseEnter: false, // <— optional: keep scrolling even on hover
       speed: 1.5,
     }),
   ]);

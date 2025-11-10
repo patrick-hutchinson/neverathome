@@ -1,11 +1,11 @@
 import Text from "@/components/Text";
 import Media from "@/components/Media";
 
-import styles from "./MiniFigure.module.css";
+import styles from "./Slide.module.css";
 
 const MiniFigure = ({ item, index }) => {
   return (
-    <li key={index} className={styles.marqueeItem}>
+    <li key={index} className={styles.slide}>
       <header className={`${styles.header}`} typo="h4">
         <span>{item.tag}</span>
         <ul className={styles.links}>
