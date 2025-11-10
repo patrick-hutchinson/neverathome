@@ -20,7 +20,7 @@ const MobileMenu = () => {
   return (
     <>
       <div className={styles.menuButton} onClick={() => setShowMenu((prev) => !prev)}>
-        {showMenu ? "CLOSE" : "MENU"}
+        {showMenu ? "Close" : "Menu"}
       </div>
       {showMenu && (
         <AnimatePresence>
