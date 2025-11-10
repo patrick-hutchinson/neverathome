@@ -2,9 +2,10 @@ li.slide {
   display: flex;
   flex-direction: column;
   flex: 0 0 100%;
+  max-width: 100%;
   position: relative;
   /* aspect-ratio: 4 / 5; */
-  padding-left: 1.5px;
+  padding-left: 2.5px;
 }
 
 header.header {
@@ -16,7 +17,7 @@ header.header {
   left: 0px;
   z-index: 2;
   color: #fff;
-  padding: 3.5px 5px;
+  padding: 3.5px 7px;
 }
 
 header.header a,
