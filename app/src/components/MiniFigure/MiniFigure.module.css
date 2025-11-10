@@ -4,6 +4,7 @@ li.marqueeItem {
   flex: 0 0 100%; /* subtract gap proportionally */
   position: relative;
   padding: 0 calc(var(--gap) / 2);
+  max-width: 100%;
 }
 
 header.header {
@@ -93,6 +94,7 @@ ul.links {
     width: calc(0.8 * 560px);
   }
   li.marqueeItem {
-    flex: 0 0 25%; /* subtract gap proportionally */
+    flex: 0 0 25%;
+    max-width: 25%;
   }
 }

@@ -4,7 +4,7 @@ export const scrollToHash = (offset = 0) => {
 
   const id = window.location.hash.replace("#", "");
   const el = document.getElementById(id);
-  console.log(el, "el");
+
   if (!el) return;
 
   const y = el.getBoundingClientRect().top + window.pageYOffset + offset;

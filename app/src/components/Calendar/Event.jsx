@@ -93,8 +93,6 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
 
   const isExpandable = event.gallery || event.info;
 
-  console.log(header_height, filter_height);
-
   // Scroll to Expanded Element
   useEffect(() => {
     if (isExpanded && ref.current) {

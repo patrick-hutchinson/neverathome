@@ -8,7 +8,7 @@ const EventExpand = ({ isExpandable, isExpanded }) => {
     <div className={styles.expand}>
       <motion.div
         className={styles.expand_inner}
-        animate={{ rotate: isExpanded ? 45 : 0 }}
+        animate={{ rotate: isExpanded ? 45 : 0, y: -1.2 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         +

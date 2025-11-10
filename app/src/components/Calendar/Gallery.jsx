@@ -25,7 +25,6 @@ const GalleryItem = ({ medium, index, setImageInView }) => {
   useEffect(() => {
     if (isInView) {
       setImageInView(index);
-      console.log("Active media index:", index);
     }
   }, [isInView, index, setImageInView]);
 

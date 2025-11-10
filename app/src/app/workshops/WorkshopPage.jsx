@@ -8,7 +8,6 @@ import Figure from "@/components/Figure/Figure";
 import styles from "./WorkshopPage.module.css";
 
 const WorkshopPage = ({ page, events, site }) => {
-  console.log(page);
   const workshops = events.filter((event) => event.type === "Workshop");
 
   return (

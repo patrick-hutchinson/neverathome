@@ -9,7 +9,6 @@ import styles from "./StudiosPage.module.css";
 import CoverMedia from "@/components/CoverMedia";
 
 const StudiosPage = ({ page, site }) => {
-  console.log(page);
   return (
     <main>
       <section>

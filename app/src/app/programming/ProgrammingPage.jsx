@@ -13,7 +13,6 @@ import styles from "./ProgrammingPage.module.css";
 import CoverMedia from "@/components/CoverMedia";
 
 const ProgrammingPage = ({ page, site }) => {
-  console.log(page, "residencies");
   return (
     <main>
       <section>

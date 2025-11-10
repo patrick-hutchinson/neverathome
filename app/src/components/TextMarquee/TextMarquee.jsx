@@ -13,8 +13,6 @@ const TextMarquee = ({ text, typo, className }) => {
     setWidth(marquee.current.scrollWidth);
   }, [text]);
 
-  console.log(width, "width");
-
   return (
     <div className={`${className} ${styles.marquee_outer}`} typo={typo}>
       <motion.div

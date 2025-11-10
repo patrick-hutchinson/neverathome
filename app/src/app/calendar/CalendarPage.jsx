@@ -80,7 +80,6 @@ const CalendarPage = ({ events }) => {
   const handleContentScroll = (e) => {
     const el = e.target;
     const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-    console.log("Distance from bottom:", distanceFromBottom);
 
     if (distanceFromBottom === 0) {
       setFinishedScroll(true);

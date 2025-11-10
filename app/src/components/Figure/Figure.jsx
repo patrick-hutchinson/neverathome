@@ -9,8 +9,6 @@ import { motion } from "framer-motion";
 const Figure = ({ item, ratio }) => {
   const [hovered, setHovered] = useState(false);
 
-  console.log(item, "figure");
-
   return (
     <div className={styles.figure}>
       <motion.div
