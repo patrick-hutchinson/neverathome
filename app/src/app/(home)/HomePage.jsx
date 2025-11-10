@@ -45,7 +45,7 @@ const HomePage = ({ data }) => {
       </section>
 
       <section>
-        <h3>Calendar</h3>
+        <h3>Upcoming</h3>
         <ul>
           {data.events.map((event, index) => (
             <div key={index} onClick={() => handleNavigation(event)}>
