@@ -1,5 +1,6 @@
 .artists {
   margin-top: 8px;
+  padding-bottom: calc(var(--margin) * 3);
 }
 
 .info {
