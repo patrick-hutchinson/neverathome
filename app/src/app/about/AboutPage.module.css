@@ -33,6 +33,8 @@ main.main {
   .image {
     max-width: 80vw;
     max-height: 80vh;
+    width: auto;
+    height: auto;
   }
 }
 
