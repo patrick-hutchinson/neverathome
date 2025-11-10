@@ -4,7 +4,11 @@ import { useState } from "react";
 
 import styles from "./ArtistsPage.module.css";
 
-const ArtistsPage = ({ artists }) => {
+import { motion } from "framer-motion";
+
+const ArtistsPage = ({ artists, colorPairs }) => {
+  const textColors = colorPairs.map((colorPair) => colorPair.text.value);
+
   const [currentArtist, setCurrentArtist] = useState(null);
 
   const locations = [...new Set(artists.map((artist) => artist.location))];
@@ -67,9 +71,18 @@ const ArtistsPage = ({ artists }) => {
       <Filtering />
       <ul className={styles.artists}>
         {filteredArtists.map((artist, index) => (
-          <li key={index} onMouseEnter={() => setCurrentArtist(artist)} onMouseLeave={() => setCurrentArtist(null)}>
+          <motion.li
+            whileHover={{
+              color: textColors[Math.floor(Math.random() * textColors.length)],
+              transition: { duration: 0 },
+            }}
+            className={styles.artist}
+            key={index}
+            onMouseEnter={() => setCurrentArtist(artist)}
+            onMouseLeave={() => setCurrentArtist()}
+          >
             <h2>{artist.name}</h2>
-          </li>
+          </motion.li>
         ))}
       </ul>
 

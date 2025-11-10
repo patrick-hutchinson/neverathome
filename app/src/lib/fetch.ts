@@ -12,7 +12,12 @@ import {
   workshopsQuery,
   studiosQuery,
   imprintQuery,
+  colorPairsQuery,
 } from "./queries";
+
+export async function getColorPairs() {
+  return client.fetch(colorPairsQuery);
+}
 
 export async function getSiteData() {
   return client.fetch(siteQuery);

@@ -125,11 +125,22 @@ export const studiosQuery = `*[_type=="studios"][0]{
   }
 }`;
 
+export const colorPairsQuery = `*[_type == "colorPair"]{
+  name,
+  text,
+  background
+}`;
+
 export const artistQuery = `*[_type=="artist"]{
   name,
   occupation,
   email,
   phone,
+  website,
+  socials[]{
+    platform,
+    link
+  },
   "location": coalesce(location[0]->title, "Unknown location")
 }`;
 
