@@ -68,7 +68,7 @@ button.all {
   border-bottom: var(--border) solid var(--background);
   padding: 3px;
   padding-bottom: 10px;
-  min-height: var(--filter-height);
+  min-height: 40px;
 
   /* padding-bottom: 10px; */
 }

@@ -31,7 +31,7 @@
 
 .description {
   position: sticky;
-  top: 55px;
+  top: 50px;
   height: fit-content;
 }
 
@@ -64,7 +64,7 @@
     grid-column: 14 / end;
   }
   .description {
-    top: 35px;
+    top: 40px;
   }
 }
 

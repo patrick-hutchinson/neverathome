@@ -7,6 +7,7 @@
 
   --header-height: 45px;
   --filter-height: 70.5px;
+  --filter-height: 91px;
 
   --gap: 2px;
   --border: 1.5px;
@@ -41,7 +42,7 @@ body {
 
   font-size: var(--font-size-3);
   line-height: var(--line-height-3);
-  font-family: TextgyreHeros, "Helvetica Neue", Arial, sans-serif;
+  font-family: TextgyreHeros;
   font-weight: 375;
 }
 
@@ -53,9 +54,9 @@ main {
 
 .invert {
   color: var(--background) !important;
-  /* background: var(--foreground) !important; */
-  all: unset;
-  color: inherit;
+  background: var(--foreground) !important;
+  /* all: unset; */
+  /* color: inherit; */
 }
 
 .invert a,

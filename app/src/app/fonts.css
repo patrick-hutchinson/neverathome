@@ -1,6 +1,7 @@
 @font-face {
   font-family: "TextgyreHeros";
-  src: url("/assets/fonts/texgyreheros-regular.ttf") format("truetype");
+  src: url("/assets/fonts/texgyreheros-regular.ttf") format("truetype"),
+    url("/assets/fonts/texgyreheros-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
