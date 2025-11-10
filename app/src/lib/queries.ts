@@ -37,6 +37,7 @@ export const homeQuery = `*[_type=="home"][0]{
     startDate,
     endDate,
     title,
+    teaser,
     city,
     "colorPair": colorPair[0]->{_id, text, background},
     location,
