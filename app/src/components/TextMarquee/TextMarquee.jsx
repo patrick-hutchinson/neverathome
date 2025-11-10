@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 import styles from "./TextMarquee.module.css";
-import { motion } from "framer-motion";
 
 const TextMarquee = ({ text, typo, className }) => {
   const [width, setWidth] = useState(null);
@@ -10,14 +11,16 @@ const TextMarquee = ({ text, typo, className }) => {
 
   useEffect(() => {
     setWidth(marquee.current.scrollWidth);
-  }, [width]);
+  }, [text]);
+
+  console.log(width, "width");
 
   return (
     <div className={`${className} ${styles.marquee_outer}`} typo={typo}>
       <motion.div
         ref={marquee}
         className={styles.marquee_inner}
-        animate={{ x: ["0%", -width / 2] }}
+        animate={{ x: [-width / 2, 0] }}
         transition={{
           x: {
             repeat: Infinity,
