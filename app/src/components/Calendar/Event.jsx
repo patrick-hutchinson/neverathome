@@ -89,14 +89,18 @@ const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
 
 const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
   const { isMobile } = useContext(StateContext);
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
   const isExpandable = event.gallery || event.info;
+
+  console.log(header_height, filter_height);
 
   // Scroll to Expanded Element
   useEffect(() => {
     if (isExpanded && ref.current) {
       setTimeout(() => {
         const top = ref.current.getBoundingClientRect().top + window.scrollY;
-        const offset = isMobile ? 115 : 88; // distance from top in px
+        const offset = header_height + filter_height; // distance from top in px
 
         window.scrollTo({
           top: top - offset,

@@ -6,7 +6,7 @@
   --margin: 12px;
 
   --header-height: 45px;
-  --filter-height: 33px;
+  --filter-height: 70.5px;
 
   --gap: 2px;
   --border: 1.5px;
@@ -197,6 +197,9 @@ mux-player .mux-spinner {
 
 /* Desktop */
 @media screen and (min-width: 1280px) {
+  :root {
+    --filter-height: 33px;
+  }
 }
 
 /* Large Format Screens */
