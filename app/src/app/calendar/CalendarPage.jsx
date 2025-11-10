@@ -17,7 +17,6 @@ import Gallery from "@/components/Calendar/Gallery";
 
 import styles from "./CalendarPage.module.css";
 
-import { scrollToHash } from "@/helpers/scrollToHash";
 import { motion } from "framer-motion";
 
 const CalendarPage = ({ events }) => {

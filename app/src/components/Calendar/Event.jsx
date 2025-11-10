@@ -88,6 +88,7 @@ const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
 };
 
 const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
+  const { isMobile } = useContext(StateContext);
   const isExpandable = event.gallery || event.info;
 
   // Scroll to Expanded Element
@@ -95,7 +96,7 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
     if (isExpanded && ref.current) {
       setTimeout(() => {
         const top = ref.current.getBoundingClientRect().top + window.scrollY;
-        const offset = 85; // distance from top in px
+        const offset = isMobile ? 115 : 88; // distance from top in px
 
         window.scrollTo({
           top: top - offset,
