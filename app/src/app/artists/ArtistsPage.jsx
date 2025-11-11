@@ -39,7 +39,7 @@ const ArtistsPage = ({ artists, colorPairs }) => {
         </button>
       </fieldset>
 
-      <fieldset>
+      <fieldset className={styles.locations}>
         {locations.map((location, index) => (
           <span key={index}>
             <button
