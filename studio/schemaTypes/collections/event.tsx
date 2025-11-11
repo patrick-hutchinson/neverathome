@@ -157,8 +157,10 @@ export const event = defineType({
     gallery,
     defineField({
       name: 'slug',
-      title: 'url',
+      title: 'URL-Teil',
       type: 'slug',
+      description:
+        'Ein Beispiel: 👉 wwww.neverathome.com/mein-artikel ("mein-artikel" ist URL-Teil)',
       options: {
         source: 'title',
         maxLength: 96,

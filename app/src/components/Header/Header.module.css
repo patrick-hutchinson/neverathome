@@ -80,6 +80,10 @@ ul.nav_section {
   overflow-x: scroll;
 }
 
+.mobileMenu li {
+  line-height: 1.3 !important;
+}
+
 /* Phones */
 @media screen and (min-width: 320px) {
 }
