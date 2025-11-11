@@ -15,6 +15,7 @@ footer.footer {
 
   padding: var(--margin);
   z-index: 15;
+  gap: var(--margin);
 }
 
 footer.footer a,
@@ -72,6 +73,10 @@ footer.footer button:visited {
 @media screen and (min-width: 769px) {
   .openingHours {
     display: flex;
+  }
+
+  footer.footer {
+    gap: unset;
   }
 
   .main {

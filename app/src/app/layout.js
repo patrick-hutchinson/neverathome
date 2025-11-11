@@ -38,6 +38,7 @@ export default function RootLayout({ children, invert = false }) {
           <body>
             <Header />
             {children}
+            <div id="hover-preview"></div>
             <Footer site={site} />
           </body>
         </GlobalVariablesProvider>
