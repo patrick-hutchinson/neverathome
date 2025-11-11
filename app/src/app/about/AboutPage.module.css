@@ -9,15 +9,10 @@ main.main {
 }
 
 .image {
-  width: auto;
+  position: fixed;
+  width: 90vw;
   height: auto;
 
-  max-width: 50vw;
-  /* max-height: 50vh; */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   /* mix-blend-mode: lighten; */
 }
 
@@ -28,7 +23,7 @@ main.main {
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
   .image {
-    max-width: 30vw;
+    width: 30vw;
     /* max-height: 30vh; */
   }
 }

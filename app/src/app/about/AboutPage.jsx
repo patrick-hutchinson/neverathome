@@ -57,6 +57,7 @@ const AboutPage = ({ contact }) => {
 
   useEffect(() => {
     console.log("show image");
+    console.log(mounted, portalRoot, "roots");
   }, [showImage]);
 
   return (
@@ -64,6 +65,7 @@ const AboutPage = ({ contact }) => {
       <Text text={contact.bio} typo="h2" />
       {mounted &&
         portalRoot &&
+        showImage &&
         createPortal(
           <AnimatePresence>
             <motion.div
@@ -72,17 +74,19 @@ const AboutPage = ({ contact }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 1 }}
               style={{
+                height: "auto",
                 position: "fixed",
-                top: 0,
-                left: 0,
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
                 pointerEvents: "none",
-                zIndex: 10,
+                zIndex: 15,
                 cursor: "none",
               }}
             >
-              <FadePresence className={styles.image} motionKey="image">
-                {showImage && <Media medium={contact.image} />}
-              </FadePresence>
+              {/* <FadePresence className={styles.image} motionKey="image"> */}
+              <Media medium={contact.image} />
+              {/* </FadePresence> */}
             </motion.div>
           </AnimatePresence>,
           portalRoot
