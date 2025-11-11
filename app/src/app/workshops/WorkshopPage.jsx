@@ -6,6 +6,7 @@ import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 
 import styles from "./WorkshopPage.module.css";
+import Link from "next/link";
 
 const WorkshopPage = ({ page, events, site }) => {
   const workshops = events.filter((event) => event.type === "Workshop");
@@ -37,7 +38,7 @@ const WorkshopPage = ({ page, events, site }) => {
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>
-          <a href="/calendar">Go to the Calendar</a>
+          <Link href="/calendar">Go to the Calendar</Link>
         </h2>
       </section>
 

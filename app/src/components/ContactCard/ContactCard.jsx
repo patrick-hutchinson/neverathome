@@ -5,7 +5,9 @@ const ContactCard = ({ item, index, typo, onMouseEnter, onMouseLeave }) => {
     <li key={index} className={styles.contact} typo={typo} onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter}>
       {item?.name} <br />
       Role <br />
-      <a href={`mailto:${item?.email}`}>{item?.email}</a>
+      <a href={`mailto:${item?.email}`} target="_blank">
+        {item?.email}
+      </a>
     </li>
   );
 };

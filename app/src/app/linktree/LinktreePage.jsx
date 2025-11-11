@@ -12,14 +12,18 @@ const LinktreePage = ({ data }) => {
       <ul typo="h2">
         {linktree.map((item) => (
           <li>
-            <a href={item.link}>{item.platform}</a>
+            <a href={item.link} target="_blank">
+              {item.platform}
+            </a>
           </li>
         ))}
         <li className="unavailable">Newsletter</li>
         <Link href="/">Website</Link>
         {socials.map((item) => (
           <li>
-            <a href={item.link}>{item.platform}</a>
+            <a href={item.link} target="_blank">
+              {item.platform}
+            </a>
           </li>
         ))}
       </ul>

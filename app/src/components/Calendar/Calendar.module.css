@@ -142,7 +142,7 @@ button.all {
 }
 
 .icon {
-  fill: #fff;
+  fill: inherit;
   height: 14px;
   width: 14px;
 }

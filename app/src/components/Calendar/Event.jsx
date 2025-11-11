@@ -68,6 +68,7 @@ const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
         return {
           background: event.colorPair?.background.value,
           color: event.colorPair?.text.value,
+          fill: event.colorPair?.text.value,
           transition: { duration: 0.5 },
         };
       }}
@@ -118,6 +119,7 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
         return {
           background: event.colorPair?.background.value,
           color: event.colorPair?.text.value,
+          fill: event.colorPair?.text.value,
           transition: { duration: 0.5 },
         };
       }}
@@ -131,6 +133,7 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
         zIndex: 2,
         background: isExpanded ? event.colorPair?.background.value : "#000",
         color: isExpanded ? event.colorPair?.text.value : "#fff",
+        fill: isExpanded ? event.colorPair?.text.value : "#fff",
       }}
     >
       <EventType event={event} />
@@ -138,7 +141,7 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
       <EventTitle event={event} />
       <GalleryCounter event={event} imageInView={imageInView} isExpanded={isExpanded} />
 
-      <EventExpand isExpandable={isExpandable} isExpanded={isExpanded} />
+      <EventExpand isExpandable={isExpandable} isExpanded={isExpanded} event={event} />
     </motion.li>
   );
 };

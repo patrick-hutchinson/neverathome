@@ -36,6 +36,11 @@ li.artist {
   border-bottom: var(--border) solid var(--background);
 }
 
+.filtering button,
+.filtering fieldset {
+  line-height: 1;
+}
+
 .filtering button {
   opacity: 0.3;
 }

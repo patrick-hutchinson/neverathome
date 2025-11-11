@@ -11,6 +11,8 @@
 
   --gap: 2px;
   --border: 1.5px;
+
+  --selection-color: #f0f;
 }
 
 * {
@@ -44,6 +46,12 @@ body {
   line-height: var(--line-height-3);
   font-family: TextgyreHeros;
   font-weight: 375;
+}
+
+::selection {
+  color: var(--selection-color); /* text color */
+
+  background-clip: text;
 }
 
 main {

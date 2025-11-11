@@ -14,7 +14,7 @@ const Footer = ({ site }) => {
     <footer className={styles.footer}>
       <div className={styles.main}>
         <div>
-          <a href={site.googleMaps}>
+          <a href={site.googleMaps} target="_blank">
             <Text text={site.address} />
             <Text className={styles.openingHours} text={site.openingHours} />
           </a>
@@ -38,7 +38,7 @@ const Footer = ({ site }) => {
         <div />
         <div className={styles.external} style={{ display: "flex" }}>
           <span style={{ marginRight: "4px" }}>
-            <a href="/imprint">Imprint</a>
+            <Link href="/imprint">Imprint</Link>
             {", "}
           </span>
           <ul className={styles.socials}>

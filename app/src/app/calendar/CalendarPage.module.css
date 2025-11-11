@@ -39,7 +39,6 @@
 .mediaPair {
   display: flex;
   flex-direction: column;
-  /* gap: var(--margin); */
 }
 
 /* Phones */
@@ -54,28 +53,21 @@
     grid-template-columns: repeat(24, 1fr);
     gap: var(--margin);
   }
-}
-
-/* Desktop */
-@media screen and (min-width: 1280px) {
-  .mediaPair {
-    padding: 0px 0px 10px 3px;
-    display: grid;
-    grid-template-columns: repeat(24, 1fr);
-    gap: var(--margin);
-  }
-
   .mediaPair .description {
     grid-column: 4 / 12;
   }
   .mediaPair .gallery {
-    grid-column: 14 / end;
+    grid-column: 13 / end;
   }
   .description {
     position: sticky;
     top: calc(var(--list-height) + var(--margin));
     padding: 0;
   }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
 }
 
 /* Large Format Screens */

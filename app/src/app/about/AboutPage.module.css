@@ -5,6 +5,7 @@ main.main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .image {
@@ -26,16 +27,14 @@ main.main {
 
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
+  .image {
+    max-width: 30vw;
+    /* max-height: 30vh; */
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1280px) {
-  .image {
-    max-width: 80vw;
-    max-height: 80vh;
-    width: auto;
-    height: auto;
-  }
 }
 
 /* Large Format Screens */

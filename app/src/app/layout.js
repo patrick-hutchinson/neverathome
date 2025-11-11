@@ -1,16 +1,19 @@
 import ScrollRestorationController from "@/controllers/ScrollRestorationController";
 import ColorSchemeController from "@/controllers/ColorSchemeController";
+import RandomSelectionColor from "@/controllers/RandomSelectionColor";
 import { StateProvider } from "@/context/StateContext";
 import { GlobalVariablesProvider } from "@/context/GlobalVariablesContext";
 import "./globals.css";
 import "./fonts.css";
 
 import { getSiteData } from "@/lib/fetch";
+import { getColorPairs } from "@/lib/fetch";
 
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
 const [site] = await Promise.all([getSiteData()]);
+const [colorPairs] = await Promise.all([getColorPairs()]);
 
 export const metadata = {
   title: `${site.title}`,
@@ -40,6 +43,7 @@ export default function RootLayout({ children, invert = false }) {
         </GlobalVariablesProvider>
       </StateProvider>
       <ScrollRestorationController />
+      <RandomSelectionColor colorPairs={colorPairs} />
       <ColorSchemeController />
     </html>
   );

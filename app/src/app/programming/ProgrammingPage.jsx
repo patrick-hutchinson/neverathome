@@ -12,6 +12,8 @@ import Figure from "@/components/Figure/Figure";
 import styles from "./ProgrammingPage.module.css";
 import CoverMedia from "@/components/CoverMedia";
 
+import Link from "next/link";
+
 const ProgrammingPage = ({ page, site }) => {
   return (
     <main>
@@ -38,7 +40,11 @@ const ProgrammingPage = ({ page, site }) => {
       <section>
         <h2>
           Interested to host your own? <br />
-          Write us an <a href={`mailto:${site.email}`}>email</a>!
+          Write us an{" "}
+          <a href={`mailto:${site.email}`} target="_blank">
+            email
+          </a>
+          !
         </h2>
       </section>
 
@@ -50,7 +56,7 @@ const ProgrammingPage = ({ page, site }) => {
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>
-          <a href="/calendar">Go to the Calendar</a>
+          <Link href="/calendar">Go to the Calendar</Link>
         </h2>
       </section>
     </main>
