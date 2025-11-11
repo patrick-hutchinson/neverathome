@@ -3,9 +3,6 @@ footer.footer {
   height: 270px;
   width: 100vw;
 
-  /* left: calc(-1 * var(--margin)); */
-  /* bottom: calc(-1 * var(--margin)); */
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +10,7 @@ footer.footer {
   background: var(--foreground);
   color: var(--background);
 
-  padding: var(--margin);
+  padding: calc(var(--margin) - 2px) var(--margin) var(--margin) var(--margin);
   z-index: 15;
   gap: var(--margin);
 }
@@ -77,6 +74,10 @@ footer.footer button:visited {
 @media screen and (min-width: 769px) {
   .openingHours {
     display: flex;
+  }
+
+  .main {
+    margin-bottom: 0%;
   }
 
   footer.footer {

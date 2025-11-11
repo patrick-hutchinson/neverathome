@@ -44,7 +44,7 @@ body {
 
   font-size: var(--font-size-3);
   line-height: var(--line-height-3);
-  font-family: TextgyreHeros;
+  font-family: TextgyreHeros, "Helvetica Neue", Arial, sans-serif;
   font-weight: 375;
 }
 

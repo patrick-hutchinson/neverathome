@@ -11,7 +11,7 @@
 
   z-index: 3;
   background: #eee;
-  padding: 3px;
+  padding: 0px 3px 3px 3px;
   padding-bottom: 10px;
 }
 
@@ -68,7 +68,7 @@ button.all {
   background: var(--foreground);
   color: var(--background);
   border-bottom: var(--border) solid var(--background);
-  padding: 3px;
+  padding: 0px 3px 3px 3px;
   padding-bottom: 10px;
   min-height: var(--list-height);
 }

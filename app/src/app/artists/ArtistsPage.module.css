@@ -30,7 +30,7 @@ li.artist {
   color: var(--background);
 
   z-index: 1;
-  padding: 3px;
+  padding: 0px 3px 3px 3px;
   padding-bottom: 10px;
   border-bottom: var(--border) solid var(--background);
   grid-template-columns: repeat(12, 1fr);
