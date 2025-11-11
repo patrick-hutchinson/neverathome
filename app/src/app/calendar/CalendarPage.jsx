@@ -153,6 +153,7 @@ const CalendarPage = ({ events }) => {
                         "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--list-height)))))",
                       background: "#000",
                       pointerEvents: isExpandable ? "all" : "none",
+                      overflowX: "hidden",
                     }}
                   >
                     <Event

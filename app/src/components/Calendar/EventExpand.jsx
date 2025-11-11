@@ -10,7 +10,7 @@ const EventExpand = ({ isExpandable, isExpanded }) => {
     <div className={styles.expand}>
       <motion.div
         className={styles.expand_inner}
-        animate={{ rotate: isExpanded ? 45 : 0, y: 0 }}
+        animate={{ rotate: isExpanded ? 45 : 0, y: 0, x: -3 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <Icon className={styles.icon} path="/assets/icons/plus.svg" />
