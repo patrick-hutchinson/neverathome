@@ -11,8 +11,6 @@ const MobileMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
 
-  const isHome = pathname === "/";
-
   useEffect(() => {
     setShowMenu(false);
   }, [pathname]);
@@ -52,7 +50,6 @@ const MobileMenu = () => {
                 <Link href="/calendar">Calendar</Link>
               </li>
             </ul>
-            {!isHome && <TextMarquee className={styles.marquee} text="NeverAtHome" typo="h1" />}
           </div>
         </AnimatePresence>
       )}

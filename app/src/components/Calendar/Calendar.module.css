@@ -53,6 +53,8 @@ button.all {
 }
 
 .filtering .search {
+  display: flex;
+  align-items: start;
   grid-row: 3;
   grid-column: 1 / 13;
 }
@@ -69,12 +71,11 @@ button.all {
   padding: 3px;
   padding-bottom: 10px;
   min-height: var(--list-height);
-
-  /* padding-bottom: 10px; */
 }
 
 .filtering button,
-.filtering fieldset {
+.filtering fieldset,
+.filtering .label {
   line-height: 1;
 }
 
@@ -143,8 +144,8 @@ button.all {
 
 .icon {
   fill: inherit;
-  height: 14px;
-  width: 14px;
+  height: 10px;
+  width: 10px;
 }
 
 /* Phones */
@@ -157,6 +158,10 @@ button.all {
 
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
+  .icon {
+    height: 11px;
+    width: 11px;
+  }
 }
 
 /* Desktop */

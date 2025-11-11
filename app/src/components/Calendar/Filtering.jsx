@@ -69,7 +69,7 @@ const Filtering = ({ types, years, query, setQuery, activeTypes, activeYears, se
         ))}
       </fieldset>
 
-      <label className={styles.search}>
+      <div className={styles.search}>
         Search:
         <input
           type="search"
@@ -79,7 +79,7 @@ const Filtering = ({ types, years, query, setQuery, activeTypes, activeYears, se
           style={{ textIndent: "5px" }}
           autoComplete="off"
         />
-      </label>
+      </div>
     </form>
   );
 };

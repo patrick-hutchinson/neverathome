@@ -43,8 +43,8 @@ ul.links {
 .media.smallImage div {
   height: auto !important;
   /* width: auto !important; */
-  max-height: calc(100% - var(--margin) * 4) !important;
-  max-width: calc(100% - var(--margin) * 4) !important;
+  max-height: calc(80% - var(--margin) * 4) !important;
+  max-width: calc(80% - var(--margin) * 4) !important;
 }
 
 .text {

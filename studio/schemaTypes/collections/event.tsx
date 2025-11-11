@@ -2,11 +2,10 @@ import React from 'react'
 import {useClient} from 'sanity'
 
 import {defineField, defineType} from 'sanity'
-import {thumbnail} from '../types/thumbnail'
+
 import {gallery} from '../types/gallery'
 import type {ValidationContext} from 'sanity'
 
-import {eventType} from '../definitions/eventType'
 import {CalendarIcon} from '@sanity/icons'
 
 export const event = defineType({

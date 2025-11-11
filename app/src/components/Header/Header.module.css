@@ -19,6 +19,8 @@ header.header {
 
 .marquee {
   width: 100px;
+  position: relative;
+  z-index: 20;
 }
 
 header.header a,
@@ -47,13 +49,15 @@ ul.nav_section {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   overflow: hidden;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
+  z-index: 19;
 }
 
 .menu .marquee {
@@ -62,13 +66,13 @@ ul.nav_section {
   bottom: 0;
   color: #fff;
   mix-blend-mode: difference;
-  z-index: 10;
+  z-index: 20;
   width: 100vw;
 }
 
 .menuButton {
   position: relative;
-  z-index: 11;
+  z-index: 20;
 }
 
 .mobileMenu {

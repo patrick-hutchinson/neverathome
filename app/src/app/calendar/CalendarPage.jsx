@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 import { StateContext } from "@/context/StateContext";
 
 import Event from "@/components/Calendar/Event";
@@ -11,6 +10,8 @@ import Filtering from "@/components/Calendar/Filtering";
 import Collapse from "@/components/Collapsible/Collapse";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
+
+import ArchivedEvent from "@/components/Calendar/ArchivedEvent";
 import Text from "@/components/Text";
 
 import Gallery from "@/components/Calendar/Gallery";
@@ -74,19 +75,7 @@ const CalendarPage = ({ events }) => {
 
   const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
 
-  let [finishedScroll, setFinishedScroll] = useState(false);
   const [imageInView, setImageInView] = useState(null);
-
-  const handleContentScroll = (e) => {
-    const el = e.target;
-    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-
-    if (distanceFromBottom === 0) {
-      setFinishedScroll(true);
-    } else {
-      setFinishedScroll(false);
-    }
-  };
 
   return (
     <main>
@@ -134,60 +123,17 @@ const CalendarPage = ({ events }) => {
           <h3>Archived</h3>
           <motion.ul className={styles.calendar_section}>
             <AnimatePresence>
-              {archived.map((event) => {
-                let isExpanded = event._id === expandedElement;
-                const isExpandable = event.gallery || event.info;
-                const containerRef = useRef(null);
-
-                return (
-                  <motion.div
-                    ref={containerRef}
-                    key={event._id}
-                    onScroll={(e) => handleContentScroll(e)}
-                    style={{
-                      overflowY: "scroll",
-                      height:
-                        isExpanded &&
-                        "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--list-height)))))",
-                      background: "#000",
-                      pointerEvents: isExpandable ? "all" : "none",
-                      overflowX: "hidden",
-                    }}
-                  >
-                    <Event
-                      size="large"
-                      event={event}
-                      isExpanded={isExpanded}
-                      onClick={() => handleExpand(event._id)}
-                      imageInView={imageInView}
-                      setEventInView={setEventInView}
-                    />
-                    <Collapse isExpanded={isExpanded} id={event._id}>
-                      <div
-                        className={styles.content}
-                        style={{
-                          minHeight:
-                            isExpanded &&
-                            "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (3 * 35px))))",
-                          background: isExpanded ? event.colorPair?.background.value : "#000",
-                          color: isExpanded ? event.colorPair?.text.value : "#fff",
-                          transition: "0.5s",
-                        }}
-                      >
-                        <MediaPair className={styles.mediaPair}>
-                          <Text text={event.info} className={styles.description} typo="h3" />
-                          <Gallery
-                            event={event}
-                            containerRef={containerRef}
-                            className={styles.gallery}
-                            setImageInView={setImageInView}
-                          />
-                        </MediaPair>
-                      </div>
-                    </Collapse>
-                  </motion.div>
-                );
-              })}
+              {archived.map((event) => (
+                <ArchivedEvent
+                  key={event._id}
+                  event={event}
+                  isExpanded={event._id === expandedElement}
+                  handleExpand={handleExpand}
+                  imageInView={imageInView}
+                  setEventInView={setEventInView}
+                  setImageInView={setImageInView}
+                />
+              ))}
             </AnimatePresence>
           </motion.ul>
         </section>

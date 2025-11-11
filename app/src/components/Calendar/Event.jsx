@@ -72,6 +72,11 @@ const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
           transition: { duration: 0.5 },
         };
       }}
+      style={{
+        fill: isExpanded ? event.colorPair?.text.value : "#fff",
+        background: isExpanded ? event.colorPair?.background.value : "#000",
+        color: isExpanded ? event.colorPair?.text.value : "#fff",
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -131,9 +136,9 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
         position: isExpanded && "sticky",
         top: 0,
         zIndex: 2,
-        background: isExpanded ? event.colorPair?.background.value : "#000",
-        color: isExpanded ? event.colorPair?.text.value : "#fff",
-        fill: isExpanded ? event.colorPair?.text.value : "#fff",
+        background: isExpanded ? event.colorPair?.background?.value ?? "#000" : "#000",
+        color: isExpanded ? event.colorPair?.text?.value ?? "#fff" : "#fff",
+        fill: isExpanded ? event.colorPair?.text?.value ?? "#fff" : "#fff",
       }}
     >
       <EventType event={event} />

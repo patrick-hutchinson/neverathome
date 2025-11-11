@@ -87,6 +87,11 @@ h4,
   font-weight: 450;
 }
 
+footer h4,
+footer [typo="h4"] {
+  font-weight: normal !important;
+}
+
 h5,
 [typo="h5"] {
   font-family: HBMarginM, "Helvetica Neue", Arial, sans-serif;

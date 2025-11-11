@@ -3,13 +3,15 @@
 import styles from "./Footer.module.css";
 
 import Text from "@/components/Text";
+import { StateContext } from "@/context/StateContext";
 import Link from "next/link";
 
-import React from "react";
+import React, { useContext } from "react";
 
 const year = new Date().getFullYear();
 
 const Footer = ({ site }) => {
+  const { isMobile } = useContext(StateContext);
   return (
     <footer className={styles.footer}>
       <div className={styles.main}>
@@ -26,7 +28,7 @@ const Footer = ({ site }) => {
           <button className={styles.not_allowed}>Subscribe Here</button>
         </div>
 
-        <div className={styles.resources}>
+        <div className={styles.linktree}>
           <Link href="/linktree">Link Tree</Link>
         </div>
       </div>
@@ -41,16 +43,22 @@ const Footer = ({ site }) => {
             <Link href="/imprint">Imprint</Link>
             {", "}
           </span>
-          <ul className={styles.socials}>
-            {site.socials.map((social, index) => (
-              <li key={index}>
-                <a href={social.link} target="_blank" rel="noopener noreferrer">
-                  {social.platform}
-                </a>
-                {index < site.socials.length - 1 && ", "}
-              </li>
-            ))}
-          </ul>
+          {isMobile ? (
+            <div className={styles.socials}>
+              <Link href="/linktree">Link Tree</Link>
+            </div>
+          ) : (
+            <ul className={styles.socials}>
+              {site.socials.map((social, index) => (
+                <li key={index}>
+                  <a href={social.link} target="_blank" rel="noopener noreferrer">
+                    {social.platform}
+                  </a>
+                  {index < site.socials.length - 1 && ", "}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </footer>

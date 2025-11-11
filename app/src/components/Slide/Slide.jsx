@@ -12,7 +12,7 @@ const MiniFigure = ({ item, index }) => {
           {item.links?.map((link, index) => (
             <li key={index}>
               <a href={link.link} target="_blank">
-                {link.title}
+                {link.title} →
               </a>
             </li>
           ))}
