@@ -11,8 +11,6 @@ import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 
 const Header = () => {
-  const pathname = usePathname();
-
   const { isMobile } = useContext(StateContext);
 
   return (

@@ -19,6 +19,7 @@ import Gallery from "@/components/Calendar/Gallery";
 import styles from "./CalendarPage.module.css";
 
 import { motion } from "framer-motion";
+import { scrollToHash } from "@/helpers/scrollToHash";
 
 const CalendarPage = ({ events }) => {
   let [eventInView, setEventInView] = useState(null);
@@ -40,6 +41,10 @@ const CalendarPage = ({ events }) => {
       })
     ),
   ].sort((a, b) => a - b);
+
+  useEffect(() => {
+    scrollToHash(-150);
+  }, []);
 
   // Create an array that stores the active filters
   let [activeTypes, setActiveTypes] = useState([...types]);

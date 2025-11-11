@@ -24,6 +24,8 @@ import EventExpand from "./EventExpand";
 const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView }) => {
   const ref = useRef(null);
 
+  console.log(isExpanded);
+
   switch (size) {
     case "small":
       return <SmallEvent event={event} ref={ref} />;
@@ -57,6 +59,21 @@ const SmallEvent = ({ event, ref }) => {
 
 const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
   const [isExpandable, setIsExpandable] = useState(event.info);
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
+  useEffect(() => {
+    if (isExpanded && ref.current) {
+      setTimeout(() => {
+        const top = ref.current.getBoundingClientRect().top + window.scrollY;
+        const offset = header_height + filter_height; // distance from top in px
+
+        window.scrollTo({
+          top: top - offset,
+          behavior: "smooth",
+        });
+      }, 800);
+    }
+  }, [isExpanded]);
 
   return (
     <motion.li
