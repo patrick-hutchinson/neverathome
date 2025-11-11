@@ -145,8 +145,6 @@ const CalendarPage = ({ events }) => {
                     key={event._id}
                     onScroll={(e) => handleContentScroll(e)}
                     style={{
-                      // position: isExpanded && !finishedScroll && "sticky",
-                      // top: isExpanded && "calc(var(--header-height) + var(--filter-height))",
                       overflowY: "scroll",
                       height:
                         isExpanded &&

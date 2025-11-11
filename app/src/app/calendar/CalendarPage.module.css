@@ -31,7 +31,7 @@
 
 .description {
   position: sticky;
-  top: 50px;
+  top: calc(var(--list-height) + var(--margin));
   height: fit-content;
   padding: 0px 3px;
 }
