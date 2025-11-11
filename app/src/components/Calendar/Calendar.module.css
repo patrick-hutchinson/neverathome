@@ -141,6 +141,12 @@ button.all {
   height: 110px !important;
 }
 
+.icon {
+  fill: #fff;
+  height: 14px;
+  width: 14px;
+}
+
 /* Phones */
 @media screen and (min-width: 320px) {
 }
