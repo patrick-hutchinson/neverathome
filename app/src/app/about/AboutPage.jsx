@@ -79,9 +79,7 @@ const AboutPage = ({ contact }) => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                pointerEvents: "none",
                 zIndex: 15,
-                cursor: "none",
               }}
             >
               {/* <FadePresence className={styles.image} motionKey="image"> */}

@@ -208,6 +208,7 @@ mux-player .mux-spinner {
 @media screen and (min-width: 1280px) {
   :root {
     --filter-height: 40px;
+    --margin: 8px;
   }
   section {
     margin-bottom: 350px;
