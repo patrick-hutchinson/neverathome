@@ -32,12 +32,10 @@ const MobileMenu = () => {
 
               <li className={styles.not_allowed}>
                 <Link href="/studios">Studios</Link>
-                <span>{", "}</span>
               </li>
 
               <li className={styles.not_allowed}>
                 <Link href="/workshops">Workshops</Link>
-                <span>{", "}</span>
               </li>
 
               <li className={styles.not_allowed}>
