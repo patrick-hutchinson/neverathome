@@ -17,13 +17,13 @@
 
 :root {
   /* largest */
-  --font-size-1: clamp(13rem, calc(12rem + 2vw), 20rem);
+  --font-size-1: 94px;
   --line-height-1: 1;
   --letter-spacing-1: -0.5rem;
   --paragraph-spacing-1: 0;
 
-  --font-size-2: clamp(3.6rem, calc(2.928rem + 1.2vw), 7.2rem);
-  --line-height-2: 1.05; /* leave this — it's unitless */
+  --font-size-2: 27px;
+  --line-height-2: 1; /* leave this — it's unitless */
   --letter-spacing-2: -0.024rem;
   --paragraph-spacing-2: 0;
   --text-indent-2: 7.2rem;
@@ -132,4 +132,19 @@ h5 p,
 
 [typo="longcopy"] p {
   margin-bottom: 20px;
+}
+
+@media screen and (min-width: 769px) {
+  :root {
+    --font-size-1: clamp(13rem, calc(12rem + 2vw), 20rem);
+    --line-height-1: 1;
+    --letter-spacing-1: -0.5rem;
+    --paragraph-spacing-1: 0;
+
+    --font-size-2: clamp(3.6rem, calc(2.928rem + 1.2vw), 7.2rem);
+    --line-height-2: 1.05; /* leave this — it's unitless */
+    --letter-spacing-2: -0.024rem;
+    --paragraph-spacing-2: 0;
+    --text-indent-2: 7.2rem;
+  }
 }
