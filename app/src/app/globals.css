@@ -3,7 +3,7 @@
   --foreground: #000000;
   --link_color: #5d5a5a;
 
-  --margin: 12px;
+  --margin: 8px;
 
   --header-height: 40px;
   --filter-height: 91px;
@@ -208,7 +208,7 @@ mux-player .mux-spinner {
 @media screen and (min-width: 1280px) {
   :root {
     --filter-height: 40px;
-    --margin: 8px;
+    --margin: 12px;
   }
   section {
     margin-bottom: 350px;
