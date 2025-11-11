@@ -52,11 +52,7 @@ export const homeQuery = `*[_type=="home"][0]{
     description,
     subtitle,
     links,
-    "tag": select(
-      tag == "inTheMedia" => "In The Media",
-      tag == "visits" => "Visits",
-      tag == "upcoming" => "Upcoming"
-    ),
+    "type": type->title,
     ${thumbnailFragment},
     imageIsSmall
   },
@@ -66,10 +62,7 @@ export const homeQuery = `*[_type=="home"][0]{
     subtitle,
     links,
     "colorPair": colorPair[0]->{_id, text, background},
-    "tag": select(
-      tag == "location" => "The Location",
-      tag == "visits" => "Visits"
-    ),
+    "type": type->title,
     ${thumbnailFragment}
   }
 }`;
@@ -103,10 +96,7 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
     description,
     subtitle,
     links,
-    "tag": select(
-      tag == "location" => "The Location",
-      tag == "visits" => "Visits"
-    ),
+    "type": type->title,
     ${thumbnailFragment}
   }
 }`;
@@ -166,11 +156,7 @@ export const eventsQuery = `*[_type=="events"][0]{
     description,
     subtitle,
     links,
-    "tag": select(
-      tag == "inTheMedia" => "In The Media",
-      tag == "visits" => "Visits",
-      tag == "upcoming" => "Upcoming"
-    ),
+    "type": type->title,
     ${thumbnailFragment},
     imageIsSmall
   },
@@ -221,11 +207,7 @@ export const highlightQuery = `*[_type=="highlight"]{
   description,
   subtitle,
   links,
-  "tag": select(
-    tag == "inTheMedia" => "In The Media",
-    tag == "visits" => "Visits",
-    tag == "upcoming" => "Upcoming"
-  ),
+  "type": type->title,
   ${thumbnailFragment},
   imageIsSmall
 }`;
@@ -236,9 +218,6 @@ export const featureQuery = `*[_type=="feature"]{
   subtitle,
   "colorPair": colorPair[0]->{_id, text, background},
   links,
-  "tag": select(
-    tag == "location" => "The Location",
-    tag == "visits" => "Visits"
-  ),
+  "type": type->title,
   ${thumbnailFragment}
 }`;

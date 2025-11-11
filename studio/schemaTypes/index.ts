@@ -27,6 +27,7 @@ import {gallery} from './types/gallery'
 import {imageWithMetadata} from './types/imageWithMetadata'
 import {videoWithMetadata} from './types/videoWithMetadata'
 import {medium} from './types/medium'
+import {highlightType} from './definitions/highlightType'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -36,6 +37,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     contact,
     highlight,
     eventType,
+    highlightType,
     home,
     feature,
     colorPair,

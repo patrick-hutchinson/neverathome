@@ -58,15 +58,9 @@ export const highlight = defineType({
     defineField({
       name: 'tag',
       title: 'Tag',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'In The Media', value: 'inTheMedia'},
-          {title: 'Visits', value: 'visits'},
-          {title: 'Upcoming', value: 'upcoming'},
-        ],
-        layout: 'radio',
-      },
+      type: 'reference',
+      to: [{type: 'highlightType'}],
+      validation: (Rule) => Rule.required().error('A type is required'),
     }),
     defineField({
       name: 'thumbnail',
@@ -83,27 +77,13 @@ export const highlight = defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'thumbnail.image', // or 'thumbnail', depending on your thumbnail type
-      tag: 'tag',
+      media: 'thumbnail.image',
+      tag: 'tag.title', // or 'tag.slug.current' if available
     },
-    prepare({
-      title,
-      media,
-      tag,
-    }: {
-      title?: string
-      media?: any
-      tag?: 'inTheMedia' | 'visits' | 'upcoming' | string
-    }) {
-      const tagLabels: Record<'inTheMedia' | 'visits' | 'upcoming', string> = {
-        inTheMedia: 'In The Media',
-        visits: 'Visits',
-        upcoming: 'Upcoming',
-      }
-
+    prepare({title, media, tag}) {
       return {
         title,
-        subtitle: tag ? tagLabels[tag as keyof typeof tagLabels] || '' : '',
+        subtitle: tag, // cleaner nullish fallback
         media,
       }
     },

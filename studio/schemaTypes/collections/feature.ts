@@ -41,14 +41,9 @@ export const feature = defineType({
     defineField({
       name: 'tag',
       title: 'Tag',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Location', value: 'location'},
-          {title: 'Visits', value: 'visits'},
-        ],
-        layout: 'radio',
-      },
+      type: 'reference',
+      to: [{type: 'highlightType'}],
+      validation: (Rule) => Rule.required().error('A type is required'),
     }),
     defineField({
       name: 'colorPair',
