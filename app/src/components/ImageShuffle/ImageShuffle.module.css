@@ -7,4 +7,11 @@
   left: 0;
   top: 0;
   z-index: 10;
+
+  overflow: hidden;
+  background: black; /* or whatever your desired background is */
+  isolation: isolate; /* prevents blending with page background */
+  backface-visibility: hidden;
+  transform: translateZ(0); /* force GPU compositing */
+  will-change: opacity;
 }
