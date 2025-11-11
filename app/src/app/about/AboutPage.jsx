@@ -18,10 +18,20 @@ import FadePresence from "@/components/FadePresence";
 import { StateContext } from "@/context/StateContext";
 
 const AboutPage = ({ contact }) => {
+  const [mounted, setMounted] = useState(false); // 👈 tracks client mount
   const { isMobile } = useContext(StateContext);
   const preview = useRef(null);
 
   const [showImage, setShowImage] = useState(false);
+
+  const [portalRoot, setPortalRoot] = useState(null);
+
+  useEffect(() => {
+    setMounted(true);
+    setPortalRoot(document.getElementById("hover-preview"));
+  }, []);
+
+  // const portalRoot = typeof window !== "undefined" ? document.getElementById("hover-preview") : null;
 
   useEffect(() => {
     if (!isMobile) return;
@@ -30,33 +40,33 @@ const AboutPage = ({ contact }) => {
 
     const handleScroll = () => {
       setShowImage(true);
-      clearTimeout(timeout); // clear previous timeout
-      timeout = setTimeout(() => {
-        setShowImage(false);
-      }, 200);
+      console.log("showing image");
+      clearTimeout(timeout);
+      timeout = setTimeout(() => setShowImage(false), 200);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchmove", handleScroll, { passive: true }); // 👈 key line
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeout); // cleanup
+      window.removeEventListener("touchmove", handleScroll);
+      clearTimeout(timeout);
     };
   }, [isMobile]);
 
-  const portalRoot = typeof window !== "undefined" ? document.getElementById("hover-preview") : null;
+  useEffect(() => {
+    console.log("show image");
+  }, [showImage]);
 
   return (
     <main className={styles.main}>
       <Text text={contact.bio} typo="h2" />
-      {/* <FadePresence className={styles.image} motionKey="image">
-        {showImage && <Media medium={contact.image} />}
-      </FadePresence> */}
-      {portalRoot &&
+      {mounted &&
+        portalRoot &&
         createPortal(
           <AnimatePresence>
             <motion.div
-              key={contact.image}
               ref={preview}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
