@@ -24,7 +24,7 @@ const EventDescription = ({ event, isExpanded }) => {
     <div
       className={styles.text}
       style={{
-        maxHeight: isExpanded ? textHeight : teaserHeight,
+        maxHeight: isExpanded ? textHeight + teaserHeight : teaserHeight,
         transition: "max-height 0.5s ease-in-out",
       }}
     >
