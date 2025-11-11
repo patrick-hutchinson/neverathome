@@ -61,7 +61,7 @@ const ImageShuffle = ({ images }) => {
           color: "white",
         }}
       >
-        LOADING
+        {/* LOADING */}
       </div>
     );
   }
