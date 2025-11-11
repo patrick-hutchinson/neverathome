@@ -7,19 +7,12 @@ import { StateContext } from "@/context/StateContext";
 
 import Event from "@/components/Calendar/Event";
 import Filtering from "@/components/Calendar/Filtering";
-import Collapse from "@/components/Collapsible/Collapse";
-
-import MediaPair from "@/components/MediaPair/MediaPair";
 
 import ArchivedEvent from "@/components/Calendar/ArchivedEvent";
-import Text from "@/components/Text";
-
-import Gallery from "@/components/Calendar/Gallery";
 
 import styles from "./CalendarPage.module.css";
 
 import { motion } from "framer-motion";
-import { scrollToHash } from "@/helpers/scrollToHash";
 
 const CalendarPage = ({ events }) => {
   let [eventInView, setEventInView] = useState(null);
@@ -41,10 +34,6 @@ const CalendarPage = ({ events }) => {
       })
     ),
   ].sort((a, b) => a - b);
-
-  useEffect(() => {
-    scrollToHash(-150);
-  }, []);
 
   // Create an array that stores the active filters
   let [activeTypes, setActiveTypes] = useState([...types]);

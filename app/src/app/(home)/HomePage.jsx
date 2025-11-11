@@ -28,7 +28,7 @@ const HomePage = ({ data }) => {
 
   const handleNavigation = (event) => {
     setExpandedElement(event._id);
-    router.push(`/calendar/#${event.slug.current}`, { scroll: false });
+    router.push(`/calendar`);
   };
 
   return (
