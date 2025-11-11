@@ -13,6 +13,8 @@ header.header {
 
   padding: var(--margin);
   height: var(--header-height);
+
+  align-items: center;
 }
 
 .marquee {
@@ -26,6 +28,7 @@ header.header a:visited {
 
 nav.nav ul {
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 4px;
 }

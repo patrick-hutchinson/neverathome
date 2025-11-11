@@ -137,17 +137,20 @@ const CalendarPage = ({ events }) => {
               {archived.map((event) => {
                 let isExpanded = event._id === expandedElement;
                 const isExpandable = event.gallery || event.info;
+                const containerRef = useRef(null);
 
                 return (
                   <motion.div
+                    ref={containerRef}
                     key={event._id}
                     onScroll={(e) => handleContentScroll(e)}
                     style={{
                       // position: isExpanded && !finishedScroll && "sticky",
-                      top: isExpanded && "calc(var(--header-height) + var(--filter-height))",
+                      // top: isExpanded && "calc(var(--header-height) + var(--filter-height))",
                       overflowY: "scroll",
                       height:
-                        isExpanded && "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * 35px))))",
+                        isExpanded &&
+                        "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--list-height)))))",
                       background: "#000",
                       pointerEvents: isExpandable ? "all" : "none",
                     }}
@@ -174,7 +177,12 @@ const CalendarPage = ({ events }) => {
                       >
                         <MediaPair className={styles.mediaPair}>
                           <Text text={event.info} className={styles.description} typo="h3" />
-                          <Gallery event={event} className={styles.gallery} setImageInView={setImageInView} />
+                          <Gallery
+                            event={event}
+                            containerRef={containerRef}
+                            className={styles.gallery}
+                            setImageInView={setImageInView}
+                          />
                         </MediaPair>
                       </div>
                     </Collapse>

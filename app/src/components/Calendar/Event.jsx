@@ -136,7 +136,7 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
       <EventType event={event} />
       <EventDate event={event} />
       <EventTitle event={event} />
-      <GalleryCounter event={event} imageInView={imageInView} />
+      <GalleryCounter event={event} imageInView={imageInView} isExpanded={isExpanded} />
 
       <EventExpand isExpandable={isExpandable} isExpanded={isExpanded} />
     </motion.li>

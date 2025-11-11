@@ -68,9 +68,14 @@ button.all {
   border-bottom: var(--border) solid var(--background);
   padding: 3px;
   padding-bottom: 10px;
-  min-height: 40px;
+  min-height: var(--list-height);
 
   /* padding-bottom: 10px; */
+}
+
+.filtering button,
+.filtering fieldset {
+  line-height: 1;
 }
 
 .event > .type {
