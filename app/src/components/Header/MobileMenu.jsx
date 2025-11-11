@@ -41,7 +41,7 @@ const MobileMenu = () => {
               </li>
 
               <li className={styles.not_allowed}>
-                <Link href="/programming">Programming</Link>
+                <Link href="/programming">Program</Link>
               </li>
 
               <li>
