@@ -33,6 +33,7 @@
   position: sticky;
   top: 50px;
   height: fit-content;
+  padding: 0px 3px;
 }
 
 .mediaPair {
@@ -71,7 +72,8 @@
     grid-column: 14 / end;
   }
   .description {
-    top: var(--list-height);
+    top: calc(var(--list-height) + var(--margin));
+    padding: 0;
   }
 }
 
