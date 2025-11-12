@@ -5,7 +5,7 @@ import { createContext, useState, useEffect } from "react";
 // Create the context
 export const StateContext = createContext();
 
-export const StateProvider = ({ children }) => {
+export const StateProvider = ({ children, colorPairs = [] }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [deviceDimensions, setDeviceDimensions] = useState({ width: 0, height: 0 });
   const [isSafari, setIsSafari] = useState(false);
@@ -33,7 +33,9 @@ export const StateProvider = ({ children }) => {
   }, []);
 
   return (
-    <StateContext.Provider value={{ isMobile, isSafari, deviceDimensions, expandedElement, setExpandedElement }}>
+    <StateContext.Provider
+      value={{ isMobile, isSafari, deviceDimensions, expandedElement, setExpandedElement, colorPairs }}
+    >
       {children}
     </StateContext.Provider>
   );

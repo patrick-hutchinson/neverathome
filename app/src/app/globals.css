@@ -143,6 +143,12 @@ label {
   all: unset;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
 .two-column {
   columns: 2;
   gap: 10px;

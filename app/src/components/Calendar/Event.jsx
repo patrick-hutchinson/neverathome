@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { motion } from "framer-motion";
 
 import { useInView } from "framer-motion";
@@ -22,21 +22,42 @@ import styles from "./Calendar.module.css";
 import EventExpand from "./EventExpand";
 
 const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView }) => {
+  const { colorPairs } = useContext(StateContext);
+
+  const randomColorPair = useMemo(() => {
+    if (!colorPairs?.length) return null;
+    const randomIndex = Math.floor(Math.random() * colorPairs.length);
+    return colorPairs[randomIndex];
+  }, [colorPairs]);
+
+  const colorPair = event.colorPair || randomColorPair;
+
   const ref = useRef(null);
+
+  console.log(colorPairs, "color pairs (all)");
 
   console.log(isExpanded);
 
   switch (size) {
     case "small":
-      return <SmallEvent event={event} ref={ref} />;
+      return <SmallEvent event={event} ref={ref} colorPair={colorPair} />;
     case "medium":
-      return <MediumEvent event={event} ref={ref} isExpanded={isExpanded} onClick={onClick} />;
+      return <MediumEvent event={event} ref={ref} isExpanded={isExpanded} onClick={onClick} colorPair={colorPair} />;
     case "large":
-      return <LargeEvent event={event} ref={ref} isExpanded={isExpanded} onClick={onClick} imageInView={imageInView} />;
+      return (
+        <LargeEvent
+          event={event}
+          ref={ref}
+          isExpanded={isExpanded}
+          onClick={onClick}
+          imageInView={imageInView}
+          colorPair={colorPair}
+        />
+      );
   }
 };
 
-const SmallEvent = ({ event, ref }) => {
+const SmallEvent = ({ event, ref, colorPair }) => {
   return (
     <motion.li
       id={event.slug.current}
@@ -44,8 +65,8 @@ const SmallEvent = ({ event, ref }) => {
       className={`${styles.event}`}
       whileHover={() => {
         return {
-          background: event.colorPair?.background.value,
-          color: event.colorPair?.text.value,
+          background: colorPair?.background.value,
+          color: colorPair?.text.value,
           transition: { duration: 0.5 },
         };
       }}
@@ -57,7 +78,7 @@ const SmallEvent = ({ event, ref }) => {
   );
 };
 
-const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
+const MediumEvent = ({ event, isExpanded, onClick, ref, colorPair }) => {
   const [isExpandable, setIsExpandable] = useState(event.info);
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
@@ -83,16 +104,16 @@ const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
       className={`${styles.event} ${styles.upcoming} ${isExpanded && styles.expanded}`}
       whileHover={() => {
         return {
-          background: event.colorPair?.background.value,
-          color: event.colorPair?.text.value,
-          fill: event.colorPair?.text.value,
+          background: colorPair?.background.value,
+          color: colorPair?.text.value,
+          fill: colorPair?.text.value,
           transition: { duration: 0.5 },
         };
       }}
       style={{
-        fill: isExpanded ? event.colorPair?.text.value : "#fff",
-        background: isExpanded ? event.colorPair?.background.value : "#000",
-        color: isExpanded ? event.colorPair?.text.value : "#fff",
+        fill: isExpanded ? colorPair?.text.value : "#fff",
+        background: isExpanded ? colorPair?.background.value : "#000",
+        color: isExpanded ? colorPair?.text.value : "#fff",
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -110,7 +131,7 @@ const MediumEvent = ({ event, isExpanded, onClick, ref }) => {
   );
 };
 
-const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
+const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref, colorPair }) => {
   const { isMobile } = useContext(StateContext);
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
@@ -139,9 +160,9 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
       className={`${styles.event} ${event.past} ${isExpanded && styles.expanded}`}
       whileHover={() => {
         return {
-          background: event.colorPair?.background.value,
-          color: event.colorPair?.text.value,
-          fill: event.colorPair?.text.value,
+          background: colorPair?.background.value,
+          color: colorPair?.text.value,
+          fill: colorPair?.text.value,
           transition: { duration: 0.5 },
         };
       }}
@@ -153,9 +174,9 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref }) => {
         position: isExpanded && "sticky",
         top: 0,
         zIndex: 2,
-        background: isExpanded ? event.colorPair?.background?.value ?? "#000" : "#000",
-        color: isExpanded ? event.colorPair?.text?.value ?? "#fff" : "#fff",
-        fill: isExpanded ? event.colorPair?.text?.value ?? "#fff" : "#fff",
+        background: isExpanded ? colorPair?.background?.value ?? "#000" : "#000",
+        color: isExpanded ? colorPair?.text?.value ?? "#fff" : "#fff",
+        fill: isExpanded ? colorPair?.text?.value ?? "#fff" : "#fff",
       }}
     >
       <EventType event={event} />
