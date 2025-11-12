@@ -1,6 +1,6 @@
 header.header {
   position: sticky;
-  z-index: 5;
+  z-index: 10;
   top: 0px;
   left: 0px;
 
@@ -57,7 +57,7 @@ ul.nav_section {
   align-items: center;
   justify-content: center;
   isolation: isolate;
-  z-index: 200;
+  z-index: 9;
 }
 
 .menu .marquee {
@@ -66,13 +66,13 @@ ul.nav_section {
   bottom: 0;
   color: #fff;
   mix-blend-mode: difference;
-  z-index: 199;
+  z-index: 10;
   width: 100vw;
 }
 
 .menuButton {
   position: relative;
-  z-index: 20;
+  z-index: 10;
 }
 
 .mobileMenu {
