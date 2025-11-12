@@ -52,7 +52,7 @@ export const homeQuery = `*[_type=="home"][0]{
     description,
     subtitle,
     links,
-    "type": type->title,
+    "tag": tag->title,
     ${thumbnailFragment},
     imageIsSmall
   },
@@ -156,7 +156,7 @@ export const eventsQuery = `*[_type=="events"][0]{
     description,
     subtitle,
     links,
-    "type": type->title,
+    "tag": tag->title,
     ${thumbnailFragment},
     imageIsSmall
   },
@@ -207,7 +207,7 @@ export const highlightQuery = `*[_type=="highlight"]{
   description,
   subtitle,
   links,
-  "type": type->title,
+  "tag": tag->title,
   ${thumbnailFragment},
   imageIsSmall
 }`;
