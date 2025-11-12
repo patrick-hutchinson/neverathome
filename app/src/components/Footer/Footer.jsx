@@ -25,7 +25,9 @@ const Footer = ({ site }) => {
         </div>
         <div className={styles.newsletter}>
           Get the latest Updates, News & Stories
-          <button className={styles.not_allowed}>Subscribe Here</button>
+          <a href="https://newsletter.never-at-home.at/subscription/form" target="_blank">
+            Subscribe Here
+          </a>
         </div>
 
         <div className={styles.linktree}>
