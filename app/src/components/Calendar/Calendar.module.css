@@ -3,7 +3,7 @@
 .filtering {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
   position: sticky;
   top: var(--header-height);
   background: var(--background);
@@ -53,10 +53,12 @@ button.all {
 }
 
 .filtering .search {
-  display: flex;
+  /* display: flex; */
   align-items: start;
   grid-row: 3;
   grid-column: 1 / 13;
+  align-items: center;
+  height: var(--line-height-3);
 }
 
 /* EVENT */
@@ -75,8 +77,8 @@ button.all {
 
 .filtering button,
 .filtering fieldset,
-.filtering .label {
-  line-height: 1;
+.filtering label {
+  line-height: calc(var(--line-height-3) + 2px);
 }
 
 .event > .type {
