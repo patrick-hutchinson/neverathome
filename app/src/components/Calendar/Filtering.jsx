@@ -69,14 +69,14 @@ const Filtering = ({ types, years, query, setQuery, activeTypes, activeYears, se
         ))}
       </fieldset>
 
-      <div className={styles.search}>
+      <div className={styles.search} style={{ alignItems: "center" }}>
         Search:
         <input
           type="search"
           name="q"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          style={{ textIndent: "5px" }}
+          style={{ textIndent: "5px", caretColor: "#000" }}
           autoComplete="off"
         />
       </div>
