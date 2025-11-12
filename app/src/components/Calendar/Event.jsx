@@ -67,7 +67,7 @@ const SmallEvent = ({ event, ref, colorPair }) => {
         return {
           background: colorPair?.background.value,
           color: colorPair?.text.value,
-          transition: { duration: 0.5 },
+          // transition: { duration: 0.5 },
         };
       }}
     >
@@ -107,7 +107,7 @@ const MediumEvent = ({ event, isExpanded, onClick, ref, colorPair }) => {
           background: colorPair?.background.value,
           color: colorPair?.text.value,
           fill: colorPair?.text.value,
-          transition: { duration: 0.5 },
+          // transition: { duration: 0.5 },
         };
       }}
       style={{
@@ -163,7 +163,7 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref, colorPair })
           background: colorPair?.background.value,
           color: colorPair?.text.value,
           fill: colorPair?.text.value,
-          transition: { duration: 0.5 },
+          // transition: { duration: 0.5 },
         };
       }}
       initial={{ opacity: 0 }}

@@ -45,12 +45,16 @@ const ArchivedEvent = ({ event, isExpanded, handleExpand, imageInView, setEventI
         >
           <MediaPair className={styles.mediaPair}>
             <Text text={event.info} className={styles.description} typo="h3" />
-            <Gallery
-              event={event}
-              containerRef={containerRef}
-              className={styles.gallery}
-              setImageInView={setImageInView}
-            />
+            {event.gallery ? (
+              <Gallery
+                event={event}
+                containerRef={containerRef}
+                className={styles.gallery}
+                setImageInView={setImageInView}
+              />
+            ) : (
+              <div />
+            )}
           </MediaPair>
         </div>
       </Collapse>
