@@ -1,5 +1,6 @@
 main.main {
   padding: var(--margin);
+  padding-top: calc(var(--margin) - 3px);
   /* padding-top: calc(var(--margin) / 2); */
 
   display: flex;
@@ -22,6 +23,9 @@ main.main {
 @media screen and (min-width: 769px) {
   .image {
     width: 30vw;
+  }
+  main.main {
+    padding-top: calc(var(--margin) - 3px);
   }
 }
 

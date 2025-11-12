@@ -43,6 +43,7 @@ button.all {
   grid-column: 3 / 13;
   white-space: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .filtering .types {
@@ -50,6 +51,7 @@ button.all {
   grid-column: 1 / 13;
   white-space: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .filtering .search {
@@ -187,6 +189,7 @@ button.all {
     grid-column: 9 / 18;
     white-space: nowrap;
     overflow-x: scroll;
+    overflow-y: hidden;
   }
   .filtering .search {
     grid-row: 1;
