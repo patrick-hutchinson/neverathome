@@ -11,7 +11,7 @@ footer.footer {
   color: var(--background);
 
   padding: calc(var(--margin) - 2px) var(--margin) var(--margin) var(--margin);
-  z-index: 15;
+  z-index: 4;
   gap: var(--margin);
 }
 
