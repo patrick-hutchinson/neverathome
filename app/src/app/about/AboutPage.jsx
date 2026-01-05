@@ -14,10 +14,11 @@ import { useState, useEffect, useRef, useContext } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import FadePresence from "@/components/FadePresence";
 import { StateContext } from "@/context/StateContext";
 
-const AboutPage = ({ contact }) => {
+import Accordeon from "@/components/Accordeon/Accordeon";
+
+const AboutPage = ({ contact, locations }) => {
   const [mounted, setMounted] = useState(false); // 👈 tracks client mount
   const { isMobile } = useContext(StateContext);
   const preview = useRef(null);
@@ -40,7 +41,7 @@ const AboutPage = ({ contact }) => {
 
     const handleScroll = () => {
       setShowImage(true);
-      console.log("showing image");
+
       clearTimeout(timeout);
       timeout = setTimeout(() => setShowImage(false), 200);
     };
@@ -54,11 +55,6 @@ const AboutPage = ({ contact }) => {
       clearTimeout(timeout);
     };
   }, [isMobile]);
-
-  useEffect(() => {
-    console.log("show image");
-    console.log(mounted, portalRoot, "roots");
-  }, [showImage]);
 
   return (
     <main className={styles.main}>
@@ -103,6 +99,8 @@ const AboutPage = ({ contact }) => {
           ))}
         </Carousel>
       </div>
+
+      <Accordeon array={locations}></Accordeon>
     </main>
   );
 };

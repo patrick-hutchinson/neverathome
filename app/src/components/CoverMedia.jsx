@@ -1,6 +1,9 @@
 import Media from "./Media";
+import Slideshow from "./Slideshow/Slideshow";
 
-const CoverMedia = ({ medium }) => {
+const CoverMedia = ({ medium, media }) => {
+  if (!medium && !media) return null;
+
   return (
     <div
       style={{
@@ -8,9 +11,12 @@ const CoverMedia = ({ medium }) => {
         width: "100vw",
         height: "calc(100vh - var(--header-height))",
         left: "calc(-1 * var(--margin))",
+        position: "sticky",
+        top: "var(--header-height)",
       }}
     >
-      <Media medium={medium} />
+      {medium && <Media medium={medium} />}
+      {media && <Slideshow media={media} />}
     </div>
   );
 };

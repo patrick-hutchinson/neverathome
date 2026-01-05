@@ -32,7 +32,7 @@ const HomePage = ({ data }) => {
   };
 
   return (
-    <main>
+    <main className={styles.main}>
       <ImageShuffle images={data.images} />
 
       <section className={styles.section}>

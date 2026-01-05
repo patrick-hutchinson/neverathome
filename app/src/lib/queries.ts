@@ -41,7 +41,7 @@ export const homeQuery = `*[_type=="home"][0]{
     city,
     "colorPair": colorPair[0]->{_id, text, background},
     location,
-    ${thumbnailFragment},
+    ${galleryFragment},
     slug,
   },
   highlights[]->{
@@ -102,7 +102,8 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
 }`;
 
 export const studiosQuery = `*[_type=="studios"][0]{
-  ${thumbnailFragment},
+  // ${thumbnailFragment},
+  ${galleryFragment},
   description,
   studios[]->{
     title,
@@ -135,7 +136,7 @@ export const artistQuery = `*[_type=="artist"]{
 }`;
 
 export const eventsQuery = `*[_type=="events"][0]{
-  ${thumbnailFragment},
+  ${galleryFragment},
   description,
   events[]->{
     _id,
@@ -146,7 +147,7 @@ export const eventsQuery = `*[_type=="events"][0]{
     "colorPair": colorPair[0]->{_id, text, background},
     city,
     location,
-    ${thumbnailFragment},
+    ${galleryFragment},
   },
   highlights[]->{
     _id,
@@ -172,12 +173,14 @@ export const imprintQuery = `*[_type=="imprint"][0]{
 
 export const locationQuery = `*[_type=="location"]{
   _id,
+  "type": "location",
   title,
   address,
-  description,
+  info,
   currentLocation,
   ${galleryFragment},
   moveInDate,
+  slug,
   moveOutDate,
 }`;
 

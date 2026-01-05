@@ -1,5 +1,5 @@
 import styles from "./Calendar.module.css";
 
-const EventTitle = ({ event }) => <div className={styles.title}>{event.title}</div>;
+const EventTitle = ({ title }) => <div className={styles.title}>{title}</div>;
 
 export default EventTitle;

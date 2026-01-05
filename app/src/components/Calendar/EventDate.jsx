@@ -1,9 +1,9 @@
 import styles from "./Calendar.module.css";
 import FormatDate from "../FormatDate";
 
-const EventDate = ({ event }) => (
+const EventDate = ({ date }) => (
   <div className={styles.date}>
-    <FormatDate date={event.startDate} />
+    <FormatDate date={date} />
   </div>
 );
 

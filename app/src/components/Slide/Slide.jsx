@@ -4,7 +4,6 @@ import Media from "@/components/Media";
 import styles from "./Slide.module.css";
 
 const MiniFigure = ({ item, index }) => {
-  console.log(item, "item");
   return (
     <li key={index} className={styles.slide}>
       <header className={`${styles.header}`} typo="h4">

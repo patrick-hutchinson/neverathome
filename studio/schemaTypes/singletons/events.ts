@@ -1,17 +1,13 @@
 import {defineField, defineType} from 'sanity'
 
-import {thumbnail} from '../types/thumbnail'
+import {gallery} from '../types/gallery'
 
 export const events = defineType({
   name: 'events',
   title: 'Events',
   type: 'document',
   fields: [
-    defineField({
-      name: 'thumbnail',
-      title: 'Thumbnail',
-      type: 'thumbnail',
-    }),
+    gallery,
     defineField({
       name: 'description',
       title: 'Description',

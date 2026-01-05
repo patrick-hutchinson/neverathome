@@ -12,7 +12,7 @@ export const location = defineType({
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string'}),
     defineField({name: 'address', title: 'Location', type: 'string'}),
-    defineField({name: 'description', title: 'Description', type: 'array', of: [{type: 'block'}]}),
+    defineField({name: 'info', title: 'Description', type: 'array', of: [{type: 'block'}]}),
     defineField({
       name: 'currentLocation',
       title: 'Current Location',
@@ -37,6 +37,18 @@ export const location = defineType({
           }
           return true
         }),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'URL-Teil',
+      type: 'slug',
+      description:
+        'Ein Beispiel: 👉 wwww.neverathome.com/mein-artikel ("mein-artikel" ist URL-Teil)',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

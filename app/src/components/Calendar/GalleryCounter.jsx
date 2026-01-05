@@ -1,13 +1,13 @@
 import styles from "./Calendar.module.css";
 
-const GalleryCounter = ({ event, imageInView, isExpanded }) => {
-  if (!event.gallery) return null;
+const GalleryCounter = ({ item, imageInView, isExpanded }) => {
+  if (!item?.gallery) return null;
 
   const currentIndex = isExpanded ? imageInView + 1 : 1;
 
   return (
     <div className={styles.counter}>
-      {currentIndex}/{event.gallery.length}
+      {currentIndex}/{item.gallery.length}
     </div>
   );
 };

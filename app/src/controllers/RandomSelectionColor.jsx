@@ -6,7 +6,6 @@ export default function RandomSelectionColor({ colorPairs }) {
 
   useEffect(() => {
     const handleSelection = () => {
-      console.log("selecting text!");
       const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
 
       // You could even pair text color dynamically if you want

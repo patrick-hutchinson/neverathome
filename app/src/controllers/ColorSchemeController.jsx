@@ -7,7 +7,16 @@ export default function ColorSchemeController() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const invertedPages = ["/contact", "/studios", "/workshops", "/artists", "/locations", "/about", "/imprint"];
+    const invertedPages = [
+      "/contact",
+      "/studios",
+      "/workshops",
+      "/artists",
+      "/locations",
+      "/about",
+      "/imprint",
+      "/programming",
+    ];
     if (invertedPages.includes(pathname)) {
       document.body.classList.add("invert");
     } else {

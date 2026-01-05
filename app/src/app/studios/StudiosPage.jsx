@@ -1,45 +1,46 @@
 "use client";
 
-import Media from "@/components/Media";
 import Text from "@/components/Text";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 
 import styles from "./StudiosPage.module.css";
+import Slideshow from "@/components/Slideshow/Slideshow";
 import CoverMedia from "@/components/CoverMedia";
 
-const StudiosPage = ({ page, site }) => {
+const StudiosPage = ({ page }) => {
   return (
     <main>
-      <section>
-        <CoverMedia medium={page.thumbnail} />
-        <div style={{ marginLeft: "300px" }}>
-          <Text text={page.description} typo="longcopy" />
+      <CoverMedia media={page.gallery} />
+
+      <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
+        <div style={{ minHeight: "calc(100vh - var(--header-height))" }}>
+          <Text text={page.description} typo="h2" />
         </div>
-      </section>
 
-      <h3>Workshops</h3>
+        <section className={styles.features}>
+          <h3>Workshops</h3>
 
-      <section className={styles.features}>
-        {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
-          <MediaPair key={index}>
-            {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
-              <Figure key={index} item={studio} ratio={4 / 3} />
-            ))}
-          </MediaPair>
-        ))}
-      </section>
+          {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
+            <MediaPair key={index}>
+              {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
+                <Figure key={index} item={studio} ratio={4 / 3} />
+              ))}
+            </MediaPair>
+          ))}
+        </section>
 
-      <section>
-        <h2 style={{ display: "flex", flexDirection: "column" }}>
-          Interested to be part of the family?
-          <input placeholder="First Name" />
-          <input placeholder="Last Name" />
-          <input placeholder="Description" />
-          <input placeholder="Emial" />
-          Subscribe here
-        </h2>
-      </section>
+        <section>
+          <h2 style={{ display: "flex", flexDirection: "column" }}>
+            Interested to be part of the family?
+            <input placeholder="First Name" />
+            <input placeholder="Last Name" />
+            <input placeholder="Description" />
+            <input placeholder="Email" />
+            Subscribe here
+          </h2>
+        </section>
+      </div>
     </main>
   );
 };

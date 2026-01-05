@@ -5,6 +5,6 @@
   top: calc(-1 * var(--margin));
 }
 
-.features > div:first-of-type {
+.features > div {
   margin-bottom: 100px;
 }

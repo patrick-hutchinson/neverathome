@@ -21,7 +21,7 @@ import GalleryCounter from "./GalleryCounter";
 import styles from "./Calendar.module.css";
 import EventExpand from "./EventExpand";
 
-const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView }) => {
+const Event = ({ event, size, isExpanded, onClick, imageInView }) => {
   const { colorPairs } = useContext(StateContext);
 
   const randomColorPair = useMemo(() => {
@@ -33,10 +33,6 @@ const Event = ({ event, size, setEventInView, isExpanded, onClick, imageInView }
   const colorPair = event.colorPair || randomColorPair;
 
   const ref = useRef(null);
-
-  console.log(colorPairs, "color pairs (all)");
-
-  console.log(isExpanded);
 
   switch (size) {
     case "small":
@@ -72,8 +68,8 @@ const SmallEvent = ({ event, ref, colorPair }) => {
       }}
     >
       <EventType event={event} />
-      <EventDate event={event} />
-      <EventTitle event={event} />
+      <EventDate date={event.startDate} />
+      <EventTitle title={event.title} />
     </motion.li>
   );
 };
@@ -120,9 +116,9 @@ const MediumEvent = ({ event, isExpanded, onClick, ref, colorPair }) => {
       exit={{ opacity: 0 }}
     >
       <EventType event={event} />
-      <EventDate event={event} />
+      <EventDate date={event.startDate} />
       <Media objectFit="contain" className={styles.media} medium={event.thumbnail} />
-      <EventTitle event={event} />
+      <EventTitle title={event.title} />
       <EventDescription event={event} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
       <EventLink event={event} />
 
@@ -180,9 +176,9 @@ const LargeEvent = ({ event, isExpanded, onClick, imageInView, ref, colorPair })
       }}
     >
       <EventType event={event} />
-      <EventDate event={event} />
-      <EventTitle event={event} />
-      <GalleryCounter event={event} imageInView={imageInView} isExpanded={isExpanded} />
+      <EventDate date={event.startDate} />
+      <EventTitle title={event.title} />
+      <GalleryCounter item={item} imageInView={imageInView} isExpanded={isExpanded} />
 
       <EventExpand isExpandable={isExpandable} isExpanded={isExpanded} event={event} />
     </motion.li>

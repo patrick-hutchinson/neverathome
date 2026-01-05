@@ -1,6 +1,16 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-const FadePresence = ({ children, className, motionKey }) => (
+const FadePresence = ({
+  children,
+  className,
+  motionKey,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  onTouchStart,
+  onTouchMove,
+  onTouchEnd,
+}) => (
   <AnimatePresence mode="popLayout">
     {children && (
       <motion.div
@@ -10,6 +20,12 @@ const FadePresence = ({ children, className, motionKey }) => (
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4 }}
         className={className}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onClick={onClick}
       >
         {children}
       </motion.div>

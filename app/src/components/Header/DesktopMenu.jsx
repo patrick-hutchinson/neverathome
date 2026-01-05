@@ -34,9 +34,7 @@ const DesktopMenu = () => {
           <li>
             <Link href="/artists">Artists</Link>
           </li>
-          <li className={styles.not_allowed}>
-            <Link href="/locations">Locations</Link>
-          </li>
+
           <li style={{ cursor: "pointer" }}>
             <Link href="/calendar">Calendar</Link>
           </li>
