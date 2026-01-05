@@ -6,7 +6,7 @@ import AccordeonContent from "./AccordeonContent";
 import AccordeonItem from "./AccordeonItem/AccordeonItem";
 import AccordeonHeader from "./AccordeonHeader";
 
-const Accordeon = ({ array }) => {
+const Accordeon = ({ array, size, invert }) => {
   const [imageInView, setImageInView] = useState(null);
 
   const containerRef = useRef(null);
@@ -18,14 +18,17 @@ const Accordeon = ({ array }) => {
     <div className="accordeon">
       {array.map((item) => {
         let isExpanded = item._id === expandedElement;
+        const isExpandable = size === "medium" || size === "large" || item.type === "location" ? true : false;
 
         return (
-          <AccordeonItem index={item._id} ref={containerRef}>
+          <AccordeonItem index={item._id} ref={containerRef} isExpanded={isExpanded} isExpandable={isExpandable}>
             <AccordeonHeader
               item={item}
               onClick={() => handleExpand(item._id)}
               imageInView={imageInView}
               isExpanded={isExpanded}
+              size={size}
+              invert={invert}
             />
             <AccordeonContent
               item={item}

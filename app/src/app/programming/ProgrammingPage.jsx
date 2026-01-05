@@ -19,9 +19,8 @@ import MiniFigure from "@/components/Slide/Slide";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
 
 const ProgrammingPage = ({ page, site }) => {
-  console.log("page:", page);
   return (
-    <main>
+    <main className={styles.main}>
       <CoverMedia media={page.gallery} />
 
       <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
@@ -67,7 +66,7 @@ const ProgrammingPage = ({ page, site }) => {
           <h3>Selected Events</h3>
           <ul>
             {page.events.map((item, index) => (
-              <AccordeonHeader size="medium" key={index} item={item} />
+              <AccordeonHeader size="medium" key={index} item={item} invert={true} />
             ))}
           </ul>
           <h2 style={{ marginTop: "20px" }}>

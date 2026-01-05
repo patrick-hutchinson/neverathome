@@ -100,7 +100,10 @@ const AboutPage = ({ contact, locations }) => {
         </Carousel>
       </div>
 
-      <Accordeon array={locations}></Accordeon>
+      <section className={styles.accordeon}>
+        <h3>Locations</h3>
+        <Accordeon array={locations} invert={true}></Accordeon>
+      </section>
     </main>
   );
 };

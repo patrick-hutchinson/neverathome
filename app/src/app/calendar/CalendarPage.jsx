@@ -72,7 +72,7 @@ const CalendarPage = ({ events }) => {
   const [imageInView, setImageInView] = useState(null);
 
   return (
-    <main>
+    <main className={styles.main}>
       <Filtering
         types={types}
         years={years}

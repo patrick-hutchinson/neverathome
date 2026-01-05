@@ -7,12 +7,13 @@ import Figure from "@/components/Figure/Figure";
 
 import styles from "./WorkshopPage.module.css";
 import Link from "next/link";
+import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
 
 const WorkshopPage = ({ page, events, site }) => {
   const workshops = events.filter((event) => event.type === "Workshop");
 
   return (
-    <main>
+    <main className={styles.main}>
       <section className={styles.introduction}>
         <h2>
           <Text text={page.description} />
@@ -34,7 +35,7 @@ const WorkshopPage = ({ page, events, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((event, index) => (
-            <Event size="medium" key={index} event={event} />
+            <AccordeonHeader key={index} item={event} size="medium" invert={true} />
           ))}
         </ul>
         <h2 style={{ marginTop: "20px" }}>

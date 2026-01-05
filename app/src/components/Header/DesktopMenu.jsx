@@ -14,17 +14,17 @@ const DesktopMenu = () => {
 
         <li>
           <ul className={styles.nav_section}>
-            <li className={styles.not_allowed}>
+            <li>
               <Link href="/studios">Studios</Link>
               <span>{", "}</span>
             </li>
 
-            <li className={styles.not_allowed}>
+            <li>
               <Link href="/workshops">Workshops</Link>
               <span>{", "}</span>
             </li>
 
-            <li className={styles.not_allowed}>
+            <li>
               <Link href="/programming">Program</Link>
             </li>
           </ul>
