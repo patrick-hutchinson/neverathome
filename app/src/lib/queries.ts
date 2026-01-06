@@ -174,6 +174,7 @@ export const eventsQuery = `*[_type=="events"][0]{
     city,
     location,
     ${galleryFragment},
+    slug
   },
   highlights[]->{
     _id,

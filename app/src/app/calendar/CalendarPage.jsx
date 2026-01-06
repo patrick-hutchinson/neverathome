@@ -12,9 +12,12 @@ import styles from "./CalendarPage.module.css";
 import { motion } from "framer-motion";
 import Accordeon from "@/components/Accordeon/Accordeon";
 
+import { scrollToHash } from "@/helpers/scrollToHash";
+import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
+
 const CalendarPage = ({ events }) => {
-  let [eventInView, setEventInView] = useState(null);
-  const { expandedElement, setExpandedElement } = useContext(StateContext);
+  const { setExpandedElement } = useContext(StateContext);
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   const [query, setQuery] = useState("");
 
@@ -65,9 +68,19 @@ const CalendarPage = ({ events }) => {
   // 3️⃣ Find pinned event
   const pinned = events.find((event) => event.pinned);
 
-  const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
+  useEffect(() => {
+    if (header_height === 0 || filter_height === 0) return;
 
-  const [imageInView, setImageInView] = useState(null);
+    const hash = window.location.hash; // includes the '#' character
+
+    const cleanHash = hash ? hash.substring(1) : null; // remove the '#'
+
+    const activeEvent = events.find((event) => event.slug.current === cleanHash);
+
+    if (activeEvent) setExpandedElement(activeEvent._id);
+
+    scrollToHash(-1 * (filter_height + header_height));
+  }, [header_height, filter_height]);
 
   return (
     <main className={styles.main}>

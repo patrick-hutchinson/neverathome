@@ -1,4 +1,3 @@
-// utils/scrollToHash.js
 export const scrollToHash = (offset = 0) => {
   if (typeof window === "undefined" || !window.location.hash) return;
 

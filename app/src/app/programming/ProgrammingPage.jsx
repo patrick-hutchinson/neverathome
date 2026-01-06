@@ -55,7 +55,9 @@ const ProgrammingPage = ({ page, site }) => {
           <h3>Selected Events</h3>
           <ul>
             {page.events.map((item, index) => (
-              <AccordeonHeader size="medium" key={index} item={item} invert={true} />
+              <Link href={`/calendar#${item.slug.current}`}>
+                <AccordeonHeader size="medium" key={index} item={item} invert={true} />
+              </Link>
             ))}
           </ul>
           {/* <h2 style={{ marginTop: "20px" }}>
