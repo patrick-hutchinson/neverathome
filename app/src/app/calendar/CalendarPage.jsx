@@ -1,18 +1,16 @@
 "use client";
 
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { StateContext } from "@/context/StateContext";
 
-import Event from "@/components/Calendar/Event";
 import Filtering from "@/components/Calendar/Filtering";
-
-import ArchivedEvent from "@/components/Calendar/ArchivedEvent";
 
 import styles from "./CalendarPage.module.css";
 
 import { motion } from "framer-motion";
+import Accordeon from "@/components/Accordeon/Accordeon";
 
 const CalendarPage = ({ events }) => {
   let [eventInView, setEventInView] = useState(null);
@@ -94,21 +92,7 @@ const CalendarPage = ({ events }) => {
         <section>
           <ul className={styles.calendar_section}>
             <AnimatePresence>
-              {current.map((event) => {
-                let isExpanded = event._id === expandedElement;
-
-                return (
-                  <div key={event._id}>
-                    <Event
-                      size="medium"
-                      isExpanded={isExpanded}
-                      event={event}
-                      onClick={() => handleExpand(event._id)}
-                      setEventInView={setEventInView}
-                    />
-                  </div>
-                );
-              })}
+              <Accordeon array={current} size={"medium"} />
             </AnimatePresence>
           </ul>
         </section>
@@ -116,19 +100,7 @@ const CalendarPage = ({ events }) => {
         <section>
           <h3>Archived</h3>
           <motion.ul className={styles.calendar_section}>
-            <AnimatePresence>
-              {archived.map((event) => (
-                <ArchivedEvent
-                  key={event._id}
-                  event={event}
-                  isExpanded={event._id === expandedElement}
-                  handleExpand={handleExpand}
-                  imageInView={imageInView}
-                  setEventInView={setEventInView}
-                  setImageInView={setImageInView}
-                />
-              ))}
-            </AnimatePresence>
+            <Accordeon array={archived} size={"large"} />
           </motion.ul>
         </section>
       </div>

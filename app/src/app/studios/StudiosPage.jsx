@@ -7,6 +7,7 @@ import Figure from "@/components/Figure/Figure";
 import styles from "./StudiosPage.module.css";
 import Slideshow from "@/components/Slideshow/Slideshow";
 import CoverMedia from "@/components/CoverMedia";
+import Accordeon from "@/components/Accordeon/Accordeon";
 
 const StudiosPage = ({ page }) => {
   return (
@@ -17,9 +18,8 @@ const StudiosPage = ({ page }) => {
         <div style={{ minHeight: "calc(100vh - var(--header-height))" }}>
           <Text text={page.description} typo="h2" />
         </div>
-
         <section className={styles.features}>
-          <h3>Workshops</h3>
+          <h3>Extra Facilities</h3>
 
           {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
             <MediaPair key={index}>
@@ -31,13 +31,18 @@ const StudiosPage = ({ page }) => {
         </section>
 
         <section>
+          <h3>Events</h3>
+          <Accordeon array={page.events} invert={true} size="medium" />
+        </section>
+
+        <section>
           <h2 style={{ display: "flex", flexDirection: "column" }}>
             Interested to be part of the family?
             <input placeholder="First Name" />
             <input placeholder="Last Name" />
             <input placeholder="Description" />
             <input placeholder="Email" />
-            Subscribe here
+            Get in Touch
           </h2>
         </section>
       </div>

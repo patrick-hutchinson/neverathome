@@ -1,13 +1,12 @@
 "use client";
 
 import Text from "@/components/Text";
-import Event from "@/components/Calendar/Event";
-import MediaPair from "@/components/MediaPair/MediaPair";
-import Figure from "@/components/Figure/Figure";
 
 import styles from "./WorkshopPage.module.css";
-import Link from "next/link";
 import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
+import Carousel from "@/components/Carousel/Carousel";
+import { repeatArray } from "@/helpers/repeatArray";
+import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 const WorkshopPage = ({ page, events, site }) => {
   const workshops = events.filter((event) => event.type === "Workshop");
@@ -35,25 +34,29 @@ const WorkshopPage = ({ page, events, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((event, index) => (
-            <AccordeonHeader key={index} item={event} size="medium" invert={true} />
+            <AccordeonHeader key={index} item={event} size="medium" invert={true} navigate={true} />
           ))}
         </ul>
-        <h2 style={{ marginTop: "20px" }}>
-          <Link href="/calendar">Go to the Calendar</Link>
-        </h2>
       </section>
 
       <section>
-        <h3>Features</h3>
-        {Array.from({ length: Math.ceil(page.features.length / 2) }).map((_, i) => (
-          <div key={i} className={styles.feature_container}>
-            <MediaPair>
-              {page.features.slice(i * 2, i * 2 + 2).map((feature, index) => (
-                <Figure key={index} item={feature} />
-              ))}
-            </MediaPair>
-          </div>
-        ))}
+        <h3>Highlights</h3>
+        <Carousel>
+          {repeatArray(page.highlights).map((item, index) => (
+            <MiniFigure key={index} item={item} index={index} invert={true} />
+          ))}
+        </Carousel>
+      </section>
+
+      <section>
+        <h2 style={{ display: "flex", flexDirection: "column" }}>
+          Interested to host your own?
+          <input placeholder="First Name" />
+          <input placeholder="Last Name" />
+          <input placeholder="Description" />
+          <input placeholder="Email" />
+          Get in Touch
+        </h2>
       </section>
     </main>
   );

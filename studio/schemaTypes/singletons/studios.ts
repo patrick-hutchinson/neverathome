@@ -15,6 +15,15 @@ export const studios = defineType({
       type: 'array',
       of: [{type: 'block'}],
     }),
+
+    defineField({
+      name: 'events',
+      title: 'Selected Events',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'event'}]}],
+      validation: (Rule) => Rule.unique().error('You already selected this event'),
+    }),
+
     defineField({
       name: 'studios',
       title: 'Selected Studios',

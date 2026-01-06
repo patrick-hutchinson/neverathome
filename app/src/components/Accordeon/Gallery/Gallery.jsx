@@ -2,7 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useInView } from "framer-motion";
 import Media from "@/components/Media";
-import styles from "./Calendar.module.css";
+import styles from "../Accordeon.module.css";
 
 const Gallery = ({ event, setImageInView, className, containerRef }) => {
   if (!event.gallery) return undefined;

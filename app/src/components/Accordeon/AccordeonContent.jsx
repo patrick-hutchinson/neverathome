@@ -1,7 +1,7 @@
 import Collapse from "../Collapsible/Collapse";
 import MediaPair from "../MediaPair/MediaPair";
 import Text from "../Text";
-import Gallery from "../Calendar/Gallery";
+import Gallery from "./Gallery/Gallery";
 
 import styles from "./Accordeon.module.css";
 

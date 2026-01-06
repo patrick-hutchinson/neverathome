@@ -102,7 +102,18 @@ const AboutPage = ({ contact, locations }) => {
 
       <section className={styles.accordeon}>
         <h3>Locations</h3>
-        <Accordeon array={locations} invert={true}></Accordeon>
+        <Accordeon array={locations} size="large" invert={true}></Accordeon>
+      </section>
+
+      <section>
+        <h2 style={{ display: "flex", flexDirection: "column" }}>
+          Want to Drink a Coffee with us?
+          <input placeholder="First Name" />
+          <input placeholder="Last Name" />
+          <input placeholder="Description" />
+          <input placeholder="Email" />
+          Get in Touch
+        </h2>
       </section>
     </main>
   );

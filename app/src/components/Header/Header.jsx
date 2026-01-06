@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import TextMarquee from "../TextMarquee/TextMarquee";
 
 import styles from "./Header.module.css";

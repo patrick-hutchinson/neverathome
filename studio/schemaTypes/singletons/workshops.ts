@@ -33,6 +33,13 @@ export const workshops = defineType({
       of: [{type: 'reference', to: [{type: 'feature'}]}],
       validation: (Rule) => Rule.unique().error('You already selected this event'),
     }),
+    defineField({
+      name: 'highlights',
+      title: 'Selected Highlights',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'highlight'}]}],
+      validation: (Rule) => Rule.unique().error('You already selected this highlight'),
+    }),
   ],
   preview: {
     prepare: () => ({title: 'Workshops Page'}),

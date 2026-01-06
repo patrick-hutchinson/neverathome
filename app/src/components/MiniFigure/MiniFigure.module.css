@@ -40,6 +40,10 @@ ul.links {
   overflow: hidden;
 }
 
+.media.invert {
+  background: #ddd;
+}
+
 .media.smallImage div {
   height: auto !important;
   /* width: auto !important; */

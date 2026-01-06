@@ -15,6 +15,13 @@ export const studio = defineType({
       type: 'thumbnail',
     }),
     defineField({
+      name: 'colorPair',
+      title: 'Selected Color Pair',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'colorPair'}]}],
+      validation: (Rule) => Rule.max(1).error('You can only select one highlight'),
+    }),
+    defineField({
       name: 'type',
       title: 'Type',
       type: 'string',

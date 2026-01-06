@@ -16,12 +16,14 @@ import AccordeonDescription from "./AccordeonItem/AccordeonDescription";
 import AccordeonCounter from "./AccordeonItem/AccordeonCounter";
 
 import styles from "./Accordeon.module.css";
+import { useScrollToExpanded } from "./hooks/useScrollToExpand";
 
 const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert }) => {
   const { colorPairs } = useContext(StateContext);
 
   const randomColorPair = useMemo(() => {
     if (!colorPairs?.length) return null;
+
     const randomIndex = Math.floor(Math.random() * colorPairs.length);
     return colorPairs[randomIndex];
   }, [colorPairs]);
@@ -30,25 +32,12 @@ const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert 
 
   const ref = useRef(null);
 
-  if (item.type === "location")
-    return (
-      <LocationHeader
-        item={item}
-        ref={ref}
-        colorPair={colorPair}
-        onClick={onClick}
-        isExpanded={isExpanded}
-        imageInView={imageInView}
-        invert={invert}
-      />
-    );
-
   switch (size) {
     case "small":
-      return <SmallEvent item={item} ref={ref} colorPair={colorPair} invert={invert} />;
+      return <StaticHeader item={item} ref={ref} colorPair={colorPair} invert={invert} />;
     case "medium":
       return (
-        <MediumEvent
+        <MediumExpand
           item={item}
           ref={ref}
           isExpanded={isExpanded}
@@ -59,7 +48,7 @@ const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert 
       );
     case "large":
       return (
-        <LargeEvent
+        <LargeExpand
           item={item}
           ref={ref}
           isExpanded={isExpanded}
@@ -72,79 +61,41 @@ const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert 
   }
 };
 
-const LocationHeader = ({ item, isExpanded, onClick, imageInView, ref, colorPair, invert }) => {
-  const { header_height } = useContext(GlobalVariablesContext);
+const ExpandableHeader = ({ styling, children, item, ref, onClick, invert, isExpanded, colorPair }) => (
+  <motion.li
+    id={item.slug.current}
+    ref={ref}
+    onClick={onClick}
+    className={`${styles.item} ${invert ? styles.invert : ""} ${isExpanded && styles.expanded}`}
+    whileHover={() => hoverColors(colorPair)}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    styling={styling}
+  >
+    {children}
+  </motion.li>
+);
 
-  const isExpandable = item.gallery || item.info;
+const hoverColors = (colorPair) => ({
+  background: colorPair?.background?.value,
+  color: colorPair?.text?.value,
+  fill: colorPair?.text?.value,
+  transition: { duration: 0.5 },
+});
 
-  // Scroll to Expanded Element
-  useEffect(() => {
-    console.log(isExpanded, "isExpanded", ref.current, "ref");
-    if (isExpanded && ref.current) {
-      setTimeout(() => {
-        const top = ref.current.getBoundingClientRect().top + window.scrollY;
-        const offset = header_height; // distance from top in px
+const getInvertColors = (invert) => ({
+  background: invert ? "#fff" : "#000",
+  text: invert ? "#000" : "#fff",
+});
 
-        window.scrollTo({
-          top: top - offset,
-          behavior: "smooth",
-        });
-      }, 800);
-    }
-  }, [isExpanded]);
-
-  if (!item) return undefined;
-
-  const backgroundColor = invert ? "#fff" : "#000";
-  const textColor = invert ? "#000" : "#fff";
-
-  return (
-    <motion.li
-      id={item.slug.current}
-      ref={ref}
-      onClick={onClick}
-      className={`${styles.item} ${invert ? styles.invert : ""} ${styles.past} ${isExpanded && styles.expanded}`}
-      whileHover={() => {
-        return {
-          background: colorPair?.background.value,
-          color: colorPair?.text.value,
-          fill: colorPair?.text.value,
-        };
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      style={{
-        cursor: isExpandable ? "pointer" : "default",
-        position: isExpanded && "sticky",
-        top: 0,
-        zIndex: 2,
-        background: isExpanded ? colorPair?.background?.value ?? backgroundColor : backgroundColor,
-        color: isExpanded ? colorPair?.text?.value ?? textColor : textColor,
-        fill: isExpanded ? colorPair?.text?.value ?? textColor : textColor,
-      }}
-    >
-      <AccordeonType type={item.currentLocation ? "Currently here!" : "We've moved!"} />
-      <AccordeonTitle title={item.title} />
-      <AccordeonDate date={item.moveInDate} />
-      <AccordeonCounter item={item} imageInView={imageInView} isExpanded={isExpanded} />
-      <AccordeonExpand isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
-    </motion.li>
-  );
-};
-
-const SmallEvent = ({ item, ref, colorPair, invert }) => {
+const StaticHeader = ({ item, ref, colorPair, invert }) => {
   return (
     <motion.li
       id={item.slug.current}
       ref={ref}
       className={`${styles.item} ${invert ? styles.invert : ""}`}
-      whileHover={() => {
-        return {
-          background: colorPair?.background.value,
-          color: colorPair?.text.value,
-        };
-      }}
+      whileHover={() => hoverColors(colorPair)}
     >
       <AccordeonType type={item.type} />
       <AccordeonDate date={item.startDate} />
@@ -153,50 +104,33 @@ const SmallEvent = ({ item, ref, colorPair, invert }) => {
   );
 };
 
-const MediumEvent = ({ item, isExpanded, onClick, ref, colorPair, invert }) => {
+const MediumExpand = ({ item, isExpanded, onClick, ref, colorPair, invert }) => {
   const [isExpandable, setIsExpandable] = useState(item.info);
+
+  const { background, text } = getInvertColors(invert);
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
-  useEffect(() => {
-    if (isExpanded && ref.current) {
-      setTimeout(() => {
-        const top = ref.current.getBoundingClientRect().top + window.scrollY;
-        const offset = header_height + filter_height; // distance from top in px
+  useScrollToExpanded({ isExpanded, ref, offset: header_height + filter_height });
 
-        window.scrollTo({
-          top: top - offset,
-          behavior: "smooth",
-        });
-      }, 800);
-    }
-  }, [isExpanded]);
+  const styling = {
+    fill: isExpanded ? colorPair?.text.value : text,
+    background: isExpanded ? colorPair?.background.value : background,
+    color: isExpanded ? colorPair?.text.value : text,
+  };
 
-  const backgroundColor = invert ? "#fff" : "#000";
-  const textColor = invert ? "#000" : "#fff";
+  if (!item) return undefined;
 
   return (
-    <motion.li
-      id={item?.slug?.current}
+    <ExpandableHeader
+      styling={styling}
+      item={item}
       ref={ref}
       onClick={onClick}
-      className={`${styles.item} ${invert ? styles.invert : ""} ${styles.upcoming} ${isExpanded && styles.expanded}`}
-      whileHover={() => {
-        return {
-          background: colorPair?.background.value,
-          color: colorPair?.text.value,
-          fill: colorPair?.text.value,
-        };
-      }}
-      style={{
-        fill: isExpanded ? colorPair?.text.value : textColor,
-        background: isExpanded ? colorPair?.background.value : backgroundColor,
-        color: isExpanded ? colorPair?.text.value : textColor,
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      invert={invert}
+      isExpanded={isExpanded}
+      colorPair={colorPair}
     >
-      <AccordeonType event={item} />
+      <AccordeonType type={item.type} />
       <AccordeonDate date={item.startDate} />
       <Media objectFit="contain" className={styles.media} medium={item.thumbnail} />
       <AccordeonTitle title={item.title} />
@@ -204,71 +138,48 @@ const MediumEvent = ({ item, isExpanded, onClick, ref, colorPair, invert }) => {
       <AccordeonLink event={item} />
 
       <AccordeonExpand isExpandable={isExpandable} isExpanded={isExpanded} />
-    </motion.li>
+    </ExpandableHeader>
   );
 };
 
-const LargeEvent = ({ item, isExpanded, onClick, imageInView, ref, colorPair, invert }) => {
-  const { header_height, filter_height } = useContext(GlobalVariablesContext);
-
+const LargeExpand = ({ item, isExpanded, onClick, imageInView, ref, colorPair, invert }) => {
   const isExpandable = item.gallery || item.info;
 
-  // Scroll to Expanded Element
-  useEffect(() => {
-    if (isExpanded && ref.current) {
-      setTimeout(() => {
-        const top = ref.current.getBoundingClientRect().top + window.scrollY;
-        const offset = header_height + filter_height; // distance from top in px
+  const { background, text } = getInvertColors(invert);
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
-        window.scrollTo({
-          top: top - offset,
-          behavior: "smooth",
-        });
-      }, 800);
-    }
-  }, [isExpanded]);
+  // Scroll to Expanded Element
+  useScrollToExpanded({ isExpanded, ref, offset: header_height + filter_height });
+
+  const styling = {
+    cursor: isExpandable ? "pointer" : "default",
+    position: isExpanded && "sticky",
+    top: 0,
+    zIndex: 2,
+    background: isExpanded ? colorPair?.background?.value ?? background : background,
+    color: isExpanded ? colorPair?.text?.value ?? text : text,
+    fill: isExpanded ? colorPair?.text?.value ?? background : background,
+  };
 
   if (!item) return undefined;
 
-  console.log(invert, "inverted?");
-
-  const backgroundColor = invert ? "#fff" : "#000";
-  const textColor = invert ? "#000" : "#fff";
-
   return (
-    <motion.li
-      id={item.slug.current}
+    <ExpandableHeader
+      styling={styling}
+      item={item}
       ref={ref}
       onClick={onClick}
-      className={`${styles.item} ${invert ? styles.invert : ""} ${item.past} ${isExpanded && styles.expanded}`}
-      whileHover={() => {
-        return {
-          background: colorPair?.background.value,
-          color: colorPair?.text.value,
-          fill: colorPair?.text.value,
-          transition: { duration: 0.5 },
-        };
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      style={{
-        cursor: isExpandable ? "pointer" : "default",
-        position: isExpanded && "sticky",
-        top: 0,
-        zIndex: 2,
-        background: isExpanded ? colorPair?.background?.value ?? backgroundColor : backgroundColor,
-        color: isExpanded ? colorPair?.text?.value ?? textColor : textColor,
-        fill: isExpanded ? colorPair?.text?.value ?? backgroundColor : backgroundColor,
-      }}
+      invert={invert}
+      isExpanded={isExpanded}
+      colorPair={colorPair}
     >
-      <AccordeonType item={item} />
+      <AccordeonType type={item.type} />
       <AccordeonDate date={item.startDate} />
       <AccordeonTitle title={item.title} />
       <AccordeonCounter item={item} imageInView={imageInView} isExpanded={isExpanded} />
 
       <AccordeonExpand isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
-    </motion.li>
+    </ExpandableHeader>
   );
 };
 

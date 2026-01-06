@@ -15,7 +15,7 @@ import CoverMedia from "@/components/CoverMedia";
 import { repeatArray } from "@/helpers/repeatArray";
 
 import Link from "next/link";
-import MiniFigure from "@/components/Slide/Slide";
+import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
 
 const ProgrammingPage = ({ page, site }) => {
@@ -52,25 +52,25 @@ const ProgrammingPage = ({ page, site }) => {
         </section>
 
         <section>
-          <h2>
-            Interested to host your own? <br />
-            Write us an{" "}
-            <a href={`mailto:${site.email}`} target="_blank">
-              email
-            </a>
-            !
-          </h2>
-        </section>
-
-        <section>
           <h3>Selected Events</h3>
           <ul>
             {page.events.map((item, index) => (
               <AccordeonHeader size="medium" key={index} item={item} invert={true} />
             ))}
           </ul>
-          <h2 style={{ marginTop: "20px" }}>
+          {/* <h2 style={{ marginTop: "20px" }}>
             <Link href="/calendar">Go to the Calendar</Link>
+          </h2> */}
+        </section>
+
+        <section>
+          <h2 style={{ display: "flex", flexDirection: "column" }}>
+            Interested to host your own?
+            <input placeholder="First Name" />
+            <input placeholder="Last Name" />
+            <input placeholder="Description" />
+            <input placeholder="Email" />
+            Get in Touch
           </h2>
         </section>
       </div>

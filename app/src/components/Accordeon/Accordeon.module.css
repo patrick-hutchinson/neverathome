@@ -59,9 +59,9 @@
   justify-content: end;
 }
 
-.item.past.expanded {
+/* .item.past.expanded {
   border-bottom: var(--border) solid var(--foreground);
-}
+} */
 
 .item.invert {
   background: var(--background);

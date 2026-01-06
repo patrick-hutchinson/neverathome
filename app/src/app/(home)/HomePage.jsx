@@ -7,15 +7,15 @@ import TextMarquee from "@/components/TextMarquee/TextMarquee";
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
-import Event from "@/components/Calendar/Event";
 import Figure from "@/components/Figure/Figure";
 import { useContext, useEffect } from "react";
-import MiniFigure from "@/components/Slide/Slide";
+import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 import { repeatArray } from "@/helpers/repeatArray";
 
 import { useRouter } from "next/navigation";
 import { StateContext } from "@/context/StateContext";
+import Accordeon from "@/components/Accordeon/Accordeon";
 
 const HomePage = ({ data }) => {
   const router = useRouter();
@@ -46,13 +46,7 @@ const HomePage = ({ data }) => {
 
       <section>
         <h3>Upcoming</h3>
-        <ul>
-          {data.events.map((event, index) => (
-            <div key={index} onClick={() => handleNavigation(event)}>
-              <Event size="medium" event={event} />
-            </div>
-          ))}
-        </ul>
+        <Accordeon array={data.events} size="medium" />
       </section>
 
       <section>

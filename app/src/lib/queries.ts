@@ -98,13 +98,38 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
     links,
     "type": type->title,
     ${thumbnailFragment}
-  }
+  },
+  highlights[]->{
+    _id,
+    title,
+    startDate,
+    endDate,
+    description,
+    subtitle,
+    links,
+    "tag": tag->title,
+    ${thumbnailFragment},
+    imageIsSmall
+  },
 }`;
 
 export const studiosQuery = `*[_type=="studios"][0]{
   // ${thumbnailFragment},
   ${galleryFragment},
   description,
+  events[]->{
+    _id,
+    "type": type->title,
+    startDate,
+    endDate,
+    title,
+    teaser,
+    city,
+    "colorPair": colorPair[0]->{_id, text, background},
+    location,
+    ${galleryFragment},
+    slug,
+  },
   studios[]->{
     title,
     description,
@@ -112,6 +137,7 @@ export const studiosQuery = `*[_type=="studios"][0]{
       type == "sharedStudio" => "Shared Studio",
       type == "artistStudio" => "Artist Studio"
     ),
+     "colorPair": colorPair[0]->{_id, text, background},
     ${thumbnailFragment}
   }
 }`;
