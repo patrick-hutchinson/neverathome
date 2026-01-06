@@ -59,10 +59,6 @@
   justify-content: end;
 }
 
-/* .item.past.expanded {
-  border-bottom: var(--border) solid var(--foreground);
-} */
-
 .item.invert {
   background: var(--background);
   color: var(--foreground);
@@ -77,6 +73,10 @@
   fill: inherit;
   height: 10px;
   width: 10px;
+}
+
+.accordeonItem.expanded {
+  border-bottom: var(--border) solid var(--background);
 }
 
 /* Phones */
@@ -165,7 +165,7 @@
 .content {
   background: var(--foreground);
   color: var(--background);
-  border-bottom: var(--border) var(--background) solid;
+  /* border-bottom: var(--border) var(--background) solid; */
 }
 
 .calendar section {

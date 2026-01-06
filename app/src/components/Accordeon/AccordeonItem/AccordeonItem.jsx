@@ -1,10 +1,13 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 
+import styles from "../Accordeon.module.css";
+
 const AccordeonItem = forwardRef(({ index, children, isExpanded, isExpandable }, ref) => {
   return (
     <motion.div
       ref={ref}
+      className={`${styles.accordeonItem} ${isExpanded ? styles.expanded : ""}`}
       data-index={index}
       style={{
         overflowY: "scroll",
