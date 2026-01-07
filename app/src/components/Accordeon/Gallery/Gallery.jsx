@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { useInView } from "framer-motion";
+
 import Media from "@/components/Media";
 import styles from "../Accordeon.module.css";
 
@@ -22,32 +22,30 @@ const Gallery = ({ event, setImageInView, className, containerRef }) => {
   );
 };
 
-const GalleryItem = ({ medium, index, setImageInView, containerRef }) => {
+const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    if (!containerRef?.current || !ref?.current) return;
+    if (!ref.current) return;
 
-    const el = ref.current;
-    const container = containerRef.current;
+    console.log(containerRef.current, "containerRef");
 
-    const handleScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-
-      // Trigger when top of image crosses top of container
-      if (rect.top <= containerRect.top && rect.bottom > containerRect.top) {
-        setImageInView(index);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setImageInView(index);
+        }
+      },
+      {
+        root: containerRef.current, // 👈 THIS is the scroll container
+        threshold: 0.5,
       }
-    };
+    );
 
-    container.addEventListener("scroll", handleScroll);
-    handleScroll(); // run once initially
+    observer.observe(ref.current);
 
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-    };
-  }, [containerRef, index, setImageInView]);
+    return () => observer.disconnect();
+  }, [index, setImageInView, containerRef, isExpanded]);
 
   return (
     <li ref={ref}>

@@ -9,6 +9,15 @@ main.main {
   position: relative;
 }
 
+.introduction_wrapper {
+  height: calc(100vh - var(--header-height) - (2 * var(--margin)));
+
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+}
+
 .image {
   position: fixed;
   width: 90vw;
@@ -26,7 +35,7 @@ main.main {
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
   .image {
-    width: 30vw;
+    width: 10vw;
   }
   main.main {
     padding-top: calc(var(--margin) - 3px);

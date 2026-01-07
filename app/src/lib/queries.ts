@@ -82,7 +82,8 @@ export const contactQuery = `*[_type=="contact"][0]{
     name,
     role,
     email,
-    phone
+    phone,
+    position
   },
 }`;
 

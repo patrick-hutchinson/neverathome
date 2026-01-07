@@ -7,6 +7,7 @@ import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
 import Carousel from "@/components/Carousel/Carousel";
 import { repeatArray } from "@/helpers/repeatArray";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
+import Link from "next/link";
 
 const WorkshopPage = ({ page, events, site }) => {
   const workshops = events.filter((event) => event.type === "Workshop");
@@ -33,8 +34,10 @@ const WorkshopPage = ({ page, events, site }) => {
       <section>
         <h3>Selected Events</h3>
         <ul>
-          {workshops.map((event, index) => (
-            <AccordeonHeader key={index} item={event} size="medium" invert={true} navigate={true} />
+          {workshops.map((item, index) => (
+            <Link href={`/calendar#${item.slug.current}`}>
+              <AccordeonHeader size="medium" key={index} item={item} invert={true} />
+            </Link>
           ))}
         </ul>
       </section>

@@ -5,9 +5,11 @@ import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 
 import styles from "./StudiosPage.module.css";
-import Slideshow from "@/components/Slideshow/Slideshow";
+
 import CoverMedia from "@/components/CoverMedia";
-import Accordeon from "@/components/Accordeon/Accordeon";
+
+import Link from "next/link";
+import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
 
 const StudiosPage = ({ page }) => {
   return (
@@ -31,8 +33,14 @@ const StudiosPage = ({ page }) => {
         </section>
 
         <section>
-          <h3>Events</h3>
-          <Accordeon array={page.events} invert={true} size="medium" />
+          <h3>Selected Events</h3>
+          <ul>
+            {page.events.map((item, index) => (
+              <Link href={`/calendar#${item.slug.current}`}>
+                <AccordeonHeader size="medium" key={index} item={item} invert={true} />
+              </Link>
+            ))}
+          </ul>
         </section>
 
         <section>

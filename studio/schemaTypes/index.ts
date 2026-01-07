@@ -43,6 +43,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     colorPair,
     location,
     events,
+
     artist,
     workshops,
     studios,

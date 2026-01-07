@@ -11,8 +11,8 @@ const AccordeonItem = forwardRef(({ index, children, isExpanded, isExpandable },
       data-index={index}
       style={{
         overflowY: "scroll",
-        height:
-          isExpanded && "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--list-height)))))",
+        // height:
+        //   isExpanded && "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--list-height)))))",
         background: "#000",
         pointerEvents: isExpandable ? "all" : "none",
         overflowX: "hidden",

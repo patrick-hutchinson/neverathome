@@ -27,7 +27,18 @@ export const contact = defineType({
             {name: 'name', title: 'Name', type: 'string'},
             {name: 'role', title: 'Role', type: 'string'},
             {name: 'email', title: 'Email', type: 'string'},
-            {name: 'phone', title: 'Phone', type: 'string'},
+            {
+              name: 'position',
+              title: 'Position',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Permanent Staff', value: 'permanentStaff'},
+                  {title: 'Temporary Staff', value: 'temporaryStaff'},
+                ],
+                layout: 'radio',
+              },
+            },
           ],
         },
       ],

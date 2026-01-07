@@ -165,6 +165,7 @@
 .content {
   background: var(--foreground);
   color: var(--background);
+
   /* border-bottom: var(--border) var(--background) solid; */
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import styles from "./ArtistsPage.module.css";
@@ -13,6 +13,8 @@ const ArtistsPage = ({ artists, colorPairs }) => {
   const [lockedColor, setLockedColor] = useState(null); // store color of selected artist
 
   const locations = [...new Set(artists.map((artist) => artist.location))];
+  const [showLocations, setShowLocations] = useState(false);
+
   const [activeLocations, setActiveLocations] = useState([...locations]);
 
   function handleLocations(location) {
@@ -29,32 +31,40 @@ const ArtistsPage = ({ artists, colorPairs }) => {
     }
   }
 
+  useEffect(() => {
+    locations.length <= 1 ? setShowLocations(false) : setShowLocations(true);
+  }, [locations]);
+
   const handleAll = () => setActiveLocations([...locations]);
 
-  const Filtering = () => (
-    <form className={styles.filtering} onSubmit={(e) => e.preventDefault()}>
-      <fieldset>
-        <button type="button" onClick={handleAll} className={styles.all}>
-          All
-        </button>
-      </fieldset>
+  const Filtering = () => {
+    if (locations.length <= 1) return;
 
-      <fieldset className={styles.locations}>
-        {locations.map((location, index) => (
-          <span key={index}>
-            <button
-              type="button"
-              onClick={() => handleLocations(location)}
-              className={activeLocations.includes(location) ? styles.active : ""}
-            >
-              {location}
-            </button>
-            {index < locations.length - 1 && ", "}
-          </span>
-        ))}
-      </fieldset>
-    </form>
-  );
+    return (
+      <form className={styles.filtering} onSubmit={(e) => e.preventDefault()}>
+        <fieldset>
+          <button type="button" onClick={handleAll} className={styles.all}>
+            All
+          </button>
+        </fieldset>
+
+        <fieldset className={styles.locations}>
+          {locations.map((location, index) => (
+            <span key={index}>
+              <button
+                type="button"
+                onClick={() => handleLocations(location)}
+                className={activeLocations.includes(location) ? styles.active : ""}
+              >
+                {location}
+              </button>
+              {index < locations.length - 1 && ", "}
+            </span>
+          ))}
+        </fieldset>
+      </form>
+    );
+  };
 
   const filteredArtists = artists.filter((artist) => activeLocations.includes(artist.location));
 
@@ -111,7 +121,15 @@ const ArtistsPage = ({ artists, colorPairs }) => {
         })}
       </ul>
 
-      <div className={styles.info} typo="h4">
+      <div
+        className={styles.info}
+        typo="h4"
+        style={{
+          top: showLocations
+            ? "calc(var(--header-height) + var(--list-height) + var(--margin))"
+            : "calc(var(--header-height) + var(--margin))",
+        }}
+      >
         <ul>
           {currentArtist?.occupation && <li>{currentArtist.occupation}</li>}
           {currentArtist?.email && <li>{currentArtist.email}</li>}

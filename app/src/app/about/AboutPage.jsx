@@ -56,48 +56,69 @@ const AboutPage = ({ contact, locations }) => {
     };
   }, [isMobile]);
 
+  const permanentStaff = contact.teamMembers.filter((member) => member.position === "permanentStaff");
+  const temporaryStaff = contact.teamMembers.filter((member) => member.position === "temporaryStaff");
+
+  console.log(permanentStaff, "permanent staff");
+
   return (
     <main className={styles.main}>
-      <Text text={contact.bio} typo="h2" />
-      {mounted &&
-        portalRoot &&
-        showImage &&
-        createPortal(
-          <AnimatePresence>
-            <motion.div
-              ref={preview}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 1 }}
-              style={{
-                height: "auto",
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                zIndex: 15,
-              }}
-            >
-              {/* <FadePresence className={styles.image} motionKey="image"> */}
-              <Media medium={contact.image} />
-              {/* </FadePresence> */}
-            </motion.div>
-          </AnimatePresence>,
-          portalRoot
-        )}
-      <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
-        <Carousel speed={0.5}>
-          {repeatArray(contact.teamMembers).map((item, index) => (
-            <ContactCard
-              key={index}
-              item={item}
-              index={index}
-              typo="h4"
-              onMouseEnter={() => setShowImage(true)}
-              onMouseLeave={() => setShowImage(false)}
-            />
-          ))}
-        </Carousel>
+      <div className={styles.introduction_wrapper}>
+        <Text text={contact.bio} typo="h2" />
+        {mounted &&
+          portalRoot &&
+          showImage &&
+          createPortal(
+            <AnimatePresence>
+              <motion.div
+                ref={preview}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 1 }}
+                style={{
+                  height: "auto",
+                  position: "fixed",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 15,
+                }}
+              >
+                <Media medium={contact.image} />
+              </motion.div>
+            </AnimatePresence>,
+            portalRoot
+          )}
+
+        <div>
+          <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
+            <Carousel speed={0.5}>
+              {repeatArray(permanentStaff).map((item, index) => (
+                <ContactCard
+                  key={index}
+                  item={item}
+                  index={index}
+                  typo="h4"
+                  onMouseEnter={() => setShowImage(true)}
+                  onMouseLeave={() => setShowImage(false)}
+                />
+              ))}
+            </Carousel>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "flex-start", marginTop: "var(--margin)" }}>
+            {temporaryStaff.map((item, index) => (
+              <ContactCard
+                key={index}
+                item={item}
+                index={index}
+                typo="h4"
+                onMouseEnter={() => setShowImage(true)}
+                onMouseLeave={() => setShowImage(false)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       <section className={styles.accordeon}>
