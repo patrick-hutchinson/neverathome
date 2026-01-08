@@ -10,9 +10,8 @@ const AccordeonItem = forwardRef(({ index, children, isExpanded, isExpandable },
       className={`${styles.accordeonItem} ${isExpanded ? styles.expanded : ""}`}
       data-index={index}
       style={{
-        overflowY: "scroll",
-        // height:
-        //   isExpanded && "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--list-height)))))",
+        // screen height minus header, filter and two trailing projects
+        height: isExpanded && "var(--accordeon-height)",
         background: "#000",
         pointerEvents: isExpandable ? "all" : "none",
         overflowX: "hidden",

@@ -52,6 +52,11 @@ button.all {
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
+
+  width: calc(100vw - 2 * var(--margin) - 3px);
+  left: -3px;
+  position: relative;
+  padding-left: 3px;
 }
 
 .filtering .search {
@@ -74,7 +79,7 @@ button.all {
   border-bottom: var(--border) solid var(--background);
   padding: 0px 3px 3px 3px;
   padding-bottom: 10px;
-  min-height: var(--list-height);
+  min-height: var(--accordeon-header-height);
 }
 
 .filtering button,
@@ -190,6 +195,11 @@ button.all {
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
+
+    width: unset;
+    left: unset;
+    position: unset;
+    padding-left: unset;
   }
   .filtering .search {
     grid-row: 1;

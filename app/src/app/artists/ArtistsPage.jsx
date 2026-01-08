@@ -1,142 +1,88 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useContext, useRef } from "react";
 
 import styles from "./ArtistsPage.module.css";
+import Filtering from "./Filtering/Filtering";
+import ArtistInfo from "./ArtistInfo";
+
+import Artist from "./Artist";
+import { color } from "framer-motion";
+import { StateContext } from "@/context/StateContext";
+
+StateContext;
 
 const ArtistsPage = ({ artists, colorPairs }) => {
-  const textColors = colorPairs.map((colorPair) => colorPair.text.value);
+  const { isTouch, isMobile } = useContext(StateContext);
+  const locations = [...new Set(artists.map((artist) => artist.location))];
+  const [activeLocations, setActiveLocations] = useState([...locations]);
+  const [showLocations, setShowLocations] = useState(false);
 
   const [hoveredArtist, setHoveredArtist] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);
-  const [lockedColor, setLockedColor] = useState(null); // store color of selected artist
+  const [inViewArtist, setInViewArtist] = useState(null);
 
-  const locations = [...new Set(artists.map((artist) => artist.location))];
-  const [showLocations, setShowLocations] = useState(false);
+  const [activeId, setActiveId] = useState(null);
 
-  const [activeLocations, setActiveLocations] = useState([...locations]);
+  const currentArtist = hoveredArtist || selectedArtist || inViewArtist;
 
-  function handleLocations(location) {
-    const allActive =
-      activeLocations.length === locations.length && locations.every((y) => activeLocations.includes(y));
+  const observerRef = useRef(null);
 
-    if (allActive) {
-      setActiveLocations([location]);
-    } else {
-      setActiveLocations((prev) => {
-        const newLocations = prev.includes(location) ? prev.filter((t) => t !== location) : [...prev, location];
-        return newLocations.length === 0 ? [...locations] : newLocations;
-      });
-    }
-  }
-
+  // Determine whether to show the Filtering menu
   useEffect(() => {
     locations.length <= 1 ? setShowLocations(false) : setShowLocations(true);
   }, [locations]);
 
-  const handleAll = () => setActiveLocations([...locations]);
-
-  const Filtering = () => {
-    if (locations.length <= 1) return;
-
-    return (
-      <form className={styles.filtering} onSubmit={(e) => e.preventDefault()}>
-        <fieldset>
-          <button type="button" onClick={handleAll} className={styles.all}>
-            All
-          </button>
-        </fieldset>
-
-        <fieldset className={styles.locations}>
-          {locations.map((location, index) => (
-            <span key={index}>
-              <button
-                type="button"
-                onClick={() => handleLocations(location)}
-                className={activeLocations.includes(location) ? styles.active : ""}
-              >
-                {location}
-              </button>
-              {index < locations.length - 1 && ", "}
-            </span>
-          ))}
-        </fieldset>
-      </form>
-    );
-  };
-
   const filteredArtists = artists.filter((artist) => activeLocations.includes(artist.location));
 
-  const currentArtist = hoveredArtist || selectedArtist;
-
-  const handleClick = (artist) => {
-    if (selectedArtist?.name === artist.name) {
-      // unselect the currently locked artist
-      setSelectedArtist(null);
-      setLockedColor(null);
-    } else {
-      // lock this artist with its current hover color
-      setSelectedArtist(artist);
-      if (hoveredArtist?.name === artist.name) {
-        // use current hover color if hovering
-        setLockedColor(currentHoverColor);
-      } else {
-        // fallback random color if not hovering
-        setLockedColor(textColors[Math.floor(Math.random() * textColors.length)]);
-      }
+  observerRef.current = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.getAttribute("data-id"));
+          handleInView(entry.target);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "-45% 0px -45% 0px",
+      threshold: 0,
     }
+  );
+
+  const handleInView = (element) => {
+    if (!isMobile) return;
+
+    const artist = artists.find((artist) => artist._id === element.getAttribute("data-id"));
+    setInViewArtist(artist);
   };
 
-  // Keep track of the current hover color
-  const [currentHoverColor, setCurrentHoverColor] = useState(null);
+  useEffect(() => {
+    console.log(inViewArtist, "inViewArtist");
+  }, [inViewArtist]);
 
   return (
     <main className={styles.main}>
-      <Filtering />
+      <Filtering array={locations} activeLocations={activeLocations} setActiveLocations={setActiveLocations} />
       <ul className={styles.artists}>
-        {filteredArtists.map((artist, index) => {
-          const isSelected = selectedArtist?.name === artist.name;
-          const isHovered = hoveredArtist?.name === artist.name;
-
-          // Determine color
-          const color = isSelected ? lockedColor : isHovered ? currentHoverColor : "#fff";
-
+        {filteredArtists.map((artist) => {
           return (
-            <motion.li
-              key={index}
-              className={styles.artist}
-              style={{ color }}
-              onMouseEnter={() => {
-                const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
-                setHoveredArtist(artist);
-                setCurrentHoverColor(randomColor);
-              }}
-              onMouseLeave={() => setHoveredArtist(null)}
-              onClick={() => handleClick(artist)}
-            >
-              <h2>{artist.name}</h2>
-            </motion.li>
+            <Artist
+              artist={artist}
+              hoveredArtist={hoveredArtist}
+              setHoveredArtist={setHoveredArtist}
+              selectedArtist={selectedArtist}
+              setSelectedArtist={setSelectedArtist}
+              colorPairs={colorPairs}
+              observerRef={observerRef}
+              activeId={activeId}
+            />
           );
         })}
       </ul>
 
-      <div
-        className={styles.info}
-        typo="h4"
-        style={{
-          top: showLocations
-            ? "calc(var(--header-height) + var(--list-height) + var(--margin))"
-            : "calc(var(--header-height) + var(--margin))",
-        }}
-      >
-        <ul>
-          {currentArtist?.occupation && <li>{currentArtist.occupation}</li>}
-          {currentArtist?.email && <li>{currentArtist.email}</li>}
-          {currentArtist?.phone && <li>{currentArtist.phone}</li>}
-          {currentArtist?.location && <li>{currentArtist.location}</li>}
-        </ul>
-      </div>
+      <ArtistInfo currentArtist={currentArtist} showLocations={showLocations} />
     </main>
   );
 };

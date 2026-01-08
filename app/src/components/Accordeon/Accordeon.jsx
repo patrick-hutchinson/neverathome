@@ -16,12 +16,18 @@ const Accordeon = ({ array, size, invert }) => {
 
   return (
     <div className="accordeon">
-      {array.map((item) => {
+      {array.map((item, index) => {
         let isExpanded = item._id === expandedElement;
         const isExpandable = size === "medium" || size === "large" || item.type === "location" ? true : false;
 
         return (
-          <AccordeonItem index={item._id} ref={containerRef} isExpanded={isExpanded} isExpandable={isExpandable}>
+          <AccordeonItem
+            key={index}
+            index={item._id}
+            ref={containerRef}
+            isExpanded={isExpanded}
+            isExpandable={isExpandable}
+          >
             <AccordeonHeader
               item={item}
               onClick={() => handleExpand(item._id)}

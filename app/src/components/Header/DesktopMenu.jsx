@@ -3,12 +3,15 @@
 import { usePathname } from "next/navigation";
 
 import Link from "next/link";
+import AnimationLink from "../Animation/AnimationLink";
 
 import styles from "./Header.module.css";
 import { useEffect } from "react";
+import { useTransitionRouter } from "next-view-transitions";
 
 const DesktopMenu = () => {
   const pathname = usePathname();
+  const router = useTransitionRouter();
 
   const isActive = (href) => {
     if (href === "/") return pathname === "/";
@@ -21,47 +24,47 @@ const DesktopMenu = () => {
       <ul>
         <li>
           <ul className={styles.nav_section}>
-            <Link href="/about" className={isActive("/about") ? styles.active : undefined}>
+            <AnimationLink path="/about" className={isActive("/about") ? styles.active : undefined}>
               About
-            </Link>
+            </AnimationLink>
           </ul>
         </li>
 
         <li>
           <ul className={styles.nav_section}>
             <li>
-              <Link href="/studios" className={isActive("/studios") ? styles.active : undefined}>
+              <AnimationLink path="/studios" className={isActive("/studios") ? styles.active : undefined}>
                 Studios
-              </Link>
+              </AnimationLink>
               <span>{", "}</span>
             </li>
 
             <li>
-              <Link href="/workshops" className={isActive("/workshops") ? styles.active : undefined}>
+              <AnimationLink path="/workshops" className={isActive("/workshops") ? styles.active : undefined}>
                 Workshops
-              </Link>
+              </AnimationLink>
               <span>{", "}</span>
             </li>
 
             <li>
-              <Link href="/programming" className={isActive("/programming") ? styles.active : undefined}>
+              <AnimationLink path="/programming" className={isActive("/programming") ? styles.active : undefined}>
                 Programming
-              </Link>
+              </AnimationLink>
             </li>
           </ul>
         </li>
 
         <ul style={{ gap: "30px" }}>
           <li>
-            <Link href="/artists" className={isActive("/artists") ? styles.active : undefined}>
+            <AnimationLink path="/artists" className={isActive("/artists") ? styles.active : undefined}>
               Artists
-            </Link>
+            </AnimationLink>
           </li>
 
           <li style={{ cursor: "pointer" }}>
-            <Link href="/calendar" className={isActive("/calendar") ? styles.active : undefined}>
+            <AnimationLink path="/calendar" className={isActive("/calendar") ? styles.active : undefined}>
               Calendar
-            </Link>
+            </AnimationLink>
           </li>
         </ul>
       </ul>

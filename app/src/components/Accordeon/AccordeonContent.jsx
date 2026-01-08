@@ -6,12 +6,13 @@ import Gallery from "./Gallery/Gallery";
 import styles from "./Accordeon.module.css";
 
 const AccordeonContent = ({ item, isExpanded, setImageInView, containerRef }) => {
+  console.log(isExpanded, "isExpanded");
   return (
     <Collapse isExpanded={isExpanded} id={item._id}>
       <div
         className={styles.content}
         style={{
-          height: isExpanded && "calc(100vh - (calc(var(--header-height) + var(--filter-height) + (4 * 35px))))",
+          minHeight: isExpanded && "var(--accordeon-content-height)",
           background: isExpanded ? item.colorPair?.background?.value ?? "#000" : "#000",
           color: isExpanded ? item.colorPair?.text?.value ?? "#fff" : "#fff",
           transition: "0.5s",

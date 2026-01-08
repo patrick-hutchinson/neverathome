@@ -12,9 +12,13 @@ ul.artists {
 li.artist {
   width: fit-content;
   display: inline-block;
-  height: fit-content;
-  overflow: hidden;
-  height: calc(var(--font-size-2) + 7.5px);
+  /* height: fit-content; */
+  /* overflow: hidden; */
+  /* height: calc(var(--font-size-2) + 7.5px); */
+}
+
+.active {
+  color: #f00;
 }
 
 .info {
@@ -25,7 +29,7 @@ li.artist {
 .filtering {
   position: sticky;
   top: var(--header-height);
-  height: var(--list-height);
+  height: var(--accordeon-header-height);
   display: grid;
 
   background: var(--foreground);

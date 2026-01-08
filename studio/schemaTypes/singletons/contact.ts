@@ -33,8 +33,8 @@ export const contact = defineType({
               type: 'string',
               options: {
                 list: [
-                  {title: 'Permanent Staff', value: 'permanentStaff'},
-                  {title: 'Temporary Staff', value: 'temporaryStaff'},
+                  {title: 'Core Team', value: 'permanentStaff'},
+                  {title: 'Extended', value: 'temporaryStaff'},
                 ],
                 layout: 'radio',
               },

@@ -150,6 +150,7 @@ export const colorPairsQuery = `*[_type == "colorPair"]{
 }`;
 
 export const artistQuery = `*[_type=="artist"]{
+  _id,
   name,
   occupation,
   email,

@@ -9,7 +9,7 @@
   border-bottom: var(--border) solid var(--background);
   padding: 0px 3px 3px 3px;
   padding-bottom: 10px;
-  min-height: var(--list-height);
+  min-height: var(--accordeon-header-height);
 }
 
 .item > .type {
@@ -193,6 +193,8 @@
 .mediaPair {
   display: flex;
   flex-direction: column;
+  min-height: inherit;
+  /* min-height: calc(var(--accordeon-content-height) + var(--accordeon-header-height) + var(--margin)); */
 }
 
 /* Phones */
@@ -215,7 +217,7 @@
   }
   .description {
     position: sticky;
-    top: calc(var(--list-height) + var(--margin));
+    top: calc(var(--accordeon-header-height) + var(--margin));
     padding: 0;
   }
 }

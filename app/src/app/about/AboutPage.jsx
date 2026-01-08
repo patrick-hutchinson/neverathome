@@ -90,33 +90,41 @@ const AboutPage = ({ contact, locations }) => {
             portalRoot
           )}
 
-        <div>
-          <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
-            <Carousel speed={0.5}>
-              {repeatArray(permanentStaff).map((item, index) => (
-                <ContactCard
-                  key={index}
-                  item={item}
-                  index={index}
-                  typo="h4"
-                  onMouseEnter={() => setShowImage(true)}
-                  onMouseLeave={() => setShowImage(false)}
-                />
-              ))}
-            </Carousel>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div>
+            <h3>Core Team</h3>
+            <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
+              <Carousel speed={0.5}>
+                {repeatArray(permanentStaff).map((item, index) => (
+                  <ContactCard
+                    key={index}
+                    item={item}
+                    index={index}
+                    typo="h4"
+                    onMouseEnter={() => setShowImage(true)}
+                    onMouseLeave={() => setShowImage(false)}
+                  />
+                ))}
+              </Carousel>
+            </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "flex-start", marginTop: "var(--margin)" }}>
-            {temporaryStaff.map((item, index) => (
-              <ContactCard
-                key={index}
-                item={item}
-                index={index}
-                typo="h4"
-                onMouseEnter={() => setShowImage(true)}
-                onMouseLeave={() => setShowImage(false)}
-              />
-            ))}
+          <div>
+            <h3>Extended Team</h3>
+            <div style={{ display: "flex", alignItems: "flex-start", marginTop: "var(--margin)" }}>
+              <Carousel speed={0.5} direction="backward">
+                {repeatArray(temporaryStaff).map((item, index) => (
+                  <ContactCard
+                    key={index}
+                    item={item}
+                    index={index}
+                    typo="h4"
+                    onMouseEnter={() => setShowImage(true)}
+                    onMouseLeave={() => setShowImage(false)}
+                  />
+                ))}
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>

@@ -1,10 +1,12 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { StateContext } from "./StateContext";
 
 export const GlobalVariablesContext = createContext();
 
 export const GlobalVariablesProvider = ({ children }) => {
+  const { isMobile } = useContext(StateContext);
   const [values, setValues] = useState({
     line_height_4: 0,
     caption_gap: 0,
@@ -24,7 +26,7 @@ export const GlobalVariablesProvider = ({ children }) => {
       filter_height: parse(style.getPropertyValue("--filter-height")),
       header_height: parse(style.getPropertyValue("--header-height")),
     });
-  }, []);
+  }, [isMobile]);
 
   return <GlobalVariablesContext.Provider value={values}>{children}</GlobalVariablesContext.Provider>;
 };
