@@ -17,13 +17,10 @@ import AccordeonCounter from "./AccordeonItem/AccordeonCounter";
 
 import styles from "./Accordeon.module.css";
 import { useScrollToExpanded } from "./hooks/useScrollToExpand";
-import { useColorPair } from "@/hooks/useColorPair";
 
-const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert }) => {
+const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert, colorPair }) => {
   const ref = useRef(null);
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
-
-  const colorPair = useColorPair(item);
 
   const headerProps = { item, ref, onClick, invert, isExpanded, colorPair, isExpandable };
   const contentProps = { item, isExpandable, setIsExpandable, isExpanded, imageInView };
