@@ -39,6 +39,13 @@ export const location = defineType({
         }),
     }),
     defineField({
+      name: 'colorPair',
+      title: 'Selected Color Pair',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'colorPair'}]}],
+      validation: (Rule) => Rule.max(1).error('You can only select one highlight'),
+    }),
+    defineField({
       name: 'slug',
       title: 'URL-Teil',
       type: 'slug',

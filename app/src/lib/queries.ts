@@ -69,6 +69,7 @@ export const homeQuery = `*[_type=="home"][0]{
 
 export const contactQuery = `*[_type=="contact"][0]{
   bio,
+  text,
   image{
     "type": "image",
     "_id": asset->_id,

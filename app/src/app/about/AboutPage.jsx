@@ -12,11 +12,12 @@ import { repeatArray } from "@/helpers/repeatArray";
 import ContactCard from "@/components/ContactCard/ContactCard";
 import { useState, useEffect, useRef, useContext } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
-
 import { StateContext } from "@/context/StateContext";
 
 import Accordeon from "@/components/Accordeon/Accordeon";
+
+import MediaPair from "@/components/MediaPair/MediaPair";
+import TextFigure from "@/components/TextFigure/TextFigure";
 
 const AboutPage = ({ contact, locations }) => {
   const [mounted, setMounted] = useState(false); // 👈 tracks client mount
@@ -61,75 +62,51 @@ const AboutPage = ({ contact, locations }) => {
 
   return (
     <main className={styles.main}>
-      <div className={styles.introduction_wrapper}>
-        <Text text={contact.bio} typo="h2" />
-        {mounted &&
-          portalRoot &&
-          showImage &&
-          createPortal(
-            <AnimatePresence>
-              <motion.div
-                ref={preview}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 1 }}
-                style={{
-                  height: "auto",
-                  position: "fixed",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 15,
-                }}
-              >
-                <Media medium={contact.image} />
-              </motion.div>
-            </AnimatePresence>,
-            portalRoot
-          )}
-
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <div>
-            <h3>Core Team</h3>
-            <div style={{ display: "flex", alignItems: "flex-end", marginTop: "var(--margin)" }}>
-              <Carousel speed={0.5}>
-                {repeatArray(permanentStaff).map((item, index) => (
-                  <ContactCard
-                    key={index}
-                    item={item}
-                    index={index}
-                    typo="h4"
-                    onMouseEnter={() => setShowImage(true)}
-                    onMouseLeave={() => setShowImage(false)}
-                  />
-                ))}
-              </Carousel>
-            </div>
-          </div>
-
-          <div>
-            <h3>Extended Team</h3>
-            <div style={{ display: "flex", alignItems: "flex-start", marginTop: "var(--margin)" }}>
-              <Carousel speed={0.5} direction="backward">
-                {repeatArray(temporaryStaff).map((item, index) => (
-                  <ContactCard
-                    key={index}
-                    item={item}
-                    index={index}
-                    typo="h4"
-                    onMouseEnter={() => setShowImage(true)}
-                    onMouseLeave={() => setShowImage(false)}
-                  />
-                ))}
-              </Carousel>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Text className={styles.bio} text={contact.bio} typo="h2" />
 
       <section className={styles.accordeon}>
-        <h3>Locations</h3>
         <Accordeon array={locations} size="large" invert={true}></Accordeon>
+      </section>
+
+      <MediaPair>
+        <TextFigure item={contact} />
+        <Media medium={contact.image} />
+      </MediaPair>
+
+      <section>
+        <div style={{ display: "flex", flexDirection: "column", gap: "var(--margin)", marginTop: "50px" }}>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <Carousel speed={0.5}>
+              {repeatArray(permanentStaff).map((item, index) => (
+                <ContactCard
+                  key={index}
+                  item={item}
+                  index={index}
+                  typo="h4"
+                  onMouseEnter={() => setShowImage(true)}
+                  onMouseLeave={() => setShowImage(false)}
+                />
+              ))}
+            </Carousel>
+          </div>
+
+          <hr style={{ border: "0.2px solid #fff" }} />
+
+          <div style={{ display: "flex", alignItems: "flex-start" }}>
+            <Carousel speed={1} direction="backward">
+              {repeatArray(temporaryStaff).map((item, index) => (
+                <ContactCard
+                  key={index}
+                  item={item}
+                  index={index}
+                  typo="h4"
+                  onMouseEnter={() => setShowImage(true)}
+                  onMouseLeave={() => setShowImage(false)}
+                />
+              ))}
+            </Carousel>
+          </div>
+        </div>
       </section>
 
       <section>

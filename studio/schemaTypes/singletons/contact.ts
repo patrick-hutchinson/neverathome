@@ -17,6 +17,11 @@ export const contact = defineType({
       type: 'image',
     }),
     defineField({
+      name: 'text',
+      title: 'Text',
+      type: 'string',
+    }),
+    defineField({
       name: 'teamMembers',
       title: 'Team Members',
       type: 'array',

@@ -60,9 +60,6 @@ const ProgrammingPage = ({ page, site }) => {
               </Link>
             ))}
           </ul>
-          {/* <h2 style={{ marginTop: "20px" }}>
-            <Link href="/calendar">Go to the Calendar</Link>
-          </h2> */}
         </section>
 
         <section>
