@@ -58,10 +58,6 @@ const ArtistsPage = ({ artists, colorPairs }) => {
     setInViewArtist(artist);
   };
 
-  useEffect(() => {
-    console.log(inViewArtist, "inViewArtist");
-  }, [inViewArtist]);
-
   return (
     <main className={styles.main}>
       <Filtering array={locations} activeLocations={activeLocations} setActiveLocations={setActiveLocations} />

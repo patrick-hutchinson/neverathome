@@ -59,8 +59,6 @@ const AboutPage = ({ contact, locations }) => {
   const permanentStaff = contact.teamMembers.filter((member) => member.position === "permanentStaff");
   const temporaryStaff = contact.teamMembers.filter((member) => member.position === "temporaryStaff");
 
-  console.log(permanentStaff, "permanent staff");
-
   return (
     <main className={styles.main}>
       <div className={styles.introduction_wrapper}>

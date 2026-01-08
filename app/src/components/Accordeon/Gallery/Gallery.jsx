@@ -28,8 +28,6 @@ const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }
   useEffect(() => {
     if (!ref.current) return;
 
-    console.log(containerRef.current, "containerRef");
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

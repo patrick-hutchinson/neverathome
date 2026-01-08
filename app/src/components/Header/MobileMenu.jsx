@@ -1,8 +1,7 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import Link from "next/link";
-import TextMarquee from "../TextMarquee/TextMarquee";
 
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
@@ -25,9 +24,16 @@ const MobileMenu = () => {
       <div className={styles.menuButton} onClick={() => setShowMenu((prev) => !prev)}>
         {showMenu ? "Close" : "Menu"}
       </div>
-      {showMenu && (
-        <AnimatePresence>
-          <div key="menu" className={styles.menu} transition={{ duration: 0.4, ease: "easeInOut" }}>
+
+      <AnimatePresence>
+        {showMenu && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            key="menu"
+            className={styles.menu}
+          >
             <ul className={styles.mobileMenu} typo="h1">
               <li>
                 <Link href="/about" className={isActive("/about") ? styles.active : undefined}>
@@ -69,9 +75,9 @@ const MobileMenu = () => {
                 </Link>
               </li>
             </ul>
-          </div>
-        </AnimatePresence>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

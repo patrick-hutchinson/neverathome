@@ -1,7 +1,6 @@
 import styles from "./ArtistsPage.module.css";
 
 const ArtistInfo = ({ currentArtist, showLocations }) => {
-  console.log("current:", currentArtist);
   return (
     <div
       className={styles.info}

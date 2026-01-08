@@ -6,7 +6,6 @@ import Gallery from "./Gallery/Gallery";
 import styles from "./Accordeon.module.css";
 
 const AccordeonContent = ({ item, isExpanded, setImageInView, containerRef }) => {
-  console.log(isExpanded, "isExpanded");
   return (
     <Collapse isExpanded={isExpanded} id={item._id}>
       <div
