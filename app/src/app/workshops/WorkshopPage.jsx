@@ -35,7 +35,7 @@ const WorkshopPage = ({ page, events, site }) => {
         <h3>Selected Events</h3>
         <ul>
           {workshops.map((item, index) => (
-            <Link href={`/calendar#${item.slug.current}`}>
+            <Link key={index} href={`/calendar#${item.slug.current}`}>
               <AccordeonHeader size="medium" key={index} item={item} invert={true} />
             </Link>
           ))}

@@ -203,7 +203,7 @@ export const imprintQuery = `*[_type=="imprint"][0]{
 
 export const locationQuery = `*[_type=="location"]{
   _id,
-  "type": "location",
+  "dataType": "location",
   title,
   address,
   info,
@@ -216,6 +216,7 @@ export const locationQuery = `*[_type=="location"]{
 
 export const eventQuery = `*[_type=="event"]{
   _id,
+  "dataType": "event",
   title,
   pinned,
   "type": type->title,

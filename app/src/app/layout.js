@@ -2,6 +2,7 @@ import ScrollRestorationController from "@/controllers/ScrollRestorationControll
 import ColorSchemeController from "@/controllers/ColorSchemeController";
 import RandomSelectionColor from "@/controllers/RandomSelectionColor";
 import { StateProvider } from "@/context/StateContext";
+
 import { GlobalVariablesProvider } from "@/context/GlobalVariablesContext";
 import "./globals.css";
 import "./fonts.css";
@@ -13,7 +14,8 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { ViewTransitions } from "next-view-transitions";
 
-import { ReactLenis, useLenis } from "lenis/react";
+import { Lenis, ReactLenis, useLenis } from "lenis/react";
+import LenisProvider from "@/context/LenisContext";
 
 const [site] = await Promise.all([getSiteData()]);
 const [colorPairs] = await Promise.all([getColorPairs()]);
@@ -37,23 +39,23 @@ export const dynamic = "force-dynamic";
 export default function RootLayout({ children, invert = false }) {
   return (
     <ViewTransitions>
-      <ReactLenis root>
-        <html lang="en">
-          <StateProvider colorPairs={colorPairs}>
-            <GlobalVariablesProvider>
-              <body>
+      <html lang="en">
+        <StateProvider colorPairs={colorPairs}>
+          <GlobalVariablesProvider>
+            <body>
+              <LenisProvider>
                 <Header />
                 {children}
                 <div id="hover-preview"></div>
                 <Footer site={site} />
-              </body>
-            </GlobalVariablesProvider>
-          </StateProvider>
-          <ScrollRestorationController />
-          <RandomSelectionColor colorPairs={colorPairs} />
-          <ColorSchemeController />
-        </html>
-      </ReactLenis>
+              </LenisProvider>
+            </body>
+          </GlobalVariablesProvider>
+        </StateProvider>
+        <ScrollRestorationController />
+        <RandomSelectionColor colorPairs={colorPairs} />
+        <ColorSchemeController />
+      </html>
     </ViewTransitions>
   );
 }

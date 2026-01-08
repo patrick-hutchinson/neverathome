@@ -17,10 +17,13 @@ import AccordeonCounter from "./AccordeonItem/AccordeonCounter";
 
 import styles from "./Accordeon.module.css";
 import { useScrollToExpanded } from "./hooks/useScrollToExpand";
+import { lookUpAttributes } from "./lookUpAttributrs";
 
 const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert, colorPair }) => {
   const ref = useRef(null);
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
+
+  const { title, date, meta } = lookUpAttributes(item);
 
   const headerProps = { item, ref, onClick, invert, isExpanded, colorPair, isExpandable };
   const contentProps = { item, isExpandable, setIsExpandable, isExpanded, imageInView };
@@ -37,7 +40,7 @@ const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert,
     case "large":
       return (
         <ExpandableHeader {...headerProps}>
-          <LargeHeaderContent {...contentProps} />
+          <LargeHeaderContent {...contentProps} title={title} date={date} meta={meta} />
         </ExpandableHeader>
       );
   }
@@ -116,12 +119,12 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
   );
 };
 
-const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView }) => {
+const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title, date, meta }) => {
   return (
     <>
-      <AccordeonType type={item.type} />
-      <AccordeonDate date={item.startDate} />
-      <AccordeonTitle title={item.title} />
+      <AccordeonType type={meta} />
+      <AccordeonDate date={date} />
+      <AccordeonTitle title={title} />
       <AccordeonCounter item={item} imageInView={imageInView} isExpanded={isExpanded} />
 
       <AccordeonExpand isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
