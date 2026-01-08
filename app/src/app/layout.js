@@ -13,6 +13,8 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { ViewTransitions } from "next-view-transitions";
 
+import { ReactLenis, useLenis } from "lenis/react";
+
 const [site] = await Promise.all([getSiteData()]);
 const [colorPairs] = await Promise.all([getColorPairs()]);
 
@@ -35,21 +37,23 @@ export const dynamic = "force-dynamic";
 export default function RootLayout({ children, invert = false }) {
   return (
     <ViewTransitions>
-      <html lang="en">
-        <StateProvider colorPairs={colorPairs}>
-          <GlobalVariablesProvider>
-            <body>
-              <Header />
-              {children}
-              <div id="hover-preview"></div>
-              <Footer site={site} />
-            </body>
-          </GlobalVariablesProvider>
-        </StateProvider>
-        <ScrollRestorationController />
-        <RandomSelectionColor colorPairs={colorPairs} />
-        <ColorSchemeController />
-      </html>
+      <ReactLenis root>
+        <html lang="en">
+          <StateProvider colorPairs={colorPairs}>
+            <GlobalVariablesProvider>
+              <body>
+                <Header />
+                {children}
+                <div id="hover-preview"></div>
+                <Footer site={site} />
+              </body>
+            </GlobalVariablesProvider>
+          </StateProvider>
+          <ScrollRestorationController />
+          <RandomSelectionColor colorPairs={colorPairs} />
+          <ColorSchemeController />
+        </html>
+      </ReactLenis>
     </ViewTransitions>
   );
 }
