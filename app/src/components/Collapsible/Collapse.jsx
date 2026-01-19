@@ -13,31 +13,29 @@ const Collapse = ({ children, isExpanded, id, onScroll }) => {
 
   return (
     <motion.div
+      key={id}
+      ref={ref}
       onScroll={onScroll}
-      style={{ overflow: isExpanded ? "visible" : "hidden", background: "#000" }}
       initial={false}
       animate={isExpanded ? "expanded" : "collapsed"}
       variants={{
-        collapsed: { maxHeight: 0, transition: { duration: duration, delay: 0.4 } },
+        collapsed: {
+          maxHeight: 0,
+          transition: { duration: duration, delay: 0.4 },
+          overflow: "hidden",
+          opacity: 0,
+          transition: { duration: 0.4 },
+        },
         expanded: {
           maxHeight: height,
           transition: { duration: duration },
+          overflow: "visible",
+          opacity: 1,
+          transition: { duration: 0.4, delay: duration },
         },
       }}
     >
-      <motion.div
-        key={id}
-        ref={ref}
-        initial={false}
-        animate={isExpanded ? "visible" : "hidden"}
-        variants={{
-          visible: { opacity: 1, transition: { duration: 0.4, delay: duration } },
-          hidden: { opacity: 0, transition: { duration: 0.4 } },
-        }}
-        // style={{ overflowY: "scroll" }}
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.div>
   );
 };

@@ -8,28 +8,18 @@ import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
-import { useContext, useEffect } from "react";
+
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 import { repeatArray } from "@/helpers/repeatArray";
 
-import { useRouter } from "next/navigation";
-import { StateContext } from "@/context/StateContext";
 import Accordeon from "@/components/Accordeon/Accordeon";
+import { useEffect } from "react";
 
 const HomePage = ({ data }) => {
-  const router = useRouter();
-
-  const { setExpandedElement } = useContext(StateContext);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const handleNavigation = (event) => {
-    setExpandedElement(event._id);
-    router.push(`/calendar`);
-  };
 
   return (
     <main className={styles.main}>
@@ -45,8 +35,8 @@ const HomePage = ({ data }) => {
       </section>
 
       <section>
-        <h3>Upcoming</h3>
-        <Accordeon array={data.events} size="medium" />
+        <h3>Selected Events</h3>
+        <Accordeon array={data.events} size="medium" behaviour="navigate" />
       </section>
 
       <section>

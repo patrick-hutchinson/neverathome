@@ -3,35 +3,32 @@ import MediaPair from "../MediaPair/MediaPair";
 import Text from "../Text";
 import Gallery from "./Gallery/Gallery";
 
+import { motion } from "framer-motion";
 import styles from "./Accordeon.module.css";
 
 const AccordeonContent = ({ item, isExpanded, setImageInView, containerRef, colorPair }) => {
   console.log(item.colorPair, "colorPair");
   return (
     <Collapse isExpanded={isExpanded} id={item._id}>
-      <div
+      <motion.div
         className={styles.content}
         style={{
           minHeight: isExpanded && "var(--accordeon-content-height)",
-          background: isExpanded ? colorPair.background?.value ?? "#000" : "#000",
-          color: isExpanded ? colorPair.text?.value ?? "#fff" : "#fff",
+          background: isExpanded && colorPair.background?.value,
+          color: isExpanded && colorPair.text?.value,
           transition: "0.5s",
         }}
       >
         <MediaPair className={styles.mediaPair}>
           <Text text={item.info} className={styles.description} typo="h3" />
-          {item.gallery ? (
-            <Gallery
-              event={item}
-              containerRef={containerRef}
-              className={styles.gallery}
-              setImageInView={setImageInView}
-            />
-          ) : (
-            <div />
-          )}
+          <Gallery
+            event={item}
+            containerRef={containerRef}
+            className={styles.gallery}
+            setImageInView={setImageInView}
+          />
         </MediaPair>
-      </div>
+      </motion.div>
     </Collapse>
   );
 };

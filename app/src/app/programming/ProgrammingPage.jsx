@@ -34,7 +34,7 @@ const ProgrammingPage = ({ page, site }) => {
           <h3>Highlights</h3>
           <Carousel>
             {repeatArray(page.highlights).map((item, index) => (
-              <MiniFigure key={index} item={item} index={index} />
+              <MiniFigure key={index} item={item} index={index} invert={true} />
             ))}
           </Carousel>
         </section>

@@ -17,7 +17,7 @@ const StudiosPage = ({ page }) => {
       <CoverMedia media={page.gallery} />
 
       <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
-        <div style={{ minHeight: "calc(100vh - var(--header-height))" }}>
+        <div style={{ marginBottom: "250px" }}>
           <Text text={page.description} typo="h2" />
         </div>
         <section className={styles.features}>

@@ -14,7 +14,6 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { ViewTransitions } from "next-view-transitions";
 
-import { Lenis, ReactLenis, useLenis } from "lenis/react";
 import LenisProvider from "@/context/LenisContext";
 
 const [site] = await Promise.all([getSiteData()]);

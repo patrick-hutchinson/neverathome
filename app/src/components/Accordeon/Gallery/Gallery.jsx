@@ -5,7 +5,7 @@ import Media from "@/components/Media";
 import styles from "../Accordeon.module.css";
 
 const Gallery = ({ event, setImageInView, className, containerRef }) => {
-  if (!event.gallery) return undefined;
+  if (!event.gallery) return <div />;
 
   return (
     <ul className={`${className} ${styles.gallery}`}>

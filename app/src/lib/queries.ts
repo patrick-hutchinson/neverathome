@@ -34,6 +34,7 @@ export const homeQuery = `*[_type=="home"][0]{
   events[]->{
     _id,
     "type": type->title,
+    "dataType": "event",
     startDate,
     endDate,
     title,
@@ -122,6 +123,7 @@ export const studiosQuery = `*[_type=="studios"][0]{
   events[]->{
     _id,
     "type": type->title,
+    "dataType": "event",
     startDate,
     endDate,
     title,
@@ -170,6 +172,7 @@ export const eventsQuery = `*[_type=="events"][0]{
   events[]->{
     _id,
     "type": type->title,
+    "dataType": "event",
     startDate,
     endDate,
     title,

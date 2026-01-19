@@ -17,9 +17,11 @@ import AccordeonCounter from "./AccordeonItem/AccordeonCounter";
 
 import styles from "./Accordeon.module.css";
 import { useScrollToExpanded } from "./hooks/useScrollToExpand";
-import { lookUpAttributes } from "./lookUpAttributrs";
+import { lookUpAttributes } from "./lookUpAttributes";
+import Link from "next/link";
+import AnimationLink from "../Animation/AnimationLink";
 
-const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert, colorPair }) => {
+const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert, colorPair, behavior }) => {
   const ref = useRef(null);
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
 
@@ -28,20 +30,20 @@ const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert,
   const headerProps = { item, ref, onClick, invert, isExpanded, colorPair, isExpandable };
   const contentProps = { item, isExpandable, setIsExpandable, isExpanded, imageInView };
 
+  const Wrapper = behavior === "expand" ? ExpandWrapper : NavigationWrapper;
+
   switch (size) {
-    case "small":
-      return <StaticHeaderContent item={item} ref={ref} colorPair={colorPair} invert={invert} />;
     case "medium":
       return (
-        <ExpandableHeader {...headerProps}>
+        <Wrapper {...headerProps}>
           <MediumHeaderContent {...contentProps} />
-        </ExpandableHeader>
+        </Wrapper>
       );
     case "large":
       return (
-        <ExpandableHeader {...headerProps}>
+        <Wrapper {...headerProps}>
           <LargeHeaderContent {...contentProps} title={title} date={date} meta={meta} />
-        </ExpandableHeader>
+        </Wrapper>
       );
   }
 };
@@ -53,13 +55,13 @@ const hoverColors = (colorPair) => ({
   transition: { duration: 0.5 },
 });
 
-const getInvertColors = (invert) => ({
+const getColors = (invert) => ({
   background: invert ? "#fff" : "#000",
   text: invert ? "#000" : "#fff",
 });
 
-const ExpandableHeader = ({ children, item, ref, onClick, invert, isExpandable, isExpanded, colorPair }) => {
-  const { background, text } = getInvertColors(invert);
+const ExpandWrapper = ({ children, item, ref, onClick, invert, isExpandable, isExpanded, colorPair }) => {
+  const { background, text } = getColors(invert);
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   useScrollToExpanded({ isExpanded, ref, offset: header_height + filter_height });
@@ -89,18 +91,25 @@ const ExpandableHeader = ({ children, item, ref, onClick, invert, isExpandable, 
   );
 };
 
-const StaticHeaderContent = ({ item, ref, colorPair, invert }) => {
+const NavigationWrapper = ({ children, invert, ref, item, colorPair }) => {
+  const { background, text } = getColors(invert);
+
   return (
-    <motion.li
-      id={item.slug.current}
-      ref={ref}
-      className={`${styles.item} ${invert ? styles.invert : ""}`}
-      whileHover={hoverColors(colorPair)}
-    >
-      <AccordeonType type={item.type} />
-      <AccordeonDate date={item.startDate} />
-      <AccordeonTitle title={item.title} />
-    </motion.li>
+    <AnimationLink path={`/calendar#${item.slug.current}`}>
+      <motion.div
+        id={item.slug.current}
+        className={`${styles.item} ${invert ? styles.invert : ""}`}
+        ref={ref}
+        whileHover={hoverColors(colorPair)}
+        style={{
+          background: background,
+          color: text,
+          fill: background,
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimationLink>
   );
 };
 

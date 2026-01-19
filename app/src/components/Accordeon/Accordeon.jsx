@@ -7,7 +7,7 @@ import AccordeonItem from "./AccordeonItem/AccordeonItem";
 import AccordeonHeader from "./AccordeonHeader";
 import { useColorPair } from "@/hooks/useColorPair";
 
-const Accordeon = ({ array, size, invert }) => {
+const Accordeon = ({ array, size, invert, behavior }) => {
   const [imageInView, setImageInView] = useState(null);
 
   const containerRef = useRef(null);
@@ -19,7 +19,7 @@ const Accordeon = ({ array, size, invert }) => {
     <div className="accordeon">
       {array.map((item, index) => {
         let isExpanded = item._id === expandedElement;
-        const isExpandable = size === "medium" || size === "large" || item.type === "location" ? true : false;
+        const isExpandable = size === "medium" || size === "large" || item.type === "location";
 
         const colorPair = useColorPair(item);
 
@@ -33,12 +33,13 @@ const Accordeon = ({ array, size, invert }) => {
           >
             <AccordeonHeader
               item={item}
-              onClick={() => handleExpand(item._id)}
+              onClick={() => behavior === "expand" && handleExpand(item._id)}
               imageInView={imageInView}
               isExpanded={isExpanded}
               size={size}
               invert={invert}
               colorPair={colorPair}
+              behavior={behavior}
             />
             <AccordeonContent
               item={item}
