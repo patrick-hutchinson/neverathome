@@ -1,5 +1,4 @@
 export const lookUpAttributes = (item) => {
-  console.log(item, "item");
   switch (item.dataType) {
     case "event":
       return {

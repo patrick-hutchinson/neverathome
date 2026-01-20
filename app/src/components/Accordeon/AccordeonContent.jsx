@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import styles from "./Accordeon.module.css";
 
 const AccordeonContent = ({ item, isExpanded, setImageInView, containerRef, colorPair }) => {
-  console.log(item.colorPair, "colorPair");
   return (
     <Collapse isExpanded={isExpanded} id={item._id}>
       <motion.div

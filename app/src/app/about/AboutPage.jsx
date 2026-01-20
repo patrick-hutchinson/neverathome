@@ -65,7 +65,7 @@ const AboutPage = ({ contact, locations }) => {
       <Text className={styles.bio} text={contact.bio} typo="h2" />
 
       <section className={styles.accordeon}>
-        <Accordeon array={locations} size="large" invert={true}></Accordeon>
+        <Accordeon array={locations} size="large" invert={true} behavior="navigate"></Accordeon>
       </section>
 
       <MediaPair>

@@ -18,8 +18,8 @@ const Accordeon = ({ array, size, invert, behavior }) => {
   return (
     <div className="accordeon">
       {array.map((item, index) => {
+        let isExpandable = behavior === "expand";
         let isExpanded = item._id === expandedElement;
-        const isExpandable = size === "medium" || size === "large" || item.type === "location";
 
         const colorPair = useColorPair(item);
 

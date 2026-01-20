@@ -18,7 +18,7 @@ import AccordeonCounter from "./AccordeonItem/AccordeonCounter";
 import styles from "./Accordeon.module.css";
 import { useScrollToExpanded } from "./hooks/useScrollToExpand";
 import { lookUpAttributes } from "./lookUpAttributes";
-import Link from "next/link";
+
 import AnimationLink from "../Animation/AnimationLink";
 
 const AccordeonHeader = ({ item, size, isExpanded, onClick, imageInView, invert, colorPair, behavior }) => {
@@ -71,7 +71,7 @@ const ExpandWrapper = ({ children, item, ref, onClick, invert, isExpandable, isE
       id={item.slug.current}
       ref={ref}
       onClick={onClick}
-      className={`${styles.item} ${invert ? styles.invert : ""} ${isExpanded && styles.expanded}`}
+      className={`${styles.item} ${invert ? styles.invert : ""} expand ${isExpanded && styles.expanded}`}
       whileHover={hoverColors(colorPair)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -81,9 +81,9 @@ const ExpandWrapper = ({ children, item, ref, onClick, invert, isExpandable, isE
         position: isExpanded && "sticky",
         top: 0,
         zIndex: 2,
-        background: isExpanded ? colorPair?.background?.value ?? background : background,
-        color: isExpanded ? colorPair?.text?.value ?? text : text,
-        fill: isExpanded ? colorPair?.text?.value ?? background : background,
+        background: isExpanded ? (colorPair?.background?.value ?? background) : background,
+        color: isExpanded ? (colorPair?.text?.value ?? text) : text,
+        fill: isExpanded ? (colorPair?.text?.value ?? background) : background,
       }}
     >
       {children}
@@ -98,7 +98,7 @@ const NavigationWrapper = ({ children, invert, ref, item, colorPair }) => {
     <AnimationLink path={`/calendar#${item.slug.current}`}>
       <motion.div
         id={item.slug.current}
-        className={`${styles.item} ${invert ? styles.invert : ""}`}
+        className={`${styles.item} navigate ${invert ? styles.invert : ""}`}
         ref={ref}
         whileHover={hoverColors(colorPair)}
         style={{

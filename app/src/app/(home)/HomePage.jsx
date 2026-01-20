@@ -36,7 +36,7 @@ const HomePage = ({ data }) => {
 
       <section>
         <h3>Selected Events</h3>
-        <Accordeon array={data.events} size="medium" behaviour="navigate" />
+        <Accordeon array={data.events} size="medium" behavior="navigate" />
       </section>
 
       <section>
