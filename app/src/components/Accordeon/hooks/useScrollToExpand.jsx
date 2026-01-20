@@ -3,6 +3,9 @@ import { useEffect } from "react";
 export function useScrollToExpanded({ isExpanded, ref, offset = 0, delay = 800 }) {
   useEffect(() => {
     if (!isExpanded || !ref?.current) return;
+    console.log(ref.current, "current ref");
+
+    console.log("calling useScrollToExpand");
 
     const timeout = setTimeout(() => {
       const top = ref.current.getBoundingClientRect().top + window.scrollY;

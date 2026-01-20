@@ -27,9 +27,9 @@ const Collapse = ({ children, isExpanded, id, onScroll }) => {
           transition: { duration: 0.4 },
         },
         expanded: {
-          maxHeight: height,
+          maxHeight: "var(--accordeon-height)",
           transition: { duration: duration },
-          overflow: "visible",
+          overflow: "scroll",
           opacity: 1,
           transition: { duration: 0.4, delay: duration },
         },

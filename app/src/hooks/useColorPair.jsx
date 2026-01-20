@@ -6,9 +6,14 @@ export const useColorPair = (item) => {
 
   return useMemo(() => {
     if (item?.colorPair) return item.colorPair;
-    if (!colorPairs?.length) return null;
 
-    const randomIndex = Math.floor(Math.random() * colorPairs.length);
-    return colorPairs[randomIndex];
+    if (!colorPairs?.length) {
+      return {
+        background: { value: "#000" },
+        text: { value: "#fff" },
+      };
+    }
+
+    return colorPairs[Math.floor(Math.random() * colorPairs.length)];
   }, [item?.colorPair, colorPairs]);
 };

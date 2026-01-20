@@ -1,54 +1,55 @@
-import { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 
 import { StateContext } from "@/context/StateContext";
 
 import AccordeonContent from "./AccordeonContent";
-import AccordeonItem from "./AccordeonItem/AccordeonItem";
+import AccordeonWrapper from "./AccordeonWrapper";
 import AccordeonHeader from "./AccordeonHeader";
 import { useColorPair } from "@/hooks/useColorPair";
+import { useScrollToExpanded } from "./hooks/useScrollToExpand";
+
+useScrollToExpanded;
 
 const Accordeon = ({ array, size, invert, behavior }) => {
   const [imageInView, setImageInView] = useState(null);
 
-  const containerRef = useRef(null);
+  const refs = useRef({});
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
-  const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
-
+  const handleExpand = (id) => {
+    expandedElement === id ? setExpandedElement(null) : setExpandedElement(id);
+  };
   return (
     <div className="accordeon">
       {array.map((item, index) => {
-        let isExpandable = behavior === "expand";
         let isExpanded = item._id === expandedElement;
 
         const colorPair = useColorPair(item);
 
+        if (!refs.current[item._id]) {
+          refs.current[item._id] = React.createRef();
+        }
+
         return (
-          <AccordeonItem
+          <AccordeonWrapper
             key={index}
+            item={item}
             index={item._id}
-            ref={containerRef}
+            ref={refs.current[item._id]}
             isExpanded={isExpanded}
-            isExpandable={isExpandable}
+            behavior={behavior}
+            handleExpand={handleExpand}
+            invert={invert}
+            colorPair={colorPair}
           >
-            <AccordeonHeader
-              item={item}
-              onClick={() => behavior === "expand" && handleExpand(item._id)}
-              imageInView={imageInView}
-              isExpanded={isExpanded}
-              size={size}
-              invert={invert}
-              colorPair={colorPair}
-              behavior={behavior}
-            />
+            <AccordeonHeader item={item} size={size} isExpanded={isExpanded} imageInView={imageInView} />
             <AccordeonContent
               item={item}
               isExpanded={isExpanded}
-              containerRef={containerRef}
+              containerRef={refs.current[item._id]}
               setImageInView={setImageInView}
-              colorPair={colorPair}
             />
-          </AccordeonItem>
+          </AccordeonWrapper>
         );
       })}
     </div>
