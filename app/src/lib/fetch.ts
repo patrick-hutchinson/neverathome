@@ -12,7 +12,7 @@ export const getSanityClient = () => {
 
 const client = getSanityClient();
 
-console.log("client:", client);
+console.log("client:", client.config());
 
 import {
   siteQuery,
