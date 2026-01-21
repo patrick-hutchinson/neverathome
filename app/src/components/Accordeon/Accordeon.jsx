@@ -6,11 +6,8 @@ import AccordeonContent from "./AccordeonContent";
 import AccordeonWrapper from "./AccordeonWrapper";
 import AccordeonHeader from "./AccordeonHeader";
 import { useColorPair } from "@/hooks/useColorPair";
-import { useScrollToExpanded } from "./hooks/useScrollToExpand";
 
-useScrollToExpanded;
-
-const Accordeon = ({ array, size, invert, behavior, calendarRef }) => {
+const Accordeon = ({ array, size, invert, behavior }) => {
   const [imageInView, setImageInView] = useState(null);
 
   const refs = useRef({});
@@ -42,6 +39,7 @@ const Accordeon = ({ array, size, invert, behavior, calendarRef }) => {
             handleExpand={handleExpand}
             invert={invert}
             colorPair={colorPair}
+            setExpandedElement={setExpandedElement}
           >
             <AccordeonHeader item={item} size={size} isExpanded={isExpanded} imageInView={imageInView} />
             <AccordeonContent

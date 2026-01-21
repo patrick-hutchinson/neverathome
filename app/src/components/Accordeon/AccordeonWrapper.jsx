@@ -4,7 +4,7 @@ import ExpansionWrapper from "./AccordeonWrapper/ExpansionWrapper";
 import NavigationWrapper from "./AccordeonWrapper/NavigationWrapper";
 
 const AccordeonWrapper = forwardRef(
-  ({ index, children, isExpanded, behavior, size, item, colorPair, handleExpand, invert }, ref) => {
+  ({ index, children, isExpanded, behavior, size, item, colorPair, handleExpand, invert, setExpandedElement }, ref) => {
     const props = {
       index,
       children,
@@ -15,6 +15,7 @@ const AccordeonWrapper = forwardRef(
       handleExpand,
       invert,
       ref,
+      setExpandedElement,
     };
 
     switch (behavior) {

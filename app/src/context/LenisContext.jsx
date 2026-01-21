@@ -12,7 +12,7 @@ export default function LenisProvider({ children }) {
   const lenis = useLenis(); // hook provided by ReactLenis
 
   return (
-    <ReactLenis root options={{ allowNestedScroll: true }}>
+    <ReactLenis root>
       <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
     </ReactLenis>
   );

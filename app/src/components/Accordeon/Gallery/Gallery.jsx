@@ -4,25 +4,19 @@ import { useRef, useEffect, useState } from "react";
 import Media from "@/components/Media";
 import styles from "../Accordeon.module.css";
 
-const Gallery = ({ event, setImageInView, className, containerRef }) => {
+const Gallery = ({ event, setImageInView, className }) => {
   if (!event.gallery) return <div />;
 
   return (
     <ul className={`${className} ${styles.gallery}`}>
       {event.gallery.map((medium, index) => (
-        <GalleryItem
-          key={index}
-          medium={medium}
-          index={index}
-          setImageInView={setImageInView}
-          containerRef={containerRef}
-        />
+        <GalleryItem key={index} medium={medium} index={index} setImageInView={setImageInView} />
       ))}
     </ul>
   );
 };
 
-const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }) => {
+const GalleryItem = ({ medium, index, setImageInView, isExpanded }) => {
   const ref = useRef(null);
 
   // Gallery intersection observer
@@ -36,7 +30,6 @@ const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }
         }
       },
       {
-        root: containerRef.current, // 👈 THIS is the scroll container
         threshold: 0.5,
       },
     );
@@ -44,7 +37,7 @@ const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, [index, setImageInView, containerRef, isExpanded]);
+  }, [index, setImageInView, isExpanded]);
 
   return (
     <li ref={ref}>

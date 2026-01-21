@@ -16,8 +16,6 @@ import { scrollToHash } from "@/helpers/scrollToHash";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 const CalendarPage = ({ events }) => {
-  const calendarRef = useRef(null);
-
   const { setExpandedElement } = useContext(StateContext);
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
@@ -97,7 +95,7 @@ const CalendarPage = ({ events }) => {
         setActiveYears={setActiveYears}
       />
 
-      <div className={styles.calendar} ref={calendarRef}>
+      <div className={styles.calendar}>
         {pinned && (
           <div className={styles.pinned} style={{ pointerEvents: "none" }}>
             <CurrentEvent event={pinned} />
@@ -107,7 +105,7 @@ const CalendarPage = ({ events }) => {
         <section>
           <ul className={styles.calendar_section}>
             <AnimatePresence>
-              <Accordeon array={current} size={"medium"} behavior="expand" calendarRef={calendarRef} />
+              <Accordeon array={current} size={"medium"} behavior="expand" />
             </AnimatePresence>
           </ul>
         </section>
@@ -115,7 +113,7 @@ const CalendarPage = ({ events }) => {
         <section>
           <h3>Archived</h3>
           <motion.ul className={styles.calendar_section}>
-            <Accordeon array={archived} size={"large"} behavior="expand" calendarRef={calendarRef} />
+            <Accordeon array={archived} size={"large"} behavior="expand" />
           </motion.ul>
         </section>
       </div>

@@ -9,7 +9,7 @@ const Collapse = ({ children, isExpanded, id, onScroll }) => {
     if (ref.current && isExpanded) setHeight(ref.current.scrollHeight);
   }, [children]);
 
-  const expandDuration = height / 10000;
+  const expandDuration = Math.max(height / 10000, 0.5);
 
   return (
     <motion.div
