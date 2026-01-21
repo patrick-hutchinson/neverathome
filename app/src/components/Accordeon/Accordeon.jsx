@@ -20,6 +20,7 @@ const Accordeon = ({ array, size, invert, behavior }) => {
   return (
     <div className="accordeon">
       {array.map((item, index) => {
+        let isExpandable = item.info || item.gallery;
         let isExpanded = item._id === expandedElement;
 
         const colorPair = useColorPair(item);
@@ -40,14 +41,17 @@ const Accordeon = ({ array, size, invert, behavior }) => {
             invert={invert}
             colorPair={colorPair}
             setExpandedElement={setExpandedElement}
+            isExpandable={isExpandable}
           >
             <AccordeonHeader item={item} size={size} isExpanded={isExpanded} imageInView={imageInView} />
-            <AccordeonContent
-              item={item}
-              isExpanded={isExpanded}
-              containerRef={refs.current[item._id]}
-              setImageInView={setImageInView}
-            />
+            {size === "large" && (
+              <AccordeonContent
+                item={item}
+                isExpanded={isExpanded}
+                containerRef={refs.current[item._id]}
+                setImageInView={setImageInView}
+              />
+            )}
           </AccordeonWrapper>
         );
       })}

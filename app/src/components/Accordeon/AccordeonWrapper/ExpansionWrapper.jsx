@@ -10,13 +10,19 @@ import { motion } from "framer-motion";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 import styles from "../Accordeon.module.css";
+import { usePathname } from "next/navigation";
 
 const ExpansionWrapper = forwardRef(
-  ({ index, children, isExpanded, item, handleExpand, colorPair, invert, setExpandedElement }, ref) => {
+  ({ index, children, isExpanded, item, handleExpand, colorPair, invert, setExpandedElement, isExpandable }, ref) => {
+    const pathname = usePathname();
+
     const { header_height, filter_height } = useContext(GlobalVariablesContext);
     const { background, text } = getColors(invert);
 
-    useScrollToExpanded({ isExpanded, ref, offset: header_height + filter_height });
+    const isAbout = pathname === "/about";
+    const distance = isAbout ? header_height : header_height + filter_height;
+
+    useScrollToExpanded({ isExpanded, ref, offset: distance });
 
     const lenis = useLenisContext();
 
@@ -40,13 +46,14 @@ const ExpansionWrapper = forwardRef(
         id={item.slug.current}
         className={`${isExpanded ? styles.expanded : ""} ${invert && styles.invert}`}
         style={{
-          cursor: "pointer",
+          cursor: isExpandable ? "pointer" : "default",
           background: isExpanded ? colorPair.background.value : background,
           color: isExpanded ? colorPair.text.value : text,
           fill: isExpanded ? colorPair.text.value : text,
         }}
-        whileHover={hoverColors(colorPair)}
+        whileHover={isExpandable && hoverColors(colorPair)}
         onClick={() => {
+          if (!isExpandable) return;
           if (isExpanded) {
             closeAccordion();
           } else {

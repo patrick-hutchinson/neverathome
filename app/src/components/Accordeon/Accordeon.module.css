@@ -209,7 +209,7 @@
     top: calc(var(--accordeon-sticky-distance) + (var(--margin) * 2));
     margin-top: calc(var(--margin) * 2);
     padding: 0;
-    padding-bottom: 20px;
+    padding-bottom: calc(var(--margin) * 3);
   }
 }
 

@@ -14,6 +14,7 @@ import styles from "./Accordeon.module.css";
 
 import { lookUpAttributes } from "./lookUpAttributes";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
+import { usePathname } from "next/navigation";
 
 const AccordeonHeader = ({ item, size, isExpanded, imageInView }) => {
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
@@ -55,13 +56,19 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
 };
 
 const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title, date, meta }) => {
+  const pathname = usePathname();
+
+  const isAbout = pathname === "/about";
+  console.log(isAbout, "is about?");
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
+  const distance = isAbout ? header_height : header_height + filter_height;
   return (
     <div
       className={styles.accordeonHeader}
       style={{
         position: isExpanded ? "sticky" : "relative",
-        top: isExpanded ? header_height + filter_height : 0,
+        top: isExpanded ? distance : 0,
         background: "inherit",
         zIndex: 2,
       }}
