@@ -6,8 +6,10 @@ import AccordeonContent from "./AccordeonContent";
 import AccordeonWrapper from "./AccordeonWrapper";
 import AccordeonHeader from "./AccordeonHeader";
 import { useColorPair } from "@/hooks/useColorPair";
+import { useLenisContext } from "@/context/LenisContext";
 
 const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
+  const lenis = useLenisContext();
   const [imageInView, setImageInView] = useState(null);
 
   const refs = useRef({});
@@ -16,6 +18,8 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
   const handleExpand = (id) => {
+    console.log("handling!");
+    lenis.stop();
     expandedElement === id ? setExpandedElement(null) : setExpandedElement(id);
   };
 

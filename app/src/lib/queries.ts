@@ -213,6 +213,7 @@ export const locationQuery = `*[_type=="location"]{
   currentLocation,
   ${galleryFragment},
   moveInDate,
+  "colorPair": colorPair[0]->{_id, text, background},
   slug,
   moveOutDate,
 }`;
