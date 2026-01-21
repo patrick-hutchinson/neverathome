@@ -7,18 +7,40 @@ import AccordeonWrapper from "./AccordeonWrapper";
 import AccordeonHeader from "./AccordeonHeader";
 import { useColorPair } from "@/hooks/useColorPair";
 
-const Accordeon = ({ array, size, invert, behavior }) => {
+const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const [imageInView, setImageInView] = useState(null);
 
   const refs = useRef({});
+  const accordeonRef = useRef(null);
+
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
   const handleExpand = (id) => {
     expandedElement === id ? setExpandedElement(null) : setExpandedElement(id);
   };
 
+  // expand the first element when it is in view
+  if (firstExpanded) {
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setExpandedElement(array[0]._id);
+          }
+        },
+        {
+          threshold: 1,
+        },
+      );
+
+      observer.observe(accordeonRef.current);
+
+      return () => observer.disconnect();
+    }, [firstExpanded]);
+  }
+
   return (
-    <div className="accordeon">
+    <div className="accordeon" ref={accordeonRef}>
       {array.map((item, index) => {
         let isExpandable = item.info || item.gallery;
         let isExpanded = item._id === expandedElement;

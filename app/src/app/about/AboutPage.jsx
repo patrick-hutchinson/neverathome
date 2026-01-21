@@ -3,8 +3,6 @@
 import Media from "@/components/Media";
 import Text from "@/components/Text";
 
-import { createPortal } from "react-dom";
-
 import styles from "./AboutPage.module.css";
 import Carousel from "@/components/Carousel/Carousel";
 import { repeatArray } from "@/helpers/repeatArray";
@@ -20,20 +18,7 @@ import MediaPair from "@/components/MediaPair/MediaPair";
 import TextFigure from "@/components/TextFigure/TextFigure";
 
 const AboutPage = ({ contact, locations }) => {
-  const [mounted, setMounted] = useState(false); // 👈 tracks client mount
   const { isMobile } = useContext(StateContext);
-  const preview = useRef(null);
-
-  const [showImage, setShowImage] = useState(false);
-
-  const [portalRoot, setPortalRoot] = useState(null);
-
-  useEffect(() => {
-    setMounted(true);
-    setPortalRoot(document.getElementById("hover-preview"));
-  }, []);
-
-  // const portalRoot = typeof window !== "undefined" ? document.getElementById("hover-preview") : null;
 
   useEffect(() => {
     if (!isMobile) return;
@@ -65,7 +50,7 @@ const AboutPage = ({ contact, locations }) => {
       <Text className={styles.bio} text={contact.bio} typo="h2" />
 
       <section className={styles.accordeon}>
-        <Accordeon array={locations} size="large" invert={true} behavior="expand"></Accordeon>
+        <Accordeon array={locations} size="large" invert={true} behavior="expand" firstExpanded={true}></Accordeon>
       </section>
 
       <MediaPair>
@@ -78,14 +63,7 @@ const AboutPage = ({ contact, locations }) => {
           <div style={{ display: "flex", alignItems: "flex-end" }}>
             <Carousel speed={0.5}>
               {repeatArray(permanentStaff).map((item, index) => (
-                <ContactCard
-                  key={index}
-                  item={item}
-                  index={index}
-                  typo="h4"
-                  onMouseEnter={() => setShowImage(true)}
-                  onMouseLeave={() => setShowImage(false)}
-                />
+                <ContactCard key={index} item={item} index={index} typo="h4" />
               ))}
             </Carousel>
           </div>
@@ -95,14 +73,7 @@ const AboutPage = ({ contact, locations }) => {
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             <Carousel speed={1} direction="backward">
               {repeatArray(temporaryStaff).map((item, index) => (
-                <ContactCard
-                  key={index}
-                  item={item}
-                  index={index}
-                  typo="h4"
-                  onMouseEnter={() => setShowImage(true)}
-                  onMouseLeave={() => setShowImage(false)}
-                />
+                <ContactCard key={index} item={item} index={index} typo="h4" />
               ))}
             </Carousel>
           </div>
