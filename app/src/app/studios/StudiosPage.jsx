@@ -10,6 +10,7 @@ import CoverMedia from "@/components/CoverMedia";
 
 import Link from "next/link";
 import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
+import Accordeon from "@/components/Accordeon/Accordeon";
 
 const StudiosPage = ({ page }) => {
   return (
@@ -34,13 +35,7 @@ const StudiosPage = ({ page }) => {
 
         <section>
           <h3>Selected Events</h3>
-          <ul>
-            {page.events.map((item, index) => (
-              <Link key={index} href={`/calendar#${item.slug.current}`}>
-                <AccordeonHeader size="medium" key={index} item={item} invert={true} />
-              </Link>
-            ))}
-          </ul>
+          <Accordeon array={page.events} behavior="navigate" invert={true} size="medium" />
         </section>
 
         <section>

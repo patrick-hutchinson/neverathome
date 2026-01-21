@@ -4,7 +4,7 @@ import styles from "./Figure.module.css";
 
 import Text from "@/components/Text";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Figure = ({ item, ratio }) => {
   const [hovered, setHovered] = useState(false);
@@ -19,18 +19,22 @@ const Figure = ({ item, ratio }) => {
         }}
         onMouseLeave={() => setHovered(false)}
       >
-        {hovered && item.colorPair && (
-          <motion.div
-            className={styles.card}
-            style={{
-              background: item.colorPair?.background.value,
-              color: item.colorPair?.text.value,
-              transition: { duration: 0 },
-            }}
-          >
-            <h2>{item.title}</h2>
-          </motion.div>
-        )}
+        <AnimatePresence key="figure">
+          {hovered && item.colorPair && (
+            <motion.div
+              className={styles.card}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                background: item.colorPair?.background.value,
+                color: item.colorPair?.text.value,
+              }}
+            >
+              <h2>{item.title}</h2>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <header className={`${styles.header}`} typo="h4">
           <span>{item.tag}</span>
           <ul className={styles.links}>

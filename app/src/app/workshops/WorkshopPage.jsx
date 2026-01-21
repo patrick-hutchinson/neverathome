@@ -3,11 +3,11 @@
 import Text from "@/components/Text";
 
 import styles from "./WorkshopPage.module.css";
-import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
+
 import Carousel from "@/components/Carousel/Carousel";
 import { repeatArray } from "@/helpers/repeatArray";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
-import Link from "next/link";
+import Accordeon from "@/components/Accordeon/Accordeon";
 
 const WorkshopPage = ({ page, events, site }) => {
   const workshops = events.filter((event) => event.type === "Workshop");
@@ -33,13 +33,7 @@ const WorkshopPage = ({ page, events, site }) => {
 
       <section>
         <h3>Selected Events</h3>
-        <ul>
-          {workshops.map((item, index) => (
-            <Link key={index} href={`/calendar#${item.slug.current}`}>
-              <AccordeonHeader size="medium" key={index} item={item} invert={true} />
-            </Link>
-          ))}
-        </ul>
+        <Accordeon array={workshops} size="medium" invert={true} behavior="navigate" />
       </section>
 
       <section>

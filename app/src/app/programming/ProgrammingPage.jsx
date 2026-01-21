@@ -17,6 +17,7 @@ import { repeatArray } from "@/helpers/repeatArray";
 import Link from "next/link";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
+import Accordeon from "@/components/Accordeon/Accordeon";
 
 const ProgrammingPage = ({ page, site }) => {
   return (
@@ -53,13 +54,7 @@ const ProgrammingPage = ({ page, site }) => {
 
         <section>
           <h3>Selected Events</h3>
-          <ul>
-            {page.events.map((item, index) => (
-              <Link href={`/calendar#${item.slug.current}`}>
-                <AccordeonHeader size="medium" key={index} item={item} invert={true} />
-              </Link>
-            ))}
-          </ul>
+          <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
         </section>
 
         <section>

@@ -48,7 +48,7 @@ const ArtistsPage = ({ artists, colorPairs }) => {
       root: null,
       rootMargin: "-45% 0px -45% 0px",
       threshold: 0,
-    }
+    },
   );
 
   const handleInView = (element) => {
@@ -65,6 +65,7 @@ const ArtistsPage = ({ artists, colorPairs }) => {
         {filteredArtists.map((artist) => {
           return (
             <Artist
+              key={artist._id}
               artist={artist}
               hoveredArtist={hoveredArtist}
               setHoveredArtist={setHoveredArtist}

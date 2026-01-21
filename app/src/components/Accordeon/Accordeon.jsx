@@ -21,22 +21,28 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
 
   // expand the first element when it is in view
   if (firstExpanded) {
+    const hasExpandedOnce = useRef(false);
+
     useEffect(() => {
+      if (!firstExpanded) return;
+      if (hasExpandedOnce.current) return;
+      if (!accordeonRef.current) return;
+
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasExpandedOnce.current) {
+            hasExpandedOnce.current = true;
             setExpandedElement(array[0]._id);
+            observer.disconnect(); // stop observing immediately
           }
         },
-        {
-          threshold: 1,
-        },
+        { threshold: 1 },
       );
 
       observer.observe(accordeonRef.current);
 
       return () => observer.disconnect();
-    }, [firstExpanded]);
+    }, [firstExpanded, array, setExpandedElement]);
   }
 
   return (

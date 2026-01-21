@@ -59,7 +59,7 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title
   const pathname = usePathname();
 
   const isAbout = pathname === "/about";
-  console.log(isAbout, "is about?");
+
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   const distance = isAbout ? header_height : header_height + filter_height;
