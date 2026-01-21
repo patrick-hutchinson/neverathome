@@ -9,10 +9,11 @@ const Collapse = ({ children, isExpanded, id, onScroll }) => {
     if (ref.current && isExpanded) setHeight(ref.current.scrollHeight);
   }, [children]);
 
-  const duration = Math.min(Math.max(height / 3000, 0.4), 0.3);
+  const expandDuration = height / 10000;
 
   return (
     <motion.div
+      className="collapse"
       key={id}
       ref={ref}
       onScroll={onScroll}
@@ -21,17 +22,21 @@ const Collapse = ({ children, isExpanded, id, onScroll }) => {
       variants={{
         collapsed: {
           maxHeight: 0,
-          transition: { duration: duration, delay: 0.4 },
-          overflow: "hidden",
           opacity: 0,
-          transition: { duration: 0.4 },
+          overflow: "hidden",
+          transition: {
+            maxHeight: { duration: expandDuration, delay: expandDuration, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 0, ease: "easeInOut" },
+          },
         },
         expanded: {
-          maxHeight: "var(--accordeon-height)",
-          transition: { duration: duration },
-          overflow: "scroll",
+          maxHeight: height,
           opacity: 1,
-          transition: { duration: 0.4, delay: duration },
+          overflow: "visible",
+          transition: {
+            maxHeight: { duration: expandDuration, delay: 0, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: expandDuration, ease: "easeInOut" },
+          },
         },
       }}
     >

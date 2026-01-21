@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { StateContext } from "@/context/StateContext";
@@ -16,6 +16,8 @@ import { scrollToHash } from "@/helpers/scrollToHash";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 const CalendarPage = ({ events }) => {
+  const calendarRef = useRef(null);
+
   const { setExpandedElement } = useContext(StateContext);
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
@@ -32,7 +34,7 @@ const CalendarPage = ({ events }) => {
         if (event.startDate) years.push(new Date(event.startDate).getFullYear());
         if (event.endDate) years.push(new Date(event.endDate).getFullYear());
         return years;
-      })
+      }),
     ),
   ].sort((a, b) => a - b);
 
@@ -95,7 +97,7 @@ const CalendarPage = ({ events }) => {
         setActiveYears={setActiveYears}
       />
 
-      <div className={styles.calendar}>
+      <div className={styles.calendar} ref={calendarRef}>
         {pinned && (
           <div className={styles.pinned} style={{ pointerEvents: "none" }}>
             <CurrentEvent event={pinned} />
@@ -105,7 +107,7 @@ const CalendarPage = ({ events }) => {
         <section>
           <ul className={styles.calendar_section}>
             <AnimatePresence>
-              <Accordeon array={current} size={"medium"} behavior="expand" />
+              <Accordeon array={current} size={"medium"} behavior="expand" calendarRef={calendarRef} />
             </AnimatePresence>
           </ul>
         </section>
@@ -113,7 +115,7 @@ const CalendarPage = ({ events }) => {
         <section>
           <h3>Archived</h3>
           <motion.ul className={styles.calendar_section}>
-            <Accordeon array={archived} size={"large"} behavior="expand" />
+            <Accordeon array={archived} size={"large"} behavior="expand" calendarRef={calendarRef} />
           </motion.ul>
         </section>
       </div>

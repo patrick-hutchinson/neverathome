@@ -195,6 +195,7 @@
     display: grid;
     grid-template-columns: repeat(24, 1fr);
     gap: var(--margin);
+    overflow: visible;
   }
   .mediaPair .description {
     grid-column: 4 / 12;
@@ -204,7 +205,9 @@
   }
   .description {
     position: sticky;
-    top: calc(var(--accordeon-header-height) + var(--margin));
+
+    top: calc(var(--accordeon-sticky-distance) + (var(--margin) * 2));
+    margin-top: calc(var(--margin) * 2);
     padding: 0;
   }
 }

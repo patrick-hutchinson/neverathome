@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 
 import { StateContext } from "@/context/StateContext";
 
@@ -10,7 +10,7 @@ import { useScrollToExpanded } from "./hooks/useScrollToExpand";
 
 useScrollToExpanded;
 
-const Accordeon = ({ array, size, invert, behavior }) => {
+const Accordeon = ({ array, size, invert, behavior, calendarRef }) => {
   const [imageInView, setImageInView] = useState(null);
 
   const refs = useRef({});
@@ -19,6 +19,7 @@ const Accordeon = ({ array, size, invert, behavior }) => {
   const handleExpand = (id) => {
     expandedElement === id ? setExpandedElement(null) : setExpandedElement(id);
   };
+
   return (
     <div className="accordeon">
       {array.map((item, index) => {

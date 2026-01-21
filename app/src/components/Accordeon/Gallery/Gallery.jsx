@@ -25,6 +25,7 @@ const Gallery = ({ event, setImageInView, className, containerRef }) => {
 const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }) => {
   const ref = useRef(null);
 
+  // Gallery intersection observer
   useEffect(() => {
     if (!ref.current) return;
 
@@ -37,7 +38,7 @@ const GalleryItem = ({ medium, index, setImageInView, containerRef, isExpanded }
       {
         root: containerRef.current, // 👈 THIS is the scroll container
         threshold: 0.5,
-      }
+      },
     );
 
     observer.observe(ref.current);

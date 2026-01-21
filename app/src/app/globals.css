@@ -9,6 +9,8 @@
   --filter-height: 80px;
   --accordeon-header-height: 40px;
 
+  /* The distance from the top of the screen to the point where the text should stick in the accordeon. */
+  --accordeon-sticky-distance: calc(var(--header-height) + var(--filter-height) + var(--accordeon-header-height));
   --gap: 2px;
   --border: 1.5px;
 

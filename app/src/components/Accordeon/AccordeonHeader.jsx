@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Media from "../Media";
 
@@ -13,6 +13,7 @@ import AccordeonCounter from "./AccordeonInfo/AccordeonCounter";
 import styles from "./Accordeon.module.css";
 
 import { lookUpAttributes } from "./lookUpAttributes";
+import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 const AccordeonHeader = ({ item, size, isExpanded, imageInView }) => {
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
@@ -30,8 +31,17 @@ const AccordeonHeader = ({ item, size, isExpanded, imageInView }) => {
 };
 
 const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }) => {
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
   return (
-    <div className={styles.accordeonHeader}>
+    <div
+      className={styles.accordeonHeader}
+      style={{
+        position: isExpanded ? "sticky" : "relative",
+        top: isExpanded ? header_height + filter_height : 0,
+        background: "inherit",
+        zIndex: 2,
+      }}
+    >
       <AccordeonType type={item.type} />
       <AccordeonDate date={item.startDate} />
       <Media objectFit="contain" className={styles.media} medium={item.thumbnail} />
@@ -45,8 +55,17 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
 };
 
 const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title, date, meta }) => {
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
   return (
-    <div className={styles.accordeonHeader}>
+    <div
+      className={styles.accordeonHeader}
+      style={{
+        position: isExpanded ? "sticky" : "relative",
+        top: isExpanded ? header_height + filter_height : 0,
+        background: "inherit",
+        zIndex: 2,
+      }}
+    >
       <AccordeonType type={meta} />
       <AccordeonDate date={date} />
       <AccordeonTitle title={title} />
