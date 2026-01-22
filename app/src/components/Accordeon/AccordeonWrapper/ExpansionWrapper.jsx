@@ -3,8 +3,8 @@ import { forwardRef, useContext, useEffect, useState } from "react";
 import { getColors } from "@/helpers/getColors";
 import { hoverColors } from "@/helpers/hoverColors";
 
-import { useScrollToExpanded } from "../hooks/useScrollToExpand";
-import { useLenisContext } from "@/context/LenisContext";
+// import { useScrollToExpanded } from "../hooks/useScrollToExpand";
+// import { useLenisContext } from "@/context/LenisContext";
 
 import { motion } from "framer-motion";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
@@ -13,7 +13,7 @@ import styles from "../Accordeon.module.css";
 import { usePathname } from "next/navigation";
 
 const ExpansionWrapper = forwardRef(
-  ({ index, children, isExpanded, item, handleExpand, colorPair, invert, setExpandedElement, isExpandable }, ref) => {
+  ({ index, children, isExpanded, item, handleExpand, colorPair, invert, isExpandable }, ref) => {
     const pathname = usePathname();
 
     const { header_height, filter_height } = useContext(GlobalVariablesContext);
@@ -22,23 +22,7 @@ const ExpansionWrapper = forwardRef(
     const isAbout = pathname === "/about";
     const distance = isAbout ? header_height : header_height + filter_height;
 
-    useScrollToExpanded({ isExpanded, ref, offset: distance });
-
-    const lenis = useLenisContext();
-
-    const closeAccordion = () => {
-      if (!ref.current || !lenis) return;
-
-      const top = ref.current.getBoundingClientRect().top + window.scrollY - header_height - filter_height;
-
-      lenis.scrollTo(top, {
-        duration: 0.6,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-        onComplete: () => {
-          setExpandedElement(null);
-        },
-      });
-    };
+    // useScrollToExpanded({ isExpanded, ref, offset: distance });
 
     return (
       <motion.div
@@ -54,11 +38,7 @@ const ExpansionWrapper = forwardRef(
         whileHover={isExpandable && hoverColors(colorPair)}
         onClick={() => {
           if (!isExpandable) return;
-          if (isExpanded) {
-            closeAccordion();
-          } else {
-            handleExpand(item._id);
-          }
+          handleExpand(item._id);
         }}
         data-index={index}
       >

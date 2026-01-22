@@ -6,12 +6,12 @@ import Gallery from "./Gallery/Gallery";
 import styles from "./Accordeon.module.css";
 import { usePathname } from "next/navigation";
 
-const AccordeonContent = ({ item, isExpanded, setImageInView, containerRef }) => {
+const AccordeonContent = ({ item, mode, setImageInView, containerRef }) => {
   const pathname = usePathname();
 
   const isAbout = pathname === "/about";
   return (
-    <Collapse isExpanded={isExpanded} id={item._id} containerRef={containerRef}>
+    <Collapse mode={mode} id={item._id} containerRef={containerRef}>
       <MediaPair className={styles.mediaPair}>
         <div className={`${styles.description} ${isAbout && styles.aboutPage}`}>
           <Text text={item.info} typo="h3" />

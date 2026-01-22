@@ -7,10 +7,16 @@ import AccordeonWrapper from "./AccordeonWrapper";
 import AccordeonHeader from "./AccordeonHeader";
 import { useColorPair } from "@/hooks/useColorPair";
 import { useLenisContext } from "@/context/LenisContext";
+import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const lenis = useLenisContext();
   const [imageInView, setImageInView] = useState(null);
+
+  const [activeId, setActiveId] = useState(null);
+  const [previousId, setPreviousId] = useState(null);
+
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   const refs = useRef({});
   const accordeonRef = useRef(null);
@@ -18,9 +24,40 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
   const handleExpand = (id) => {
-    console.log("handling!");
-    lenis.stop();
-    expandedElement === id ? setExpandedElement(null) : setExpandedElement(id);
+    if (id === activeId) return;
+
+    const prevId = activeId;
+    const prevEl = prevId ? refs.current[prevId]?.current : null;
+
+    setPreviousId(prevId);
+    // console.log("collapsing:", prevEl);
+
+    const nextEl = refs.current[id]?.current;
+    if (!nextEl) return;
+
+    // Now update state
+    setActiveId(id);
+
+    // Scroll to Active Element
+    const top = nextEl.getBoundingClientRect().top + window.scrollY - header_height - filter_height;
+    setTimeout(() => {
+      lenis.scrollTo(top, {
+        duration: 0.6,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+      });
+    }, 700);
+
+    // const prevEl = prevId ? refs.current[prevId]?.current : null;
+    console.log(prevEl?.getBoundingClientRect().height, "height");
+    setTimeout(() => {
+      if (!prevEl) return;
+      lenis.scrollTo(lenis.scroll - prevEl.getBoundingClientRect().height, {
+        duration: 0.4,
+        // easing: "easeInOut",
+      });
+    }, 2400);
+
+    // Collapse Previous Element
   };
 
   // expand the first element when it is in view
@@ -53,7 +90,8 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
     <div className="accordeon" ref={accordeonRef}>
       {array.map((item, index) => {
         let isExpandable = item.info || item.gallery;
-        let isExpanded = item._id === expandedElement;
+        const isExpanded = item._id === activeId;
+        const isCollapsing = item._id === previousId && previousId !== activeId;
 
         const colorPair = useColorPair(item);
 
@@ -79,7 +117,7 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
             {size === "large" && (
               <AccordeonContent
                 item={item}
-                isExpanded={isExpanded}
+                mode={isExpanded ? "expanding" : isCollapsing ? "collapsing" : "collapsed"}
                 containerRef={refs.current[item._id]}
                 setImageInView={setImageInView}
               />
