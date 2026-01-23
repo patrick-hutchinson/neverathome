@@ -30,16 +30,16 @@ const Collapse = ({ children, mode, id, onScroll }) => {
           maxHeight: 0,
           opacity: 0,
           transition: {
-            maxHeight: { duration: expandDuration, delay: 2, ease: "easeInOut" },
-            opacity: { duration: 0.4, delay: 2 },
+            maxHeight: { duration: expandDuration, delay: 0, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 0 },
           },
         },
         expanded: {
           maxHeight: height,
           opacity: 1,
           transition: {
-            maxHeight: { duration: expandDuration, delay: 0, ease: "easeInOut" },
-            opacity: { duration: 0.4, delay: expandDuration, ease: "easeInOut" },
+            maxHeight: { duration: expandDuration, delay: 2, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 2, ease: "easeInOut" },
           },
         },
       }}

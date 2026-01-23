@@ -39,8 +39,9 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
     setActiveId(id);
 
     // Scroll to Active Element
-    const top = nextEl.getBoundingClientRect().top + window.scrollY - header_height - filter_height;
+
     setTimeout(() => {
+      const top = nextEl.getBoundingClientRect().top + window.scrollY - header_height - filter_height;
       lenis.scrollTo(top, {
         duration: 0.6,
         easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -48,10 +49,10 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
     }, 700);
 
     // const prevEl = prevId ? refs.current[prevId]?.current : null;
-    console.log(prevEl?.getBoundingClientRect().height, "height");
+
     setTimeout(() => {
       if (!prevEl) return;
-      lenis.scrollTo(lenis.scroll - prevEl.getBoundingClientRect().height, {
+      lenis.scrollTo(lenis.scroll - prevEl.getBoundingClientRect().height + 40, {
         duration: 0.4,
         // easing: "easeInOut",
       });
