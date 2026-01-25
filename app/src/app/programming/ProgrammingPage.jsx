@@ -40,7 +40,12 @@ const ProgrammingPage = ({ page, site }) => {
           </Carousel>
         </section>
 
-        <section className={styles.residencies}>
+        <section>
+          <h3>Selected Events</h3>
+          <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
+        </section>
+
+        <section className={styles.residencies} style={{ marginBottom: "50px" }}>
           <MediaPair>
             <TextFigure item={page.residencies} />
             <Media medium={page.residencies.thumbnail} />
@@ -52,8 +57,9 @@ const ProgrammingPage = ({ page, site }) => {
           />
         </section>
 
+        {/* ⚠️ Hier Residencies Feld einfügen */}
         <section>
-          <h3>Selected Events</h3>
+          <h3>Selected Residencies</h3>
           <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
         </section>
 
