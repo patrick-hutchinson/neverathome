@@ -17,7 +17,7 @@ import Accordeon from "@/components/Accordeon/Accordeon";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import TextFigure from "@/components/TextFigure/TextFigure";
 
-const AboutPage = ({ contact, locations }) => {
+const AboutPage = ({ contact, locations, site }) => {
   const { isMobile } = useContext(StateContext);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const AboutPage = ({ contact, locations }) => {
           <input placeholder="Last Name" />
           <input placeholder="Description" />
           <input placeholder="Email" />
-          <a href="mailto:welcome@never-at-home.at">Get in Touch</a>
+          <a href={`mailto:${site.email}`}>Get in Touch</a>
         </h2>
       </section>
     </main>

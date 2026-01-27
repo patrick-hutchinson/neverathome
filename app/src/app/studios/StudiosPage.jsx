@@ -12,7 +12,7 @@ import Link from "next/link";
 import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
 import Accordeon from "@/components/Accordeon/Accordeon";
 
-const StudiosPage = ({ page }) => {
+const StudiosPage = ({ page, site }) => {
   return (
     <main>
       <CoverMedia media={page.gallery} />
@@ -45,7 +45,7 @@ const StudiosPage = ({ page }) => {
             <input placeholder="Last Name" />
             <input placeholder="Description" />
             <input placeholder="Email" />
-            <a href="mailto:welcome@never-at-home.at">Get in Touch</a>
+            <a href={`mailto:${site.email}`}>Get in Touch</a>
           </h2>
         </section>
       </div>
