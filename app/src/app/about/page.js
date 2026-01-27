@@ -1,6 +1,6 @@
 import AboutPage from "./AboutPage";
 
-import { getContact } from "@/lib/fetch";
+import { getContact, getSiteData } from "@/lib/fetch";
 import { getLocations } from "@/lib/fetch";
 
 const [site] = await Promise.all([getSiteData()]);
