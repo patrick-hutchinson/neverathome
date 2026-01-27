@@ -82,7 +82,7 @@ const AboutPage = ({ contact, locations }) => {
 
       <section>
         <h2 style={{ display: "flex", flexDirection: "column" }}>
-          Want to Drink a Coffee with us?
+          Be part of the community?
           <input placeholder="First Name" />
           <input placeholder="Last Name" />
           <input placeholder="Description" />

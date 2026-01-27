@@ -47,7 +47,7 @@ const WorkshopPage = ({ page, events, site }) => {
 
       <section>
         <h2 style={{ display: "flex", flexDirection: "column" }}>
-          Interested to host your own?
+          Interested to host your own workshop?
           <input placeholder="First Name" />
           <input placeholder="Last Name" />
           <input placeholder="Description" />

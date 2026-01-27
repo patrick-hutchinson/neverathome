@@ -26,16 +26,8 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const handleExpand = (id) => {
     // 🔽 CLICKING THE ACTIVE ITEM → COLLAPSE
     if (id === activeId) {
-      const currentEl = refs.current[id]?.current;
-
       setPreviousId(activeId);
       setActiveId(null);
-
-      // if (currentEl) {
-      //   setTimeout(() => {
-      //     lenis.scrollTo(lenis.scroll - currentEl.getBoundingClientRect().height + 40, { duration: 0.4 });
-      //   }, 300);
-      // }
 
       return;
     }

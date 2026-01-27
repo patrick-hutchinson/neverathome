@@ -65,7 +65,7 @@ const ProgrammingPage = ({ page, site }) => {
 
         <section>
           <h2 style={{ display: "flex", flexDirection: "column" }}>
-            Interested to host your own?
+            You wanna rent a space?
             <input placeholder="First Name" />
             <input placeholder="Last Name" />
             <input placeholder="Description" />
