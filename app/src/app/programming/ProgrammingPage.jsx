@@ -70,7 +70,7 @@ const ProgrammingPage = ({ page, site }) => {
             <input placeholder="Last Name" />
             <input placeholder="Description" />
             <input placeholder="Email" />
-            Get in Touch
+            <a href="mailto:welcome@never-at-home.at">Get in Touch</a>
           </h2>
         </section>
       </div>

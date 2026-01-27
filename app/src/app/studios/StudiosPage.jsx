@@ -40,12 +40,12 @@ const StudiosPage = ({ page }) => {
 
         <section>
           <h2 style={{ display: "flex", flexDirection: "column" }}>
-            Interested to be part of the family?
+            Interested to rent your own studio?
             <input placeholder="First Name" />
             <input placeholder="Last Name" />
             <input placeholder="Description" />
             <input placeholder="Email" />
-            Get in Touch
+            <a href="mailto:welcome@never-at-home.at">Get in Touch</a>
           </h2>
         </section>
       </div>
