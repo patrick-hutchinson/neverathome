@@ -54,6 +54,7 @@ ul.links {
 .text {
   margin-top: calc(var(--margin) / 3);
   padding-right: var(--margin);
+  padding-bottom: 2px;
 }
 
 /* iPads and other Tablets */

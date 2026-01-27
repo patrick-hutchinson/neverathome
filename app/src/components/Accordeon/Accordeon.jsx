@@ -24,41 +24,46 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
   const handleExpand = (id) => {
-    if (id === activeId) return;
+    // 🔽 CLICKING THE ACTIVE ITEM → COLLAPSE
+    if (id === activeId) {
+      const currentEl = refs.current[id]?.current;
 
+      setPreviousId(activeId);
+      setActiveId(null);
+
+      // if (currentEl) {
+      //   setTimeout(() => {
+      //     lenis.scrollTo(lenis.scroll - currentEl.getBoundingClientRect().height + 40, { duration: 0.4 });
+      //   }, 300);
+      // }
+
+      return;
+    }
+
+    // 🔼 OPENING A NEW ITEM
     const prevId = activeId;
     const prevEl = prevId ? refs.current[prevId]?.current : null;
 
     setPreviousId(prevId);
-    // console.log("collapsing:", prevEl);
+    setActiveId(id);
 
     const nextEl = refs.current[id]?.current;
     if (!nextEl) return;
 
-    // Now update state
-    setActiveId(id);
-
-    // Scroll to Active Element
-
     setTimeout(() => {
       const top = nextEl.getBoundingClientRect().top + window.scrollY - header_height - filter_height;
+
       lenis.scrollTo(top, {
         duration: 0.6,
         easing: (t) => 1 - Math.pow(1 - t, 3),
       });
     }, 700);
 
-    // const prevEl = prevId ? refs.current[prevId]?.current : null;
-
     setTimeout(() => {
       if (!prevEl) return;
-      lenis.scrollTo(lenis.scroll - prevEl.getBoundingClientRect().height + 40, {
-        duration: 0.4,
-        // easing: "easeInOut",
-      });
-    }, 2400);
 
-    // Collapse Previous Element
+      lenis.scrollTo(lenis.scroll - prevEl.getBoundingClientRect().height + 40, { duration: 0.4 });
+    }, 2400);
   };
 
   // expand the first element when it is in view

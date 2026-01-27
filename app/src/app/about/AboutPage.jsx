@@ -70,7 +70,7 @@ const AboutPage = ({ contact, locations }) => {
 
           <hr style={{ border: "0.2px solid #fff" }} />
 
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", opacity: 0.4 }}>
             <Carousel speed={1} direction="backward">
               {repeatArray(temporaryStaff).map((item, index) => (
                 <ContactCard key={index} item={item} index={index} typo="h4" />
