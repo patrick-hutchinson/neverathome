@@ -58,10 +58,12 @@ const ProgrammingPage = ({ page, site }) => {
         </section>
 
         {/* ⚠️ Hier Residencies Feld einfügen */}
-        <section>
-          <h3>Selected Residencies</h3>
-          <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
-        </section>
+        {page.selectedResidencies && (
+          <section>
+            <h3>Selected Residencies</h3>
+            <Accordeon array={page.selectedResidencies} size="medium" behavior="navigate" invert={true} />
+          </section>
+        )}
 
         <section>
           <h2 style={{ display: "flex", flexDirection: "column" }}>

@@ -182,6 +182,19 @@ export const eventsQuery = `*[_type=="events"][0]{
     ${galleryFragment},
     slug
   },
+  selectedResidencies[]->{
+    _id,
+    "type": type->title,
+    "dataType": "event",
+    startDate,
+    endDate,
+    title,
+    "colorPair": colorPair[0]->{_id, text, background},
+    city,
+    location,
+    ${galleryFragment},
+    slug
+  },
   highlights[]->{
     _id,
     title,
