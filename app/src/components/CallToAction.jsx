@@ -22,7 +22,7 @@ export default function CallToAction({ site, prompt }) {
 
   // updateFormData on change
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
