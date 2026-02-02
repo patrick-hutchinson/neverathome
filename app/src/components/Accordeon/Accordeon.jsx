@@ -13,7 +13,7 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const lenis = useLenisContext();
   const [imageInView, setImageInView] = useState(null);
 
-  const [activeId, setActiveId] = useState(null);
+  // const [activeId, setActiveId] = useState(null);
   const [previousId, setPreviousId] = useState(null);
 
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
@@ -24,20 +24,21 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
   const handleExpand = (id) => {
+    console.log(id, "id");
     // 🔽 CLICKING THE ACTIVE ITEM → COLLAPSE
-    if (id === activeId) {
-      setPreviousId(activeId);
-      setActiveId(null);
+    if (id === expandedElement) {
+      setPreviousId(expandedElement);
+      setExpandedElement(null);
 
       return;
     }
 
     // 🔼 OPENING A NEW ITEM
-    const prevId = activeId;
+    const prevId = expandedElement;
     const prevEl = prevId ? refs.current[prevId]?.current : null;
 
     setPreviousId(prevId);
-    setActiveId(id);
+    setExpandedElement(id);
 
     const nextEl = refs.current[id]?.current;
     if (!nextEl) return;
@@ -88,8 +89,8 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
     <div className="accordeon" ref={accordeonRef}>
       {array.map((item, index) => {
         let isExpandable = item.info || item.gallery;
-        const isExpanded = item._id === activeId;
-        const isCollapsing = item._id === previousId && previousId !== activeId;
+        const isExpanded = item._id === expandedElement;
+        const isCollapsing = item._id === previousId && previousId !== expandedElement;
 
         const colorPair = useColorPair(item);
 

@@ -77,6 +77,8 @@ const CalendarPage = ({ events }) => {
 
     const activeEvent = events.find((event) => event.slug.current === cleanHash);
 
+    console.log(activeEvent, "active element");
+
     if (activeEvent) setExpandedElement(activeEvent._id);
 
     scrollToHash(-1 * (filter_height + header_height));

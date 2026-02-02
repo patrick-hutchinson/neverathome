@@ -57,7 +57,6 @@ const ProgrammingPage = ({ page, site }) => {
           />
         </section>
 
-        {/* ⚠️ Hier Residencies Feld einfügen */}
         {page.selectedResidencies && (
           <section>
             <h3>Selected Residencies</h3>
