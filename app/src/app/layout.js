@@ -16,9 +16,6 @@ import { ViewTransitions } from "next-view-transitions";
 
 import LenisProvider from "@/context/LenisContext";
 
-const [site] = await Promise.all([getSiteData()]);
-const [colorPairs] = await Promise.all([getColorPairs()]);
-
 export const metadata = {
   title: `${site.title}`,
   description: `${site.description}`,
@@ -35,7 +32,10 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({ children, invert = false }) {
+export default async function RootLayout({ children, invert = false }) {
+  const [site] = await Promise.all([getSiteData()]);
+  const [colorPairs] = await Promise.all([getColorPairs()]);
+
   return (
     <ViewTransitions>
       <html lang="en">
