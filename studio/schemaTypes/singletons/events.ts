@@ -4,7 +4,7 @@ import {gallery} from '../types/gallery'
 
 export const events = defineType({
   name: 'events',
-  title: 'Events',
+  title: 'Programming',
   type: 'document',
   fields: [
     gallery,
@@ -36,6 +36,13 @@ export const events = defineType({
         {name: 'thumbnail', title: 'Image', type: 'thumbnail'},
         {name: 'text', title: 'Text', type: 'string'},
       ],
+    }),
+    defineField({
+      name: 'selectedResidencies',
+      title: 'Selected Residencies',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'event'}]}],
+      validation: (Rule) => Rule.unique().error('You already selected this event'),
     }),
   ],
   preview: {

@@ -45,7 +45,7 @@ const ProgrammingPage = ({ page, site }) => {
           <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
         </section>
 
-        <section className={styles.residencies} style={{ marginBottom: "50px" }}>
+        <section className={styles.residencies}>
           <MediaPair>
             <TextFigure item={page.residencies} />
             <Media medium={page.residencies.thumbnail} />
