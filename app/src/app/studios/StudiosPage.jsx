@@ -22,7 +22,7 @@ const StudiosPage = ({ page, site }) => {
           <Text text={page.description} typo="h2" />
         </div>
         <section className={styles.features}>
-          <h3>Extra Facilities</h3>
+          <h3>Selected Artist Studios</h3>
 
           {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
             <MediaPair key={index}>
