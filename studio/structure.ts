@@ -35,7 +35,7 @@ export const structure: StructureResolver = (S, context) =>
                 .title('About Page')
                 .child(S.document().schemaType('contact').documentId('contact')),
               S.listItem()
-                .title('Events Page')
+                .title('Programming Page')
                 .child(S.document().schemaType('events').documentId('events')),
               S.listItem()
                 .title('Workshops Page')
