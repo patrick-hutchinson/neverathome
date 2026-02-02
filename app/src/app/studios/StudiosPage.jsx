@@ -34,7 +34,7 @@ const StudiosPage = ({ page, site }) => {
         </section>
 
         <section>
-          <h3>Selected Events</h3>
+          <h3>Studio Tours</h3>
           <Accordeon array={page.events} behavior="navigate" invert={true} size="medium" />
         </section>
 

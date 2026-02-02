@@ -8,6 +8,8 @@ const isLocal = !process.env.VERCEL_ENV;
 export const getSanityClient = () => {
   if (isProduction) return production;
   if (isPreview || isLocal) return preview;
+
+  return preview;
 };
 
 const client = getSanityClient();
