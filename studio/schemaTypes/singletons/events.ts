@@ -43,6 +43,7 @@ export const events = defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'event'}]}],
       validation: (Rule) => Rule.unique().error('You already selected this event'),
+      description: 'Hier beliebige Residencies aus der Events Kategorie verknüpfen.',
     }),
   ],
   preview: {
