@@ -1,13 +1,14 @@
 "use client";
 
-import Text from "@/components/Text";
-
-import styles from "./WorkshopPage.module.css";
-
-import Carousel from "@/components/Carousel/Carousel";
 import { repeatArray } from "@/helpers/repeatArray";
+
+import Text from "@/components/Text";
+import Carousel from "@/components/Carousel/Carousel";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import Accordeon from "@/components/Accordeon/Accordeon";
+import CallToAction from "@/components/CallToAction";
+
+import styles from "./WorkshopPage.module.css";
 
 const WorkshopPage = ({ page, events, site }) => {
   const workshops = events.filter((event) => event.type === "Workshop");
@@ -46,14 +47,7 @@ const WorkshopPage = ({ page, events, site }) => {
       </section>
 
       <section>
-        <h2 style={{ display: "flex", flexDirection: "column" }}>
-          Interested to host your own workshop?
-          <input placeholder="First Name" />
-          <input placeholder="Last Name" />
-          <input placeholder="Description" />
-          <input placeholder="Email" />
-          <a href={`mailto:${site.email}`}>Get in Touch</a>
-        </h2>
+        <CallToAction site={site} prompt={"Interested to Host your own Workshop?"} />
       </section>
     </main>
   );

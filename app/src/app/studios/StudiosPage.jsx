@@ -3,14 +3,11 @@
 import Text from "@/components/Text";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
+import CoverMedia from "@/components/CoverMedia";
+import Accordeon from "@/components/Accordeon/Accordeon";
+import CallToAction from "@/components/CallToAction";
 
 import styles from "./StudiosPage.module.css";
-
-import CoverMedia from "@/components/CoverMedia";
-
-import Link from "next/link";
-import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
-import Accordeon from "@/components/Accordeon/Accordeon";
 
 const StudiosPage = ({ page, site }) => {
   return (
@@ -39,14 +36,7 @@ const StudiosPage = ({ page, site }) => {
         </section>
 
         <section>
-          <h2 style={{ display: "flex", flexDirection: "column" }}>
-            Interested to rent your own studio?
-            <input placeholder="First Name" />
-            <input placeholder="Last Name" />
-            <input placeholder="Description" />
-            <input placeholder="Email" />
-            <a href={`mailto:${site.email}`}>Get in Touch</a>
-          </h2>
+          <CallToAction site={site} prompt={"Interested to rent your own studio?"} />
         </section>
       </div>
     </main>

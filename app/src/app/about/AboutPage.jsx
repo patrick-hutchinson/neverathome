@@ -1,21 +1,18 @@
 "use client";
 
-import Media from "@/components/Media";
-import Text from "@/components/Text";
-
-import styles from "./AboutPage.module.css";
-import Carousel from "@/components/Carousel/Carousel";
-import { repeatArray } from "@/helpers/repeatArray";
-
-import ContactCard from "@/components/ContactCard/ContactCard";
 import { useState, useEffect, useRef, useContext } from "react";
-
+import { repeatArray } from "@/helpers/repeatArray";
 import { StateContext } from "@/context/StateContext";
 
+import Media from "@/components/Media";
+import Text from "@/components/Text";
+import styles from "./AboutPage.module.css";
+import Carousel from "@/components/Carousel/Carousel";
+import ContactCard from "@/components/ContactCard/ContactCard";
 import Accordeon from "@/components/Accordeon/Accordeon";
-
 import MediaPair from "@/components/MediaPair/MediaPair";
 import TextFigure from "@/components/TextFigure/TextFigure";
+import CallToAction from "@/components/CallToAction";
 
 const AboutPage = ({ contact, locations, site }) => {
   const { isMobile } = useContext(StateContext);
@@ -81,14 +78,7 @@ const AboutPage = ({ contact, locations, site }) => {
       </section>
 
       <section>
-        <h2 style={{ display: "flex", flexDirection: "column" }}>
-          Be part of the community?
-          <input placeholder="First Name" />
-          <input placeholder="Last Name" />
-          <input placeholder="Description" />
-          <input placeholder="Email" />
-          <a href={`mailto:${site.email}`}>Get in Touch</a>
-        </h2>
+        <CallToAction site={site} prompt={"Be Part of the Community?"} />
       </section>
     </main>
   );

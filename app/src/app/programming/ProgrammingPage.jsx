@@ -1,23 +1,18 @@
 "use client";
 
-import Media from "@/components/Media";
-import Text from "@/components/Text";
-import AccordeonHeader from "@/components/Accordeon/AccordeonHeader";
-
-import Carousel from "@/components/Carousel/Carousel";
-
-import MediaPair from "@/components/MediaPair/MediaPair";
-import TextFigure from "@/components/TextFigure/TextFigure";
-
-import styles from "./ProgrammingPage.module.css";
-import CoverMedia from "@/components/CoverMedia";
-
 import { repeatArray } from "@/helpers/repeatArray";
 
-import Link from "next/link";
+import Media from "@/components/Media";
+import Text from "@/components/Text";
+import Carousel from "@/components/Carousel/Carousel";
+import MediaPair from "@/components/MediaPair/MediaPair";
+import TextFigure from "@/components/TextFigure/TextFigure";
+import styles from "./ProgrammingPage.module.css";
+import CoverMedia from "@/components/CoverMedia";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
 import Accordeon from "@/components/Accordeon/Accordeon";
+import CallToAction from "@/components/CallToAction";
 
 const ProgrammingPage = ({ page, site }) => {
   return (
@@ -65,14 +60,7 @@ const ProgrammingPage = ({ page, site }) => {
         )}
 
         <section>
-          <h2 style={{ display: "flex", flexDirection: "column" }}>
-            You wanna rent a space?
-            <input placeholder="First Name" />
-            <input placeholder="Last Name" />
-            <input placeholder="Description" />
-            <input placeholder="Email" />
-            <a href={`mailto:${site.email}`}>Get in Touch</a>
-          </h2>
+          <CallToAction site={site} prompt={"You wanna rent a space?"} />
         </section>
       </div>
     </main>
