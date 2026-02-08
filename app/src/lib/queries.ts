@@ -3,7 +3,21 @@ import { galleryFragment } from "./fragments";
 
 export const siteQuery = `*[_type=="site"][0]{
   title,
-  description,
+  description[]{
+    _key,
+    _type,
+    value[]{
+      ...,
+      markDefs[]{
+        ...,
+        _type == "speaker" => {
+          "speaker": ref->_id,
+          "name": ref->name,
+          "initials": ref->initials
+        }
+      }
+    }
+  },
   address,
   openingHours,
   googleMaps,
@@ -16,6 +30,27 @@ export const siteQuery = `*[_type=="site"][0]{
   linktree[]{
     platform,
     link
+  },
+  presskitLink,
+  mediaarchiveLink,
+  workshopSpaceFile{
+    asset->{
+      _id,
+      url,
+      originalFilename
+    },
+  },
+  footerLogosFixed[]{
+    asset->{
+      _id,
+      url,
+    }
+  },
+  footerLogosInterchangeable[]{
+    asset->{
+      _id,
+      url,
+    }
   },
   supporters
 }`;
@@ -53,6 +88,11 @@ export const homeQuery = `*[_type=="home"][0]{
     description,
     subtitle,
     links,
+    link {
+      ...,
+      internalLink->{_type,slug,title}
+    },
+    headerLabel,
     "tag": tag->title,
     ${thumbnailFragment},
     imageIsSmall
@@ -61,6 +101,11 @@ export const homeQuery = `*[_type=="home"][0]{
     title,
     description,
     subtitle,
+    headerLabel,
+    link {
+      ...,
+      internalLink->{_type,slug,title}
+    },
     links,
     "colorPair": colorPair[0]->{_id, text, background},
     "type": type->title,
@@ -96,6 +141,12 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
   features[]->{
     "colorPair": colorPair[0]->{_id, text, background},
     title,
+    headerLabel,
+      link {
+      ...,
+      internalLink->{_type,slug,title},
+      externalLink
+    },
     description,
     subtitle,
     links,
@@ -195,6 +246,21 @@ export const eventsQuery = `*[_type=="events"][0]{
     ${galleryFragment},
     slug
   },
+  features[]->{
+    title,
+    description,
+    subtitle,
+    headerLabel,
+    link {
+      ...,
+      internalLink->{_type,slug,title}
+    },
+    useHoverEffect,
+    links,
+    "colorPair": colorPair[0]->{_id, text, background},
+    "type": type->title,
+    ${thumbnailFragment}
+  },
   highlights[]->{
     _id,
     title,
@@ -233,6 +299,7 @@ export const locationQuery = `*[_type=="location"]{
 
 export const eventQuery = `*[_type=="event"]{
   _id,
+  _type,
   "dataType": "event",
   title,
   pinned,
@@ -257,7 +324,12 @@ export const highlightQuery = `*[_type=="highlight"]{
   endDate,
   description,
   subtitle,
-  links,
+  // links,
+  link {
+    ...,
+    internalLink->{_type,slug,title}
+  },
+  headerLabel,
   "tag": tag->title,
   ${thumbnailFragment},
   imageIsSmall
@@ -267,6 +339,11 @@ export const featureQuery = `*[_type=="feature"]{
   title,
   description,
   subtitle,
+  headerLabel,
+  link {
+    ...,
+    internalLink->{_type,slug,title}
+  },
   "colorPair": colorPair[0]->{_id, text, background},
   links,
   "type": type->title,

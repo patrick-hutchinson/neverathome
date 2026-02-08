@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import Link from "next/link";
+import AnimationLink from "../Animation/AnimationLink";
 
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
@@ -34,45 +34,41 @@ const MobileMenu = () => {
             key="menu"
             className={styles.menu}
           >
-            <ul className={styles.mobileMenu} typo="h1">
+            <ul typo="h1" className={styles.mobileMenu}>
               <li>
-                <Link href="/about" className={isActive("/about") ? styles.active : undefined}>
+                <AnimationLink path="/about" className={isActive("/about") ? styles.active : undefined}>
                   About
-                </Link>
-              </li>
-
-              <li className={styles.not_allowed}>
-                <Link href="/studios" className={isActive("/studios") ? styles.active : undefined}>
-                  Studios
-                </Link>
-              </li>
-
-              <li className={styles.not_allowed}>
-                <Link href="/workshops" className={isActive("/workshops") ? styles.active : undefined}>
-                  Workshops
-                </Link>
-              </li>
-
-              <li className={styles.not_allowed}>
-                <Link href="/programming" className={isActive("/programming") ? styles.active : undefined}>
-                  Program
-                </Link>
+                </AnimationLink>
               </li>
 
               <li>
-                <Link href="/artists" className={isActive("/artists") ? styles.active : undefined}>
+                <AnimationLink path="/studios" className={isActive("/studios") ? styles.active : undefined}>
+                  Studios
+                </AnimationLink>
+              </li>
+
+              <li>
+                <AnimationLink path="/workshops" className={isActive("/workshops") ? styles.active : undefined}>
+                  Workshops
+                </AnimationLink>
+              </li>
+
+              <li>
+                <AnimationLink path="/programming" className={isActive("/programming") ? styles.active : undefined}>
+                  Programming
+                </AnimationLink>
+              </li>
+
+              <li>
+                <AnimationLink path="/artists" className={isActive("/artists") ? styles.active : undefined}>
                   Artists
-                </Link>
+                </AnimationLink>
               </li>
-              <li className={styles.not_allowed}>
-                <Link href="/locations" className={isActive("/locations") ? styles.active : undefined}>
-                  Locations
-                </Link>
-              </li>
+
               <li style={{ cursor: "pointer" }}>
-                <Link href="/calendar" className={isActive("/calendar") ? styles.active : undefined}>
+                <AnimationLink path="/calendar" className={isActive("/calendar") ? styles.active : undefined}>
                   Calendar
-                </Link>
+                </AnimationLink>
               </li>
             </ul>
           </motion.div>

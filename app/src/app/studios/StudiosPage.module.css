@@ -8,3 +8,12 @@
 .features > div {
   margin-bottom: 100px;
 }
+
+.introduction a {
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+
+.introduction a:hover {
+  opacity: 1;
+}

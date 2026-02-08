@@ -5,6 +5,7 @@ export const imprint = defineType({
   title: 'Imprint',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     defineField({
       name: 'imprint',
       title: 'Imprint',

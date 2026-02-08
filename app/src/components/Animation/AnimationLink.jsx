@@ -1,7 +1,29 @@
 import { useTransitionRouter } from "next-view-transitions";
 
-const AnimationLink = ({ children, path, external, className }) => {
+const AnimationLink = ({ path, link, children, className }) => {
   const router = useTransitionRouter();
+
+  if (!path && link && !link.url && !link.email && !link.internalLink) return <>{children}</>;
+
+  let isInternal;
+  let isExternal;
+  let href = path;
+
+  if (link) {
+    isInternal = link.type === "internal";
+    isExternal = link.type === "external";
+
+    href =
+      link.type === "internal"
+        ? `/${link.internalLink.slug.current}`
+        : link.type === "external"
+          ? link.url
+          : link.type === "email"
+            ? `mailto:${link.email}`
+            : "#";
+  }
+
+  if (!href) return <>{children}</>;
 
   const pageAnimation = () => {
     document.documentElement.animate([{ opacity: 1 }, { opacity: 0 }], {
@@ -19,17 +41,22 @@ const AnimationLink = ({ children, path, external, className }) => {
     });
   };
 
+  const handleClick = (e) => {
+    // if (!isInternal) return;
+
+    e.preventDefault();
+    router.push(href, {
+      onTransitionReady: pageAnimation,
+    });
+  };
+
   return (
     <a
+      href={href}
       className={className}
-      onClick={(e) => {
-        e.preventDefault();
-        router.push(path, {
-          onTransitionReady: pageAnimation,
-        });
-      }}
-      href={path}
-      target={external ? "_blank" : ""}
+      onClick={handleClick}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
     >
       {children}
     </a>

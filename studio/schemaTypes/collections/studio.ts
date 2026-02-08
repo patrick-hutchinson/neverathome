@@ -8,7 +8,7 @@ export const studio = defineType({
 
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string'}),
-    defineField({name: 'description', title: 'Description', type: 'array', of: [{type: 'block'}]}),
+    defineField({name: 'description', title: 'Description', type: 'portableText'}),
     defineField({
       name: 'thumbnail',
       title: 'Thumbnail',

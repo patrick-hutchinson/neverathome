@@ -7,6 +7,7 @@ export const events = defineType({
   title: 'Programming',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     gallery,
     defineField({
       name: 'description',
@@ -29,6 +30,13 @@ export const events = defineType({
       validation: (Rule) => Rule.unique().error('You already selected this event'),
     }),
     defineField({
+      name: 'features',
+      title: 'Selected Features: Für das Residency Modul',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'feature'}]}],
+      // validation: (Rule) => Rule.unique().error('You already selected this feature'),
+    }),
+    defineField({
       name: 'residencies',
       title: 'Residencies',
       type: 'object',
@@ -47,6 +55,6 @@ export const events = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({title: 'Event Page'}),
+    prepare: () => ({title: 'Programming Page'}),
   },
 })

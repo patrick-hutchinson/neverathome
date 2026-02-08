@@ -5,7 +5,7 @@ import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 import CoverMedia from "@/components/CoverMedia";
 import Accordeon from "@/components/Accordeon/Accordeon";
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/CallToAction/CallToAction";
 
 import styles from "./StudiosPage.module.css";
 
@@ -16,7 +16,7 @@ const StudiosPage = ({ page, site }) => {
 
       <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
         <div style={{ marginBottom: "250px" }}>
-          <Text text={page.description} typo="h2" />
+          <Text className={styles.introduction} text={page.description} typo="h2" />
         </div>
         <section className={styles.features}>
           <h3>Selected Artist Studios</h3>
@@ -31,7 +31,7 @@ const StudiosPage = ({ page, site }) => {
         </section>
 
         <section>
-          <h3>Studio Tours</h3>
+          <h3>Public Studio Tours</h3>
           <Accordeon array={page.events} behavior="navigate" invert={true} size="medium" />
         </section>
 

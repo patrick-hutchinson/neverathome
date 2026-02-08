@@ -24,7 +24,6 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
   const handleExpand = (id) => {
-    console.log(id, "id");
     // 🔽 CLICKING THE ACTIVE ITEM → COLLAPSE
     if (id === expandedElement) {
       setPreviousId(expandedElement);

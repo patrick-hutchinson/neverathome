@@ -10,7 +10,7 @@ export const lookUpAttributes = (item) => {
       return {
         title: item?.title,
         date: item?.moveInDate,
-        meta: item?.currentLocation ? "Currently here!" : "Moved Out",
+        meta: item?.currentLocation ? "Currently at" : "Moved Out",
       };
   }
 };

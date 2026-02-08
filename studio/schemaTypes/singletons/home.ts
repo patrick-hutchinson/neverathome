@@ -5,6 +5,7 @@ export const home = defineType({
   title: 'Home',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     defineField({
       name: 'images',
       title: 'Opening Images',

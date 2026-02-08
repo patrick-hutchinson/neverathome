@@ -12,7 +12,8 @@ import CoverMedia from "@/components/CoverMedia";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
 import Accordeon from "@/components/Accordeon/Accordeon";
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/CallToAction/CallToAction";
+import Figure from "@/components/Figure/Figure";
 
 const ProgrammingPage = ({ page, site }) => {
   return (
@@ -40,16 +41,20 @@ const ProgrammingPage = ({ page, site }) => {
           <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
         </section>
 
-        <section className={styles.residencies}>
+        {/* <section className={styles.residencies}>
           <MediaPair>
             <TextFigure item={page.residencies} />
             <Media medium={page.residencies.thumbnail} />
           </MediaPair>
-          <TextMarquee
-            text="We host binaual residency programs, lending our space to creatives with a vision to create and a need for reseources."
-            typo="h3"
-            duration={30}
-          />
+        </section> */}
+
+        <section>
+          {/* <h3>Our Residencies</h3> */}
+          <MediaPair>
+            {page.features.map((item, index) => (
+              <Figure key={index} item={item} />
+            ))}
+          </MediaPair>
         </section>
 
         {page.selectedResidencies && (
@@ -60,7 +65,7 @@ const ProgrammingPage = ({ page, site }) => {
         )}
 
         <section>
-          <CallToAction site={site} prompt={"You wanna rent a space?"} />
+          <CallToAction site={site} prompt={"Any Questions?"} />
         </section>
       </div>
     </main>

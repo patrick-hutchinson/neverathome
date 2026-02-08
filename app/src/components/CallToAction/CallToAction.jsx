@@ -1,7 +1,7 @@
 import React from "react";
+import styles from "./CallToAction.module.css";
 
 export default function CallToAction({ site, prompt }) {
-  console.log(site.email);
   // Compose Email on Button Click
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,16 +30,10 @@ export default function CallToAction({ site, prompt }) {
   };
 
   return (
-    <form className="commissioninfo-wrapper" onSubmit={handleSubmit} typo="h2">
+    <form className={`commissioninfo-wrapper ${styles.callToAction}`} onSubmit={handleSubmit} typo="h2">
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div>{prompt}</div>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
+        <div className={styles.prompt}>{prompt}</div>
+        <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
         <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
         <input type="text" name="subject" placeholder="Subject" value={formData.subject} onChange={handleChange} />
         <input
@@ -51,7 +45,7 @@ export default function CallToAction({ site, prompt }) {
         />
       </div>
 
-      <div className="submission-wrapper">
+      <div className={`submission-wrapper ${styles.submitButton}`}>
         <button className="submitButton customButton" type="submit">
           Get In Touch
         </button>

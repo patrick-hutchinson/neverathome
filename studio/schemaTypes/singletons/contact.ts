@@ -5,6 +5,7 @@ export const contact = defineType({
   title: 'About',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     defineField({
       name: 'bio',
       title: 'Bio',

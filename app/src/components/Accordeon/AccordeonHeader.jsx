@@ -6,9 +6,10 @@ import AccordeonTitle from "./AccordeonInfo/AccordeonTitle";
 import AccordeonLink from "./AccordeonInfo/AccordeonLink";
 import AccordeonDate from "./AccordeonInfo/AccordeonDate";
 import AccordeonType from "./AccordeonInfo/AccordeonType";
-import AccordeonExpand from "./AccordeonInfo/AccordeonExpand";
+import AccordeonExpand from "../Icons/ExpandIcon";
 import AccordeonDescription from "./AccordeonInfo/AccordeonDescription";
 import AccordeonCounter from "./AccordeonInfo/AccordeonCounter";
+import ShareEvent from "@/components/Icons/ShareIcon";
 
 import styles from "./Accordeon.module.css";
 
@@ -33,6 +34,8 @@ const AccordeonHeader = ({ item, size, isExpanded, imageInView }) => {
 
 const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }) => {
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
+  const isEvent = item._type === "event";
   return (
     <div
       className={styles.accordeonHeader}
@@ -50,7 +53,10 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
       <AccordeonDescription event={item} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
       <AccordeonLink event={item} />
 
-      <AccordeonExpand isExpandable={isExpandable} isExpanded={isExpanded} />
+      <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
+        {isEvent && <ShareEvent url={`/calendar#${item.slug.current}`} />}
+        <AccordeonExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} />
+      </div>
     </div>
   );
 };
@@ -63,6 +69,8 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   const distance = isAbout ? header_height : header_height + filter_height;
+
+  const isEvent = item._type === "event";
   return (
     <div
       className={styles.accordeonHeader}
@@ -78,7 +86,10 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title
       <AccordeonTitle title={title} />
       <AccordeonCounter item={item} imageInView={imageInView} isExpanded={isExpanded} />
 
-      <AccordeonExpand isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
+      <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
+        {isEvent && <ShareEvent url={`/calendar#${item.slug.current}`} />}
+        <AccordeonExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
+      </div>
     </div>
   );
 };

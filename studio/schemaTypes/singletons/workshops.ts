@@ -5,6 +5,7 @@ export const workshops = defineType({
   title: 'Workshops',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     defineField({
       name: 'description',
       title: 'Description',

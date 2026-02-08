@@ -35,15 +35,15 @@ const HomePage = ({ data }) => {
       </section>
 
       <section>
-        <h3>Selected Events</h3>
+        <h3>Current Events</h3>
         <Accordeon array={data.events} size="medium" behavior="navigate" />
       </section>
 
       <section>
         <h3>Features</h3>
         <MediaPair>
-          {data.features.map((feature, index) => (
-            <Figure key={index} item={feature} />
+          {data.features.map((item, index) => (
+            <Figure key={index} item={item} />
           ))}
         </MediaPair>
       </section>

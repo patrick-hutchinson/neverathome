@@ -1,0 +1,22 @@
+.icon,
+.icon * {
+  fill: inherit;
+  height: 10px;
+  width: auto;
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+  .icon {
+    height: 11px;
+    width: auto;
+  }
+}

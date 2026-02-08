@@ -12,7 +12,7 @@ import ContactCard from "@/components/ContactCard/ContactCard";
 import Accordeon from "@/components/Accordeon/Accordeon";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import TextFigure from "@/components/TextFigure/TextFigure";
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/CallToAction/CallToAction";
 
 const AboutPage = ({ contact, locations, site }) => {
   const { isMobile } = useContext(StateContext);
@@ -57,6 +57,7 @@ const AboutPage = ({ contact, locations, site }) => {
 
       <section>
         <div style={{ display: "flex", flexDirection: "column", gap: "var(--margin)", marginTop: "50px" }}>
+          <h4>CORE TEAM</h4>
           <div style={{ display: "flex", alignItems: "flex-end" }}>
             <Carousel speed={0.5}>
               {repeatArray(permanentStaff).map((item, index) => (
@@ -67,6 +68,7 @@ const AboutPage = ({ contact, locations, site }) => {
 
           <hr style={{ border: "0.2px solid #fff" }} />
 
+          <h4>PROJECT BASED</h4>
           <div style={{ display: "flex", alignItems: "flex-start", opacity: 0.4 }}>
             <Carousel speed={1} direction="backward">
               {repeatArray(temporaryStaff).map((item, index) => (
@@ -78,7 +80,7 @@ const AboutPage = ({ contact, locations, site }) => {
       </section>
 
       <section>
-        <CallToAction site={site} prompt={"Be Part of the Community?"} />
+        <CallToAction site={site} prompt={"Any Questions?"} />
       </section>
     </main>
   );

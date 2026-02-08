@@ -19,6 +19,8 @@ import {studio} from './collections/studio'
 
 // Definitions
 import {eventType} from './definitions/eventType'
+import {pageType} from './definitions/page'
+import {portableText} from './components/portableText'
 
 // Object types
 import {thumbnail} from './types/thumbnail'
@@ -31,6 +33,7 @@ import {highlightType} from './definitions/highlightType'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
+    pageType,
     thumbnail,
     event,
     site,
@@ -43,6 +46,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     colorPair,
     location,
     events,
+    portableText,
 
     artist,
     workshops,

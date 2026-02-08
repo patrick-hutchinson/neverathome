@@ -3,7 +3,7 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { StateContext } from "@/context/StateContext";
 
-import styles from "./ArtistsPage.module.css";
+import styles from "../ArtistsPage.module.css";
 
 const Artist = ({
   artist,

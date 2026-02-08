@@ -8,6 +8,7 @@ export const studios = defineType({
   title: 'Studios',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     gallery,
     defineField({
       name: 'description',

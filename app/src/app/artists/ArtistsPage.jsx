@@ -6,7 +6,7 @@ import styles from "./ArtistsPage.module.css";
 import Filtering from "./Filtering/Filtering";
 import ArtistInfo from "./ArtistInfo";
 
-import Artist from "./Artist";
+import Artist from "./components/Artist";
 import { color } from "framer-motion";
 import { StateContext } from "@/context/StateContext";
 

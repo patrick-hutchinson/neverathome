@@ -1,7 +1,10 @@
 import {defineConfig} from 'sanity'
+
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+
 import {muxInput} from 'sanity-plugin-mux-input'
+import {linkField} from 'sanity-plugin-link-field'
 
 import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
 
@@ -21,6 +24,7 @@ export default defineConfig({
     structureTool({structure}),
     visionTool(),
     muxInput(),
+    linkField(),
     simplerColorInput({
       // Note: These are all optional
       defaultColorFormat: 'hex',
