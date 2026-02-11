@@ -10,11 +10,15 @@ import AnimationLink from "../Animation/AnimationLink";
 // import { Link } from "sanity-plugin-link-field/component";
 
 const Figure = ({ item, ratio }) => {
+  if (!item) return;
   const [hovered, setHovered] = useState(false);
+
+  const Wrapper = item?.link ? AnimationLink : "div";
+  const props = item?.link ? { link: item.link } : "";
 
   return (
     <div className={styles.figure}>
-      <AnimationLink link={item.link}>
+      <Wrapper {...props}>
         <motion.div
           className={styles.media_wrapper}
           style={{ position: "relative", aspectRatio: ratio }}
@@ -24,7 +28,7 @@ const Figure = ({ item, ratio }) => {
           onMouseLeave={() => setHovered(false)}
         >
           <AnimatePresence key="figure">
-            {((hovered && item.useHoverEffect) || !item.thumbnail) && item.colorPair && (
+            {((hovered && item.useHoverEffect) || !item?.thumbnail) && item?.colorPair && (
               <motion.div
                 className={styles.card}
                 initial={{ opacity: !item.thumbnail ? 0 : 1 }}
@@ -40,16 +44,16 @@ const Figure = ({ item, ratio }) => {
             )}
           </AnimatePresence>
           <header className={`${styles.header}`} typo="h4">
-            <span>{item.tag}</span>
-            <div>{item.headerLabel}</div>
+            <span>{item?.tag}</span>
+            <div>{item?.headerLabel}</div>
           </header>
-          {item.thumbnail && (
+          {item?.thumbnail && (
             <div className={styles.media} style={{ aspectRatio: ratio }}>
               <Media medium={item.thumbnail} />
             </div>
           )}
         </motion.div>
-      </AnimationLink>
+      </Wrapper>
 
       <Text typo="h3" text={item.description} className={styles.description} />
     </div>
