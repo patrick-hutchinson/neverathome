@@ -13,7 +13,7 @@ import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const lenis = useLenisContext();
   const pathname = usePathname();
-  const [imageInView, setImageInView] = useState(null);
+  const [imageInView, setImageInView] = useState({ id: null, index: 0 });
 
   const hasExpandedOnce = useRef(false);
   const lockRef = useRef({
@@ -34,6 +34,15 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const accordeonRef = useRef(null);
 
   const { expandedElement, setExpandedElement } = useContext(StateContext);
+
+  useEffect(() => {
+    if (!expandedElement) {
+      setImageInView({ id: null, index: 0 });
+      return;
+    }
+
+    setImageInView({ id: expandedElement, index: 0 });
+  }, [expandedElement]);
 
   const scrollImmediate = (y) => {
     if (lenis) {
@@ -199,13 +208,21 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
           >
             <AccordeonHeader item={item} size={size} isExpanded={isExpanded} imageInView={imageInView} />
             {size === "large" && (
-              <AccordeonContent
-                item={item}
-                mode={isExpanded ? "expanding" : isCollapsing ? "collapsing" : "collapsed"}
-                containerRef={refs.current[item._id]}
-                setImageInView={setImageInView}
-              />
-            )}
+                <AccordeonContent
+                  item={item}
+                  mode={isExpanded ? "expanding" : isCollapsing ? "collapsing" : "collapsed"}
+                  containerRef={refs.current[item._id]}
+                  isExpanded={isExpanded}
+                  setImageInView={(rawIndex) => {
+                    if (expandedElement !== item._id) return;
+                    const parsedIndex = Number(rawIndex);
+                    setImageInView({
+                      id: item._id,
+                      index: Number.isFinite(parsedIndex) ? parsedIndex : 0,
+                    });
+                  }}
+                />
+              )}
           </AccordeonWrapper>
         );
       })}

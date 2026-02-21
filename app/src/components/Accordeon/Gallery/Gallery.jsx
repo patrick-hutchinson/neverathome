@@ -1,16 +1,16 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 import Media from "@/components/Media";
 import styles from "../Accordeon.module.css";
 
-const Gallery = ({ event, setImageInView, className }) => {
+const Gallery = ({ event, setImageInView, className, isExpanded }) => {
   if (!event.gallery) return <div />;
 
   return (
     <ul className={`${className} ${styles.gallery}`}>
       {event.gallery.map((medium, index) => (
-        <GalleryItem key={index} medium={medium} index={index} setImageInView={setImageInView} />
+        <GalleryItem key={index} medium={medium} index={index} setImageInView={setImageInView} isExpanded={isExpanded} />
       ))}
     </ul>
   );
@@ -21,6 +21,7 @@ const GalleryItem = ({ medium, index, setImageInView, isExpanded }) => {
 
   // Gallery intersection observer
   useEffect(() => {
+    if (!isExpanded) return;
     if (!ref.current) return;
 
     const observer = new IntersectionObserver(
@@ -30,7 +31,7 @@ const GalleryItem = ({ medium, index, setImageInView, isExpanded }) => {
         }
       },
       {
-        threshold: 0.5,
+        threshold: 0.75,
       },
     );
 
