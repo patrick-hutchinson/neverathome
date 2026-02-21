@@ -54,7 +54,7 @@ main.main {
   .mediaPair {
     padding: 0px 0px 0px 3px;
     display: grid;
-    grid-template-columns: repeat(24, 1fr);
+    grid-template-columns: repeat(24, 1fr) !important;
     gap: var(--margin);
   }
   .mediaPair .description {
