@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
 
-import ExpansionWrapper from "./AccordeonWrapper/ExpansionWrapper";
-import NavigationWrapper from "./AccordeonWrapper/NavigationWrapper";
+import ExpansionWrapper from "./AccordionWrapper/ExpansionWrapper";
+import NavigationWrapper from "./AccordionWrapper/NavigationWrapper";
 
-const AccordeonWrapper = forwardRef(
+const AccordionWrapper = forwardRef(
   (
     {
       index,
@@ -15,7 +15,7 @@ const AccordeonWrapper = forwardRef(
       colorPair,
       handleExpand,
       invert,
-      setExpandedElement,
+      setActiveItemId,
       isExpandable,
     },
     ref,
@@ -30,7 +30,7 @@ const AccordeonWrapper = forwardRef(
       handleExpand,
       invert,
       ref,
-      setExpandedElement,
+      setActiveItemId,
       isExpandable,
     };
 
@@ -43,4 +43,4 @@ const AccordeonWrapper = forwardRef(
   },
 );
 
-export default AccordeonWrapper;
+export default AccordionWrapper;

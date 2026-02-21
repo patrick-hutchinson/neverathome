@@ -3,10 +3,10 @@ import MediaPair from "../MediaPair/MediaPair";
 import Text from "../Text";
 import Gallery from "./Gallery/Gallery";
 
-import styles from "./Accordeon.module.css";
+import styles from "./Accordion.module.css";
 import { usePathname } from "next/navigation";
 
-const AccordeonContent = ({ item, mode, setImageInView, containerRef, isExpanded }) => {
+const AccordionContent = ({ item, mode, setActiveGalleryImage, containerRef, isExpanded }) => {
   const pathname = usePathname();
 
   const isAbout = pathname === "/about";
@@ -16,10 +16,10 @@ const AccordeonContent = ({ item, mode, setImageInView, containerRef, isExpanded
         <div className={`${styles.description} ${isAbout && styles.aboutPage}`}>
           <Text text={item.info} typo="h3" />
         </div>
-        <Gallery event={item} className={styles.gallery} setImageInView={setImageInView} isExpanded={isExpanded} />
+        <Gallery event={item} className={styles.gallery} setActiveGalleryImage={setActiveGalleryImage} isExpanded={isExpanded} />
       </MediaPair>
     </Collapse>
   );
 };
 
-export default AccordeonContent;
+export default AccordionContent;

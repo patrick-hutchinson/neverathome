@@ -5,7 +5,7 @@ import { repeatArray } from "@/helpers/repeatArray";
 import Text from "@/components/Text";
 import Carousel from "@/components/Carousel/Carousel";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
-import Accordeon from "@/components/Accordeon/Accordeon";
+import Accordion from "@/components/Accordion/Accordion";
 import CallToAction from "@/components/CallToAction/CallToAction";
 
 import styles from "./WorkshopPage.module.css";
@@ -34,7 +34,7 @@ const WorkshopPage = ({ page, events, site }) => {
 
       <section>
         <h3>Upcoming Workshops</h3>
-        <Accordeon array={workshops} size="medium" invert={true} behavior="navigate" />
+        <Accordion array={workshops} size="medium" invert={true} behavior="navigate" />
       </section>
 
       <section>

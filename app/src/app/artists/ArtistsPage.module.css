@@ -29,7 +29,7 @@ li.artist {
 .filtering {
   position: sticky;
   top: var(--header-height);
-  height: var(--accordeon-header-height);
+  height: var(--accordion-header-height);
   display: grid;
 
   background: var(--foreground);

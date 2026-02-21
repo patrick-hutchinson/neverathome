@@ -65,7 +65,7 @@ main.main {
   }
   .description {
     position: sticky;
-    top: calc(var(--accordeon-header-height) + var(--margin));
+    top: calc(var(--accordion-header-height) + var(--margin));
     padding: 0;
   }
 }

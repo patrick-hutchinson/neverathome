@@ -4,7 +4,7 @@ import Text from "@/components/Text";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import Figure from "@/components/Figure/Figure";
 import CoverMedia from "@/components/CoverMedia";
-import Accordeon from "@/components/Accordeon/Accordeon";
+import Accordion from "@/components/Accordion/Accordion";
 import CallToAction from "@/components/CallToAction/CallToAction";
 
 import styles from "./StudiosPage.module.css";
@@ -32,7 +32,7 @@ const StudiosPage = ({ page, site }) => {
 
         <section>
           <h3>Public Studio Tours</h3>
-          <Accordeon array={page.events} behavior="navigate" invert={true} size="medium" />
+          <Accordion array={page.events} behavior="navigate" invert={true} size="medium" />
         </section>
 
         <section>

@@ -1,6 +1,6 @@
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 
-const AccordeonLink = ({ event }) => (
+const AccordionLink = ({ event }) => (
   <div className={styles.link}>
     {event.ticketLink ? (
       <a href={event.ticketLink} target="_blank">
@@ -12,4 +12,4 @@ const AccordeonLink = ({ event }) => (
   </div>
 );
 
-export default AccordeonLink;
+export default AccordionLink;

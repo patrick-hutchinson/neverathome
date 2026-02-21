@@ -9,7 +9,7 @@ import { hoverColors } from "@/helpers/hoverColors";
 import { motion } from "framer-motion";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 import { usePathname } from "next/navigation";
 
 const ExpansionWrapper = forwardRef(

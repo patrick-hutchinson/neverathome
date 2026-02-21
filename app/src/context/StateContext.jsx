@@ -13,7 +13,7 @@ export const StateProvider = ({ children, colorPairs = [] }) => {
   const [isSafari, setIsSafari] = useState(false);
   const [isTouch, setIsTouch] = useState(null); // ← NEW
 
-  const [expandedElement, setExpandedElement] = useState(null);
+  const [activeItemId, setActiveItemId] = useState(null);
 
   // Detect if the screen is mobile size
   useEffect(() => {
@@ -54,8 +54,8 @@ export const StateProvider = ({ children, colorPairs = [] }) => {
         isDesktop,
         isSafari,
         deviceDimensions,
-        expandedElement,
-        setExpandedElement,
+        activeItemId,
+        setActiveItemId,
         colorPairs,
         isTouch,
       }}

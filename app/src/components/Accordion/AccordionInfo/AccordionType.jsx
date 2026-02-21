@@ -1,4 +1,4 @@
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 
 const normalizeType = (type) => {
   if (typeof type === "string") return type;
@@ -12,6 +12,6 @@ const normalizeType = (type) => {
   return String(type);
 };
 
-const AccordeonType = ({ type }) => <div className={styles.type}>{normalizeType(type)}</div>;
+const AccordionType = ({ type }) => <div className={styles.type}>{normalizeType(type)}</div>;
 
-export default AccordeonType;
+export default AccordionType;

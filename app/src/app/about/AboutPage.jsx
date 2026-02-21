@@ -9,7 +9,7 @@ import Text from "@/components/Text";
 import styles from "./AboutPage.module.css";
 import Carousel from "@/components/Carousel/Carousel";
 import ContactCard from "@/components/ContactCard/ContactCard";
-import Accordeon from "@/components/Accordeon/Accordeon";
+import Accordion from "@/components/Accordion/Accordion";
 import MediaPair from "@/components/MediaPair/MediaPair";
 import TextFigure from "@/components/TextFigure/TextFigure";
 import CallToAction from "@/components/CallToAction/CallToAction";
@@ -46,8 +46,8 @@ const AboutPage = ({ contact, locations, site }) => {
     <main className={styles.main}>
       <Text className={styles.bio} text={contact.bio} typo="h2" />
 
-      <section className={styles.accordeon}>
-        <Accordeon array={locations} size="large" invert={true} behavior="expand" firstExpanded={true}></Accordeon>
+      <section className={styles.accordion}>
+        <Accordion array={locations} size="large" invert={true} behavior="expand" firstExpanded={true}></Accordion>
       </section>
 
       <MediaPair>

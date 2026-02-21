@@ -13,7 +13,7 @@ import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 import { repeatArray } from "@/helpers/repeatArray";
 
-import Accordeon from "@/components/Accordeon/Accordeon";
+import Accordion from "@/components/Accordion/Accordion";
 import { useEffect } from "react";
 
 const HomePage = ({ data }) => {
@@ -36,7 +36,7 @@ const HomePage = ({ data }) => {
 
       <section>
         <h3>Current Events</h3>
-        <Accordeon array={data.events} size="medium" behavior="navigate" />
+        <Accordion array={data.events} size="medium" behavior="navigate" />
       </section>
 
       <section>

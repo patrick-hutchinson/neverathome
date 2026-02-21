@@ -3,17 +3,17 @@ import { usePathname } from "next/navigation";
 
 import { StateContext } from "@/context/StateContext";
 
-import AccordeonContent from "./AccordeonContent";
-import AccordeonWrapper from "./AccordeonWrapper";
-import AccordeonHeader from "./AccordeonHeader";
+import AccordionContent from "./AccordionContent";
+import AccordionWrapper from "./AccordionWrapper";
+import AccordionHeader from "./AccordionHeader";
 import { useColorPair } from "@/hooks/useColorPair";
 import { useLenisContext } from "@/context/LenisContext";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
-const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
+const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
   const lenis = useLenisContext();
   const pathname = usePathname();
-  const [imageInView, setImageInView] = useState({ id: null, index: 0 });
+  const [activeGalleryImage, setActiveGalleryImage] = useState({ id: null, index: 0 });
 
   const hasExpandedOnce = useRef(false);
   const lockRef = useRef({
@@ -24,25 +24,25 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const clickTokenRef = useRef(0);
 
   // const [activeId, setActiveId] = useState(null);
-  const [previousId, setPreviousId] = useState(null);
+  const [closingItemId, setClosingItemId] = useState(null);
 
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
   const isAbout = pathname === "/about";
   const stickyOffset = isAbout ? header_height : header_height + filter_height;
 
   const refs = useRef({});
-  const accordeonRef = useRef(null);
+  const accordionRef = useRef(null);
 
-  const { expandedElement, setExpandedElement } = useContext(StateContext);
+  const { activeItemId, setActiveItemId } = useContext(StateContext);
 
   useEffect(() => {
-    if (!expandedElement) {
-      setImageInView({ id: null, index: 0 });
+    if (!activeItemId) {
+      setActiveGalleryImage({ id: null, index: 0 });
       return;
     }
 
-    setImageInView({ id: expandedElement, index: 0 });
-  }, [expandedElement]);
+    setActiveGalleryImage({ id: activeItemId, index: 0 });
+  }, [activeItemId]);
 
   const scrollImmediate = (y) => {
     if (lenis) {
@@ -116,14 +116,14 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
         raf: null,
       };
 
-      if (id === expandedElement) {
-        setPreviousId(expandedElement);
-        setExpandedElement(null);
+      if (id === activeItemId) {
+        setClosingItemId(activeItemId);
+        setActiveItemId(null);
         return;
       }
 
-      setPreviousId(expandedElement);
-      setExpandedElement(id);
+      setClosingItemId(activeItemId);
+      setActiveItemId(id);
     });
   };
 
@@ -152,7 +152,7 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
         lockRef.current.raf = null;
       }
     };
-  }, [expandedElement, previousId, stickyOffset]);
+  }, [activeItemId, closingItemId, stickyOffset]);
 
   useEffect(() => {
     return () => stopLock();
@@ -162,29 +162,29 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   useEffect(() => {
     if (!firstExpanded) return;
     if (hasExpandedOnce.current) return;
-    if (!accordeonRef.current) return;
+    if (!accordionRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasExpandedOnce.current) {
           hasExpandedOnce.current = true;
-          setExpandedElement(array[0]._id);
+          setActiveItemId(array[0]._id);
           observer.disconnect();
         }
       },
       { threshold: 1 },
     );
 
-    observer.observe(accordeonRef.current);
+    observer.observe(accordionRef.current);
     return () => observer.disconnect();
-  }, [firstExpanded, array, setExpandedElement]);
+  }, [firstExpanded, array, setActiveItemId]);
 
   return (
-    <div className="accordeon" ref={accordeonRef}>
+    <div className="accordion" ref={accordionRef}>
       {array.map((item, index) => {
         let isExpandable = item.info || item.gallery;
-        const isExpanded = item._id === expandedElement;
-        const isCollapsing = item._id === previousId && previousId !== expandedElement;
+        const isExpanded = item._id === activeItemId;
+        const isCollapsing = item._id === closingItemId && closingItemId !== activeItemId;
 
         const colorPair = useColorPair(item);
 
@@ -193,7 +193,7 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
         }
 
         return (
-          <AccordeonWrapper
+          <AccordionWrapper
             key={index}
             item={item}
             index={item._id}
@@ -203,31 +203,31 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
             handleExpand={handleExpand}
             invert={invert}
             colorPair={colorPair}
-            setExpandedElement={setExpandedElement}
+            setActiveItemId={setActiveItemId}
             isExpandable={isExpandable}
           >
-            <AccordeonHeader item={item} size={size} isExpanded={isExpanded} imageInView={imageInView} />
+            <AccordionHeader item={item} size={size} isExpanded={isExpanded} activeGalleryImage={activeGalleryImage} />
             {size === "large" && (
-                <AccordeonContent
+                <AccordionContent
                   item={item}
                   mode={isExpanded ? "expanding" : isCollapsing ? "collapsing" : "collapsed"}
                   containerRef={refs.current[item._id]}
                   isExpanded={isExpanded}
-                  setImageInView={(rawIndex) => {
-                    if (expandedElement !== item._id) return;
+                  setActiveGalleryImage={(rawIndex) => {
+                    if (activeItemId !== item._id) return;
                     const parsedIndex = Number(rawIndex);
-                    setImageInView({
+                    setActiveGalleryImage({
                       id: item._id,
                       index: Number.isFinite(parsedIndex) ? parsedIndex : 0,
                     });
                   }}
                 />
               )}
-          </AccordeonWrapper>
+          </AccordionWrapper>
         );
       })}
     </div>
   );
 };
 
-export default Accordeon;
+export default Accordion;

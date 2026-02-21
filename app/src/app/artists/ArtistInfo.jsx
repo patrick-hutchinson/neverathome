@@ -7,7 +7,7 @@ const ArtistInfo = ({ currentArtist, showLocations }) => {
       typo="h4"
       style={{
         top: showLocations
-          ? "calc(var(--header-height) + var(--accordeon-header-height) + var(--margin))"
+          ? "calc(var(--header-height) + var(--accordion-header-height) + var(--margin))"
           : "calc(var(--header-height) + var(--margin))",
       }}
     >

@@ -1,10 +1,10 @@
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 import FormatDate from "@/components/FormatDate";
 
-const AccordeonDate = ({ date }) => (
+const AccordionDate = ({ date }) => (
   <div className={styles.date}>
     <FormatDate date={date} />
   </div>
 );
 
-export default AccordeonDate;
+export default AccordionDate;

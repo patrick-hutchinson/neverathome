@@ -10,7 +10,7 @@ main.main {
 }
 
 .bio {
-  height: calc(100vh - var(--header-height) - var(--accordeon-header-height) - 8px);
+  height: calc(100vh - var(--header-height) - var(--accordion-header-height) - 8px);
 }
 
 /* Phones */

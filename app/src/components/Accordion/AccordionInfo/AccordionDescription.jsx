@@ -2,9 +2,9 @@ import { useRef, useEffect, useState } from "react";
 
 import Text from "@/components/Text";
 
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 
-const AccordeonDescription = ({ event, isExpanded }) => {
+const AccordionDescription = ({ event, isExpanded }) => {
   const [teaserHeight, setTeaserHeight] = useState(null);
   const [textHeight, setTextHeight] = useState(null);
   const teaserRef = useRef(null);
@@ -41,4 +41,4 @@ const AccordeonDescription = ({ event, isExpanded }) => {
   );
 };
 
-export default AccordeonDescription;
+export default AccordionDescription;

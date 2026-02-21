@@ -4,7 +4,7 @@ import { hoverColors } from "@/helpers/hoverColors";
 import AnimationLink from "@/components/Animation/AnimationLink";
 import { motion } from "framer-motion";
 
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 
 const NavigationWrapper = ({ children, invert, ref, item, colorPair }) => {
   const { background, text } = getColors(invert);

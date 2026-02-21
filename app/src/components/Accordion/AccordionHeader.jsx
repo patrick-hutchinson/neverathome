@@ -2,27 +2,27 @@ import { useContext, useState } from "react";
 
 import Media from "../Media";
 
-import AccordeonTitle from "./AccordeonInfo/AccordeonTitle";
-import AccordeonLink from "./AccordeonInfo/AccordeonLink";
-import AccordeonDate from "./AccordeonInfo/AccordeonDate";
-import AccordeonType from "./AccordeonInfo/AccordeonType";
-import AccordeonExpand from "../Icons/ExpandIcon";
-import AccordeonDescription from "./AccordeonInfo/AccordeonDescription";
-import AccordeonCounter from "./AccordeonInfo/AccordeonCounter";
+import AccordionTitle from "./AccordionInfo/AccordionTitle";
+import AccordionLink from "./AccordionInfo/AccordionLink";
+import AccordionDate from "./AccordionInfo/AccordionDate";
+import AccordionType from "./AccordionInfo/AccordionType";
+import AccordionExpand from "../Icons/ExpandIcon";
+import AccordionDescription from "./AccordionInfo/AccordionDescription";
+import AccordionCounter from "./AccordionInfo/AccordionCounter";
 import ShareEvent from "@/components/Icons/ShareIcon";
 
-import styles from "./Accordeon.module.css";
+import styles from "./Accordion.module.css";
 
-import { lookUpAttributes } from "./lookUpAttributes";
+import { getAccordionHeaderFields } from "./getAccordionHeaderFields";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 import { usePathname } from "next/navigation";
 
-const AccordeonHeader = ({ item, size, isExpanded, imageInView }) => {
+const AccordionHeader = ({ item, size, isExpanded, activeGalleryImage }) => {
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
 
-  const { title, date, meta } = lookUpAttributes(item);
+  const { title, date, meta } = getAccordionHeaderFields(item);
 
-  const contentProps = { item, isExpandable, setIsExpandable, isExpanded, imageInView };
+  const contentProps = { item, isExpandable, setIsExpandable, isExpanded, activeGalleryImage };
 
   switch (size) {
     case "medium":
@@ -38,7 +38,7 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
   const isEvent = item._type === "event";
   return (
     <div
-      className={styles.accordeonHeader}
+      className={styles.accordionHeader}
       style={{
         position: isExpanded ? "sticky" : "relative",
         top: isExpanded ? header_height + filter_height : 0,
@@ -46,22 +46,22 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
         zIndex: 2,
       }}
     >
-      <AccordeonType type={item.type} />
-      <AccordeonDate date={item.startDate} />
+      <AccordionType type={item.type} />
+      <AccordionDate date={item.startDate} />
       <Media objectFit="contain" className={styles.media} medium={item.thumbnail} />
-      <AccordeonTitle title={item.title} />
-      <AccordeonDescription event={item} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
-      <AccordeonLink event={item} />
+      <AccordionTitle title={item.title} />
+      <AccordionDescription event={item} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
+      <AccordionLink event={item} />
 
       <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
         {isEvent && <ShareEvent url={`/calendar#${item.slug.current}`} />}
-        <AccordeonExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} />
+        <AccordionExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} />
       </div>
     </div>
   );
 };
 
-const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title, date, meta }) => {
+const LargeHeaderContent = ({ item, isExpandable, isExpanded, activeGalleryImage, title, date, meta }) => {
   const pathname = usePathname();
 
   const isAbout = pathname === "/about";
@@ -73,7 +73,7 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title
   const isEvent = item._type === "event";
   return (
     <div
-      className={styles.accordeonHeader}
+      className={styles.accordionHeader}
       style={{
         position: isExpanded ? "sticky" : "relative",
         top: isExpanded ? distance : 0,
@@ -81,17 +81,17 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, imageInView, title
         zIndex: 2,
       }}
     >
-      <AccordeonType type={meta} />
-      <AccordeonDate date={date} />
-      <AccordeonTitle title={title} />
-      <AccordeonCounter item={item} imageInView={imageInView} isExpanded={isExpanded} />
+      <AccordionType type={meta} />
+      <AccordionDate date={date} />
+      <AccordionTitle title={title} />
+      <AccordionCounter item={item} activeGalleryImage={activeGalleryImage} isExpanded={isExpanded} />
 
       <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
         {isEvent && <ShareEvent url={`/calendar#${item.slug.current}`} />}
-        <AccordeonExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
+        <AccordionExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
       </div>
     </div>
   );
 };
 
-export default AccordeonHeader;
+export default AccordionHeader;

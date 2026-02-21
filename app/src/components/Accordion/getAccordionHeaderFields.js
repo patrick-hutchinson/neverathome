@@ -1,4 +1,4 @@
-export const lookUpAttributes = (item) => {
+export const getAccordionHeaderFields = (item) => {
   switch (item.dataType) {
     case "event":
       return {

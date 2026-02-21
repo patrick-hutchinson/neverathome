@@ -2,21 +2,21 @@
 import { useRef, useEffect } from "react";
 
 import Media from "@/components/Media";
-import styles from "../Accordeon.module.css";
+import styles from "../Accordion.module.css";
 
-const Gallery = ({ event, setImageInView, className, isExpanded }) => {
+const Gallery = ({ event, setActiveGalleryImage, className, isExpanded }) => {
   if (!event.gallery) return <div />;
 
   return (
     <ul className={`${className} ${styles.gallery}`}>
       {event.gallery.map((medium, index) => (
-        <GalleryItem key={index} medium={medium} index={index} setImageInView={setImageInView} isExpanded={isExpanded} />
+        <GalleryItem key={index} medium={medium} index={index} setActiveGalleryImage={setActiveGalleryImage} isExpanded={isExpanded} />
       ))}
     </ul>
   );
 };
 
-const GalleryItem = ({ medium, index, setImageInView, isExpanded }) => {
+const GalleryItem = ({ medium, index, setActiveGalleryImage, isExpanded }) => {
   const ref = useRef(null);
 
   // Gallery intersection observer
@@ -27,7 +27,7 @@ const GalleryItem = ({ medium, index, setImageInView, isExpanded }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setImageInView(index);
+          setActiveGalleryImage(index);
         }
       },
       {
@@ -38,7 +38,7 @@ const GalleryItem = ({ medium, index, setImageInView, isExpanded }) => {
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, [index, setImageInView, isExpanded]);
+  }, [index, setActiveGalleryImage, isExpanded]);
 
   return (
     <li ref={ref}>

@@ -11,7 +11,7 @@ import styles from "./ProgrammingPage.module.css";
 import CoverMedia from "@/components/CoverMedia";
 import MiniFigure from "@/components/MiniFigure/MiniFigure";
 import TextMarquee from "@/components/TextMarquee/TextMarquee";
-import Accordeon from "@/components/Accordeon/Accordeon";
+import Accordion from "@/components/Accordion/Accordion";
 import CallToAction from "@/components/CallToAction/CallToAction";
 import Figure from "@/components/Figure/Figure";
 
@@ -38,7 +38,7 @@ const ProgrammingPage = ({ page, site }) => {
 
         <section>
           <h3>Selected Events</h3>
-          <Accordeon array={page.events} size="medium" behavior="navigate" invert={true} />
+          <Accordion array={page.events} size="medium" behavior="navigate" invert={true} />
         </section>
 
         {/* <section className={styles.residencies}>
@@ -60,7 +60,7 @@ const ProgrammingPage = ({ page, site }) => {
         {page.selectedResidencies && (
           <section>
             <h3>Selected Residencies</h3>
-            <Accordeon array={page.selectedResidencies} size="medium" behavior="navigate" invert={true} />
+            <Accordion array={page.selectedResidencies} size="medium" behavior="navigate" invert={true} />
           </section>
         )}
 
