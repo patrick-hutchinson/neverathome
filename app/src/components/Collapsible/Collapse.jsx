@@ -38,8 +38,8 @@ const Collapse = ({ children, mode, id, onScroll }) => {
           maxHeight: height,
           opacity: 1,
           transition: {
-            maxHeight: { duration: expandDuration, delay: 2, ease: "easeInOut" },
-            opacity: { duration: 0.4, delay: 2, ease: "easeInOut" },
+            maxHeight: { duration: expandDuration, delay: 0, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 0.2, ease: "easeInOut" },
           },
         },
       }}

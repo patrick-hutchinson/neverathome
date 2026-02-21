@@ -1,4 +1,5 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
+import { usePathname } from "next/navigation";
 
 import { StateContext } from "@/context/StateContext";
 
@@ -11,78 +12,121 @@ import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   const lenis = useLenisContext();
+  const pathname = usePathname();
   const [imageInView, setImageInView] = useState(null);
+
+  const hasExpandedOnce = useRef(false);
+  const lockRef = useRef({
+    id: null,
+    until: 0,
+    raf: null,
+  });
 
   // const [activeId, setActiveId] = useState(null);
   const [previousId, setPreviousId] = useState(null);
 
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
+  const isAbout = pathname === "/about";
+  const stickyOffset = isAbout ? header_height : header_height + filter_height;
 
   const refs = useRef({});
   const accordeonRef = useRef(null);
 
   const { expandedElement, setExpandedElement } = useContext(StateContext);
 
+  const scrollImmediate = (y) => {
+    if (lenis) {
+      lenis.scrollTo(y, { immediate: true, force: true });
+      return;
+    }
+    window.scrollTo(0, y);
+  };
+
+  const alignItemToOffset = (id) => {
+    const el = refs.current[id]?.current;
+    if (!el) return;
+
+    const targetY = window.scrollY + el.getBoundingClientRect().top - stickyOffset;
+    scrollImmediate(targetY);
+  };
+
+  const stopLock = () => {
+    if (lockRef.current.raf) {
+      cancelAnimationFrame(lockRef.current.raf);
+    }
+    lockRef.current = { id: null, until: 0, raf: null };
+  };
+
   const handleExpand = (id) => {
-    // 🔽 CLICKING THE ACTIVE ITEM → COLLAPSE
+    stopLock();
+    alignItemToOffset(id);
+    lockRef.current = {
+      id,
+      until: performance.now() + 650,
+      raf: null,
+    };
+
     if (id === expandedElement) {
       setPreviousId(expandedElement);
       setExpandedElement(null);
-
       return;
     }
 
-    // 🔼 OPENING A NEW ITEM
-    const prevId = expandedElement;
-    const prevEl = prevId ? refs.current[prevId]?.current : null;
-
-    setPreviousId(prevId);
+    setPreviousId(expandedElement);
     setExpandedElement(id);
-
-    const nextEl = refs.current[id]?.current;
-    if (!nextEl) return;
-
-    setTimeout(() => {
-      const top = nextEl.getBoundingClientRect().top + window.scrollY - header_height - filter_height;
-
-      lenis.scrollTo(top, {
-        duration: 0.6,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-      });
-    }, 700);
-
-    setTimeout(() => {
-      if (!prevEl) return;
-
-      lenis.scrollTo(lenis.scroll - prevEl.getBoundingClientRect().height + 40, { duration: 0.4 });
-    }, 2400);
   };
 
+  useLayoutEffect(() => {
+    const { id, until } = lockRef.current;
+    if (!id) return;
+
+    const tick = () => {
+      if (!lockRef.current.id) return;
+
+      alignItemToOffset(lockRef.current.id);
+
+      if (performance.now() >= until) {
+        stopLock();
+        return;
+      }
+
+      lockRef.current.raf = requestAnimationFrame(tick);
+    };
+
+    tick();
+
+    return () => {
+      if (lockRef.current.raf) {
+        cancelAnimationFrame(lockRef.current.raf);
+        lockRef.current.raf = null;
+      }
+    };
+  }, [expandedElement, previousId, stickyOffset]);
+
+  useEffect(() => {
+    return () => stopLock();
+  }, []);
+
   // expand the first element when it is in view
-  if (firstExpanded) {
-    const hasExpandedOnce = useRef(false);
+  useEffect(() => {
+    if (!firstExpanded) return;
+    if (hasExpandedOnce.current) return;
+    if (!accordeonRef.current) return;
 
-    useEffect(() => {
-      if (!firstExpanded) return;
-      if (hasExpandedOnce.current) return;
-      if (!accordeonRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasExpandedOnce.current) {
+          hasExpandedOnce.current = true;
+          setExpandedElement(array[0]._id);
+          observer.disconnect();
+        }
+      },
+      { threshold: 1 },
+    );
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && !hasExpandedOnce.current) {
-            hasExpandedOnce.current = true;
-            setExpandedElement(array[0]._id);
-            observer.disconnect(); // stop observing immediately
-          }
-        },
-        { threshold: 1 },
-      );
-
-      observer.observe(accordeonRef.current);
-
-      return () => observer.disconnect();
-    }, [firstExpanded, array, setExpandedElement]);
-  }
+    observer.observe(accordeonRef.current);
+    return () => observer.disconnect();
+  }, [firstExpanded, array, setExpandedElement]);
 
   return (
     <div className="accordeon" ref={accordeonRef}>

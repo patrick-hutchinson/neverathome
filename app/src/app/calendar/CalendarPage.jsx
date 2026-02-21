@@ -44,6 +44,8 @@ const CalendarPage = ({ events }) => {
 
   // 1️⃣ Filter events by active type & year
   const filteredEvents = events.filter((event) => {
+    if (!event) return;
+
     const eventYears = [];
     if (event.startDate) eventYears.push(new Date(event.startDate).getFullYear());
     if (event.endDate) eventYears.push(new Date(event.endDate).getFullYear());
@@ -51,7 +53,7 @@ const CalendarPage = ({ events }) => {
     const matchesType = activeTypes.includes(event.type);
     const matchesYear = eventYears.some((year) => activeYears.includes(year));
 
-    const matchesQuery = event.title.toLowerCase().includes(query.toLowerCase());
+    const matchesQuery = event.title?.toLowerCase().includes(query?.toLowerCase());
 
     return matchesType && matchesYear && matchesQuery;
   });
@@ -75,7 +77,7 @@ const CalendarPage = ({ events }) => {
 
     const cleanHash = hash ? hash.substring(1) : null; // remove the '#'
 
-    const activeEvent = events.find((event) => event.slug.current === cleanHash);
+    const activeEvent = events.find((event) => event?.slug?.current === cleanHash);
 
     if (activeEvent) setExpandedElement(activeEvent._id);
 
