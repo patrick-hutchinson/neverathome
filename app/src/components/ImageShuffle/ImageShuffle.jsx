@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Media from "../Media";
+import Media from "../Media/Media";
 import styles from "./ImageShuffle.module.css";
 
 const ImageShuffle = ({ images }) => {

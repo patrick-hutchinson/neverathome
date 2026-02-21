@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Media from "../Media";
+import Media from "../Media/Media";
 import styles from "./Figure.module.css";
 
 import Text from "@/components/Text";

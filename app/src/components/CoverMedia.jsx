@@ -1,4 +1,4 @@
-import Media from "./Media";
+import Media from "./Media/Media";
 import Slideshow from "./Slideshow/Slideshow";
 
 const CoverMedia = ({ medium, media }) => {

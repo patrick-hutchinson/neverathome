@@ -2,7 +2,7 @@
 
 import { repeatArray } from "@/helpers/repeatArray";
 
-import Media from "@/components/Media";
+import Media from "@/components/Media/Media";
 import Text from "@/components/Text";
 import Carousel from "@/components/Carousel/Carousel";
 import MediaPair from "@/components/MediaPair/MediaPair";

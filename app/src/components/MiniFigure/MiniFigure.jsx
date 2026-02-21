@@ -1,5 +1,5 @@
 import Text from "@/components/Text";
-import Media from "@/components/Media";
+import Media from "@/components/Media/Media";
 
 import styles from "./MiniFigure.module.css";
 import AnimationLink from "../Animation/AnimationLink";

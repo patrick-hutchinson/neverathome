@@ -1,23 +1,30 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 
 import Text from "@/components/Text";
 
 import styles from "../Accordion.module.css";
 
 const AccordionDescription = ({ event, isExpanded }) => {
-  const [teaserHeight, setTeaserHeight] = useState(null);
-  const [textHeight, setTextHeight] = useState(null);
+  const [teaserHeight, setTeaserHeight] = useState(0);
+  const [textHeight, setTextHeight] = useState(0);
+  const [isMeasured, setIsMeasured] = useState(false);
   const teaserRef = useRef(null);
   const textRef = useRef(null);
 
-  useEffect(() => {
-    if (!textRef.current) return undefined;
-    setTextHeight(textRef.current.scrollHeight);
-  }, [event]);
+  useLayoutEffect(() => {
+    const measure = () => {
+      setTeaserHeight(teaserRef.current?.scrollHeight || 0);
+      setTextHeight(textRef.current?.scrollHeight || 0);
+      setIsMeasured(true);
+    };
 
-  useEffect(() => {
-    if (!teaserRef.current) return undefined;
-    setTeaserHeight(teaserRef.current.scrollHeight);
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    if (teaserRef.current) observer.observe(teaserRef.current);
+    if (textRef.current) observer.observe(textRef.current);
+
+    return () => observer.disconnect();
   }, [event]);
 
   return (
@@ -25,6 +32,7 @@ const AccordionDescription = ({ event, isExpanded }) => {
       className={styles.text}
       style={{
         maxHeight: isExpanded ? textHeight + teaserHeight : teaserHeight,
+        opacity: isMeasured ? 1 : 0,
         transition: "max-height 0.5s ease-in-out",
       }}
     >

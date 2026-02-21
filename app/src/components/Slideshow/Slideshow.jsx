@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useContext } from "react";
-import Media from "../Media";
+import Media from "../Media/Media";
 import styles from "./Slideshow.module.css";
 import FadePresence from "../FadePresence";
 

@@ -29,6 +29,11 @@
   margin: calc(var(--margin) / 4) 0px;
 }
 
+.accordionHeader > .media.small img {
+  object-fit: contain !important;
+  object-position: left !important;
+}
+
 .accordionHeader > .title {
   text-overflow: ellipsis;
   overflow: hidden;

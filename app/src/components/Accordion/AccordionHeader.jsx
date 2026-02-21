@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import Media from "../Media";
+import Media from "../Media/Media";
 
 import AccordionTitle from "./AccordionInfo/AccordionTitle";
 import AccordionLink from "./AccordionInfo/AccordionLink";
@@ -48,7 +48,7 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
     >
       <AccordionType type={item.type} />
       <AccordionDate date={item.startDate} />
-      <Media objectFit="contain" className={styles.media} medium={item.thumbnail} />
+      <Media objectFit="contain" className={`${styles.small} ${styles.media}`} medium={item.thumbnail} />
       <AccordionTitle title={item.title} />
       <AccordionDescription event={item} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
       <AccordionLink event={item} />

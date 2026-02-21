@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect } from "react";
 
-import Media from "@/components/Media";
+import Media from "@/components/Media/Media";
 import styles from "../Accordion.module.css";
 
 const Gallery = ({ event, setActiveGalleryImage, className, isExpanded }) => {
@@ -10,7 +10,13 @@ const Gallery = ({ event, setActiveGalleryImage, className, isExpanded }) => {
   return (
     <ul className={`${className} ${styles.gallery}`}>
       {event.gallery.map((medium, index) => (
-        <GalleryItem key={index} medium={medium} index={index} setActiveGalleryImage={setActiveGalleryImage} isExpanded={isExpanded} />
+        <GalleryItem
+          key={index}
+          medium={medium}
+          index={index}
+          setActiveGalleryImage={setActiveGalleryImage}
+          isExpanded={isExpanded}
+        />
       ))}
     </ul>
   );
