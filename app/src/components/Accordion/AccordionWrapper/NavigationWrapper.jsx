@@ -8,12 +8,15 @@ import styles from "../Accordion.module.css";
 
 const NavigationWrapper = ({ children, invert, ref, item, colorPair }) => {
   const { background, text } = getColors(invert);
+  const slug = item?.slug?.current;
+  const path = slug ? `/calendar#${slug}` : "/calendar";
+  const anchorId = slug || item?._id || undefined;
 
   return (
-    <AnimationLink path={`/calendar#${item.slug.current}`}>
+    <AnimationLink path={path}>
       <motion.div
         ref={ref}
-        id={item.slug.current}
+        id={anchorId}
         className={`${styles.item} ${invert ? styles.invert : ""}`}
         whileHover={hoverColors(colorPair)}
         style={{

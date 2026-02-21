@@ -17,7 +17,15 @@ import { getAccordionHeaderFields } from "./getAccordionHeaderFields";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 import { usePathname } from "next/navigation";
 
+const getSlug = (item) => {
+  if (!item || typeof item !== "object") return null;
+  const slug = item.slug;
+  if (!slug || typeof slug !== "object") return null;
+  return typeof slug.current === "string" ? slug.current : null;
+};
+
 const AccordionHeader = ({ item, size, isExpanded, activeGalleryImage }) => {
+  if (!item) return null;
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
 
   const { title, date, meta } = getAccordionHeaderFields(item);
@@ -33,9 +41,11 @@ const AccordionHeader = ({ item, size, isExpanded, activeGalleryImage }) => {
 };
 
 const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }) => {
+  if (!item) return null;
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   const isEvent = item._type === "event";
+  const slug = getSlug(item);
   return (
     <div
       className={styles.accordionHeader}
@@ -54,7 +64,7 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
       <AccordionLink event={item} />
 
       <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
-        {isEvent && <ShareEvent url={`/calendar#${item.slug.current}`} />}
+        {isEvent && slug && <ShareEvent url={`/calendar#${slug}`} />}
         <AccordionExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} />
       </div>
     </div>
@@ -62,6 +72,7 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
 };
 
 const LargeHeaderContent = ({ item, isExpandable, isExpanded, activeGalleryImage, title, date, meta }) => {
+  if (!item) return null;
   const pathname = usePathname();
 
   const isAbout = pathname === "/about";
@@ -71,6 +82,7 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, activeGalleryImage
   const distance = isAbout ? header_height : header_height + filter_height;
 
   const isEvent = item._type === "event";
+  const slug = getSlug(item);
   return (
     <div
       className={styles.accordionHeader}
@@ -87,7 +99,7 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, activeGalleryImage
       <AccordionCounter item={item} activeGalleryImage={activeGalleryImage} isExpanded={isExpanded} />
 
       <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
-        {isEvent && <ShareEvent url={`/calendar#${item.slug.current}`} />}
+        {isEvent && slug && <ShareEvent url={`/calendar#${slug}`} />}
         <AccordionExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
       </div>
     </div>

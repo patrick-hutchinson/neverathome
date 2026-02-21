@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useContext, useRef, useEffect, useLayoutEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import { StateContext } from "@/context/StateContext";
@@ -6,7 +6,7 @@ import { StateContext } from "@/context/StateContext";
 import AccordionContent from "./AccordionContent";
 import AccordionWrapper from "./AccordionWrapper";
 import AccordionHeader from "./AccordionHeader";
-import { useColorPair } from "@/hooks/useColorPair";
+import { getColorPairForItem } from "@/hooks/useColorPair";
 import { useLenisContext } from "@/context/LenisContext";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
@@ -33,15 +33,16 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
   const refs = useRef({});
   const accordionRef = useRef(null);
 
-  const { activeItemId, setActiveItemId } = useContext(StateContext);
+  const { activeItemId, setActiveItemId, colorPairs } = useContext(StateContext);
+  const safeItems = useMemo(() => (Array.isArray(array) ? array.filter((item) => item && item._id) : []), [array]);
 
   useEffect(() => {
     if (!activeItemId) {
-      setActiveGalleryImage({ id: null, index: 0 });
+      setActiveGalleryImage((prev) => (prev.id === null && prev.index === 0 ? prev : { id: null, index: 0 }));
       return;
     }
 
-    setActiveGalleryImage({ id: activeItemId, index: 0 });
+    setActiveGalleryImage((prev) => (prev.id === activeItemId && prev.index === 0 ? prev : { id: activeItemId, index: 0 }));
   }, [activeItemId]);
 
   const scrollImmediate = (y) => {
@@ -59,11 +60,14 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
     return window.scrollY + el.getBoundingClientRect().top - stickyOffset;
   };
 
-  const alignItemToOffset = (id) => {
-    const targetY = getTargetY(id);
-    if (targetY == null) return;
+  const alignItemToOffset = (id, force = false) => {
+    const el = refs.current[id]?.current;
+    if (!el) return;
 
-    scrollImmediate(targetY);
+    const delta = el.getBoundingClientRect().top - stickyOffset;
+    if (!force && Math.abs(delta) < 0.75) return;
+
+    scrollImmediate(window.scrollY + delta);
   };
 
   const animateToOffset = (id, onComplete) => {
@@ -109,7 +113,7 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
     animateToOffset(id, () => {
       if (clickToken !== clickTokenRef.current) return;
 
-      alignItemToOffset(id);
+      alignItemToOffset(id, true);
       lockRef.current = {
         id,
         until: performance.now() + 650,
@@ -168,7 +172,8 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
       ([entry]) => {
         if (entry.isIntersecting && !hasExpandedOnce.current) {
           hasExpandedOnce.current = true;
-          setActiveItemId(array[0]._id);
+          if (!safeItems[0]?._id) return;
+          setActiveItemId(safeItems[0]._id);
           observer.disconnect();
         }
       },
@@ -177,16 +182,16 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
 
     observer.observe(accordionRef.current);
     return () => observer.disconnect();
-  }, [firstExpanded, array, setActiveItemId]);
+  }, [firstExpanded, safeItems, setActiveItemId]);
 
   return (
     <div className="accordion" ref={accordionRef}>
-      {array.map((item, index) => {
+      {safeItems.map((item) => {
         let isExpandable = item.info || item.gallery;
         const isExpanded = item._id === activeItemId;
         const isCollapsing = item._id === closingItemId && closingItemId !== activeItemId;
 
-        const colorPair = useColorPair(item);
+        const colorPair = getColorPairForItem(item, colorPairs);
 
         if (!refs.current[item._id]) {
           refs.current[item._id] = React.createRef();
@@ -194,7 +199,7 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
 
         return (
           <AccordionWrapper
-            key={index}
+            key={item._id}
             item={item}
             index={item._id}
             ref={refs.current[item._id]}
@@ -203,7 +208,6 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
             handleExpand={handleExpand}
             invert={invert}
             colorPair={colorPair}
-            setActiveItemId={setActiveItemId}
             isExpandable={isExpandable}
           >
             <AccordionHeader item={item} size={size} isExpanded={isExpanded} activeGalleryImage={activeGalleryImage} />
@@ -216,10 +220,10 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
                   setActiveGalleryImage={(rawIndex) => {
                     if (activeItemId !== item._id) return;
                     const parsedIndex = Number(rawIndex);
-                    setActiveGalleryImage({
-                      id: item._id,
-                      index: Number.isFinite(parsedIndex) ? parsedIndex : 0,
-                    });
+                    const nextIndex = Number.isFinite(parsedIndex) ? parsedIndex : 0;
+                    setActiveGalleryImage((prev) =>
+                      prev.id === item._id && prev.index === nextIndex ? prev : { id: item._id, index: nextIndex },
+                    );
                   }}
                 />
               )}

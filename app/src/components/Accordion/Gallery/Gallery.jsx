@@ -11,7 +11,7 @@ const Gallery = ({ event, setActiveGalleryImage, className, isExpanded }) => {
     <ul className={`${className} ${styles.gallery}`}>
       {event.gallery.map((medium, index) => (
         <GalleryItem
-          key={index}
+          key={medium?._id || `${event._id}-media-${index}`}
           medium={medium}
           index={index}
           setActiveGalleryImage={setActiveGalleryImage}
@@ -24,6 +24,7 @@ const Gallery = ({ event, setActiveGalleryImage, className, isExpanded }) => {
 
 const GalleryItem = ({ medium, index, setActiveGalleryImage, isExpanded }) => {
   const ref = useRef(null);
+  const lastIndexRef = useRef(null);
 
   // Gallery intersection observer
   useEffect(() => {
@@ -33,6 +34,8 @@ const GalleryItem = ({ medium, index, setActiveGalleryImage, isExpanded }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          if (lastIndexRef.current === index) return;
+          lastIndexRef.current = index;
           setActiveGalleryImage(index);
         }
       },

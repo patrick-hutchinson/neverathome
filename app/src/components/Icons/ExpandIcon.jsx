@@ -2,9 +2,14 @@ import { motion } from "framer-motion";
 import styles from "./Icons.module.css";
 
 import Icon from "@/components/Icon";
+import { useEffect } from "react";
 
 const ExpandIcon = ({ className, isExpandable, isExpanded }) => {
   if (!isExpandable) return null;
+
+  useEffect(() => {
+    console.log("reload");
+  }, []);
 
   return (
     <div className={className}>

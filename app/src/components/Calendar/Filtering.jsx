@@ -59,14 +59,19 @@ const Filtering = ({ types, years, query, setQuery, activeTypes, activeYears, se
       </fieldset>
 
       <fieldset className={styles.types}>
-        {types.map((type, index) => (
-          <span key={index}>
-            <button onClick={() => handleTypes(type)} className={activeTypes.includes(type) ? styles.active : ""}>
-              {type}
-            </button>
-            {index < types.length - 1 && ", "}
-          </span>
-        ))}
+        {types.map((type, index) => {
+          if (type === null) return;
+
+          console.log(type, "type");
+          return (
+            <span key={index}>
+              <button onClick={() => handleTypes(type)} className={activeTypes.includes(type) ? styles.active : ""}>
+                {type}
+              </button>
+              {index < types.length - 1 && ", "}
+            </span>
+          );
+        })}
       </fieldset>
 
       <div className={styles.search} style={{ alignItems: "center" }}>

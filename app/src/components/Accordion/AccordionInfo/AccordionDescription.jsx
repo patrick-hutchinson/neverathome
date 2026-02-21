@@ -13,18 +13,25 @@ const AccordionDescription = ({ event, isExpanded }) => {
 
   useLayoutEffect(() => {
     const measure = () => {
-      setTeaserHeight(teaserRef.current?.scrollHeight || 0);
-      setTextHeight(textRef.current?.scrollHeight || 0);
+      const nextTeaserHeight = teaserRef.current?.scrollHeight || 0;
+      const nextTextHeight = textRef.current?.scrollHeight || 0;
+
+      setTeaserHeight((prev) => (prev === nextTeaserHeight ? prev : nextTeaserHeight));
+      setTextHeight((prev) => (prev === nextTextHeight ? prev : nextTextHeight));
       setIsMeasured(true);
     };
 
+    // Measure before paint, then once more after layout settles.
     measure();
+    const rafId = requestAnimationFrame(measure);
 
-    const observer = new ResizeObserver(measure);
-    if (teaserRef.current) observer.observe(teaserRef.current);
-    if (textRef.current) observer.observe(textRef.current);
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
 
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", onResize);
+    };
   }, [event]);
 
   return (

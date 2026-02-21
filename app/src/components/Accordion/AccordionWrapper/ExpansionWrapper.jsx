@@ -24,10 +24,12 @@ const ExpansionWrapper = forwardRef(
 
     // useScrollToExpanded({ isExpanded, ref, offset: distance });
 
+    const anchorId = item?.slug?.current || item?._id || undefined;
+
     return (
       <motion.div
         ref={ref}
-        id={item.slug.current}
+        id={anchorId}
         className={`${isExpanded ? styles.expanded : ""} ${invert && styles.invert}`}
         style={{
           cursor: isExpandable ? "pointer" : "default",
@@ -37,7 +39,7 @@ const ExpansionWrapper = forwardRef(
         }}
         whileHover={isExpandable && hoverColors(colorPair)}
         onClick={() => {
-          if (!isExpandable) return;
+          if (!isExpandable || !item?._id) return;
           handleExpand(item._id);
         }}
         data-index={index}

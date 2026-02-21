@@ -15,7 +15,6 @@ const AccordionWrapper = forwardRef(
       colorPair,
       handleExpand,
       invert,
-      setActiveItemId,
       isExpandable,
     },
     ref,
@@ -30,7 +29,6 @@ const AccordionWrapper = forwardRef(
       handleExpand,
       invert,
       ref,
-      setActiveItemId,
       isExpandable,
     };
 
