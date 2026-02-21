@@ -15,7 +15,7 @@ export const newsletterAdBanner = defineType({
     prepare({title, image}) {
       return {
         title: title || 'Werbe Banner',
-        subtitle: 'Wähle ein Werbebanner aus',
+        subtitle: 'Wähle ein Werbebanner aus.',
       }
     },
   },
