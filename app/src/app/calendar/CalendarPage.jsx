@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useContext, useRef } from "react";
-import { AnimatePresence } from "framer-motion";
 
 import { StateContext } from "@/context/StateContext";
 
@@ -9,7 +8,6 @@ import Filtering from "@/components/Calendar/Filtering";
 
 import styles from "./CalendarPage.module.css";
 
-import { motion } from "framer-motion";
 import Accordion from "@/components/Accordion/Accordion";
 
 import { scrollToHash } from "@/helpers/scrollToHash";
@@ -106,17 +104,15 @@ const CalendarPage = ({ events }) => {
 
         <section>
           <ul className={styles.calendar_section}>
-            <AnimatePresence>
-              <Accordion array={current} size={"medium"} behavior="expand" />
-            </AnimatePresence>
+            <Accordion array={current} size={"medium"} behavior="expand" />
           </ul>
         </section>
 
         <section>
           <h3>Archived</h3>
-          <motion.ul className={styles.calendar_section}>
+          <ul className={styles.calendar_section}>
             <Accordion array={archived} size={"large"} behavior="expand" />
-          </motion.ul>
+          </ul>
         </section>
       </div>
     </main>

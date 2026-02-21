@@ -28,6 +28,7 @@ const ExpansionWrapper = forwardRef(
 
     return (
       <motion.div
+        layout="position"
         ref={ref}
         id={anchorId}
         className={`${isExpanded ? styles.expanded : ""} ${invert && styles.invert}`}

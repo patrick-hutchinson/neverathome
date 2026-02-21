@@ -1,5 +1,6 @@
 import React, { useState, useContext, useRef, useEffect, useLayoutEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
 
 import { StateContext } from "@/context/StateContext";
 
@@ -9,6 +10,7 @@ import AccordionHeader from "./AccordionHeader";
 import { getColorPairForItem } from "@/hooks/useColorPair";
 import { useLenisContext } from "@/context/LenisContext";
 import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
+import SplitMask from "../Animation/SplitMask";
 
 const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
   const lenis = useLenisContext();
@@ -186,50 +188,53 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
 
   return (
     <div className="accordion" ref={accordionRef}>
-      {safeItems.map((item) => {
-        let isExpandable = item.info || item.gallery;
-        const isExpanded = item._id === activeItemId;
-        const isCollapsing = item._id === closingItemId && closingItemId !== activeItemId;
+      <AnimatePresence initial={false} mode="popLayout">
+        {safeItems.map((item) => {
+          let isExpandable = item.info || item.gallery;
+          const isExpanded = item._id === activeItemId;
+          const isCollapsing = item._id === closingItemId && closingItemId !== activeItemId;
 
-        const colorPair = getColorPairForItem(item, colorPairs);
+          const colorPair = getColorPairForItem(item, colorPairs);
 
-        if (!refs.current[item._id]) {
-          refs.current[item._id] = React.createRef();
-        }
+          if (!refs.current[item._id]) {
+            refs.current[item._id] = React.createRef();
+          }
 
-        return (
-          <AccordionWrapper
-            key={item._id}
-            item={item}
-            index={item._id}
-            ref={refs.current[item._id]}
-            isExpanded={isExpanded}
-            behavior={behavior}
-            handleExpand={handleExpand}
-            invert={invert}
-            colorPair={colorPair}
-            isExpandable={isExpandable}
-          >
-            <AccordionHeader item={item} size={size} isExpanded={isExpanded} activeGalleryImage={activeGalleryImage} />
-            {size === "large" && (
-                <AccordionContent
-                  item={item}
-                  mode={isExpanded ? "expanding" : isCollapsing ? "collapsing" : "collapsed"}
-                  containerRef={refs.current[item._id]}
-                  isExpanded={isExpanded}
-                  setActiveGalleryImage={(rawIndex) => {
-                    if (activeItemId !== item._id) return;
-                    const parsedIndex = Number(rawIndex);
-                    const nextIndex = Number.isFinite(parsedIndex) ? parsedIndex : 0;
-                    setActiveGalleryImage((prev) =>
-                      prev.id === item._id && prev.index === nextIndex ? prev : { id: item._id, index: nextIndex },
-                    );
-                  }}
-                />
-              )}
-          </AccordionWrapper>
-        );
-      })}
+          return (
+            <SplitMask key={item._id}>
+              <AccordionWrapper
+                item={item}
+                index={item._id}
+                ref={refs.current[item._id]}
+                isExpanded={isExpanded}
+                behavior={behavior}
+                handleExpand={handleExpand}
+                invert={invert}
+                colorPair={colorPair}
+                isExpandable={isExpandable}
+              >
+                <AccordionHeader item={item} size={size} isExpanded={isExpanded} activeGalleryImage={activeGalleryImage} />
+                {size === "large" && (
+                  <AccordionContent
+                    item={item}
+                    mode={isExpanded ? "expanding" : isCollapsing ? "collapsing" : "collapsed"}
+                    containerRef={refs.current[item._id]}
+                    isExpanded={isExpanded}
+                    setActiveGalleryImage={(rawIndex) => {
+                      if (activeItemId !== item._id) return;
+                      const parsedIndex = Number(rawIndex);
+                      const nextIndex = Number.isFinite(parsedIndex) ? parsedIndex : 0;
+                      setActiveGalleryImage((prev) =>
+                        prev.id === item._id && prev.index === nextIndex ? prev : { id: item._id, index: nextIndex },
+                      );
+                    }}
+                  />
+                )}
+              </AccordionWrapper>
+            </SplitMask>
+          );
+        })}
+      </AnimatePresence>
     </div>
   );
 };

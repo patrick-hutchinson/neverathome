@@ -15,6 +15,7 @@ const NavigationWrapper = ({ children, invert, ref, item, colorPair }) => {
   return (
     <AnimationLink path={path}>
       <motion.div
+        layout="position"
         ref={ref}
         id={anchorId}
         className={`${styles.item} ${invert ? styles.invert : ""}`}
