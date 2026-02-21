@@ -21,6 +21,7 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
     until: 0,
     raf: null,
   });
+  const clickTokenRef = useRef(0);
 
   // const [activeId, setActiveId] = useState(null);
   const [previousId, setPreviousId] = useState(null);
@@ -42,12 +43,45 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
     window.scrollTo(0, y);
   };
 
-  const alignItemToOffset = (id) => {
+  const getTargetY = (id) => {
     const el = refs.current[id]?.current;
-    if (!el) return;
+    if (!el) return null;
 
-    const targetY = window.scrollY + el.getBoundingClientRect().top - stickyOffset;
+    return window.scrollY + el.getBoundingClientRect().top - stickyOffset;
+  };
+
+  const alignItemToOffset = (id) => {
+    const targetY = getTargetY(id);
+    if (targetY == null) return;
+
     scrollImmediate(targetY);
+  };
+
+  const animateToOffset = (id, onComplete) => {
+    const targetY = getTargetY(id);
+    if (targetY == null) {
+      onComplete();
+      return;
+    }
+
+    if (!lenis) {
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+      window.setTimeout(onComplete, 350);
+      return;
+    }
+
+    const distance = Math.abs(targetY - window.scrollY);
+    if (distance < 2) {
+      onComplete();
+      return;
+    }
+
+    lenis.scrollTo(targetY, {
+      duration: 0.45,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      force: true,
+      onComplete,
+    });
   };
 
   const stopLock = () => {
@@ -58,22 +92,30 @@ const Accordeon = ({ array, size, invert, behavior, firstExpanded }) => {
   };
 
   const handleExpand = (id) => {
+    clickTokenRef.current += 1;
+    const clickToken = clickTokenRef.current;
+
     stopLock();
-    alignItemToOffset(id);
-    lockRef.current = {
-      id,
-      until: performance.now() + 650,
-      raf: null,
-    };
 
-    if (id === expandedElement) {
+    animateToOffset(id, () => {
+      if (clickToken !== clickTokenRef.current) return;
+
+      alignItemToOffset(id);
+      lockRef.current = {
+        id,
+        until: performance.now() + 650,
+        raf: null,
+      };
+
+      if (id === expandedElement) {
+        setPreviousId(expandedElement);
+        setExpandedElement(null);
+        return;
+      }
+
       setPreviousId(expandedElement);
-      setExpandedElement(null);
-      return;
-    }
-
-    setPreviousId(expandedElement);
-    setExpandedElement(id);
+      setExpandedElement(id);
+    });
   };
 
   useLayoutEffect(() => {
