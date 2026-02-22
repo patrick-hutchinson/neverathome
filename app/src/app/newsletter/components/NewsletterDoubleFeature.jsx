@@ -19,7 +19,7 @@ const NewsletterDoubleFeature = ({ block }) => {
               colSpan="2"
               align="left"
               style={{
-                padding: "0 6px 18px 6px",
+                padding: "0 6px 18px 0px",
                 fontSize: "19px",
                 lineHeight: "21px",
                 border: 0,

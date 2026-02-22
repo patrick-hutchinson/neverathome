@@ -45,6 +45,7 @@ const NewsletterFooter = ({ site }) => {
               <tbody>
                 <tr>
                   <td
+                    className="col-main"
                     valign="top"
                     align="left"
                     style={{
@@ -86,6 +87,7 @@ const NewsletterFooter = ({ site }) => {
                   </td>
 
                   <td
+                    className="col-side"
                     valign="top"
                     align="left"
                     style={{
@@ -165,13 +167,14 @@ const NewsletterFooter = ({ site }) => {
 
                 <tr>
                   <td
+                    className="col-main"
                     valign="bottom"
                     align="left"
                     style={{
                       width: "50%",
                       padding: "14px 24px 0 0",
-                      fontSize: "18px",
-                      lineHeight: "20px",
+                      fontSize: "13px",
+                      lineHeight: "15px",
                       textAlign: "left",
                       border: 0,
                     }}
@@ -180,18 +183,19 @@ const NewsletterFooter = ({ site }) => {
                   </td>
 
                   <td
+                    className="col-side"
                     valign="bottom"
                     align="left"
                     style={{
                       width: "50%",
                       paddingTop: "14px",
-                      fontSize: "18px",
-                      lineHeight: "20px",
+                      fontSize: "13px",
+                      lineHeight: "15px",
                       textAlign: "left",
                       border: 0,
                     }}
                   >
-                    <div>
+                    <div style={{ display: "inline" }}>
                       <a
                         href="https://www.never-at-home.com/imprint"
                         target="_blank"
@@ -203,7 +207,8 @@ const NewsletterFooter = ({ site }) => {
                     </div>
 
                     {socials.length > 0 && (
-                      <div style={{ marginTop: "2px" }}>
+                      <span>
+                        {", "}
                         {socials.map((social, index) => (
                           <span key={`${social.platform}-${index}`}>
                             <a
@@ -217,7 +222,7 @@ const NewsletterFooter = ({ site }) => {
                             {index < socials.length - 1 ? ", " : ""}
                           </span>
                         ))}
-                      </div>
+                      </span>
                     )}
                   </td>
                 </tr>

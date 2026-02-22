@@ -11,6 +11,19 @@ const NewsletterPage = ({ site, newsletter }) => {
   return (
     <div className={styles.main}>
       <div className="newsletter-content">
+        <style>{`
+          @media screen and (min-width: 769px) {
+            .newsletter-footer .col-main {
+              width: 75% !important;
+              max-width: 75% !important;
+            }
+
+            .newsletter-footer .col-side {
+              width: 25% !important;
+              max-width: 25% !important;
+            }
+          }
+        `}</style>
         <NewsletterHeader newsletter={newsletter} />
 
         <div style={{ padding: "13px" }}>

@@ -22,7 +22,8 @@ const NewsletterFeature = ({ feature }) => {
   const textColor = feature?.colorPair?.text?.value || "#ffffff";
   const backgroundColor = feature?.colorPair?.background?.value || "#000000";
   const runningTextLines = portableTextToLines(feature?.runningText);
-  const mediaHeight = "66vh";
+  const mediaHeightPx = 520;
+  const mediaHeight = `${mediaHeightPx}px`;
 
   return (
     <td
@@ -45,31 +46,49 @@ const NewsletterFeature = ({ feature }) => {
                   cellPadding="0"
                   cellSpacing="0"
                   role="presentation"
+                  height={mediaHeightPx}
                   style={{
                     border: 0,
                     backgroundColor,
                     height: mediaHeight,
+                    minHeight: mediaHeight,
+                    maxHeight: mediaHeight,
                   }}
                 >
                   <tbody>
                     <tr>
-                      <td align="center" valign="middle" style={{ border: 0, height: mediaHeight }}>
+                      <td
+                        align="center"
+                        valign="middle"
+                        height={mediaHeightPx}
+                        style={{ border: 0, height: mediaHeight, minHeight: mediaHeight, maxHeight: mediaHeight }}
+                      >
                         {link ? (
                           <a
                             href={link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ textDecoration: "none", display: "block", width: "100%", height: mediaHeight }}
+                            style={{
+                              textDecoration: "none",
+                              display: "block",
+                              width: "100%",
+                              height: mediaHeight,
+                              minHeight: mediaHeight,
+                              maxHeight: mediaHeight,
+                            }}
                           >
                             <img
                               src={feature.image.url}
                               alt={title}
                               width="100%"
+                              height={mediaHeightPx}
                               border="0"
                               style={{
                                 display: "block",
                                 width: "100%",
                                 height: mediaHeight,
+                                minHeight: mediaHeight,
+                                maxHeight: mediaHeight,
                                 objectFit: "cover",
                                 border: 0,
                               }}
@@ -80,11 +99,14 @@ const NewsletterFeature = ({ feature }) => {
                             src={feature.image.url}
                             alt={title}
                             width="100%"
+                            height={mediaHeightPx}
                             border="0"
                             style={{
                               display: "block",
                               width: "100%",
                               height: mediaHeight,
+                              minHeight: mediaHeight,
+                              maxHeight: mediaHeight,
                               objectFit: "cover",
                               border: 0,
                             }}
@@ -100,15 +122,23 @@ const NewsletterFeature = ({ feature }) => {
                   cellPadding="0"
                   cellSpacing="0"
                   role="presentation"
+                  height={mediaHeightPx}
                   style={{
                     border: 0,
                     backgroundColor,
                     height: mediaHeight,
+                    minHeight: mediaHeight,
+                    maxHeight: mediaHeight,
                   }}
                 >
                   <tbody>
                     <tr>
-                      <td align="center" valign="middle" style={{ padding: "20px", border: 0, height: mediaHeight }}>
+                      <td
+                        align="center"
+                        valign="middle"
+                        height={mediaHeightPx}
+                        style={{ padding: "20px", border: 0, height: mediaHeight, minHeight: mediaHeight, maxHeight: mediaHeight }}
+                      >
                         {link ? (
                           <a
                             href={link}

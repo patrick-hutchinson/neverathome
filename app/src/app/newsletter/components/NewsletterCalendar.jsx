@@ -46,7 +46,7 @@ const NewsletterCalendar = ({ block }) => {
             <td
               style={{
                 width: "100%",
-                textAlign: "center",
+                textAlign: "left",
                 paddingBottom: "24px",
                 fontSize: "19px",
                 lineHeight: "21px",
@@ -70,118 +70,145 @@ const NewsletterCalendar = ({ block }) => {
                 <table className="border" width="100%" cellPadding="0" cellSpacing="0" role="presentation">
                   <tbody>
                     <tr>
-                      <td style={{ borderTop: "1px solid #000", fontSize: 0, lineHeight: 0, padding: "0px" }}>&nbsp;</td>
+                      <td style={{ borderTop: "1px solid #fff", fontSize: 0, lineHeight: 0, padding: "0px" }}>&nbsp;</td>
                     </tr>
                   </tbody>
                 </table>
 
-                <table
-                  width="100%"
-                  cellPadding="0"
-                  cellSpacing="0"
-                  role="presentation"
-                  style={{ backgroundColor: "transparent", border: 0 }}
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "block",
+                    textDecoration: "none",
+                    color: "#ffffff",
+                  }}
                 >
-                  <tbody>
-                    <tr>
-                      <td
-                        valign="top"
-                        style={{
-                          width: "25%",
-                          padding: "8px 10px 8px 0",
-                          border: 0,
-                          fontSize: "18px",
-                          lineHeight: "20px",
-                        }}
-                      >
-                        {eventType}
-                      </td>
-                      <td
-                        valign="top"
-                        style={{
-                          padding: "8px 10px 8px 0",
-                          border: 0,
-                          fontSize: "18px",
-                          lineHeight: "20px",
-                          width: "auto",
-                        }}
-                      >
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ color: "#000", textDecoration: "none" }}
+                  <table
+                    width="100%"
+                    cellPadding="0"
+                    cellSpacing="0"
+                    role="presentation"
+                    style={{ backgroundColor: "#000", color: "#fff", border: 0, padding: "0px 5px" }}
+                  >
+                    <tbody>
+                      <tr>
+                        <td
+                          valign="top"
+                          style={{
+                            width: "25%",
+                            padding: "0px 0px 4px 0px",
+                            border: 0,
+                            fontSize: "18px",
+                            lineHeight: "20px",
+                            color: "#ffffff",
+                          }}
                         >
-                          {event?.title}
-                        </a>
-                      </td>
-                      <td
-                        valign="top"
-                        align="right"
-                        style={{
-                          width: "24px",
-                          padding: "8px 0 8px 0",
-                          border: 0,
-                          fontSize: "18px",
-                          lineHeight: "20px",
-                          textAlign: "right",
-                        }}
-                      >
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ color: "#000", textDecoration: "none" }}
+                          <font color="#ffffff">
+                            <span style={{ color: "#ffffff" }}>{eventType}</span>
+                          </font>
+                        </td>
+                        <td
+                          valign="top"
+                          style={{
+                            padding: "0px 0px 4px 0px",
+                            border: 0,
+                            fontSize: "18px",
+                            lineHeight: "20px",
+                            width: "auto",
+                            color: "#ffffff",
+                          }}
                         >
-                          +
-                        </a>
-                      </td>
-                    </tr>
+                          <font color="#ffffff">
+                            <span style={{ color: "#ffffff" }}>{event?.title}</span>
+                          </font>
+                        </td>
+                        <td
+                          valign="top"
+                          align="right"
+                          style={{
+                            width: "24px",
+                            padding: "0px 0px 4px 0px",
+                            border: 0,
+                            fontSize: "18px",
+                            lineHeight: "20px",
+                            textAlign: "right",
+                            color: "#ffffff",
+                          }}
+                        >
+                          <font color="#ffffff">
+                            <span style={{ color: "#ffffff" }}>+</span>
+                          </font>
+                        </td>
+                      </tr>
 
-                    <tr>
-                      <td valign="top" style={{ width: "25%", border: 0, padding: "0 10px 16px 0" }}>
-                        {thumbnailUrl ? (
-                          <a href={href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                      <tr>
+                        <td
+                          valign="top"
+                          style={{
+                            width: "25%",
+                            border: 0,
+                            padding: "0px 0px 10px 0px",
+                          }}
+                        >
+                          {thumbnailUrl ? (
                             <img
                               src={thumbnailUrl}
                               alt={event?.title || ""}
-                              width="100%"
+                              width="50%"
                               border="0"
-                              style={{ display: "block", width: "100%", height: "auto", objectFit: "contain", border: 0 }}
+                              style={{ display: "block", width: "50%", height: "auto", objectFit: "contain", border: 0 }}
                             />
-                          </a>
-                        ) : (
-                          <table
-                            width="100%"
-                            cellPadding="0"
-                            cellSpacing="0"
-                            role="presentation"
-                            style={{ border: "1px solid #000", width: "100%", minHeight: "48px" }}
-                          >
-                            <tbody>
-                              <tr>
-                                <td
-                                  align="center"
-                                  valign="middle"
-                                  style={{ border: 0, fontSize: "18px", lineHeight: "16px" }}
-                                >
-                                  {eventType || "Event"}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        )}
-                      </td>
+                          ) : (
+                            <table
+                              width="100%"
+                              cellPadding="0"
+                              cellSpacing="0"
+                              role="presentation"
+                              style={{ border: "1px solid #fff", width: "100%", minHeight: "48px" }}
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    align="center"
+                                    valign="middle"
+                                    style={{ border: 0, fontSize: "18px", lineHeight: "20px", color: "#ffffff" }}
+                                  >
+                                    <font color="#ffffff">
+                                      <span style={{ color: "#ffffff" }}>{eventType || "Event"}</span>
+                                    </font>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          )}
+                        </td>
 
-                      <td valign="top" style={{ border: 0, padding: "0 10px 16px 0", fontSize: "18px", lineHeight: "16px" }}>
-                        {teaser && <p style={{ margin: 0 }}>{teaser}</p>}
-                      </td>
-                      <td valign="top" style={{ width: "24px", border: 0, padding: "0 0 16px 0" }}>
-                        &nbsp;
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <td
+                          valign="top"
+                          style={{
+                            border: 0,
+                            padding: "0px",
+                            padding: "0px 0px 10px 0px",
+                            fontSize: "18px",
+                            lineHeight: "20px",
+                            color: "#ffffff",
+                          }}
+                        >
+                          {teaser && (
+                            <p style={{ margin: 0, color: "#ffffff" }}>
+                              <font color="#ffffff">{teaser}</font>
+                            </p>
+                          )}
+                        </td>
+                        <td valign="top" style={{ width: "24px", border: 0, padding: "0 0 16px 0" }}>
+                          &nbsp;
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </a>
               </td>
             </tr>
           );

@@ -56,7 +56,7 @@ const NewsletterShowcase = ({ block }) => {
             valign="top"
             style={{
               width: "75%",
-              padding: "0 10px 10px 0",
+              padding: "0 0px 10px 0",
               border: 0,
             }}
           >
@@ -123,7 +123,7 @@ const NewsletterShowcase = ({ block }) => {
         </tr>
 
         <tr>
-          <td colSpan="2" style={{ padding: `0 0 0 ${runningTextIndent}`, border: 0, fontSize: "18px", lineHeight: "16px" }}>
+          <td colSpan="2" style={{ padding: `0 0 0 ${runningTextIndent}`, border: 0, fontSize: "18px", lineHeight: "20px" }}>
             {runningTextLines.map((line, index) => (
               <p key={`${line}-${index}`} style={{ margin: index === runningTextLines.length - 1 ? 0 : "0 0 8px 0" }}>
                 {line}
