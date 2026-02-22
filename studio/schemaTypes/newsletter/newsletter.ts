@@ -27,12 +27,10 @@ export const newsletter = defineType({
       type: 'array',
       title: 'Email Inhalt ',
       of: [
-        defineArrayMember({name: 'newsletterRunningText', type: 'newsletterRunningText'}),
+        defineArrayMember({name: 'newsletterAnnouncement', type: 'newsletterAnnouncement'}),
         defineArrayMember({name: 'newsletterShowcase', type: 'newsletterShowcase'}),
-        defineArrayMember({name: 'newsletterBulletins', type: 'newsletterBulletins'}),
+        defineArrayMember({name: 'newsletterCalendar', type: 'newsletterCalendar'}),
         defineArrayMember({name: 'newsletterDoubleFeature', type: 'newsletterDoubleFeature'}),
-        defineArrayMember({name: 'newsletterAnnouncements', type: 'newsletterAnnouncements'}),
-        defineArrayMember({name: 'newsletterAdBanner', type: 'newsletterAdBanner'}),
       ],
     }),
     defineField({

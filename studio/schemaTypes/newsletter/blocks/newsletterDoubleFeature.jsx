@@ -23,6 +23,13 @@ export const newsletterDoubleFeature = defineType({
               type: 'string',
             }),
             defineField({
+              name: 'colorPair',
+              title: 'Farbkombination',
+              type: 'reference',
+              to: {type: 'colorPair'},
+              validation: (Rule) => Rule.required().error('Du musst eine Farbkombination angeben.'),
+            }),
+            defineField({
               name: 'image',
               title: 'Image',
               type: 'image',
@@ -32,14 +39,7 @@ export const newsletterDoubleFeature = defineType({
               title: 'Link',
               type: 'string',
             }),
-            defineField({
-              name: 'isSmall',
-              title: 'Bildgröße (klein)',
-              type: 'boolean',
-              description:
-                'Aktiviere dieses Feld, um das Bild in der Email klein anzeigen zu lassen.',
-            }),
-            defineField({name: 'copyright', title: 'Copyright', type: 'string'}),
+            defineField({name: 'runningText', type: 'array', of: [{type: 'block'}]}),
           ],
         },
       ],

@@ -93,7 +93,9 @@ export const structure: StructureResolver = (S, context) =>
       ...S.documentTypeListItems().filter(
         (listItem) =>
           !hiddenTypes.includes(listItem.getId()!) &&
-          !['eventType', 'colorPair', 'venue', 'speaker', 'event'].includes(listItem.getId()!),
+          !['eventType', 'colorPair', 'venue', 'speaker', 'event', 'newsletter'].includes(
+            listItem.getId()!,
+          ),
       ),
 
       // Definitions folder
@@ -111,6 +113,19 @@ export const structure: StructureResolver = (S, context) =>
                 .title('Color Pairs')
                 .schemaType('colorPair')
                 .child(S.documentTypeList('colorPair').title('Color Pair')),
+            ]),
+        ),
+
+      S.listItem()
+        .title('Newsletter')
+        .child(
+          S.list()
+            .title('Newsletter')
+            .items([
+              S.listItem()
+                .title('Newsletter Veröffentlichungen')
+                .schemaType('newsletter')
+                .child(S.documentTypeList('newsletter').title('Newsletter Veröffentlichungen')),
             ]),
         ),
     ])

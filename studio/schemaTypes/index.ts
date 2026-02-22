@@ -31,6 +31,14 @@ import {videoWithMetadata} from './types/videoWithMetadata'
 import {medium} from './types/medium'
 import {highlightType} from './definitions/highlightType'
 
+// Newsletter
+import {newsletter} from './newsletter/newsletter'
+
+import {newsletterCalendar} from './newsletter/blocks/newsletterCalendar'
+import {newsletterDoubleFeature} from './newsletter/blocks/newsletterDoubleFeature'
+import {newsletterAnnouncement} from './newsletter/blocks/newsletterAnnouncement'
+import {newsletterShowcase} from './newsletter/blocks/newsletterShowcase'
+
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
     pageType,
@@ -57,5 +65,12 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     imageWithMetadata,
     videoWithMetadata,
     medium,
+
+    // Newsletter
+    newsletter,
+    newsletterCalendar,
+    newsletterDoubleFeature,
+    newsletterAnnouncement,
+    newsletterShowcase,
   ],
 }

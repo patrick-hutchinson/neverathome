@@ -1,0 +1,233 @@
+const year = new Date().getFullYear();
+
+const portableTextToLines = (value) => {
+  if (!value) return [];
+  if (typeof value === "string") return [value];
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((block) => {
+      if (typeof block === "string") return block.trim();
+      if (!block || !Array.isArray(block.children)) return "";
+      return block.children
+        .map((child) => child?.text || "")
+        .join("")
+        .trim();
+    })
+    .filter(Boolean);
+};
+
+const NewsletterFooter = ({ site }) => {
+  const addressLines = portableTextToLines(site?.address);
+  const socials = Array.isArray(site?.socials) ? site.socials : [];
+  const workshopSpaceUrl = site?.workshopSpaceFile?.asset?.url;
+  const presskitLink = site?.presskitLink;
+  const mediaarchiveLink = site?.mediaarchiveLink;
+
+  return (
+    <table
+      className="newsletter-footer"
+      width="100%"
+      border="0"
+      cellPadding="0"
+      cellSpacing="0"
+      role="presentation"
+      style={{
+        backgroundColor: "#000000",
+        color: "#ffffff",
+        border: 0,
+      }}
+    >
+      <tbody>
+        <tr>
+          <td style={{ padding: "12px 13px 16px 13px", border: 0 }}>
+            <table width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
+              <tbody>
+                <tr>
+                  <td
+                    valign="top"
+                    align="left"
+                    style={{
+                      width: "50%",
+                      padding: "0 24px 0 0",
+                      fontSize: "18px",
+                      lineHeight: "20px",
+                      textAlign: "left",
+                      border: 0,
+                    }}
+                  >
+                    {site?.googleMaps ? (
+                      <a
+                        href={site.googleMaps}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#ffffff", textDecoration: "none" }}
+                      >
+                        {addressLines.map((line, index) => (
+                          <div key={`${line}-${index}`}>{line}</div>
+                        ))}
+                      </a>
+                    ) : (
+                      addressLines.map((line, index) => <div key={`${line}-${index}`}>{line}</div>)
+                    )}
+
+                    {site?.email && (
+                      <div style={{ marginTop: "2px" }}>
+                        <a
+                          href={`mailto:${site.email}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "#ffffff", textDecoration: "none" }}
+                        >
+                          {site.email}
+                        </a>
+                      </div>
+                    )}
+                  </td>
+
+                  <td
+                    valign="top"
+                    align="left"
+                    style={{
+                      width: "50%",
+                      fontSize: "18px",
+                      lineHeight: "20px",
+                      textAlign: "left",
+                      border: 0,
+                    }}
+                  >
+                    <div>
+                      Get the latest Updates, News & Stories
+                      <br />
+                      <a
+                        href="https://newsletter.never-at-home.at/subscription/form"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#ffffff", textDecoration: "none" }}
+                      >
+                        Subscribe Here
+                      </a>
+                    </div>
+
+                    <div style={{ marginTop: "10px" }}>
+                      {workshopSpaceUrl && (
+                        <div>
+                          <a
+                            href={workshopSpaceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "#ffffff", textDecoration: "none" }}
+                          >
+                            Rent a Workshop Space
+                          </a>
+                        </div>
+                      )}
+
+                      <div>
+                        <a
+                          href="https://www.never-at-home.com/linktree"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "#ffffff", textDecoration: "none" }}
+                        >
+                          Go to Linktree
+                        </a>
+                      </div>
+
+                      {presskitLink && (
+                        <div>
+                          <a
+                            href={presskitLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "#ffffff", textDecoration: "none" }}
+                          >
+                            Download Presskit
+                          </a>
+                        </div>
+                      )}
+
+                      {mediaarchiveLink && (
+                        <div>
+                          <a
+                            href={mediaarchiveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "#ffffff", textDecoration: "none" }}
+                          >
+                            Mediaarchive
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td
+                    valign="bottom"
+                    align="left"
+                    style={{
+                      width: "50%",
+                      padding: "14px 24px 0 0",
+                      fontSize: "18px",
+                      lineHeight: "20px",
+                      textAlign: "left",
+                      border: 0,
+                    }}
+                  >
+                    {`${site?.title || "Never At Home"} © ${year}`}
+                  </td>
+
+                  <td
+                    valign="bottom"
+                    align="left"
+                    style={{
+                      width: "50%",
+                      paddingTop: "14px",
+                      fontSize: "18px",
+                      lineHeight: "20px",
+                      textAlign: "left",
+                      border: 0,
+                    }}
+                  >
+                    <div>
+                      <a
+                        href="https://www.never-at-home.com/imprint"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#ffffff", textDecoration: "none" }}
+                      >
+                        Imprint
+                      </a>
+                    </div>
+
+                    {socials.length > 0 && (
+                      <div style={{ marginTop: "2px" }}>
+                        {socials.map((social, index) => (
+                          <span key={`${social.platform}-${index}`}>
+                            <a
+                              href={social.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ color: "#ffffff", textDecoration: "none" }}
+                            >
+                              {social.platform}
+                            </a>
+                            {index < socials.length - 1 ? ", " : ""}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  );
+};
+
+export default NewsletterFooter;

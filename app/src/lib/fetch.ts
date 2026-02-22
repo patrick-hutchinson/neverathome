@@ -30,6 +30,7 @@ import {
   studiosQuery,
   imprintQuery,
   colorPairsQuery,
+  newsletterQuery,
 } from "./queries";
 
 export async function getColorPairs() {
@@ -82,4 +83,8 @@ export async function getHighlights() {
 
 export async function getFeatures() {
   return client.fetch(featureQuery);
+}
+
+export async function getNewsletters() {
+  return client.fetch(newsletterQuery);
 }

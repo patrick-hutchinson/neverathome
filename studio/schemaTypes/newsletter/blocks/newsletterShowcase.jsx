@@ -9,8 +9,17 @@ export const newsletterShowcase = defineType({
   type: 'object',
 
   fields: [
+    defineField({name: 'title', title: 'Title', type: 'string'}),
+    defineField({name: 'date', title: 'Date', type: 'date'}),
+    defineField({
+      name: 'eventType',
+      title: 'Event Type',
+      type: 'reference',
+      to: {type: 'eventType'},
+    }),
     defineField({name: 'image', title: 'Image', type: 'image'}),
-    defineField({name: 'text', title: 'Email: Fließtext', type: 'array', of: [{type: 'block'}]}),
+    defineField({name: 'textTitle', title: 'Text Überschrift', type: 'string'}),
+    defineField({name: 'text', title: 'Fließtext', type: 'array', of: [{type: 'block'}]}),
   ],
   preview: {
     select: {

@@ -7,12 +7,14 @@ import styles from "../ArtistsPage.module.css";
 
 const Artist = ({
   artist,
+  dataId,
   hoveredArtist,
   setHoveredArtist,
   selectedArtist,
   setSelectedArtist,
   colorPairs,
   observerRef,
+  observerVersion,
   activeId,
 }) => {
   const { isTouch, isMobile } = useContext(StateContext);
@@ -47,13 +49,24 @@ const Artist = ({
   // Determine color
 
   const desktopColor = isSelected ? lockedColor : isHovered ? currentHoverColor : "#fff";
-  const mobileColor = activeId === artist._id ? "#fff" : "#222";
+  const mobileColor = activeId === dataId ? "#fff" : "#222";
+
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    const element = itemRef.current;
+    const observer = observerRef.current;
+    if (!element || !observer) return;
+
+    observer.observe(element);
+    return () => observer.unobserve(element);
+  }, [observerRef, observerVersion, dataId]);
+
   return (
     <motion.li
-      key={artist._id}
-      className={`${styles.artist} ${activeId === artist._id ? styles.active : ""}`}
-      ref={(el) => el && observerRef.current?.observe(el)}
-      data-id={artist._id}
+      className={`${styles.artist} ${activeId === dataId ? styles.active : ""}`}
+      ref={itemRef}
+      data-id={dataId}
       style={{ color: isMobile ? mobileColor : desktopColor }}
       onMouseEnter={() => {
         if (isMobile) return;

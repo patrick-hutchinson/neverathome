@@ -349,3 +349,68 @@ export const featureQuery = `*[_type=="feature"]{
   "type": type->title,
   ${thumbnailFragment}
 }`;
+
+export const newsletterQuery = `
+*[_type == "newsletter"]{
+  _id,
+  title,
+  "language": coalesce(language, "de"),
+  release,
+  subject,
+  slug,
+
+  pageBuilder[]{
+    _key,
+    _type,
+    _type == "newsletterAnnouncement" => {
+      sectionHeader,
+      announcementText
+    },
+    _type == "newsletterDoubleFeature" => {
+      sectionHeader,
+      story[]{
+        _key,
+        featureTitle,
+        link,
+        runningText,
+        "colorPair": colorPair->{_id, text, background},
+        "image": {
+          "url": image.asset->url,
+          "dimensions": image.asset->metadata.dimensions,
+          "lqip": image.asset->metadata.lqip
+        }
+      }
+    },
+    _type == "newsletterShowcase" => {
+      title,
+      date,
+      "eventType": eventType->{
+        _id,
+        title
+      },
+      textTitle,
+      text,
+      "image": {
+        "url": image.asset->url,
+        "dimensions": image.asset->metadata.dimensions,
+        "lqip": image.asset->metadata.lqip
+      }
+    },
+    _type == "newsletterCalendar" => {
+      sectionHeader,
+      "events": event[]->{
+        _id,
+        title,
+        teaser,
+        startDate,
+        endDate,
+        city,
+        location,
+        ${thumbnailFragment},
+        slug,
+        "type": type->title
+      },
+    },
+  }
+}
+`;

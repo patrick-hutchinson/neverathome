@@ -1,40 +1,26 @@
 import {defineField, defineType} from 'sanity'
 
-import {ImageIcon} from '@sanity/icons'
+import {TextIcon} from '@sanity/icons'
 
 export const newsletterAnnouncement = defineType({
   name: 'newsletterAnnouncement',
-  title: 'Newsletter Announcement',
-  icon: ImageIcon,
+  title: 'Announcement',
+  icon: TextIcon,
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Titel',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'image',
-      title: 'Bild',
-      type: 'image',
-    }),
-    defineField({
-      name: 'link',
-      title: 'Link',
-      type: 'url',
-      validation: (Rule) => Rule.required(),
-    }),
+    defineField({name: 'sectionHeader', title: 'Modul Überschrift', type: 'string'}),
+    defineField({name: 'announcementText', type: 'array', of: [{type: 'block'}]}),
   ],
+
   preview: {
     select: {
       title: 'Announcement',
     },
     prepare({title, image}) {
       return {
-        title: 'Newsletter Announcement',
-        subtitle: 'z.B "Follow us on Instagram", oder ein Werbebanner. ',
-        // media: TextIcon,
+        title: 'Announcement',
+        subtitle: 'Großer Fließtext in voller Breite.',
+        media: TextIcon,
       }
     },
   },
