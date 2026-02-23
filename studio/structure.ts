@@ -8,7 +8,7 @@ import {PinFilledIcon} from '@sanity/icons'
 const singletons = ['site', 'home', 'contact', 'events', 'workshops', 'studios', 'imprint']
 
 // Add other types you want to hide from Desk here
-const hiddenTypes = [...singletons, 'mux.videoAsset']
+const hiddenTypes = [...singletons, 'mux.videoAsset', 'page']
 
 export const structure: StructureResolver = (S, context) =>
   S.list()

@@ -1,4 +1,4 @@
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState, useRef, useEffect, useMemo } from "react";
 
 import { motion } from "framer-motion";
 import { StateContext } from "@/context/StateContext";
@@ -19,7 +19,21 @@ const Artist = ({
 }) => {
   const { isTouch, isMobile } = useContext(StateContext);
 
-  const textColors = colorPairs.map((colorPair) => colorPair.text.value);
+  const isBlackLike = (value) => {
+    if (!value || typeof value !== "string") return false;
+    const color = value.trim().toLowerCase();
+    if (color === "black" || color === "#000" || color === "#000000") return true;
+    if (color === "rgb(0,0,0)" || color === "rgb(0, 0, 0)") return true;
+    return false;
+  };
+
+  const textColors = useMemo(
+    () =>
+      colorPairs
+        .map((colorPair) => colorPair?.text?.value)
+        .filter((color) => color && !isBlackLike(color)),
+    [colorPairs],
+  );
 
   const [currentHoverColor, setCurrentHoverColor] = useState(null);
 
@@ -41,7 +55,8 @@ const Artist = ({
         setLockedColor(currentHoverColor);
       } else {
         // fallback random color if not hovering
-        setLockedColor(textColors[Math.floor(Math.random() * textColors.length)]);
+        const fallback = textColors[Math.floor(Math.random() * textColors.length)] || "#fff";
+        setLockedColor(fallback);
       }
     }
   };
@@ -71,7 +86,7 @@ const Artist = ({
       onMouseEnter={() => {
         if (isMobile) return;
 
-        const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
+        const randomColor = textColors[Math.floor(Math.random() * textColors.length)] || "#fff";
         setHoveredArtist(artist);
         setCurrentHoverColor(randomColor);
       }}
