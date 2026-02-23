@@ -74,6 +74,7 @@ const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }
 
 const LargeHeaderContent = ({ item, isExpandable, isExpanded, activeGalleryImage, title, date, meta }) => {
   if (!item) return null;
+  console.log(item.dataType);
   const pathname = usePathname();
 
   const isAbout = pathname === "/about";

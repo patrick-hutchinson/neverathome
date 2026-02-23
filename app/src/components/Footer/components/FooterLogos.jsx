@@ -27,6 +27,7 @@ const FooterLogos = ({ logos }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
+        className={styles.logoContainer}
       >
         <img
           style={{ height: "auto", width: "auto", maxHeight: "40px", maxWidth: "70px" }}
