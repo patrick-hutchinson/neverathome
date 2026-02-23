@@ -190,7 +190,7 @@ export const handler = documentEventHandler(async ({event}) => {
 
     const root = parse(html)
     // console.log(root, 'root')
-    const container = root.querySelector('.container')
+    const container = root.querySelector('.newsletter-content')
 
     if (!container) throw new Error("Couldn't find .container in HTML")
 
