@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "@sanity/icons": "^3.7.4",
-    "@sanity/vision": "^4.22.0",
+    "@sanity/vision": "^5.11.0",
     "axios": "^1.13.5",
     "next": "^16.1.6",
     "node-html-parser": "^7.0.2",

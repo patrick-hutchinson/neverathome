@@ -20,7 +20,7 @@ export const link = defineType({
     {
       name: 'internalLink',
       type: 'reference',
-      to: [{type: 'page'}, {type: 'film'}],
+      to: [{type: 'page'}, {type: 'event'}],
       hidden: ({parent}) => parent?.type !== 'internal',
     },
     {

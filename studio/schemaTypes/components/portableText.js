@@ -8,7 +8,7 @@ export const portableText = defineType({
     // ---- TEXT BLOCK ----
     defineArrayMember({
       type: 'block',
-      styles: [],
+      // styles: [{title: 'Normal', value: 'normal'}],
       lists: [
         {title: 'Bullet', value: 'bullet'},
         {title: 'Numbered', value: 'number'},
