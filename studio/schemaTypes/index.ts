@@ -30,7 +30,7 @@ import {imageWithMetadata} from './types/imageWithMetadata'
 import {videoWithMetadata} from './types/videoWithMetadata'
 import {medium} from './types/medium'
 import {highlightType} from './definitions/highlightType'
-// import {link} from './types/link'
+import {link} from './types/link'
 
 // Newsletter
 import {newsletter} from './newsletter/newsletter'
@@ -56,7 +56,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     location,
     events,
     portableText,
-    // link,
+    link,
 
     artist,
     workshops,

@@ -15,8 +15,10 @@ if (!SITE_URL || !LISTMONK_URL || !LISTMONK_USER || !LISTMONK_TOKEN) {
 
 async function fetchHTML(slug) {
   const url = `${SITE_URL.replace(/\/$/, '')}/newsletter/${encodeURIComponent(slug)}`
+  // // console.log('Fetching newsletter HTML from:', url)
 
   const res = await fetch(url, {cache: 'no-store'})
+  // console.log('res:', res)
   if (!res.ok) {
     const text = await res.text().catch(() => '')
     throw new Error(`Failed to fetch newsletter HTML: ${res.status} ${res.statusText} — ${text}`)
@@ -42,6 +44,7 @@ async function getCampaign(id = null) {
       },
     })
     // console.log(`Successfully retrieved campaign!\nResponse:\n${JSON.stringify(response.data)}`)
+    // maby do something else with the response (like saving the campaigne id)
 
     return response.data
   } catch (error) {
@@ -171,9 +174,9 @@ export const handler = documentEventHandler(async ({event}) => {
     const doc = event?.data || event?.document || event?.result || {}
     const slug = doc?.slug?.current || doc?.slug || doc?._id
     const title = doc?.title
+
     const subject = doc?.subject
 
-    // Determine which Listmonk list to use based on language
     const targetListId = 1
 
     if (!slug) {
