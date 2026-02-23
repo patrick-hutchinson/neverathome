@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {gallery} from '../types/gallery'
 
 export const contact = defineType({
   name: 'contact',
@@ -13,14 +14,27 @@ export const contact = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
-      name: 'image',
-      title: 'Team Image',
-      type: 'image',
-    }),
-    defineField({
-      name: 'text',
-      title: 'Text',
-      type: 'string',
+      name: 'doubleFeature_team',
+      title: 'Doppel Modul',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'image',
+          title: 'Team Image',
+          type: 'image',
+        }),
+        defineField({
+          name: 'text',
+          title: 'Text',
+          type: 'string',
+        }),
+        defineField({
+          name: 'colorPair',
+          title: 'Farbkombination',
+          type: 'reference',
+          to: {type: 'colorPair'},
+        }),
+      ],
     }),
     defineField({
       name: 'teamMembers',
@@ -47,6 +61,86 @@ export const contact = defineType({
             },
           ],
         },
+      ],
+    }),
+    defineField({
+      name: 'doubleFeature_supporter',
+      title: 'Doppel Modul',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'image',
+          title: 'Team Image',
+          type: 'image',
+        }),
+        defineField({
+          name: 'text',
+          title: 'Text',
+          type: 'string',
+        }),
+        defineField({
+          name: 'colorPair',
+          title: 'Farbkombination',
+          type: 'reference',
+          to: {type: 'colorPair'},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'supportAccordions',
+      title: 'Support Accordion Entries',
+      type: 'array',
+      of: [
+        defineField({
+          name: 'supportAccordionEntry',
+          title: 'Support Entry',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'columnOne',
+              title: 'Column 1',
+              type: 'string',
+              description: 'Examples: "Support Options", "Main Supporters"',
+            }),
+            defineField({
+              name: 'columnTwo',
+              title: 'Column 2',
+              type: 'string',
+              description: 'Examples: Year, Year Range',
+            }),
+            defineField({
+              name: 'columnThree',
+              title: 'Column 3',
+              type: 'string',
+              description: 'Main header text',
+            }),
+            defineField({
+              name: 'columnFour',
+              title: 'Column 4',
+              type: 'string',
+              description: 'Examples: "FAQ", supporter count',
+            }),
+            defineField({
+              name: 'info',
+              title: 'Expanded Content',
+              type: 'array',
+              of: [{type: 'block'}],
+            }),
+            gallery,
+          ],
+          preview: {
+            select: {
+              title: 'columnThree',
+              subtitle: 'columnOne',
+            },
+            prepare({title, subtitle}) {
+              return {
+                title: title || 'Support Entry',
+                subtitle: subtitle || 'Support Accordion',
+              }
+            },
+          },
+        }),
       ],
     }),
   ],

@@ -41,20 +41,6 @@ export const highlight = defineType({
       type: 'array',
       of: [{type: 'block'}],
     }),
-    // defineField({
-    //   name: 'links',
-    //   title: 'Links',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'object',
-    //       fields: [
-    //         {name: 'title', title: 'Title', type: 'string'},
-    //         {name: 'link', title: 'url', type: 'string'},
-    //       ],
-    //     },
-    //   ],
-    // }),
     defineField({name: 'headerLabel', title: 'Header Label', type: 'string'}),
     defineField({
       name: 'link',

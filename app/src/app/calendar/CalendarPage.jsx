@@ -102,13 +102,15 @@ const CalendarPage = ({ events }) => {
           </div>
         )}
 
-        <section>
-          <ul className={styles.calendar_section}>
-            <Accordion array={current} size={"medium"} behavior="expand" />
-          </ul>
-        </section>
+        {current.length > 0 && (
+          <section className={styles.currentEvents}>
+            <ul className={styles.calendar_section}>
+              <Accordion array={current} size={"medium"} behavior="expand" />
+            </ul>
+          </section>
+        )}
 
-        <section>
+        <section className={styles.archivedEvents}>
           <h3>Archived</h3>
           <ul className={styles.calendar_section}>
             <Accordion array={archived} size={"large"} behavior="expand" />

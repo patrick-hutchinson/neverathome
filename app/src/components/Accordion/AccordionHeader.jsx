@@ -26,6 +26,7 @@ const getSlug = (item) => {
 
 const AccordionHeader = ({ item, size, isExpanded, activeGalleryImage }) => {
   if (!item) return null;
+
   const [isExpandable, setIsExpandable] = useState(item.gallery || item.info);
 
   const { title, date, meta } = getAccordionHeaderFields(item);
@@ -83,6 +84,31 @@ const LargeHeaderContent = ({ item, isExpandable, isExpanded, activeGalleryImage
 
   const isEvent = item._type === "event";
   const slug = getSlug(item);
+
+  if (item?.dataType === "supportEntry") {
+    console.log("supportEntry rendering");
+    return (
+      <div
+        className={styles.accordionHeader}
+        style={{
+          position: isExpanded ? "sticky" : "relative",
+          top: isExpanded ? distance : 0,
+          background: "inherit",
+          zIndex: 2,
+        }}
+      >
+        <AccordionType type={meta} />
+        <div className={styles.date}>{date}</div>
+        <AccordionTitle title={title} />
+        <div className={styles.counter}>{item?.counterLabel}</div>
+
+        <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
+          <AccordionExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} item={item} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={styles.accordionHeader}

@@ -23,7 +23,7 @@ const ProgrammingPage = ({ page, site }) => {
       <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
         <section>
           <div typo="h2">
-            <Text text={page.description} />
+            <Text className={styles.introduction} text={page.description} />
           </div>
         </section>
 
@@ -49,7 +49,7 @@ const ProgrammingPage = ({ page, site }) => {
         </section> */}
 
         <section>
-          {/* <h3>Our Residencies</h3> */}
+          <h3>Our Residencies</h3>
           <MediaPair>
             {page.features.map((item, index) => (
               <Figure key={index} item={item} />

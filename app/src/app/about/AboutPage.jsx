@@ -51,8 +51,8 @@ const AboutPage = ({ contact, locations, site }) => {
       </section>
 
       <MediaPair>
-        <TextFigure item={contact} />
-        <Media medium={contact.image} />
+        <TextFigure text={contact.doubleFeature_team.text} colorPair={contact.doubleFeature_team.colorPair} />
+        <Media medium={contact.doubleFeature_team.image} />
       </MediaPair>
 
       <section>
@@ -77,6 +77,17 @@ const AboutPage = ({ contact, locations, site }) => {
             </Carousel>
           </div>
         </div>
+      </section>
+
+      <section>
+        <MediaPair>
+          <TextFigure text={contact.doubleFeature_supporter.text} colorPair={contact.doubleFeature_supporter.colorPair} />
+          <Media medium={contact.doubleFeature_supporter.image} />
+        </MediaPair>
+      </section>
+
+      <section>
+        <Accordion array={contact.supportAccordions} size="large" invert={true} behavior="expand" firstExpanded={false} />
       </section>
 
       <section>

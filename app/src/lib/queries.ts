@@ -115,16 +115,45 @@ export const homeQuery = `*[_type=="home"][0]{
 
 export const contactQuery = `*[_type=="contact"][0]{
   bio,
-  text,
-  image{
-    "type": "image",
-    "_id": asset->_id,
-    "url": asset->url,
-    "lqip": asset->metadata.lqip,
-    "width": asset->metadata.dimensions.width,
-    "height": asset->metadata.dimensions.height,
-    "aspect_ratio": asset->metadata.dimensions.aspectRatio
+
+  doubleFeature_team{
+    text,
+    image{
+      "type": "image",
+      "_id": asset->_id,
+      "url": asset->url,
+      "lqip": asset->metadata.lqip,
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height,
+      "aspect_ratio": asset->metadata.dimensions.aspectRatio
+    },
+     "colorPair": colorPair->{
+    _id,
+    name,
+    text,
+    background
   },
+  },
+
+  doubleFeature_supporter{
+    text,
+    image{
+      "type": "image",
+      "_id": asset->_id,
+      "url": asset->url,
+      "lqip": asset->metadata.lqip,
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height,
+      "aspect_ratio": asset->metadata.dimensions.aspectRatio
+    },
+     "colorPair": colorPair->{
+    _id,
+    name,
+    text,
+    background
+  },
+  },
+
   teamMembers[]{
     name,
     role,
@@ -132,6 +161,18 @@ export const contactQuery = `*[_type=="contact"][0]{
     phone,
     position
   },
+  supportAccordions[]{
+    "_id": _key,
+    _key,
+    _type,
+    "dataType": "supportEntry",
+    "type": columnOne,
+    "yearLabel": columnTwo,
+    "title": columnThree,
+    "counterLabel": columnFour,
+    info,
+    ${galleryFragment},
+  }
 }`;
 
 export const workshopsQuery = `*[_type=="workshops"][0]{
