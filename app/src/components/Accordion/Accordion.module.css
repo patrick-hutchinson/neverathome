@@ -27,6 +27,7 @@
   grid-column: 1 / 4;
   grid-row: 2;
   margin: calc(var(--margin) / 4) 0px;
+  margin-top: var(--margin);
 }
 
 .accordionHeader > .media.small img {
@@ -69,10 +70,6 @@
   background: var(--background);
   color: var(--foreground);
   border-bottom: var(--border) solid var(--foreground);
-}
-
-.media {
-  height: 110px !important;
 }
 
 /* Phones */
@@ -145,6 +142,10 @@
     display: flex;
     justify-content: end;
     transform-origin: center center;
+  }
+
+  .media {
+    height: 110px !important;
   }
 }
 
