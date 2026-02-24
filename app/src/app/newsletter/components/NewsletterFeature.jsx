@@ -15,7 +15,7 @@ const portableTextToLines = (value) => {
     .filter(Boolean);
 };
 
-const NewsletterFeature = ({ feature }) => {
+const NewsletterFeature = ({ feature, className = "" }) => {
   const title = feature?.featureTitle || "";
   const link = feature?.link;
   const hasImage = Boolean(feature?.image?.url);
@@ -27,13 +27,16 @@ const NewsletterFeature = ({ feature }) => {
 
   return (
     <td
-      width="50%"
+      className={className}
+      width="100%"
       valign="top"
       align="left"
       style={{
-        width: "50%",
+        display: "block",
+        width: "100%",
         padding: "0 1px",
         border: 0,
+        paddingBottom: "6px",
       }}
     >
       <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
@@ -152,7 +155,6 @@ const NewsletterFeature = ({ feature }) => {
                                 color: textColor,
                                 fontSize: "48px",
                                 lineHeight: "1",
-                                textTransform: "uppercase",
                               }}
                             >
                               {title}
@@ -165,7 +167,6 @@ const NewsletterFeature = ({ feature }) => {
                               color: textColor,
                               fontSize: "48px",
                               lineHeight: "1",
-                              textTransform: "uppercase",
                             }}
                           >
                             {title}
@@ -184,10 +185,11 @@ const NewsletterFeature = ({ feature }) => {
               align="left"
               valign="top"
               style={{
-                paddingTop: "10px",
+                paddingTop: "4px",
                 border: 0,
                 fontSize: "18px",
                 lineHeight: "20px",
+                paddingRight: "8px",
               }}
             >
               {runningTextLines.map((line, index) => (

@@ -108,7 +108,7 @@ const NewsletterShowcase = ({ block }) => {
         </tr>
 
         <tr>
-          <td colSpan="2" style={{ padding: "16px 0 10px 0", border: 0 }}>
+          <td colSpan="2" style={{ padding: "10px 0 10px 0", border: 0 }}>
             <p
               style={{
                 margin: 0,

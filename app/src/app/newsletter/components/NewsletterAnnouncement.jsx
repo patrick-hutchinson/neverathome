@@ -39,7 +39,7 @@ const NewsletterAnnouncement = ({ block }) => {
             <td
               align="left"
               style={{
-                padding: "0 0 10px 0",
+                padding: "0 0 6px 0",
                 border: 0,
                 fontSize: "18px",
                 lineHeight: "20px",

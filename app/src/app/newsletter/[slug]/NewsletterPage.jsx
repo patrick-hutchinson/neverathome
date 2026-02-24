@@ -22,11 +22,22 @@ const NewsletterPage = ({ site, newsletter }) => {
               width: 25% !important;
               max-width: 25% !important;
             }
+
+            .doubleFeature .double-feature-row {
+              display: table-row !important;
+            }
+
+            .doubleFeature .double-feature-col {
+              display: table-cell !important;
+              width: 50% !important;
+              max-width: 50% !important;
+              padding-bottom: "0px",
+            }
           }
         `}</style>
         <NewsletterHeader newsletter={newsletter} />
 
-        <div style={{ padding: "13px" }}>
+        <div style={{ padding: "12px" }}>
           {newsletter.pageBuilder.map((block) => renderNewsletter(block, newsletter.language))}
         </div>
         <NewsletterFooter language={newsletter.language} site={site} />

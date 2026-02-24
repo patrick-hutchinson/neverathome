@@ -47,7 +47,7 @@ const NewsletterCalendar = ({ block }) => {
               style={{
                 width: "100%",
                 textAlign: "left",
-                paddingBottom: "24px",
+                paddingBottom: "6px",
                 fontSize: "19px",
                 lineHeight: "21px",
                 border: 0,

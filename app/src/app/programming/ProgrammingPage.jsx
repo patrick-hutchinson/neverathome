@@ -41,13 +41,6 @@ const ProgrammingPage = ({ page, site }) => {
           <Accordion array={page.events} size="medium" behavior="navigate" invert={true} />
         </section>
 
-        {/* <section className={styles.residencies}>
-          <MediaPair>
-            <TextFigure item={page.residencies} />
-            <Media medium={page.residencies.thumbnail} />
-          </MediaPair>
-        </section> */}
-
         <section>
           <h3>Our Residencies</h3>
           <MediaPair>

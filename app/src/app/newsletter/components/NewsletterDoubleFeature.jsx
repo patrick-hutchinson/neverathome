@@ -29,11 +29,23 @@ const NewsletterDoubleFeature = ({ block }) => {
             </td>
           </tr>
         )}
-        <tr>
+        <tr className="double-feature-row" style={{ display: "block" }}>
           {features.map((feature, index) => (
-            <NewsletterFeature key={feature?._key || `${feature?.featureTitle || "feature"}-${index}`} feature={feature} />
+            <NewsletterFeature
+              key={feature?._key || `${feature?.featureTitle || "feature"}-${index}`}
+              className="double-feature-col"
+              feature={feature}
+            />
           ))}
-          {features.length < 2 && <td width="50%" style={{ width: "50%", border: 0 }} />}
+          {features.length < 2 && (
+            <td
+              className="double-feature-col"
+              width="100%"
+              valign="top"
+              align="left"
+              style={{ display: "block", width: "100%", border: 0 }}
+            />
+          )}
         </tr>
       </tbody>
     </table>

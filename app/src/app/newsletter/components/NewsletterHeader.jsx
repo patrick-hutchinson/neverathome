@@ -31,7 +31,12 @@ const NewsletterHeader = ({ newsletter }) => {
             <table role="presentation" border="0" cellPadding="0" cellSpacing="0">
               <tr>
                 <td valign="middle" style={{ paddingRight: "8px" }}>
-                  <img src="/assets/newsletter/logo.gif" height="13" style={{ display: "block", border: "0" }} alt="Logo" />
+                  <img
+                    src="https://www.never-at-home.at/assets/newsletter/logo.gif"
+                    height="13"
+                    style={{ display: "block", border: "0" }}
+                    alt="Logo"
+                  />
                 </td>
                 <td valign="middle" style={{ fontSize: "18px", lineHeight: "20px" }}>
                   Newsletter
