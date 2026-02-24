@@ -61,9 +61,10 @@ const NewsletterShowcase = ({ block }) => {
             }}
           >
             <p
+              className="newsletter-large-text"
               style={{
                 margin: 0,
-                fontSize: "48px",
+                fontSize: "30px",
                 lineHeight: "1",
                 fontWeight: "normal",
               }}
@@ -72,14 +73,15 @@ const NewsletterShowcase = ({ block }) => {
             </p>
           </td>
           <td
+            className="newsletter-body-text"
             valign="top"
             align="left"
             style={{
               width: "25%",
               padding: "0 0 10px 0",
               border: 0,
-              fontSize: "18px",
-              lineHeight: "20px",
+              fontSize: "14px",
+              lineHeight: "15px",
               textAlign: "left",
             }}
           >
@@ -110,9 +112,10 @@ const NewsletterShowcase = ({ block }) => {
         <tr>
           <td colSpan="2" style={{ padding: "10px 0 10px 0", border: 0 }}>
             <p
+              className="newsletter-large-text"
               style={{
                 margin: 0,
-                fontSize: "48px",
+                fontSize: "30px",
                 lineHeight: "1",
                 fontWeight: "normal",
               }}
@@ -123,7 +126,11 @@ const NewsletterShowcase = ({ block }) => {
         </tr>
 
         <tr>
-          <td colSpan="2" style={{ padding: `0 0 0 ${runningTextIndent}`, border: 0, fontSize: "18px", lineHeight: "20px" }}>
+          <td
+            className="newsletter-body-text"
+            colSpan="2"
+            style={{ padding: `0 0 0 ${runningTextIndent}`, border: 0, fontSize: "14px", lineHeight: "15px" }}
+          >
             {runningTextLines.map((line, index) => (
               <p key={`${line}-${index}`} style={{ margin: index === runningTextLines.length - 1 ? 0 : "0 0 8px 0" }}>
                 {line}

@@ -16,12 +16,13 @@ const NewsletterDoubleFeature = ({ block }) => {
         {block?.sectionHeader && (
           <tr>
             <td
+              className="newsletter-body-text"
               colSpan="2"
               align="left"
               style={{
                 padding: "0 6px 6px 0px",
-                fontSize: "19px",
-                lineHeight: "21px",
+                fontSize: "14px",
+                lineHeight: "15px",
                 border: 0,
               }}
             >

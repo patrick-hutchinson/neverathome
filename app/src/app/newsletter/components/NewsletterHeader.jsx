@@ -9,7 +9,6 @@ const NewsletterHeader = ({ newsletter }) => {
       style={{
         backgroundColor: "#fff",
         padding: "8px",
-        paddingBottom: "50px",
         border: "0px",
       }}
     >
@@ -17,12 +16,13 @@ const NewsletterHeader = ({ newsletter }) => {
         <tr>
           {/* LEFT SIDE (Desktop only) */}
           <td
+            className="header-col-main newsletter-body-text"
             align="left"
             valign="bottom"
             style={{
-              width: "73.5%",
-              fontSize: "18px",
-              lineHeight: "18px",
+              width: "50%",
+              fontSize: "14px",
+              lineHeight: "15px",
               color: "#000",
               padding: "0",
               margin: "0",
@@ -35,11 +35,11 @@ const NewsletterHeader = ({ newsletter }) => {
                     <img
                       src="https://www.never-at-home.at/assets/newsletter/logo.gif"
                       height="18"
-                      style={{ display: "block", height: "14px", width: "auto", border: "0" }}
+                      style={{ display: "block", height: "18px", width: "auto", border: "0" }}
                       alt="Logo"
                     />
                   </td>
-                  <td valign="bottom" style={{ fontSize: "18px", lineHeight: "18px" }}>
+                  <td valign="bottom" className="newsletter-body-text" style={{ fontSize: "14px", lineHeight: "15px" }}>
                     Newsletter
                   </td>
                 </tr>
@@ -48,24 +48,25 @@ const NewsletterHeader = ({ newsletter }) => {
           </td>
 
           <td
+            className="header-col-side newsletter-body-text"
             align="left"
             valign="bottom"
-            style={{ border: "none", padding: "0px", position: "relative", width: "100%", width: "25%" }}
+            style={{ border: "none", padding: "0px", position: "relative", width: "50%" }}
           >
             <table border="0" cellPadding="0" cellSpacing="0" style={{ border: "0" }}>
               <tbody>
                 <tr>
                   <td
                     valign="bottom"
-                    className="footer-links-td newsletter-release"
+                    className="footer-links-td newsletter-release newsletter-body-text"
                     style={{
-                      fontSize: "18px",
-                      lineHeight: "18px",
+                      fontSize: "14px",
+                      lineHeight: "15px",
                       textAlign: "left",
                       padding: "0",
                     }}
                   >
-                    <div style={{ color: "#000", lineHeight: "18px" }}>{newsletter.release}</div>
+                    <div style={{ color: "#000", lineHeight: "15px" }}>{newsletter.release}</div>
                   </td>
                 </tr>
               </tbody>

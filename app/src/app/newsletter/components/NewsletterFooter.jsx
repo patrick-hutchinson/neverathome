@@ -45,14 +45,14 @@ const NewsletterFooter = ({ site }) => {
               <tbody>
                 <tr>
                   <td
-                    className="col-main"
+                    className="col-main newsletter-body-text"
                     valign="top"
                     align="left"
                     style={{
                       width: "50%",
                       padding: "0 24px 0 0",
-                      fontSize: "18px",
-                      lineHeight: "20px",
+                      fontSize: "14px",
+                      lineHeight: "15px",
                       textAlign: "left",
                       border: 0,
                     }}
@@ -87,13 +87,13 @@ const NewsletterFooter = ({ site }) => {
                   </td>
 
                   <td
-                    className="col-side"
+                    className="col-side newsletter-body-text"
                     valign="top"
                     align="left"
                     style={{
                       width: "50%",
-                      fontSize: "18px",
-                      lineHeight: "20px",
+                      fontSize: "14px",
+                      lineHeight: "15px",
                       textAlign: "left",
                       border: 0,
                     }}

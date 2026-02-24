@@ -44,12 +44,13 @@ const NewsletterCalendar = ({ block }) => {
         {block?.sectionHeader && (
           <tr>
             <td
+              className="newsletter-body-text"
               style={{
                 width: "100%",
                 textAlign: "left",
                 paddingBottom: "6px",
-                fontSize: "19px",
-                lineHeight: "21px",
+                fontSize: "14px",
+                lineHeight: "15px",
                 border: 0,
               }}
             >
@@ -97,13 +98,14 @@ const NewsletterCalendar = ({ block }) => {
                     <tbody>
                       <tr>
                         <td
+                          className="newsletter-body-text"
                           valign="top"
                           style={{
                             width: "25%",
                             padding: "0px 0px 4px 0px",
                             border: 0,
-                            fontSize: "18px",
-                            lineHeight: "20px",
+                            fontSize: "14px",
+                            lineHeight: "15px",
                             color: "#ffffff",
                           }}
                         >
@@ -112,12 +114,13 @@ const NewsletterCalendar = ({ block }) => {
                           </font>
                         </td>
                         <td
+                          className="newsletter-body-text"
                           valign="top"
                           style={{
                             padding: "0px 0px 4px 0px",
                             border: 0,
-                            fontSize: "18px",
-                            lineHeight: "20px",
+                            fontSize: "14px",
+                            lineHeight: "15px",
                             width: "auto",
                             color: "#ffffff",
                           }}
@@ -127,14 +130,15 @@ const NewsletterCalendar = ({ block }) => {
                           </font>
                         </td>
                         <td
+                          className="newsletter-body-text"
                           valign="top"
                           align="right"
                           style={{
                             width: "24px",
                             padding: "0px 0px 4px 0px",
                             border: 0,
-                            fontSize: "18px",
-                            lineHeight: "20px",
+                            fontSize: "14px",
+                            lineHeight: "15px",
                             textAlign: "right",
                             color: "#ffffff",
                           }}
@@ -173,9 +177,10 @@ const NewsletterCalendar = ({ block }) => {
                               <tbody>
                                 <tr>
                                   <td
+                                    className="newsletter-body-text"
                                     align="center"
                                     valign="middle"
-                                    style={{ border: 0, fontSize: "18px", lineHeight: "20px", color: "#ffffff" }}
+                                    style={{ border: 0, fontSize: "14px", lineHeight: "15px", color: "#ffffff" }}
                                   >
                                     <font color="#ffffff">
                                       <span style={{ color: "#ffffff" }}>{eventType || "Event"}</span>
@@ -188,13 +193,14 @@ const NewsletterCalendar = ({ block }) => {
                         </td>
 
                         <td
+                          className="newsletter-body-text"
                           valign="top"
                           style={{
                             border: 0,
                             padding: "0px",
                             padding: "0px 0px 10px 0px",
-                            fontSize: "18px",
-                            lineHeight: "20px",
+                            fontSize: "14px",
+                            lineHeight: "15px",
                             color: "#ffffff",
                           }}
                         >

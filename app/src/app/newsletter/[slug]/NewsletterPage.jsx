@@ -12,7 +12,42 @@ const NewsletterPage = ({ site, newsletter }) => {
     <div className={styles.main}>
       <div className="newsletter-content">
         <style>{`
+          .newsletter-header .header-col-main,
+          .newsletter-header .header-col-side {
+            width: 50% !important;
+            max-width: 50% !important;
+          }
+
+          .newsletter-body-text {
+            font-size: 14px !important;
+            line-height: 15px !important;
+          }
+
+          .newsletter-large-text {
+            font-size: 30px !important;
+            line-height: 1 !important;
+          }
+
+          .newsletter-feature-media,
+          .newsletter-feature-media-inner,
+          .newsletter-feature-media-link,
+          .newsletter-feature-media-img {
+            height: 360px !important;
+            min-height: 360px !important;
+            max-height: 360px !important;
+          }
+
           @media screen and (min-width: 769px) {
+            .newsletter-header .header-col-main {
+              width: 75% !important;
+              max-width: 75% !important;
+            }
+
+            .newsletter-header .header-col-side {
+              width: 25% !important;
+              max-width: 25% !important;
+            }
+
             .newsletter-footer .col-main {
               width: 75% !important;
               max-width: 75% !important;
@@ -31,7 +66,25 @@ const NewsletterPage = ({ site, newsletter }) => {
               display: table-cell !important;
               width: 50% !important;
               max-width: 50% !important;
-              padding-bottom: "0px",
+            }
+
+            .newsletter-body-text {
+              font-size: 18px !important;
+              line-height: 20px !important;
+            }
+
+            .newsletter-large-text {
+              font-size: 48px !important;
+              line-height: 1 !important;
+            }
+
+            .newsletter-feature-media,
+            .newsletter-feature-media-inner,
+            .newsletter-feature-media-link,
+            .newsletter-feature-media-img {
+              height: 520px !important;
+              min-height: 520px !important;
+              max-height: 520px !important;
             }
           }
         `}</style>

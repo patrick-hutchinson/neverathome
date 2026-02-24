@@ -22,7 +22,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
   const textColor = feature?.colorPair?.text?.value || "#ffffff";
   const backgroundColor = feature?.colorPair?.background?.value || "#000000";
   const runningTextLines = portableTextToLines(feature?.runningText);
-  const mediaHeightPx = 520;
+  const mediaHeightPx = 360;
   const mediaHeight = `${mediaHeightPx}px`;
 
   return (
@@ -45,6 +45,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
             <td align="left" valign="top" style={{ border: 0, backgroundColor }}>
               {hasImage ? (
                 <table
+                  className="newsletter-feature-media"
                   width="100%"
                   cellPadding="0"
                   cellSpacing="0"
@@ -61,6 +62,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                   <tbody>
                     <tr>
                       <td
+                        className="newsletter-feature-media-inner"
                         align="center"
                         valign="middle"
                         height={mediaHeightPx}
@@ -68,6 +70,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                       >
                         {link ? (
                           <a
+                            className="newsletter-feature-media-link"
                             href={link}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -81,6 +84,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                             }}
                           >
                             <img
+                              className="newsletter-feature-media-img"
                               src={feature.image.url}
                               alt={title}
                               width="100%"
@@ -99,6 +103,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                           </a>
                         ) : (
                           <img
+                            className="newsletter-feature-media-img"
                             src={feature.image.url}
                             alt={title}
                             width="100%"
@@ -121,6 +126,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                 </table>
               ) : (
                 <table
+                  className="newsletter-feature-media"
                   width="100%"
                   cellPadding="0"
                   cellSpacing="0"
@@ -137,6 +143,7 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                   <tbody>
                     <tr>
                       <td
+                        className="newsletter-feature-media-inner"
                         align="center"
                         valign="middle"
                         height={mediaHeightPx}
@@ -150,10 +157,11 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                             style={{ color: textColor, textDecoration: "none" }}
                           >
                             <p
+                              className="newsletter-large-text"
                               style={{
                                 margin: 0,
                                 color: textColor,
-                                fontSize: "48px",
+                                fontSize: "30px",
                                 lineHeight: "1",
                               }}
                             >
@@ -162,10 +170,11 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                           </a>
                         ) : (
                           <p
+                            className="newsletter-large-text"
                             style={{
                               margin: 0,
                               color: textColor,
-                              fontSize: "48px",
+                              fontSize: "30px",
                               lineHeight: "1",
                             }}
                           >
@@ -182,13 +191,14 @@ const NewsletterFeature = ({ feature, className = "" }) => {
 
           <tr>
             <td
+              className="newsletter-body-text"
               align="left"
               valign="top"
               style={{
                 paddingTop: "4px",
                 border: 0,
-                fontSize: "18px",
-                lineHeight: "20px",
+                fontSize: "14px",
+                lineHeight: "15px",
                 paddingRight: "8px",
               }}
             >
