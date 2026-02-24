@@ -29,7 +29,7 @@ const Footer = ({ site }) => {
         <div className={styles.newsletter}>
           Get the latest Updates, News & Stories
           <br />
-          <a href="https://newsletter.never-at-home.at/subscription/form" target="_blank">
+          <a href={`https://newsletter.${site.domain}/subscription/form`} target="_blank">
             Subscribe Here
           </a>
         </div>

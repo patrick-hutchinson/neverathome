@@ -15,6 +15,11 @@ export const site = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'domain',
+      title: 'Domain',
+      type: 'string',
+    }),
+    defineField({
       name: 'description',
       title: 'Website Description',
       description: 'As seen on Google Search Results',

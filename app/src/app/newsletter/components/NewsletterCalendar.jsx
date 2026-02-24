@@ -22,13 +22,13 @@ const cutText = (text, maxLength = 220) => {
   return `${text.slice(0, maxLength).trim()}...`;
 };
 
-const getCalendarHref = (event) => {
+const getCalendarHref = (event, site) => {
   const anchor = event?.slug?.current || event?._id;
-  if (!anchor) return "https://www.never-at-home.com/calendar";
-  return `https://www.never-at-home.com/calendar#${anchor}`;
+  if (!anchor) return `https://${site.domain}/calendar`;
+  return `https://${site.domain}/calendar#${anchor}`;
 };
 
-const NewsletterCalendar = ({ block }) => {
+const NewsletterCalendar = ({ block, site }) => {
   const events = Array.isArray(block?.events) ? block.events : [];
 
   return (
@@ -62,7 +62,7 @@ const NewsletterCalendar = ({ block }) => {
         {events.map((event, index) => {
           const teaser = cutText(portableTextToPlain(event?.teaser));
           const eventType = typeof event?.type === "string" ? event.type : event?.type?.title || "";
-          const href = getCalendarHref(event);
+          const href = getCalendarHref(event, site);
           const thumbnailUrl = event?.thumbnail?.type === "image" ? event?.thumbnail?.url : null;
 
           return (

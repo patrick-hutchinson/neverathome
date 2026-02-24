@@ -96,15 +96,13 @@ const NewsletterPage = ({ site, newsletter }) => {
             }
 
             .newsletter-showcase .running-text{
-              padding: 0 0 0 25%;
+              padding: 0 0 0 25% !important;
             }
           }
         `}</style>
         <NewsletterHeader newsletter={newsletter} />
 
-        <div style={{ padding: "12px" }}>
-          {newsletter.pageBuilder.map((block) => renderNewsletter(block, newsletter.language))}
-        </div>
+        <div style={{ padding: "12px" }}>{newsletter.pageBuilder.map((block) => renderNewsletter(block, site))}</div>
         <NewsletterFooter language={newsletter.language} site={site} />
       </div>
     </div>

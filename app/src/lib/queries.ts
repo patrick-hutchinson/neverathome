@@ -3,6 +3,7 @@ import { galleryFragment } from "./fragments";
 
 export const siteQuery = `*[_type=="site"][0]{
   title,
+  domain,
   description[]{
     _key,
     _type,

@@ -159,7 +159,7 @@ export const event = defineType({
       title: 'URL-Teil',
       type: 'slug',
       description:
-        'Ein Beispiel: 👉 wwww.neverathome.com/mein-artikel ("mein-artikel" ist URL-Teil)',
+        'Ein Beispiel: 👉 wwww.never-at-home.at/mein-artikel ("mein-artikel" ist URL-Teil)',
       options: {
         source: 'title',
         maxLength: 96,

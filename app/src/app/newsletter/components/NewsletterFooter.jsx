@@ -98,19 +98,6 @@ const NewsletterFooter = ({ site }) => {
                       border: 0,
                     }}
                   >
-                    {/* <div>
-                      Get the latest Updates, News & Stories
-                      <br />
-                      <a
-                        href="https://newsletter.never-at-home.at/subscription/form"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#ffffff", textDecoration: "none" }}
-                      >
-                        Subscribe Here
-                      </a>
-                    </div> */}
-
                     <div>
                       {workshopSpaceUrl && (
                         <div>
@@ -127,7 +114,7 @@ const NewsletterFooter = ({ site }) => {
 
                       <div>
                         <a
-                          href="https://www.never-at-home.com/linktree"
+                          href={`https://${site.domain}/linktree`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{ color: "#ffffff", textDecoration: "none" }}
@@ -197,7 +184,7 @@ const NewsletterFooter = ({ site }) => {
                   >
                     <div style={{ display: "inline" }}>
                       <a
-                        href="https://www.never-at-home.com/imprint"
+                        href={`https://${site.domain}/imprint`}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ color: "#ffffff", textDecoration: "none" }}
