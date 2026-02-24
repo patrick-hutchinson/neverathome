@@ -34,7 +34,7 @@ const WorkshopPage = ({ page, events, site }) => {
 
       <section>
         <h3>Upcoming Workshops</h3>
-        <Accordion array={workshops} size="medium" invert={true} behavior="navigate" />
+        <Accordion array={workshops} size="small" invert={true} behavior="navigate" />
       </section>
 
       <section>

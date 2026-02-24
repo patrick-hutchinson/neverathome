@@ -4,7 +4,7 @@ import {type SchemaTypeDefinition} from 'sanity'
 import {site} from './site'
 import {home} from './singletons/home'
 import {contact} from './singletons/contact'
-import {events} from './singletons/events'
+import {programming} from './singletons/programming'
 import {workshops} from './singletons/workshops'
 import {studios} from './singletons/studios'
 import {imprint} from './singletons/imprint'
@@ -54,7 +54,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     feature,
     colorPair,
     location,
-    events,
+    programming,
     portableText,
     link,
 

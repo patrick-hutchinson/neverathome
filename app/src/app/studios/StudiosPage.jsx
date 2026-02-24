@@ -32,7 +32,7 @@ const StudiosPage = ({ page, site }) => {
 
         <section>
           <h3>Public Studio Tours</h3>
-          <Accordion array={page.events} behavior="navigate" invert={true} size="medium" />
+          <Accordion array={page.events} behavior="navigate" invert={true} size="small" />
         </section>
 
         <section>

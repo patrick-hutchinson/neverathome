@@ -258,7 +258,7 @@ export const artistQuery = `*[_type=="artist"]{
   "location": coalesce(location[0]->title, "Unknown location")
 }`;
 
-export const eventsQuery = `*[_type=="events"][0]{
+export const eventsQuery = `*[_type in ["programming","events"]][0]{
   ${galleryFragment},
   description[]{${portableTextFragment}},
   events[]->{

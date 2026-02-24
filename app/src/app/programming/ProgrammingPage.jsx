@@ -38,7 +38,7 @@ const ProgrammingPage = ({ page, site }) => {
 
         <section>
           <h3>Selected Events</h3>
-          <Accordion array={page.events} size="medium" behavior="navigate" invert={true} />
+          <Accordion array={page.events} size="small" behavior="navigate" invert={true} />
         </section>
 
         <section>

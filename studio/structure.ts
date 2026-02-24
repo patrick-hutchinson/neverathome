@@ -5,7 +5,7 @@ import {CalendarIcon} from '@sanity/icons'
 import {PinFilledIcon} from '@sanity/icons'
 
 // Define singleton document IDs here
-const singletons = ['site', 'home', 'contact', 'events', 'workshops', 'studios', 'imprint']
+const singletons = ['site', 'home', 'contact', 'programming', 'workshops', 'studios', 'imprint']
 
 // Add other types you want to hide from Desk here
 const hiddenTypes = [...singletons, 'mux.videoAsset']
@@ -36,7 +36,7 @@ export const structure: StructureResolver = (S, context) =>
                 .child(S.document().schemaType('contact').documentId('contact')),
               S.listItem()
                 .title('Programming Page')
-                .child(S.document().schemaType('events').documentId('events')),
+                .child(S.document().schemaType('programming').documentId('events')),
               S.listItem()
                 .title('Workshops Page')
                 .child(S.document().schemaType('workshops').documentId('workshops')),

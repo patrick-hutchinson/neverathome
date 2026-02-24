@@ -5,6 +5,11 @@
   /* width: fit-content; */
 }
 
+:global(.invert) .icon,
+:global(.invert) .icon * {
+  fill: #000;
+}
+
 .icon {
   position: relative;
   /* width: fit-content; */

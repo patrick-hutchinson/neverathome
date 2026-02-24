@@ -41,6 +41,7 @@ const AccordionDescription = ({ event, isExpanded }) => {
         maxHeight: isExpanded ? textHeight + teaserHeight : teaserHeight,
         opacity: isMeasured ? 1 : 0,
         transition: "max-height 0.5s ease-in-out",
+        paddingBottom: "2px",
       }}
     >
       <div ref={teaserRef}>

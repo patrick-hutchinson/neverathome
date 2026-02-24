@@ -34,11 +34,43 @@ const AccordionHeader = ({ item, size, isExpanded, activeGalleryImage }) => {
   const contentProps = { item, isExpandable, setIsExpandable, isExpanded, activeGalleryImage };
 
   switch (size) {
+    case "small":
+      return <SmallHeaderContent {...contentProps} />;
     case "medium":
       return <MediumHeaderContent {...contentProps} />;
     case "large":
       return <LargeHeaderContent {...contentProps} title={title} date={date} meta={meta} />;
   }
+};
+
+const SmallHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }) => {
+  if (!item) return null;
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
+
+  const isEvent = item._type === "event";
+  const slug = getSlug(item);
+  return (
+    <div
+      className={styles.accordionHeader}
+      style={{
+        position: isExpanded ? "sticky" : "relative",
+        top: isExpanded ? header_height + filter_height : 0,
+        background: "inherit",
+        zIndex: 2,
+      }}
+    >
+      <AccordionType type={item.type} />
+      <AccordionDate date={item.startDate} />
+      <AccordionTitle title={item.title} />
+      <AccordionDescription event={item} setIsExpandable={setIsExpandable} isExpanded={isExpanded} />
+      <AccordionLink event={item} />
+
+      <div style={{ display: "flex", gap: "var(--margin)" }} className={styles.icons}>
+        {isEvent && slug && <ShareEvent url={`/calendar#${slug}`} />}
+        <AccordionExpand className={styles.expand} isExpandable={isExpandable} isExpanded={isExpanded} />
+      </div>
+    </div>
+  );
 };
 
 const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }) => {
