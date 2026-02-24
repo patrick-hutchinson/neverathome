@@ -87,12 +87,16 @@ const NewsletterPage = ({ site, newsletter }) => {
               max-height: 520px !important;
             }
 
-            .footer-links {
+            .footer-links a {
               opacity: 0.3;
               transition: 0.4s opacity
             }
-            .footer-links:hover {
+            .footer-links a:hover {
               opacity: 1;
+            }
+
+            .newsletter-showcase .running-text{
+              padding: "0 0 0 25%"
             }
           }
         `}</style>

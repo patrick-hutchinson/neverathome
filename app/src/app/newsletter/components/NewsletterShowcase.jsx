@@ -36,7 +36,6 @@ const NewsletterShowcase = ({ block }) => {
   const eventType = typeof block?.eventType === "string" ? block.eventType : block?.eventType?.title || "";
   const formattedDate = formatDate(block?.date);
   const runningTextLines = portableTextToLines(block?.text);
-  const runningTextIndent = "calc(25%)";
 
   return (
     <table
@@ -127,9 +126,9 @@ const NewsletterShowcase = ({ block }) => {
 
         <tr>
           <td
-            className="newsletter-body-text"
+            className="newsletter-body-text running-text"
             colSpan="2"
-            style={{ padding: `0 0 0 ${runningTextIndent}`, border: 0, fontSize: "14px", lineHeight: "15px" }}
+            style={{ padding: 0, border: 0, fontSize: "14px", lineHeight: "15px" }}
           >
             {runningTextLines.map((line, index) => (
               <p key={`${line}-${index}`} style={{ margin: index === runningTextLines.length - 1 ? 0 : "0 0 8px 0" }}>

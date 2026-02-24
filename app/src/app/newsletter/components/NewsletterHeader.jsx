@@ -10,6 +10,7 @@ const NewsletterHeader = ({ newsletter }) => {
         backgroundColor: "#fff",
         padding: "8px",
         border: "0px",
+        paddingBottom: "50px",
       }}
     >
       <tbody>
@@ -20,7 +21,7 @@ const NewsletterHeader = ({ newsletter }) => {
             align="left"
             valign="bottom"
             style={{
-              width: "50%",
+              width: "75%",
               fontSize: "14px",
               lineHeight: "15px",
               color: "#000",
@@ -46,7 +47,7 @@ const NewsletterHeader = ({ newsletter }) => {
             className="header-col-side newsletter-body-text"
             align="left"
             valign="bottom"
-            style={{ border: "none", padding: "0px", position: "relative", width: "50%" }}
+            style={{ border: "none", padding: "0px", position: "relative", width: "25%" }}
           >
             <table border="0" cellPadding="0" cellSpacing="0" style={{ border: "0" }}>
               <tbody>

@@ -111,7 +111,7 @@ const NewsletterFooter = ({ site }) => {
                       </a>
                     </div> */}
 
-                    <div style={{ marginTop: "10px" }}>
+                    <div>
                       {workshopSpaceUrl && (
                         <div>
                           <a
