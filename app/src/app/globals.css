@@ -98,10 +98,6 @@ section {
   margin-bottom: 250px;
 }
 
-section:last-of-type {
-  margin-bottom: 150px;
-}
-
 section h3 {
   margin-bottom: calc(var(--margin) * 0.75);
 }

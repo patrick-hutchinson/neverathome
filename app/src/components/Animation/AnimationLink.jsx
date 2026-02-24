@@ -1,54 +1,32 @@
 import { useTransitionRouter } from "next-view-transitions";
+import { useAnimatedNavigation } from "./hooks/useAnimatedNavigation";
 
 const AnimationLink = ({ path, link, children, className }) => {
-  const router = useTransitionRouter();
+  const navigate = useAnimatedNavigation();
 
-  if (!path && link && !link.url && !link.email && !link.internalLink) return <>{children}</>;
-
-  let isInternal;
-  let isExternal;
-  let href = path;
-
+  let href;
   if (link) {
-    isInternal = link.type === "internal";
-    isExternal = link.type === "external";
-
+    console.log(link, "link");
     href =
       link.type === "internal"
-        ? `/${link.internalLink.slug.current}`
+        ? `/${link.internalLink?.slug?.current}`
         : link.type === "external"
           ? link.url
           : link.type === "email"
             ? `mailto:${link.email}`
             : "#";
+  } else {
+    href = path;
   }
 
   if (!href) return <>{children}</>;
 
-  const pageAnimation = () => {
-    document.documentElement.animate([{ opacity: 1 }, { opacity: 0 }], {
-      duration: 500,
-      easing: "ease",
-      fill: "forwards",
-      pseudoElement: "::view-transition-old(root)",
-    });
-
-    document.documentElement.animate([{ opacity: 0 }, { opacity: 1 }], {
-      duration: 500,
-      easing: "ease",
-      fill: "forwards",
-      pseudoElement: "::view-transition-new(root)",
-    });
-  };
-
   const handleClick = (e) => {
-    // if (!isInternal) return;
-
     e.preventDefault();
-    router.push(href, {
-      onTransitionReady: pageAnimation,
-    });
+    navigate(href);
   };
+
+  const isExternal = link?.type === "external";
 
   return (
     <a

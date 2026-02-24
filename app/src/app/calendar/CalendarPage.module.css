@@ -9,21 +9,14 @@ main.main {
   z-index: 1;
 }
 
-.calendar_section {
-  margin-bottom: 100px;
-}
-
 .content {
   background: var(--foreground);
   color: var(--background);
   border-bottom: var(--border) var(--background) solid;
 }
 
-.calendar section {
+.calendar section.currentEvents {
   margin-bottom: 150px;
-}
-.calendar section:last-of-type {
-  margin-bottom: 180px;
 }
 
 .info {

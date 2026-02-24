@@ -1,4 +1,4 @@
-import { thumbnailFragment } from "./fragments";
+import { portableTextFragment, thumbnailFragment } from "./fragments";
 import { galleryFragment } from "./fragments";
 
 export const siteQuery = `*[_type=="site"][0]{
@@ -210,9 +210,8 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
 }`;
 
 export const studiosQuery = `*[_type=="studios"][0]{
-  // ${thumbnailFragment},
   ${galleryFragment},
-  description,
+  description[]{${portableTextFragment}},
   events[]->{
     _id,
     "type": type->title,
@@ -261,7 +260,7 @@ export const artistQuery = `*[_type=="artist"]{
 
 export const eventsQuery = `*[_type=="events"][0]{
   ${galleryFragment},
-  description,
+  description[]{${portableTextFragment}},
   events[]->{
     _id,
     "type": type->title,

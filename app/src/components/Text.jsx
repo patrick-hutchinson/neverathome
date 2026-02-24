@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react";
+import AnimationLink from "./Animation/AnimationLink";
 
 const Text = ({ text, typo, className }) => {
   return (
@@ -8,12 +9,9 @@ const Text = ({ text, typo, className }) => {
         components={{
           marks: {
             link: ({ value, children }) => {
-              const href = value?.href || value?.link;
-              return (
-                <a href={href} target="_blank" rel="noopener noreferrer">
-                  {children}
-                </a>
-              );
+              if (!value) return children;
+
+              return <AnimationLink link={value}>{children}</AnimationLink>;
             },
           },
         }}

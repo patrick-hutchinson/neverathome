@@ -12,8 +12,7 @@ export const events = defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'array',
-      of: [{type: 'block'}],
+      type: 'portableText',
     }),
     defineField({
       name: 'highlights',
