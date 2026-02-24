@@ -61,6 +61,7 @@
   grid-column: 24 / end;
   display: flex;
   justify-content: end;
+  transform: translateY(5px);
 }
 
 .accordionHeader.invert,
@@ -104,7 +105,7 @@
   }
 
   .accordionHeader > .media {
-    width: auto !important;
+    width: fit-content !important;
     grid-column: 1 / 4;
     grid-row: 2;
     margin: calc(var(--margin) / 4) 0px;

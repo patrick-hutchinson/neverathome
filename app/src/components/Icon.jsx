@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const iconCache = new Map();
 
-const Icon = ({ path, className }) => {
+const Icon = ({ path, className, height, width }) => {
   const [content, setContent] = useState(() => iconCache.get(path) || "");
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Icon = ({ path, className }) => {
     };
   }, [path]);
 
-  return <div className={className} dangerouslySetInnerHTML={{ __html: content }} />;
+  return <div style={{ height, width }} className={className} dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 export default Icon;

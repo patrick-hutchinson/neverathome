@@ -13,8 +13,8 @@ const ExpandIcon = ({ className, isExpandable, isExpanded }) => {
 
   return (
     <div className={className}>
-      <motion.div animate={{ rotate: isExpanded ? 45 : 0, y: 0, x: -3 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
-        <Icon className={styles.icon} path="/assets/icons/plus.svg" />
+      <motion.div animate={{ rotate: isExpanded ? 45 : 0 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
+        <Icon className={styles.icon} path="/assets/icons/plus.svg" height="10px" width="10px" />
       </motion.div>
     </div>
   );

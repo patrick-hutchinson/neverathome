@@ -1,8 +1,21 @@
 .icon,
 .icon * {
   fill: inherit;
-  height: 10px;
-  width: auto;
+  /* height: 10px; */
+  /* width: fit-content; */
+}
+
+.icon {
+  position: relative;
+  /* width: fit-content; */
+}
+
+.icon svg {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  top: 0;
+  left: 0;
 }
 
 /* Phones */
@@ -15,8 +28,4 @@
 
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
-  .icon {
-    height: 11px;
-    width: auto;
-  }
 }

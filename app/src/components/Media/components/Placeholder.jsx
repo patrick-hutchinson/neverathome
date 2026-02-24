@@ -15,7 +15,6 @@ const Placeholder = ({ medium, isLoaded }) => {
       alt="placeholder image"
       style={{
         position: "absolute",
-
         width: "100%",
         height: "100%",
         top: 0,
@@ -24,7 +23,7 @@ const Placeholder = ({ medium, isLoaded }) => {
         transform: "scale(1.5)",
         opacity: isLoaded ? 0 : 1,
         transition: "opacity 0.5s ease 0.5s",
-        zIndex: 3,
+        zIndex: 1,
       }}
     />
   );
