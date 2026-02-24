@@ -63,7 +63,7 @@ const NewsletterShowcase = ({ block }) => {
             <p
               style={{
                 margin: 0,
-                fontSize: "27px",
+                fontSize: "48px",
                 lineHeight: "1",
                 fontWeight: "normal",
               }}
@@ -112,7 +112,7 @@ const NewsletterShowcase = ({ block }) => {
             <p
               style={{
                 margin: 0,
-                fontSize: "27px",
+                fontSize: "48px",
                 lineHeight: "1",
                 fontWeight: "normal",
               }}

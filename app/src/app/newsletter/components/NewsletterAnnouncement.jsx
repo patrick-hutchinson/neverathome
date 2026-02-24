@@ -18,6 +18,7 @@ const portableTextToLines = (value) => {
 const NewsletterAnnouncement = ({ block }) => {
   const lines = portableTextToLines(block?.announcementText);
 
+  console.log(block.sectionHeader, "sectionHeader");
   return (
     <table
       className="newsletter-announcement"
@@ -56,7 +57,7 @@ const NewsletterAnnouncement = ({ block }) => {
               border: 0,
               padding: 0,
               margin: 0,
-              fontSize: "27px",
+              fontSize: "48px",
               lineHeight: "1",
             }}
           >

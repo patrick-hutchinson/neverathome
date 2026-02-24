@@ -70,7 +70,9 @@ const NewsletterCalendar = ({ block }) => {
                 <table className="border" width="100%" cellPadding="0" cellSpacing="0" role="presentation">
                   <tbody>
                     <tr>
-                      <td style={{ borderTop: "1px solid #fff", fontSize: 0, lineHeight: 0, padding: "0px" }}>&nbsp;</td>
+                      <td style={{ border: 0, borderTop: "1px solid #fff", fontSize: 0, lineHeight: 0, padding: "0px" }}>
+                        &nbsp;
+                      </td>
                     </tr>
                   </tbody>
                 </table>

@@ -18,19 +18,26 @@ const NewsletterHeader = ({ newsletter }) => {
           {/* LEFT SIDE (Desktop only) */}
           <td
             align="left"
-            valign="top"
+            valign="middle"
             style={{
-              width: "75%",
+              width: "73.5%",
               fontSize: "18px",
-              lineHeight: "13px",
+              lineHeight: "20px",
               color: "#000",
               padding: "0",
               margin: "0",
-              width: "73.5%",
             }}
           >
-            <p>NeverAtHome</p>
-            <p>Newsletter</p>
+            <table role="presentation" border="0" cellPadding="0" cellSpacing="0">
+              <tr>
+                <td valign="middle" style={{ paddingRight: "8px" }}>
+                  <img src="/assets/newsletter/logo.gif" height="13" style={{ display: "block", border: "0" }} alt="Logo" />
+                </td>
+                <td valign="middle" style={{ fontSize: "18px", lineHeight: "20px" }}>
+                  Newsletter
+                </td>
+              </tr>
+            </table>
           </td>
 
           <td
@@ -46,7 +53,7 @@ const NewsletterHeader = ({ newsletter }) => {
                     className="footer-links-td newsletter-release"
                     style={{
                       fontSize: "18px",
-                      lineHeight: "13px",
+                      lineHeight: "20px",
                       textAlign: "left",
                       padding: "0",
                     }}

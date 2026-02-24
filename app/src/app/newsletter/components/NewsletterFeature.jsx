@@ -137,7 +137,7 @@ const NewsletterFeature = ({ feature }) => {
                         align="center"
                         valign="middle"
                         height={mediaHeightPx}
-                        style={{ padding: "20px", border: 0, height: mediaHeight, minHeight: mediaHeight, maxHeight: mediaHeight }}
+                        style={{ border: 0, height: mediaHeight, minHeight: mediaHeight, maxHeight: mediaHeight }}
                       >
                         {link ? (
                           <a
@@ -150,7 +150,7 @@ const NewsletterFeature = ({ feature }) => {
                               style={{
                                 margin: 0,
                                 color: textColor,
-                                fontSize: "27px",
+                                fontSize: "48px",
                                 lineHeight: "1",
                                 textTransform: "uppercase",
                               }}
@@ -163,7 +163,7 @@ const NewsletterFeature = ({ feature }) => {
                             style={{
                               margin: 0,
                               color: textColor,
-                              fontSize: "27px",
+                              fontSize: "48px",
                               lineHeight: "1",
                               textTransform: "uppercase",
                             }}
