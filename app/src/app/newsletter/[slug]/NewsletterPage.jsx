@@ -12,11 +12,11 @@ const NewsletterPage = ({ site, newsletter }) => {
     <div className={styles.main}>
       <div className="newsletter-content">
         <style>{`
-          .newsletter-header .header-col-main,
-          .newsletter-header .header-col-side {
-            width: 50% !important;
-            max-width: 50% !important;
-          }
+          // .newsletter-header .header-col-main,
+          // .newsletter-header .header-col-side {
+          //   width: 50% !important;
+          //   max-width: 50% !important;
+          // }
 
           .newsletter-body-text {
             font-size: 14px !important;
@@ -38,10 +38,10 @@ const NewsletterPage = ({ site, newsletter }) => {
           }
 
           @media screen and (min-width: 769px) {
-            .newsletter-header .header-col-main {
-              width: 75% !important;
-              max-width: 75% !important;
-            }
+            // .newsletter-header .header-col-main {
+            //   width: 75% !important;
+            //   max-width: 75% !important;
+            // }
 
             .newsletter-header .header-col-side {
               width: 25% !important;
@@ -96,7 +96,7 @@ const NewsletterPage = ({ site, newsletter }) => {
             }
 
             .newsletter-showcase .running-text{
-              padding: "0 0 0 25%"
+              padding: 0 0 0 25%;
             }
           }
         `}</style>
