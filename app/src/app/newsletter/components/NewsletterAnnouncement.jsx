@@ -28,7 +28,7 @@ const NewsletterAnnouncement = ({ block }) => {
         border: 0,
         width: "100%",
         margin: "0 auto",
-        marginBottom: "100px",
+        marginBottom: "150px",
       }}
     >
       <tbody>

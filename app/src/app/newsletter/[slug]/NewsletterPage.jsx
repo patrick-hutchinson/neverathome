@@ -124,8 +124,14 @@ const NewsletterPage = ({ site, newsletter }) => {
             }
 
             .newsletter-container{
-              padding: 12px;
+              padding: 12px !important;
             }
+            .newsletter-footer-inner{
+              padding: 8px !important
+            }
+              .newsletter-expand{
+              width: 24px !important
+              }
           }
         `}</style>
         <NewsletterHeader newsletter={newsletter} />

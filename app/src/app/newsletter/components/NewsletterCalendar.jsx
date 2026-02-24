@@ -130,11 +130,11 @@ const NewsletterCalendar = ({ block, site }) => {
                           </font>
                         </td>
                         <td
-                          className="newsletter-body-text"
+                          className="newsletter-body-text newsletter-expand"
                           valign="top"
                           align="right"
                           style={{
-                            width: "24px",
+                            width: "100%",
                             padding: "0px 0px 4px 0px",
                             border: 0,
                             fontSize: "14px",

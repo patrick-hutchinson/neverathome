@@ -40,17 +40,17 @@ const NewsletterFooter = ({ site }) => {
     >
       <tbody>
         <tr>
-          <td style={{ padding: "12px 13px 16px 13px", border: 0 }}>
+          <td className="newsletter-footer-inner" style={{ padding: "8px", border: 0 }}>
             <table width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
               <tbody>
-                <tr style={{ paddingBottom: "30px" }}>
+                <tr>
                   <td
                     className="col-main newsletter-body-text"
                     valign="top"
                     align="left"
                     style={{
                       width: "50%",
-                      padding: "0 24px 0 0",
+                      padding: "0 24px 30px 0",
                       fontSize: "14px",
                       lineHeight: "15px",
                       textAlign: "left",
@@ -92,6 +92,7 @@ const NewsletterFooter = ({ site }) => {
                     align="left"
                     style={{
                       width: "50%",
+                      paddingBottom: "30px",
                       fontSize: "14px",
                       lineHeight: "15px",
                       textAlign: "left",
