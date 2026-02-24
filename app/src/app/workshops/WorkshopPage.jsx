@@ -46,7 +46,7 @@ const WorkshopPage = ({ page, events, site }) => {
         </Carousel>
       </section>
 
-      <section>
+      <section className="callToAction">
         <CallToAction site={site} prompt={"Interested to Host your own Workshop?"} />
       </section>
     </main>

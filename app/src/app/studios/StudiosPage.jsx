@@ -15,7 +15,7 @@ const StudiosPage = ({ page, site }) => {
       <CoverMedia media={page.gallery} />
 
       <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
-        <div style={{ marginBottom: "250px" }}>
+        <div>
           <Text className={styles.introduction} text={page.description} typo="h2" />
         </div>
         <section className={styles.features}>
@@ -35,7 +35,7 @@ const StudiosPage = ({ page, site }) => {
           <Accordion array={page.events} behavior="navigate" invert={true} size="small" />
         </section>
 
-        <section>
+        <section className="callToAction">
           <CallToAction site={site} prompt={"Interested to rent your own studio?"} />
         </section>
       </div>

@@ -77,6 +77,17 @@ li.artist {
   white-space: nowrap;
 
   overflow-x: scroll;
+
+  /* Hide scrollbar – Firefox */
+  scrollbar-width: none;
+
+  /* Hide scrollbar – IE/Edge legacy */
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar – Chrome, Safari, newer Edge */
+.locations::-webkit-scrollbar {
+  display: none;
 }
 
 .filtering button.all {

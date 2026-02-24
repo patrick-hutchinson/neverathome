@@ -34,7 +34,7 @@ const NewsletterDoubleFeature = ({ block }) => {
           {features.map((feature, index) => (
             <NewsletterFeature
               key={feature?._key || `${feature?.featureTitle || "feature"}-${index}`}
-              className="double-feature-col"
+              className={`double-feature-col${index === 0 ? " first-mobile-gap" : ""}`}
               feature={feature}
             />
           ))}

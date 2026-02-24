@@ -44,7 +44,7 @@
 
   grid-column: 1 / 13;
   grid-row: 3;
-  line-height: 1;
+  /* line-height: 1; */
 }
 
 .accordionHeader > .text {

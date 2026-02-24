@@ -31,6 +31,7 @@ footer.footer button:visited {
 .newsletter {
   display: flex;
   flex-direction: column;
+  padding-bottom: var(--font-size-3);
 }
 
 .socials {
@@ -113,6 +114,7 @@ footer.footer button:visited {
   }
   .newsletter {
     grid-column: 13 / 20;
+    padding-bottom: 0;
   }
   .mediaLinks {
     grid-column: 20 / 25;

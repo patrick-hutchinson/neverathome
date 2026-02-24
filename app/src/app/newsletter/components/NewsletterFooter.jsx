@@ -43,7 +43,7 @@ const NewsletterFooter = ({ site }) => {
           <td style={{ padding: "12px 13px 16px 13px", border: 0 }}>
             <table width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
               <tbody>
-                <tr>
+                <tr style={{ paddingBottom: "30px" }}>
                   <td
                     className="col-main newsletter-body-text"
                     valign="top"

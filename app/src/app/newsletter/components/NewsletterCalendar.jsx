@@ -98,7 +98,7 @@ const NewsletterCalendar = ({ block, site }) => {
                     <tbody>
                       <tr>
                         <td
-                          className="newsletter-body-text"
+                          className="event-type-top newsletter-body-text"
                           valign="top"
                           style={{
                             width: "25%",
@@ -114,7 +114,7 @@ const NewsletterCalendar = ({ block, site }) => {
                           </font>
                         </td>
                         <td
-                          className="newsletter-body-text"
+                          className="event-title-top newsletter-body-text"
                           valign="top"
                           style={{
                             padding: "0px 0px 4px 0px",

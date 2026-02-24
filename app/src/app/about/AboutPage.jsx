@@ -64,7 +64,7 @@ const AboutPage = ({ contact, locations, site }) => {
         <Accordion array={contact.supportAccordions} size="large" invert={true} behavior="expand" firstExpanded={false} />
       </section>
 
-      <section>
+      <section className="callToAction">
         <CallToAction site={site} prompt={"Any Questions?"} />
       </section>
     </main>
