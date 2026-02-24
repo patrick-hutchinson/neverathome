@@ -155,7 +155,7 @@ const NewsletterCalendar = ({ block }) => {
                           style={{
                             width: "25%",
                             border: 0,
-                            padding: "0px 0px 10px 0px",
+                            padding: "0px 0px 4px 0px",
                           }}
                         >
                           {thumbnailUrl ? (
@@ -198,7 +198,7 @@ const NewsletterCalendar = ({ block }) => {
                           style={{
                             border: 0,
                             padding: "0px",
-                            padding: "0px 0px 10px 0px",
+                            padding: "0px 0px 4px 0px",
                             fontSize: "14px",
                             lineHeight: "15px",
                             color: "#ffffff",

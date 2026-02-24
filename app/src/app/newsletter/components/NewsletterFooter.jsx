@@ -87,7 +87,7 @@ const NewsletterFooter = ({ site }) => {
                   </td>
 
                   <td
-                    className="col-side newsletter-body-text"
+                    className="col-side newsletter-body-text footer-links"
                     valign="top"
                     align="left"
                     style={{
@@ -98,7 +98,7 @@ const NewsletterFooter = ({ site }) => {
                       border: 0,
                     }}
                   >
-                    <div>
+                    {/* <div>
                       Get the latest Updates, News & Stories
                       <br />
                       <a
@@ -109,7 +109,7 @@ const NewsletterFooter = ({ site }) => {
                       >
                         Subscribe Here
                       </a>
-                    </div>
+                    </div> */}
 
                     <div style={{ marginTop: "10px" }}>
                       {workshopSpaceUrl && (

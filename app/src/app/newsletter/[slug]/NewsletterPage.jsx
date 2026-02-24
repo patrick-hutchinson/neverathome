@@ -86,6 +86,14 @@ const NewsletterPage = ({ site, newsletter }) => {
               min-height: 520px !important;
               max-height: 520px !important;
             }
+
+            .footer-links {
+              opacity: 0.3;
+              transition: 0.4s opacity
+            }
+            .footer-links:hover {
+              opacity: 1;
+            }
           }
         `}</style>
         <NewsletterHeader newsletter={newsletter} />

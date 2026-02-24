@@ -74,7 +74,7 @@ const NewsletterShowcase = ({ block }) => {
           </td>
           <td
             className="newsletter-body-text"
-            valign="top"
+            valign="bottom"
             align="left"
             style={{
               width: "25%",

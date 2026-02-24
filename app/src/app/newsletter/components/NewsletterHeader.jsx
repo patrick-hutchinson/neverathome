@@ -32,12 +32,7 @@ const NewsletterHeader = ({ newsletter }) => {
               <tbody>
                 <tr>
                   <td valign="bottom" style={{ paddingRight: "8px" }}>
-                    <img
-                      src="https://www.never-at-home.at/assets/newsletter/logo.gif"
-                      height="18"
-                      style={{ display: "block", height: "18px", width: "auto", border: "0" }}
-                      alt="Logo"
-                    />
+                    NeverAtHome
                   </td>
                   <td valign="bottom" className="newsletter-body-text" style={{ fontSize: "14px", lineHeight: "15px" }}>
                     Newsletter

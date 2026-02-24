@@ -112,7 +112,7 @@ footer.footer button:visited {
     display: contents;
   }
   .newsletter {
-    grid-column: 12 / 20;
+    grid-column: 13 / 20;
   }
   .mediaLinks {
     grid-column: 20 / 25;
@@ -140,7 +140,7 @@ footer.footer button:visited {
     align-items: flex-end;
   }
   .principalPartners {
-    grid-column: 12 / 20;
+    grid-column: 13 / 20;
   }
   .generalPartners {
     grid-column: 20 / 25;
