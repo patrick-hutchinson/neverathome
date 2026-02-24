@@ -1,6 +1,9 @@
+import styles from "./TextFigure.module.css";
+
 const TextFigure = ({ text, colorPair }) => {
   return (
     <div
+      className={styles.textFigure}
       style={{
         background: colorPair?.background?.value,
         display: "flex",

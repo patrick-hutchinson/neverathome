@@ -13,6 +13,10 @@ main.main {
   height: calc(100vh - var(--header-height) - var(--accordion-header-height) - 8px);
 }
 
+.mediaPair {
+  gap: 2px !important;
+}
+
 /* Phones */
 @media screen and (min-width: 320px) {
 }

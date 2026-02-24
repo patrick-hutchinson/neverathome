@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useContext } from "react";
 import { repeatArray } from "@/helpers/repeatArray";
-import { StateContext } from "@/context/StateContext";
 
 import Media from "@/components/Media/Media";
 import Text from "@/components/Text";
@@ -15,30 +13,6 @@ import TextFigure from "@/components/TextFigure/TextFigure";
 import CallToAction from "@/components/CallToAction/CallToAction";
 
 const AboutPage = ({ contact, locations, site }) => {
-  const { isMobile } = useContext(StateContext);
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    let timeout;
-
-    const handleScroll = () => {
-      setShowImage(true);
-
-      clearTimeout(timeout);
-      timeout = setTimeout(() => setShowImage(false), 200);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("touchmove", handleScroll, { passive: true }); // 👈 key line
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
-      clearTimeout(timeout);
-    };
-  }, [isMobile]);
-
   const permanentStaff = contact.teamMembers.filter((member) => member.position === "permanentStaff");
   const temporaryStaff = contact.teamMembers.filter((member) => member.position === "temporaryStaff");
 
@@ -50,7 +24,7 @@ const AboutPage = ({ contact, locations, site }) => {
         <Accordion array={locations} size="large" invert={true} behavior="expand" firstExpanded={true}></Accordion>
       </section>
 
-      <MediaPair>
+      <MediaPair className={styles.mediaPair}>
         <TextFigure text={contact.doubleFeature_team.text} colorPair={contact.doubleFeature_team.colorPair} />
         <Media medium={contact.doubleFeature_team.image} />
       </MediaPair>
@@ -80,7 +54,7 @@ const AboutPage = ({ contact, locations, site }) => {
       </section>
 
       <section>
-        <MediaPair>
+        <MediaPair className={styles.mediaPair}>
           <TextFigure text={contact.doubleFeature_supporter.text} colorPair={contact.doubleFeature_supporter.colorPair} />
           <Media medium={contact.doubleFeature_supporter.image} />
         </MediaPair>
