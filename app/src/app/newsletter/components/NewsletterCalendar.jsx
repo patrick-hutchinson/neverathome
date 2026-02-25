@@ -151,6 +151,7 @@ const NewsletterCalendar = ({ block, site }) => {
 
                       <tr>
                         <td
+                          className="event-media-cell"
                           valign="top"
                           style={{
                             width: "25%",
@@ -160,6 +161,7 @@ const NewsletterCalendar = ({ block, site }) => {
                         >
                           {thumbnailUrl ? (
                             <img
+                              className="event-media-image"
                               src={thumbnailUrl}
                               alt={event?.title || ""}
                               width="50%"
@@ -193,7 +195,7 @@ const NewsletterCalendar = ({ block, site }) => {
                         </td>
 
                         <td
-                          className="newsletter-body-text"
+                          className="event-teaser-cell newsletter-body-text"
                           valign="top"
                           style={{
                             border: 0,
