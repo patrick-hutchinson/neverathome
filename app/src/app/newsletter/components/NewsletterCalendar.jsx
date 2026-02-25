@@ -97,123 +97,165 @@ const NewsletterCalendar = ({ block, site }) => {
                   >
                     <tbody>
                       <tr>
-                        <td
-                          className="event-type-top newsletter-body-text"
-                          valign="top"
-                          style={{
-                            width: "25%",
-                            padding: "0px 0px 4px 0px",
-                            border: 0,
-                            fontSize: "14px",
-                            lineHeight: "15px",
-                            color: "#ffffff",
-                          }}
-                        >
-                          <font color="#ffffff">
-                            <span style={{ color: "#ffffff" }}>{eventType}</span>
-                          </font>
-                        </td>
-                        <td
-                          className="event-title-top newsletter-body-text"
-                          valign="top"
-                          style={{
-                            padding: "0px 0px 4px 0px",
-                            border: 0,
-                            fontSize: "14px",
-                            lineHeight: "15px",
-                            width: "auto",
-                            color: "#ffffff",
-                          }}
-                        >
-                          <font color="#ffffff">
-                            <span style={{ color: "#ffffff" }}>{event?.title}</span>
-                          </font>
-                        </td>
-                        <td
-                          className="newsletter-body-text newsletter-expand"
-                          valign="top"
-                          align="right"
-                          style={{
-                            width: "100%",
-                            padding: "0px 0px 4px 0px",
-                            border: 0,
-                            fontSize: "14px",
-                            lineHeight: "15px",
-                            textAlign: "right",
-                            color: "#ffffff",
-                          }}
-                        >
-                          <font color="#ffffff">
-                            <span style={{ color: "#ffffff" }}>+</span>
-                          </font>
+                        <td style={{ border: 0, padding: "0 0 4px 0" }}>
+                          <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
+                            <tbody>
+                              <tr>
+                                <td
+                                  className="event-type-top newsletter-body-text"
+                                  valign="top"
+                                  style={{
+                                    display: "none",
+                                    width: "0",
+                                    maxWidth: "0",
+                                    padding: "0",
+                                    border: 0,
+                                    overflow: "hidden",
+                                    fontSize: "14px",
+                                    lineHeight: "15px",
+                                    color: "#ffffff",
+                                  }}
+                                >
+                                  <font color="#ffffff">
+                                    <span style={{ color: "#ffffff" }}>{eventType}</span>
+                                  </font>
+                                </td>
+                                <td
+                                  className="event-title-top newsletter-body-text"
+                                  valign="top"
+                                  style={{
+                                    width: "90%",
+                                    maxWidth: "90%",
+                                    padding: "0",
+                                    border: 0,
+                                    fontSize: "14px",
+                                    lineHeight: "15px",
+                                    color: "#ffffff",
+                                    whiteSpace: "nowrap",
+                                  }}
+                                >
+                                  <font color="#ffffff">
+                                    <span style={{ color: "#ffffff" }}>{event?.title}</span>
+                                  </font>
+                                </td>
+                                <td
+                                  className="event-plus-top newsletter-body-text newsletter-expand"
+                                  valign="top"
+                                  align="right"
+                                  style={{
+                                    width: "10%",
+                                    maxWidth: "10%",
+                                    padding: "0",
+                                    border: 0,
+                                    fontSize: "14px",
+                                    lineHeight: "15px",
+                                    textAlign: "right",
+                                    color: "#ffffff",
+                                  }}
+                                >
+                                  <font color="#ffffff">
+                                    <span style={{ color: "#ffffff" }}>+</span>
+                                  </font>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
                       </tr>
 
                       <tr>
-                        <td
-                          className="event-media-cell"
-                          valign="top"
-                          style={{
-                            width: "25%",
-                            border: 0,
-                            padding: "0px 0px 4px 0px",
-                          }}
-                        >
-                          {thumbnailUrl ? (
-                            <img
-                              className="event-media-image"
-                              src={thumbnailUrl}
-                              alt={event?.title || ""}
-                              width="50%"
-                              border="0"
-                              style={{ display: "block", width: "50%", height: "auto", objectFit: "contain", border: 0 }}
-                            />
-                          ) : (
-                            <table
-                              width="100%"
-                              cellPadding="0"
-                              cellSpacing="0"
-                              role="presentation"
-                              style={{ border: "1px solid #fff", width: "100%", minHeight: "48px" }}
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    className="newsletter-body-text"
-                                    align="center"
-                                    valign="middle"
-                                    style={{ border: 0, fontSize: "14px", lineHeight: "15px", color: "#ffffff" }}
-                                  >
-                                    <font color="#ffffff">
-                                      <span style={{ color: "#ffffff" }}>{eventType || "Event"}</span>
-                                    </font>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
-                        </td>
+                        <td style={{ border: 0, padding: "0 0 4px 0" }}>
+                          <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
+                            <tbody>
+                              <tr>
+                                <td
+                                  className="event-media-cell"
+                                  valign="top"
+                                  style={{
+                                    width: "25%",
+                                    border: 0,
+                                    padding: "0",
+                                  }}
+                                >
+                                  {thumbnailUrl ? (
+                                    <img
+                                      className="event-media-image"
+                                      src={thumbnailUrl}
+                                      alt={event?.title || ""}
+                                      width="50%"
+                                      border="0"
+                                      style={{
+                                        display: "block",
+                                        width: "50%",
+                                        height: "auto",
+                                        objectFit: "contain",
+                                        border: 0,
+                                      }}
+                                    />
+                                  ) : (
+                                    <table
+                                      width="100%"
+                                      cellPadding="0"
+                                      cellSpacing="0"
+                                      role="presentation"
+                                      style={{ border: "1px solid #fff", width: "100%", minHeight: "48px" }}
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            className="newsletter-body-text"
+                                            align="center"
+                                            valign="middle"
+                                            style={{ border: 0, fontSize: "14px", lineHeight: "15px", color: "#ffffff" }}
+                                          >
+                                            <font color="#ffffff">
+                                              <span style={{ color: "#ffffff" }}>{eventType || "Event"}</span>
+                                            </font>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  )}
+                                </td>
 
-                        <td
-                          className="event-teaser-cell newsletter-body-text"
-                          valign="top"
-                          style={{
-                            border: 0,
-                            padding: "0px",
-                            padding: "0px 0px 4px 0px",
-                            fontSize: "14px",
-                            lineHeight: "15px",
-                            color: "#ffffff",
-                          }}
-                        >
-                          {teaser && (
-                            <p style={{ margin: 0, color: "#ffffff" }}>
-                              <font color="#ffffff">{teaser}</font>
-                            </p>
-                          )}
-                        </td>
-                        <td valign="top" style={{ width: "24px", border: 0, padding: "0 0 16px 0" }}>
-                          &nbsp;
+                                <td
+                                  className="event-mobile-gap"
+                                  valign="top"
+                                  style={{ width: "8px", maxWidth: "8px", border: 0, padding: 0, fontSize: 0, lineHeight: 0 }}
+                                >
+                                  &nbsp;
+                                </td>
+
+                                <td
+                                  className="event-teaser-cell newsletter-body-text"
+                                  valign="top"
+                                  style={{
+                                    width: "75%",
+                                    maxWidth: "75%",
+                                    border: 0,
+                                    padding: 0,
+                                    fontSize: "14px",
+                                    lineHeight: "15px",
+                                    color: "#ffffff",
+                                  }}
+                                >
+                                  {teaser && (
+                                    <p style={{ margin: 0, color: "#ffffff" }}>
+                                      <font color="#ffffff">{teaser}</font>
+                                    </p>
+                                  )}
+                                </td>
+
+                                <td
+                                  className="event-desktop-spacer"
+                                  valign="top"
+                                  style={{ display: "none", width: "0", maxWidth: "0", border: 0, padding: 0 }}
+                                >
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
                       </tr>
                     </tbody>

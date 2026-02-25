@@ -111,6 +111,34 @@ const NewsletterPage = ({ site, newsletter }) => {
               overflow: visible !important;
             }
 
+            .newsletter-calendar .event-title-top {
+              width: auto !important;
+              max-width: none !important;
+              white-space: normal !important;
+            }
+
+            .newsletter-calendar .event-plus-top {
+              width: 24px !important;
+              max-width: 24px !important;
+            }
+
+            .newsletter-calendar .event-mobile-gap {
+              display: none !important;
+              width: 0 !important;
+              max-width: 0 !important;
+            }
+
+            .newsletter-calendar .event-desktop-spacer {
+              display: table-cell !important;
+              width: 24px !important;
+              max-width: 24px !important;
+            }
+
+            .newsletter-calendar .event-teaser-cell {
+              width: auto !important;
+              max-width: none !important;
+            }
+
             .footer-links a {
               opacity: 0.3;
               transition: 0.4s opacity
