@@ -56,7 +56,7 @@ const Collapse = ({ children, mode, id, onScroll, colorPair }) => {
       }}
       style={{
         overflow: allowOverflow ? "visible" : "hidden",
-        borderBottom: isExpanding ? `1.5px solid ${colorPair?.text?.value || "black"}` : "none",
+        borderBottom: isExpanding ? "1.5px solid black" : "none",
       }}
     >
       {children}

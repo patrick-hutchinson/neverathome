@@ -18,9 +18,7 @@ const ImageShuffle = ({ images }) => {
     }
 
     const safeImages = Array.isArray(images) ? images : [];
-    const urls = safeImages
-      .map((image) => (typeof image === "string" ? image : image?.url))
-      .filter(Boolean);
+    const urls = safeImages.map((image) => (typeof image === "string" ? image : image?.url)).filter(Boolean);
 
     if (urls.length === 0) {
       hasPlayedHomeIntro = true;
@@ -64,7 +62,7 @@ const ImageShuffle = ({ images }) => {
         }
         return prevIndex + 1;
       });
-    }, 100);
+    }, 125);
 
     return () => clearInterval(interval);
   }, [images, phase]);
