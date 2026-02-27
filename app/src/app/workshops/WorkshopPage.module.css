@@ -1,5 +1,5 @@
 .main {
-  padding: calc(var(--margin) / 2) var(--margin);
+  padding: calc(var(--margin) / 2) var(--margin) var(--margin) var(--margin);
 }
 
 .feature_container:first-of-type {

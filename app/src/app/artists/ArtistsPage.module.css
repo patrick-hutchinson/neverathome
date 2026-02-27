@@ -12,7 +12,6 @@ main.main.infinite {
 ul.artists {
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
 }
 
 ul.artists.infinite {

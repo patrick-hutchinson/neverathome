@@ -93,28 +93,28 @@ h5,
   letter-spacing: var(--letter-spacing-5);
 }
 
-h1 p,
-[typo="h1"] p {
+h1 p:not(:last-of-type),
+[typo="h1"] p:not(:last-of-type) {
   margin-bottom: var(--paragraph-spacing-1);
 }
 
-h2 p,
-[typo="h2"] p {
+h2 p:not(:last-of-type),
+[typo="h2"] p:not(:last-of-type) {
   margin-bottom: var(--paragraph-spacing-2);
 }
 
-h3 p,
-[typo="h3"] p {
+h3 p:not(:last-of-type),
+[typo="h3"] p:not(:last-of-type) {
   margin-bottom: var(--paragraph-spacing-3);
 }
 
-h4 p,
-[typo="h4"] p {
+h4 p:not(:last-of-type),
+[typo="h4"] p:not(:last-of-type) {
   margin-bottom: var(--paragraph-spacing-4);
 }
 
-h5 p,
-[typo="h5"] p {
+h5 p:not(:last-of-type),
+[typo="h5"] p:not(:last-of-type) {
   margin-bottom: var(--paragraph-spacing-5);
 }
 

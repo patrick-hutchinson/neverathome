@@ -20,7 +20,13 @@ const ProgrammingPage = ({ page, site }) => {
     <main className={styles.main}>
       <CoverMedia media={page.gallery} />
 
-      <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
+      <div
+        style={{
+          background: "#000",
+          position: "relative",
+          padding: "calc(var(--margin) / 2) var(--margin) var(--margin) var(--margin)",
+        }}
+      >
         <section>
           <div typo="h2">
             <Text className={styles.introduction} text={page.description} />
