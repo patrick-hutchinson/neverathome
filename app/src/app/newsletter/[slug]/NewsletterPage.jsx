@@ -144,7 +144,7 @@ const NewsletterPage = ({ site, newsletter }) => {
               transition: 0.4s opacity
             }
             .footer-links a:hover {
-              opacity: 1;
+              opacity: 1 !important;
             }
 
             .newsletter-showcase .running-text{

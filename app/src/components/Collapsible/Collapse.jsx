@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const Collapse = ({ children, mode, id, onScroll }) => {
+const Collapse = ({ children, mode, id, onScroll, colorPair }) => {
+  // console.log(colorPair.text, "text color");
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
 
@@ -55,6 +56,7 @@ const Collapse = ({ children, mode, id, onScroll }) => {
       }}
       style={{
         overflow: allowOverflow ? "visible" : "hidden",
+        borderBottom: isExpanding ? `1.5px solid ${colorPair?.text?.value || "black"}` : "none",
       }}
     >
       {children}

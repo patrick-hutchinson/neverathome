@@ -96,6 +96,10 @@ li.artist {
   color: var(--background);
 }
 
+.artistSection {
+  display: contents;
+}
+
 /* Desktop */
 @media screen and (min-width: 1280px) {
   main.main {
@@ -105,5 +109,9 @@ li.artist {
   }
   .filtering {
     top: var(--header-height);
+  }
+
+  .artistSection {
+    display: block;
   }
 }

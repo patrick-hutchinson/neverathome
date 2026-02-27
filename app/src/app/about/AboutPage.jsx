@@ -32,7 +32,7 @@ const AboutPage = ({ contact, locations, site }) => {
       <section>
         <div style={{ display: "flex", flexDirection: "column", gap: "var(--margin)", marginTop: "50px" }}>
           <h4>CORE TEAM</h4>
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", marginBottom: "25px" }}>
             <Carousel speed={0.5}>
               {repeatArray(permanentStaff).map((item, index) => (
                 <ContactCard key={index} item={item} index={index} typo="h4" />
@@ -40,10 +40,10 @@ const AboutPage = ({ contact, locations, site }) => {
             </Carousel>
           </div>
 
-          <hr style={{ border: "0.2px solid #fff" }} />
+          {/* <hr style={{ border: "0.2px solid #fff" }} /> */}
 
           <h4>PROJECT BASED</h4>
-          <div style={{ display: "flex", alignItems: "flex-start", opacity: 0.4 }}>
+          <div style={{ display: "flex", alignItems: "flex-start" }}>
             <Carousel speed={1} direction="backward">
               {repeatArray(temporaryStaff).map((item, index) => (
                 <ContactCard key={index} item={item} index={index} typo="h4" />

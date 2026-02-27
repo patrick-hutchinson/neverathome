@@ -11,12 +11,17 @@ const AccordionContent = ({ item, mode, setActiveGalleryImage, containerRef, isE
 
   const isAbout = pathname === "/about";
   return (
-    <Collapse mode={mode} id={item._id} containerRef={containerRef}>
+    <Collapse mode={mode} id={item._id} containerRef={containerRef} colorPair={item.colorPair}>
       <MediaPair className={styles.mediaPair}>
         <div className={`${styles.description} ${isAbout && styles.aboutPage}`}>
           <Text text={item.info} typo="h3" />
         </div>
-        <Gallery event={item} className={styles.gallery} setActiveGalleryImage={setActiveGalleryImage} isExpanded={isExpanded} />
+        <Gallery
+          event={item}
+          className={styles.gallery}
+          setActiveGalleryImage={setActiveGalleryImage}
+          isExpanded={isExpanded}
+        />
       </MediaPair>
     </Collapse>
   );

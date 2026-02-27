@@ -106,7 +106,7 @@ const NewsletterFooter = ({ site }) => {
                             href={workshopSpaceUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ color: "#ffffff", textDecoration: "none" }}
+                            style={{ color: "#ffffff", textDecoration: "none", opacity: 0.3 }}
                           >
                             Rent a Workshop Space
                           </a>
@@ -118,7 +118,7 @@ const NewsletterFooter = ({ site }) => {
                           href={`https://${site.domain}/linktree`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ color: "#ffffff", textDecoration: "none" }}
+                          style={{ color: "#ffffff", textDecoration: "none", opacity: 0.3 }}
                         >
                           Go to Linktree
                         </a>
@@ -130,7 +130,7 @@ const NewsletterFooter = ({ site }) => {
                             href={presskitLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ color: "#ffffff", textDecoration: "none" }}
+                            style={{ color: "#ffffff", textDecoration: "none", opacity: 0.3 }}
                           >
                             Download Presskit
                           </a>
@@ -143,7 +143,7 @@ const NewsletterFooter = ({ site }) => {
                             href={mediaarchiveLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ color: "#ffffff", textDecoration: "none" }}
+                            style={{ color: "#ffffff", textDecoration: "none", opacity: 0.3 }}
                           >
                             Mediaarchive
                           </a>

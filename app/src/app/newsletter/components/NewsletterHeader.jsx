@@ -32,12 +32,7 @@ const NewsletterHeader = ({ newsletter }) => {
             <table role="presentation" border="0" cellPadding="0" cellSpacing="0">
               <tbody>
                 <tr>
-                  <td valign="bottom" style={{ paddingRight: "3px" }}>
-                    NeverAtHome
-                  </td>
-                  <td valign="bottom" className="newsletter-body-text" style={{ fontSize: "14px", lineHeight: "15px" }}>
-                    Newsletter
-                  </td>
+                  <td valign="bottom">NeverAtHome Newsletter</td>
                 </tr>
               </tbody>
             </table>

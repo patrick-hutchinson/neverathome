@@ -153,29 +153,31 @@ const ArtistsPage = ({ artists, colorPairs }) => {
   return (
     <main className={`${styles.main} ${infiniteMode ? styles.infinite : ""}`}>
       <Filtering array={locations} activeLocations={activeLocations} setActiveLocations={setActiveLocations} />
-      <ul
-        className={`${styles.artists} ${infiniteMode ? styles.infinite : ""}`}
-        ref={artistsListRef}
-        onScroll={infiniteMode ? handleInfiniteScroll : undefined}
-      >
-        {renderedArtists.map(({ key, artist, dataId }) => {
-          return (
-            <Artist
-              key={key}
-              artist={artist}
-              dataId={dataId}
-              hoveredArtist={hoveredArtist}
-              setHoveredArtist={setHoveredArtist}
-              selectedArtist={selectedArtist}
-              setSelectedArtist={setSelectedArtist}
-              colorPairs={colorPairs}
-              observerRef={observerRef}
-              observerVersion={observerVersion}
-              activeId={activeId}
-            />
-          );
-        })}
-      </ul>
+      <section className={styles.artistSection}>
+        <ul
+          className={`${styles.artists} ${infiniteMode ? styles.infinite : ""}`}
+          ref={artistsListRef}
+          onScroll={infiniteMode ? handleInfiniteScroll : undefined}
+        >
+          {renderedArtists.map(({ key, artist, dataId }) => {
+            return (
+              <Artist
+                key={key}
+                artist={artist}
+                dataId={dataId}
+                hoveredArtist={hoveredArtist}
+                setHoveredArtist={setHoveredArtist}
+                selectedArtist={selectedArtist}
+                setSelectedArtist={setSelectedArtist}
+                colorPairs={colorPairs}
+                observerRef={observerRef}
+                observerVersion={observerVersion}
+                activeId={activeId}
+              />
+            );
+          })}
+        </ul>
+      </section>
 
       <ArtistInfo currentArtist={currentArtist} showLocations={showLocations} />
     </main>

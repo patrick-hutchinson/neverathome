@@ -15,9 +15,12 @@ const StudiosPage = ({ page, site }) => {
       <CoverMedia media={page.gallery} />
 
       <div style={{ background: "#000", position: "relative", padding: "calc(var(--margin) / 2) var(--margin)" }}>
-        <div>
-          <Text className={styles.introduction} text={page.description} typo="h2" />
-        </div>
+        <section>
+          <div>
+            <Text className={styles.introduction} text={page.description} typo="h2" />
+          </div>
+        </section>
+
         <section className={styles.features}>
           <h3>Selected Artist Studios</h3>
 
