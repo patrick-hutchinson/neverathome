@@ -4,7 +4,7 @@ import {gallery} from '../types/gallery'
 
 export const events = defineType({
   name: 'events',
-  title: 'Programming',
+  title: 'Program',
   type: 'document',
   fields: [
     defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
@@ -54,6 +54,6 @@ export const events = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({title: 'Programming Page'}),
+    prepare: () => ({title: 'Program Page'}),
   },
 })

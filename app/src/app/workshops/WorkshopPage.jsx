@@ -11,7 +11,7 @@ import CallToAction from "@/components/CallToAction/CallToAction";
 import styles from "./WorkshopPage.module.css";
 
 const WorkshopPage = ({ page, events, site }) => {
-  const workshops = events.filter((event) => event.type === "Workshop");
+  // const workshops = events.filter((event) => event.type === "Workshop");
 
   return (
     <main className={styles.main}>
@@ -34,7 +34,7 @@ const WorkshopPage = ({ page, events, site }) => {
 
       <section>
         <h3>Upcoming Workshops</h3>
-        <Accordion array={workshops} size="small" invert={true} behavior="navigate" />
+        <Accordion array={page.events} size="small" invert={true} behavior="navigate" />
       </section>
 
       <section>

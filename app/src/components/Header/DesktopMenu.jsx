@@ -47,8 +47,8 @@ const DesktopMenu = () => {
             </li>
 
             <li>
-              <AnimationLink path="/programming" className={isActive("/programming") ? styles.active : undefined}>
-                Programming
+              <AnimationLink path="/program" className={isActive("/program") ? styles.active : undefined}>
+                Program
               </AnimationLink>
             </li>
           </ul>

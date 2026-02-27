@@ -207,6 +207,20 @@ export const workshopsQuery = `*[_type=="workshops"][0]{
     ${thumbnailFragment},
     imageIsSmall
   },
+  events[]->{
+    _id,
+    "type": type->title,
+    "dataType": "event",
+    startDate,
+    endDate,
+    title,
+    teaser,
+    city,
+    "colorPair": colorPair[0]->{_id, text, background},
+    location,
+    ${galleryFragment},
+    slug,
+  },
 }`;
 
 export const studiosQuery = `*[_type=="studios"][0]{

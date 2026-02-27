@@ -4,7 +4,7 @@ import {gallery} from '../types/gallery'
 
 export const programming = defineType({
   name: 'programming',
-  title: 'Programming',
+  title: 'Program',
   type: 'document',
   fields: [
     defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
@@ -53,6 +53,6 @@ export const programming = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({title: 'Programming Page'}),
+    prepare: () => ({title: 'Program Page'}),
   },
 })
