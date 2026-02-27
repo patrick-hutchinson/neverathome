@@ -1,6 +1,7 @@
 import ScrollRestorationController from "@/controllers/ScrollRestorationController";
 import ColorSchemeController from "@/controllers/ColorSchemeController";
 import RandomSelectionColor from "@/controllers/RandomSelectionColor";
+import ScrollToTopOnRouteChange from "@/controllers/ScrollToTopOnRouteChange";
 import { StateProvider } from "@/context/StateContext";
 import { DeviceProvider } from "@/context/DeviceContext";
 
@@ -52,6 +53,7 @@ export default async function RootLayout({ children, invert = false }) {
             <GlobalVariablesProvider>
               <body>
                 <LenisProvider>
+                  <ScrollToTopOnRouteChange />
                   <Header />
                   {children}
                   <div id="hover-preview"></div>
