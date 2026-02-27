@@ -191,8 +191,9 @@ const Accordion = ({ array, size, invert, behavior, firstExpanded }) => {
       <AnimatePresence initial={false} mode="popLayout">
         {safeItems.map((item) => {
           let isExpandable = item.info || item.gallery;
-          const isExpanded = item._id === activeItemId;
-          const isCollapsing = item._id === closingItemId && closingItemId !== activeItemId;
+          const canExpandInPlace = behavior === "expand";
+          const isExpanded = canExpandInPlace && item._id === activeItemId;
+          const isCollapsing = canExpandInPlace && item._id === closingItemId && closingItemId !== activeItemId;
 
           const colorPair = getColorPairForItem(item, colorPairs);
 
