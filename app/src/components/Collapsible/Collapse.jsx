@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const Collapse = ({ children, mode, id, onScroll, colorPair }) => {
+  const pathname = usePathname();
+
+  const showBorder = !pathname.includes("/calendar");
   // console.log(colorPair.text, "text color");
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
@@ -56,7 +60,7 @@ const Collapse = ({ children, mode, id, onScroll, colorPair }) => {
       }}
       style={{
         overflow: allowOverflow ? "visible" : "hidden",
-        borderBottom: isExpanding ? "1.5px solid black" : "none",
+        borderBottom: isExpanding && showBorder ? "1.5px solid black" : "none",
       }}
     >
       {children}

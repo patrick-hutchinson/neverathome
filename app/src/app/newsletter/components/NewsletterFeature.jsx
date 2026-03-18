@@ -28,12 +28,11 @@ const NewsletterFeature = ({ feature, className = "" }) => {
   return (
     <td
       className={className}
-      width="100%"
+      width="50%"
       valign="top"
       align="left"
       style={{
-        display: "block",
-        width: "100%",
+        width: "50%",
         padding: "0 1px",
         border: 0,
         paddingBottom: "6px",

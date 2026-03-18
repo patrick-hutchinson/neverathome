@@ -45,8 +45,20 @@ const NewsletterPage = ({ site, newsletter }) => {
             overflow: hidden !important;
           }
 
-          .doubleFeature .double-feature-col.first-mobile-gap {
-            padding-bottom: 56px !important;
+          @media screen and (max-width: 768px) {
+            .doubleFeature .double-feature-row {
+              display: block !important;
+            }
+
+            .doubleFeature .double-feature-col {
+              display: block !important;
+              width: 100% !important;
+              max-width: 100% !important;
+            }
+
+            .doubleFeature .double-feature-col.first-mobile-gap {
+              padding-bottom: 56px !important;
+            }
           }
 
           @media screen and (min-width: 769px) {
