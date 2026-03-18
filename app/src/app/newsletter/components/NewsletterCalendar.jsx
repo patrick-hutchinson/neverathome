@@ -93,7 +93,7 @@ const NewsletterCalendar = ({ block, site }) => {
                     cellPadding="0"
                     cellSpacing="0"
                     role="presentation"
-                    style={{ backgroundColor: "#000", color: "#fff", border: 0, padding: "0px 4px" }}
+                    style={{ backgroundColor: "#000", color: "#fff", border: 0, padding: "2px" }}
                   >
                     <tbody>
                       <tr>
