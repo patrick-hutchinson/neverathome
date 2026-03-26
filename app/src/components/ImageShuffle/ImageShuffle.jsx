@@ -29,8 +29,10 @@ const ImageShuffle = ({ images }) => {
     }
 
     let isCancelled = false;
+    let didTimeout = false;
     const timeoutId = window.setTimeout(() => {
       if (isCancelled) return;
+      didTimeout = true;
       hasPlayedHomeIntro = true;
       setPhase("hidden");
     }, MAX_PRELOAD_WAIT_MS);
@@ -45,6 +47,7 @@ const ImageShuffle = ({ images }) => {
 
     Promise.all(urls.map(preload)).then(() => {
       if (isCancelled) return;
+      if (didTimeout || hasPlayedHomeIntro) return;
       window.clearTimeout(timeoutId);
       setPhase("playing");
     });
