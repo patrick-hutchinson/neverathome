@@ -1,12 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import Media from "../Media/Media";
 import styles from "./ImageShuffle.module.css";
 
 let hasPlayedHomeIntro = false;
+const MAX_INTRO_IMAGES = 14;
+const MAX_PRELOAD_WAIT_MS = 1500;
 
 const ImageShuffle = ({ images }) => {
+  const introImages = useMemo(() => (Array.isArray(images) ? images.slice(0, MAX_INTRO_IMAGES) : []), [images]);
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState(hasPlayedHomeIntro ? "hidden" : "loading");
 
@@ -17,8 +20,7 @@ const ImageShuffle = ({ images }) => {
       return;
     }
 
-    const safeImages = Array.isArray(images) ? images : [];
-    const urls = safeImages.map((image) => (typeof image === "string" ? image : image?.url)).filter(Boolean);
+    const urls = introImages.map((image) => (typeof image === "string" ? image : image?.url)).filter(Boolean);
 
     if (urls.length === 0) {
       hasPlayedHomeIntro = true;
@@ -27,6 +29,11 @@ const ImageShuffle = ({ images }) => {
     }
 
     let isCancelled = false;
+    const timeoutId = window.setTimeout(() => {
+      if (isCancelled) return;
+      hasPlayedHomeIntro = true;
+      setPhase("hidden");
+    }, MAX_PRELOAD_WAIT_MS);
 
     const preload = (url) =>
       new Promise((resolve) => {
@@ -38,13 +45,15 @@ const ImageShuffle = ({ images }) => {
 
     Promise.all(urls.map(preload)).then(() => {
       if (isCancelled) return;
+      window.clearTimeout(timeoutId);
       setPhase("playing");
     });
 
     return () => {
       isCancelled = true;
+      window.clearTimeout(timeoutId);
     };
-  }, [images]);
+  }, [introImages]);
 
   // Run intro only once per app load (resets on full browser refresh).
   useEffect(() => {
@@ -52,8 +61,9 @@ const ImageShuffle = ({ images }) => {
 
     const interval = setInterval(() => {
       setIndex((prevIndex) => {
-        const total = Array.isArray(images) ? images.length : 0;
-        if (prevIndex + 1 >= total) {
+        const total = introImages.length;
+        const boundedTotal = Math.max(total, 0);
+        if (prevIndex + 1 >= boundedTotal) {
           clearInterval(interval);
           setTimeout(() => {
             setPhase("fading");
@@ -65,7 +75,7 @@ const ImageShuffle = ({ images }) => {
     }, 125);
 
     return () => clearInterval(interval);
-  }, [images, phase]);
+  }, [introImages, phase]);
 
   if (phase === "hidden") return null;
 
@@ -101,7 +111,7 @@ const ImageShuffle = ({ images }) => {
       }}
       style={{ zIndex: 20 }}
     >
-      <Media medium={images[index]} />
+      <Media medium={introImages[index]} />
     </motion.div>
   );
 };
