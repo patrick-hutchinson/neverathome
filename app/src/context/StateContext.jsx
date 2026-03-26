@@ -5,7 +5,7 @@ import { createContext, useState, useEffect } from "react";
 // Create the context
 export const StateContext = createContext();
 
-export const StateProvider = ({ children, colorPairs = [] }) => {
+export const StateProvider = ({ children, colorPairs = [], siteEmail = "" }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -58,6 +58,7 @@ export const StateProvider = ({ children, colorPairs = [] }) => {
         setActiveItemId,
         colorPairs,
         isTouch,
+        siteEmail,
       }}
     >
       {children}

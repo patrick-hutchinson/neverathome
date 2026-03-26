@@ -39,8 +39,10 @@ const ExpansionWrapper = forwardRef(
           fill: isExpanded ? colorPair.text.value : text,
         }}
         whileHover={isExpandable && hoverColors(colorPair)}
-        onClick={() => {
+        onClick={(event) => {
           if (!isExpandable || !item?._id) return;
+          const target = event.target;
+          if (target instanceof Element && target.closest("a, button, input, textarea, select, label")) return;
           handleExpand(item._id);
         }}
         data-index={index}

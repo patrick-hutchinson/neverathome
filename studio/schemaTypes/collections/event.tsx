@@ -141,6 +141,21 @@ export const event = defineType({
         "Hier Link zum Ticket Anbieter einfügen. Wenn leer, steht auf der Website 'Free Entry'",
     }),
     defineField({
+      name: 'registrationMode',
+      title: 'Registration Mode',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Ticket Link', value: 'ticket'},
+          {title: 'Register via Email', value: 'email'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'ticket',
+      description:
+        "Wähle, ob hier ein Ticket-Link oder 'Register via email' angezeigt wird.",
+    }),
+    defineField({
       name: 'colorPair',
       title: 'Selected Color Pair',
       type: 'array',

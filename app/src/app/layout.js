@@ -49,7 +49,7 @@ export default async function RootLayout({ children, invert = false }) {
     <ViewTransitions>
       <DeviceProvider>
         <html lang="en">
-          <StateProvider colorPairs={colorPairs}>
+          <StateProvider colorPairs={colorPairs} siteEmail={site?.email || ""}>
             <GlobalVariablesProvider>
               <body>
                 <LenisProvider>
