@@ -55,7 +55,15 @@
   text-overflow: ellipsis;
 }
 
-.accordionHeader > .link,
+.accordionHeader > .link {
+  grid-column: 7 / 13;
+  grid-row: 2;
+  display: flex;
+  align-items: flex-start;
+  margin: calc(var(--margin) / 4) 0px;
+  /* padding-top: var(--margin); */
+}
+
 .accordionHeader > .counter {
   display: none;
 }
