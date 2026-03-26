@@ -134,13 +134,6 @@ export const event = defineType({
     }),
     defineField({name: 'city', title: 'City', type: 'string'}),
     defineField({
-      name: 'ticketLink',
-      title: 'Ticket Link',
-      type: 'string',
-      description:
-        "Hier Link zum Ticket Anbieter einfügen. Wenn leer, steht auf der Website 'Free Entry'",
-    }),
-    defineField({
       name: 'registrationMode',
       title: 'Registration Mode',
       type: 'string',
@@ -154,6 +147,14 @@ export const event = defineType({
       initialValue: 'ticket',
       description:
         "Wähle, ob hier ein Ticket-Link oder 'Register via email' angezeigt wird.",
+    }),
+    defineField({
+      name: 'ticketLink',
+      title: 'Ticket Link',
+      type: 'string',
+      hidden: ({parent}) => parent?.registrationMode === 'email',
+      description:
+        "Hier Link zum Ticket Anbieter einfügen. Wenn leer, steht auf der Website 'Free Entry'",
     }),
     defineField({
       name: 'colorPair',
