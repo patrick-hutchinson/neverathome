@@ -25,7 +25,7 @@ const NewsletterHeader = ({ newsletter }) => {
               fontSize: "14px",
               lineHeight: "15px",
               color: "#000",
-              padding: "0 4px",
+              // padding: "0 4px",
               margin: "0",
             }}
           >
