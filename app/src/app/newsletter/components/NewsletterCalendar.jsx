@@ -22,6 +22,13 @@ const cutText = (text, maxLength = 220) => {
   return `${text.slice(0, maxLength).trim()}...`;
 };
 
+const formatDate = (date) => {
+  if (!date) return "";
+  const d = new Date(date);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+};
+
 const getCalendarHref = (event, site) => {
   const anchor = event?.slug?.current || event?._id;
   if (!anchor) return `https://${site.domain}/calendar`;
@@ -61,6 +68,7 @@ const NewsletterCalendar = ({ block, site }) => {
 
         {events.map((event, index) => {
           const teaser = cutText(portableTextToPlain(event?.teaser));
+          const formattedDate = formatDate(event?.startDate);
           const eventType = typeof event?.type === "string" ? event.type : event?.type?.title || "";
           const href = getCalendarHref(event, site);
           const thumbnailUrl = event?.thumbnail?.type === "image" ? event?.thumbnail?.url : null;
@@ -239,6 +247,11 @@ const NewsletterCalendar = ({ block, site }) => {
                                     color: "#ffffff",
                                   }}
                                 >
+                                  {formattedDate && (
+                                    <p style={{ margin: "0 0 4px 0", color: "#ffffff" }}>
+                                      <font color="#ffffff">{formattedDate}</font>
+                                    </p>
+                                  )}
                                   {teaser && (
                                     <p style={{ margin: 0, color: "#ffffff" }}>
                                       <font color="#ffffff">{teaser}</font>
