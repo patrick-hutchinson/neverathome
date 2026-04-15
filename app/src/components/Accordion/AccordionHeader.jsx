@@ -76,12 +76,14 @@ const SmallHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded })
 const MediumHeaderContent = ({ item, isExpandable, setIsExpandable, isExpanded }) => {
   if (!item) return null;
   const { header_height, filter_height } = useContext(GlobalVariablesContext);
+  const pathname = usePathname();
+  const isCalendarPage = pathname === "/calendar";
 
   const isEvent = item._type === "event";
   const slug = getSlug(item);
   return (
     <div
-      className={styles.accordionHeader}
+      className={`${styles.accordionHeader} ${isCalendarPage ? styles.calendarDesktopLinkTop : ""}`}
       style={{
         position: isExpanded ? "sticky" : "relative",
         top: isExpanded ? header_height + filter_height : 0,

@@ -9,6 +9,7 @@ const AccordionLink = ({ event }) => {
   const emailTarget = siteEmail || "";
   const emailSubject = encodeURIComponent(`Registration for ${event?.title || "Event"}`);
   const isEmailMode = registrationMode === "email";
+  const isFreeSignUpMode = registrationMode === "freeSignUp";
   const hasUsableEmail = Boolean(emailTarget);
 
   return (
@@ -17,7 +18,7 @@ const AccordionLink = ({ event }) => {
         <a href={`mailto:${emailTarget}?subject=${emailSubject}`}>Register via email</a>
       ) : ticketLink ? (
         <a href={ticketLink} target="_blank" rel="noopener noreferrer">
-          Tickets
+          {isFreeSignUpMode ? "Register" : "Tickets"}
         </a>
       ) : hasUsableEmail ? (
         <a href={`mailto:${emailTarget}?subject=${emailSubject}`}>Register via email</a>

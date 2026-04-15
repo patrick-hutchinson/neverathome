@@ -141,12 +141,12 @@ export const event = defineType({
         list: [
           {title: 'Ticket Link', value: 'ticket'},
           {title: 'Register via Email', value: 'email'},
+          {title: 'Free Sign Up Link', value: 'freeSignUp'},
         ],
         layout: 'radio',
       },
       initialValue: 'ticket',
-      description:
-        "Wähle, ob hier ein Ticket-Link oder 'Register via email' angezeigt wird.",
+      description: "Wähle, ob hier ein Ticket-Link oder 'Register via email' angezeigt wird.",
     }),
     defineField({
       name: 'ticketLink',

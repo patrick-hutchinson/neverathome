@@ -146,6 +146,9 @@
     grid-column: 20 / 22;
     display: flex;
   }
+  .calendarDesktopLinkTop > .link {
+    grid-row: 1;
+  }
   .accordionHeader > .icons,
   .event > .icons {
     grid-column: 24 / 25;
