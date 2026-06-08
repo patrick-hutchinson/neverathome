@@ -55,12 +55,17 @@
   text-overflow: ellipsis;
 }
 
+.accordionHeader > .text p {
+  margin-bottom: 2px;
+}
+
 .accordionHeader > .link {
   grid-column: 7 / 13;
   grid-row: 2;
   display: flex;
   align-items: flex-start;
   margin: calc(var(--margin) / 4) 0px;
+  margin-top: 0px;
   /* padding-top: var(--margin); */
 }
 
@@ -99,7 +104,7 @@
   /* EVENT */
   .accordionHeader {
     grid-template-columns: repeat(24, 1fr);
-    grid-template-rows: calc(var(--line-height-3) + 2px) 1fr;
+    grid-template-rows: calc(var(--font-size-3) + 2px) 1fr;
   }
 
   .accordionHeader > .date {
