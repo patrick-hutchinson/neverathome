@@ -12,7 +12,7 @@ import styles from "./StudiosPage.module.css";
 const StudiosPage = ({ page, site }) => {
   return (
     <main>
-      <CoverMedia media={page.gallery} />
+      {page.gallery && <CoverMedia media={page.gallery} />}
 
       <div
         style={{
@@ -21,28 +21,34 @@ const StudiosPage = ({ page, site }) => {
           padding: "calc(var(--margin) / 2) var(--margin) var(--margin) var(--margin)",
         }}
       >
-        <section>
-          <div>
-            <Text className={styles.introduction} text={page.description} typo="h2" />
-          </div>
-        </section>
+        {page.description && (
+          <section>
+            <div>
+              <Text className={styles.introduction} text={page.description} typo="h2" />
+            </div>
+          </section>
+        )}
 
-        <section className={styles.features}>
-          <h3>Selected Artist Studios</h3>
+        {page.studios && (
+          <section className={styles.features}>
+            <h3>Selected Artist Studios</h3>
 
-          {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
-            <MediaPair key={index}>
-              {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
-                <Figure key={index} item={studio} ratio={4 / 3} />
-              ))}
-            </MediaPair>
-          ))}
-        </section>
+            {Array.from({ length: Math.ceil(page.studios.length / 2) }).map((_, index) => (
+              <MediaPair key={index}>
+                {page.studios.slice(index * 2, index * 2 + 2).map((studio, index) => (
+                  <Figure key={index} item={studio} ratio={4 / 3} />
+                ))}
+              </MediaPair>
+            ))}
+          </section>
+        )}
 
-        <section>
-          <h3>Public Studio Tours</h3>
-          <Accordion array={page.events} behavior="navigate" invert={true} size="small" />
-        </section>
+        {page.events && (
+          <section>
+            <h3>Public Studio Tours</h3>
+            <Accordion array={page.events} behavior="navigate" invert={true} size="small" />
+          </section>
+        )}
 
         <section className="callToAction">
           <CallToAction site={site} prompt={"Interested to rent your own studio?"} />

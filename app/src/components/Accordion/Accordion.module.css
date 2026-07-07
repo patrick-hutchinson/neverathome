@@ -61,7 +61,7 @@
 
 .accordionHeader > .link {
   grid-column: 7 / 13;
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   align-items: flex-start;
   margin: calc(var(--margin) / 4) 0px;
@@ -85,6 +85,11 @@
   background: var(--background);
   color: var(--foreground);
   border-bottom: var(--border) solid var(--foreground);
+}
+
+.accordionHeader.invert .link a,
+.invert .accordionHeader .link a {
+  color: var(--foreground) !important;
 }
 
 /* Phones */
@@ -148,9 +153,12 @@
   .accordionHeader > .counter,
   .event > .link,
   .event > .counter {
-    grid-column: 20 / 22;
+    grid-column: 20 / 23;
     display: flex;
   }
+  /* .event > .link {
+    grid-row: 1 !important;
+  } */
   .calendarDesktopLinkTop > .link {
     grid-row: 1;
   }

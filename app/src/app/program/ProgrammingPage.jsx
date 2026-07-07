@@ -27,34 +27,42 @@ const ProgrammingPage = ({ page, site }) => {
           padding: "calc(var(--margin) / 2) var(--margin) var(--margin) var(--margin)",
         }}
       >
-        <section>
-          <div typo="h2">
-            <Text className={styles.introduction} text={page.description} />
-          </div>
-        </section>
+        {page.description && (
+          <section>
+            <div typo="h2">
+              <Text className={styles.introduction} text={page.description} />
+            </div>
+          </section>
+        )}
 
-        <section className={styles.section}>
-          <h3>Highlights</h3>
-          <Carousel>
-            {repeatArray(page.highlights).map((item, index) => (
-              <MiniFigure key={index} item={item} index={index} invert={true} />
-            ))}
-          </Carousel>
-        </section>
+        {page.highlights && (
+          <section className={styles.section}>
+            <h3>Highlights</h3>
+            <Carousel>
+              {repeatArray(page.highlights).map((item, index) => (
+                <MiniFigure key={index} item={item} index={index} invert={true} />
+              ))}
+            </Carousel>
+          </section>
+        )}
 
-        <section>
-          <h3>Selected Events</h3>
-          <Accordion array={page.events} size="small" behavior="navigate" invert={true} />
-        </section>
+        {page.events && (
+          <section>
+            <h3>Selected Events</h3>
+            <Accordion array={page.events} size="small" behavior="navigate" invert={true} />
+          </section>
+        )}
 
-        <section>
-          <h3>Our Residencies</h3>
-          <MediaPair>
-            {page.features.map((item, index) => (
-              <Figure key={index} item={item} />
-            ))}
-          </MediaPair>
-        </section>
+        {page.features && (
+          <section>
+            <h3>Our Residencies</h3>
+            <MediaPair>
+              {page.features.map((item, index) => (
+                <Figure key={index} item={item} />
+              ))}
+            </MediaPair>
+          </section>
+        )}
 
         {page.selectedResidencies && (
           <section>

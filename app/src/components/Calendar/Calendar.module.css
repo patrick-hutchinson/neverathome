@@ -44,6 +44,9 @@ button.all {
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
+  cursor: grab;
+  touch-action: pan-x;
+  user-select: none;
 }
 
 .filtering .types {
@@ -57,6 +60,9 @@ button.all {
   left: -3px;
   position: relative;
   padding-left: 3px;
+  cursor: grab;
+  touch-action: pan-x;
+  user-select: none;
 }
 
 .filtering .search {

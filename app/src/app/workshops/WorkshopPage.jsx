@@ -11,7 +11,19 @@ import CallToAction from "@/components/CallToAction/CallToAction";
 import styles from "./WorkshopPage.module.css";
 
 const WorkshopPage = ({ page, events, site }) => {
-  // const workshops = events.filter((event) => event.type === "Workshop");
+  const now = new Date();
+  const upcomingWorkshops = Array.isArray(events)
+    ? events
+        .filter((event) => {
+          if (!event) return false;
+
+          const eventType = typeof event.type === "string" ? event.type.trim().toLowerCase() : "";
+          const eventDate = new Date(event.endDate || event.startDate);
+
+          return eventType === "workshop" && !Number.isNaN(eventDate.getTime()) && eventDate >= now;
+        })
+        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+    : [];
 
   return (
     <main className={styles.main}>
@@ -32,19 +44,23 @@ const WorkshopPage = ({ page, events, site }) => {
         </div>
       </section>
 
-      <section>
-        <h3>Upcoming Workshops</h3>
-        <Accordion array={page.events} size="small" invert={true} behavior="navigate" />
-      </section>
+      {upcomingWorkshops && (
+        <section>
+          <h3>Upcoming Workshops</h3>
+          <Accordion array={upcomingWorkshops} size="small" invert={true} behavior="navigate" />
+        </section>
+      )}
 
-      <section>
-        <h3>Workshop Highlights</h3>
-        <Carousel>
-          {repeatArray(page.highlights).map((item, index) => (
-            <MiniFigure key={index} item={item} index={index} invert={true} />
-          ))}
-        </Carousel>
-      </section>
+      {page.highlights && (
+        <section>
+          <h3>Workshop Highlights</h3>
+          <Carousel>
+            {repeatArray(page.highlights).map((item, index) => (
+              <MiniFigure key={index} item={item} index={index} invert={true} />
+            ))}
+          </Carousel>
+        </section>
+      )}
 
       <section className="callToAction">
         <CallToAction site={site} prompt={"Interested to Host your own Workshop?"} />

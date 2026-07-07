@@ -30,9 +30,9 @@ const CalendarPage = ({ events }) => {
         if (event.startDate) years.push(new Date(event.startDate).getFullYear());
         if (event.endDate) years.push(new Date(event.endDate).getFullYear());
         return years;
-      }),
-    ),
-  ].sort((a, b) => a - b);
+      })
+    )
+  ].sort((a, b) => b - a);
 
   // Create an array that stores the active filters
   let [activeTypes, setActiveTypes] = useState([...types]);

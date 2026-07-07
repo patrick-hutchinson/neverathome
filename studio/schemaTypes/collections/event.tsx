@@ -142,6 +142,7 @@ export const event = defineType({
           {title: 'Ticket Link', value: 'ticket'},
           {title: 'Register via Email', value: 'email'},
           {title: 'Free Sign Up Link', value: 'freeSignUp'},
+          {title: 'No registration needed', value: 'noRegistration'},
         ],
         layout: 'radio',
       },
