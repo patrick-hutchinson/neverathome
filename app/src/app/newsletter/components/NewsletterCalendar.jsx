@@ -105,7 +105,7 @@ const NewsletterCalendar = ({ block, site }) => {
                   >
                     <tbody>
                       <tr>
-                        <td style={{ border: 0, padding: "0 0 4px 0" }}>
+                        <td style={{ border: 0 }}>
                           <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style={{ border: 0 }}>
                             <tbody>
                               <tr>
@@ -229,7 +229,14 @@ const NewsletterCalendar = ({ block, site }) => {
                                 <td
                                   className="event-mobile-gap"
                                   valign="top"
-                                  style={{ width: "8px", maxWidth: "8px", border: 0, padding: 0, fontSize: 0, lineHeight: 0 }}
+                                  style={{
+                                    width: "8px",
+                                    maxWidth: "8px",
+                                    border: 0,
+                                    padding: 0,
+                                    fontSize: 0,
+                                    lineHeight: 0,
+                                  }}
                                 >
                                   &nbsp;
                                 </td>
