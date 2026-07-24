@@ -61,7 +61,7 @@
 
 .accordionHeader > .link {
   grid-column: 7 / 13;
-  grid-row: 1;
+  grid-row: 2;
   display: flex;
   align-items: flex-start;
   margin: calc(var(--margin) / 4) 0px;
@@ -154,13 +154,8 @@
   .event > .link,
   .event > .counter {
     grid-column: 20 / 23;
-    display: flex;
-  }
-  /* .event > .link {
-    grid-row: 1 !important;
-  } */
-  .calendarDesktopLinkTop > .link {
     grid-row: 1;
+    display: flex;
   }
   .accordionHeader > .icons,
   .event > .icons {

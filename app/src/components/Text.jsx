@@ -19,6 +19,42 @@ const Text = ({ text, typo, className }) => {
               <p style={{ whiteSpace: "pre-wrap" }}>{hasVisibleContent(children) ? children : "\u00A0"}</p>
             ),
           },
+          list: {
+            bullet: ({ children }) => (
+              <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>{children}</ul>
+            ),
+            number: ({ children }) => (
+              <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>{children}</ul>
+            ),
+          },
+          listItem: {
+            bullet: ({ children }) => (
+              <li
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1ch minmax(0, 1fr)",
+                  columnGap: "0.5ch",
+                  alignItems: "start",
+                }}
+              >
+                <span aria-hidden="true">+</span>
+                <span style={{ minWidth: 0, whiteSpace: "pre-wrap" }}>{children}</span>
+              </li>
+            ),
+            number: ({ children }) => (
+              <li
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1ch minmax(0, 1fr)",
+                  columnGap: "0.5ch",
+                  alignItems: "start",
+                }}
+              >
+                <span aria-hidden="true">+</span>
+                <span style={{ minWidth: 0, whiteSpace: "pre-wrap" }}>{children}</span>
+              </li>
+            ),
+          },
           marks: {
             link: ({ value, children }) => {
               if (!value) return children;
