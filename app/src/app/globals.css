@@ -54,7 +54,7 @@ body {
   font-size: var(--font-size-3);
   line-height: var(--line-height-3);
   font-family: TextgyreHeros, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 375;
+  font-weight: 400;
 }
 
 body.artists-infinite-mode footer {
