@@ -5,6 +5,7 @@ import Text from "@/components/Text";
 import styles from "../Accordion.module.css";
 
 const AccordionDescription = ({ event, isExpanded }) => {
+  const descenderBuffer = 1;
   const [teaserHeight, setTeaserHeight] = useState(0);
   const [textHeight, setTextHeight] = useState(0);
   const [isMeasured, setIsMeasured] = useState(false);
@@ -38,7 +39,7 @@ const AccordionDescription = ({ event, isExpanded }) => {
     <div
       className={styles.text}
       style={{
-        maxHeight: isExpanded ? textHeight + teaserHeight : teaserHeight,
+        maxHeight: isExpanded ? textHeight + teaserHeight + descenderBuffer : teaserHeight + descenderBuffer,
         opacity: isMeasured ? 1 : 0,
         transition: "max-height 0.5s ease-in-out",
         paddingBottom: "2px",
