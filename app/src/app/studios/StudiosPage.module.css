@@ -5,6 +5,15 @@
   top: calc(-1 * var(--margin));
 }
 
-.features > div:first-of-type {
-  margin-bottom: 100px;
+.features > div {
+  margin-bottom: 150px;
+}
+
+.introduction a {
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+
+.introduction a:hover {
+  opacity: 1;
 }

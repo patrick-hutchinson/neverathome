@@ -1,18 +1,32 @@
 "use client";
 
+import { repeatArray } from "@/helpers/repeatArray";
+
 import Text from "@/components/Text";
-import Event from "@/components/Calendar/Event";
-import MediaPair from "@/components/MediaPair/MediaPair";
-import Figure from "@/components/Figure/Figure";
+import Carousel from "@/components/Carousel/Carousel";
+import MiniFigure from "@/components/MiniFigure/MiniFigure";
+import Accordion from "@/components/Accordion/Accordion";
+import CallToAction from "@/components/CallToAction/CallToAction";
 
 import styles from "./WorkshopPage.module.css";
-import Link from "next/link";
 
 const WorkshopPage = ({ page, events, site }) => {
-  const workshops = events.filter((event) => event.type === "Workshop");
+  const now = new Date();
+  const upcomingWorkshops = Array.isArray(events)
+    ? events
+        .filter((event) => {
+          if (!event) return false;
+
+          const eventType = typeof event.type === "string" ? event.type.trim().toLowerCase() : "";
+          const eventDate = new Date(event.endDate || event.startDate);
+
+          return eventType === "workshop" && !Number.isNaN(eventDate.getTime()) && eventDate >= now;
+        })
+        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+    : [];
 
   return (
-    <main>
+    <main className={styles.main}>
       <section className={styles.introduction}>
         <h2>
           <Text text={page.description} />
@@ -30,29 +44,26 @@ const WorkshopPage = ({ page, events, site }) => {
         </div>
       </section>
 
-      <section>
-        <h3>Selected Events</h3>
-        <ul>
-          {workshops.map((event, index) => (
-            <Event size="medium" key={index} event={event} />
-          ))}
-        </ul>
-        <h2 style={{ marginTop: "20px" }}>
-          <Link href="/calendar">Go to the Calendar</Link>
-        </h2>
-      </section>
+      {upcomingWorkshops && (
+        <section>
+          <h3>Upcoming Workshops</h3>
+          <Accordion array={upcomingWorkshops} size="small" invert={true} behavior="navigate" />
+        </section>
+      )}
 
-      <section>
-        <h3>Features</h3>
-        {Array.from({ length: Math.ceil(page.features.length / 2) }).map((_, i) => (
-          <div key={i} className={styles.feature_container}>
-            <MediaPair>
-              {page.features.slice(i * 2, i * 2 + 2).map((feature, index) => (
-                <Figure key={index} item={feature} />
-              ))}
-            </MediaPair>
-          </div>
-        ))}
+      {page.highlights && (
+        <section>
+          <h3>Workshop Highlights</h3>
+          <Carousel>
+            {repeatArray(page.highlights).map((item, index) => (
+              <MiniFigure key={index} item={item} index={index} invert={true} />
+            ))}
+          </Carousel>
+        </section>
+      )}
+
+      <section className="callToAction">
+        <CallToAction site={site} prompt={"Interested to Host your own Workshop?"} />
       </section>
     </main>
   );

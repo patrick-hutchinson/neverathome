@@ -7,32 +7,22 @@ import TextMarquee from "@/components/TextMarquee/TextMarquee";
 import ImageShuffle from "@/components/ImageShuffle/ImageShuffle";
 
 import MediaPair from "@/components/MediaPair/MediaPair";
-import Event from "@/components/Calendar/Event";
 import Figure from "@/components/Figure/Figure";
-import { useContext, useEffect } from "react";
-import MiniFigure from "@/components/Slide/Slide";
+
+import MiniFigure from "@/components/MiniFigure/MiniFigure";
 
 import { repeatArray } from "@/helpers/repeatArray";
 
-import { useRouter } from "next/navigation";
-import { StateContext } from "@/context/StateContext";
+import Accordion from "@/components/Accordion/Accordion";
+import { useEffect } from "react";
 
 const HomePage = ({ data }) => {
-  const router = useRouter();
-
-  const { setExpandedElement } = useContext(StateContext);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleNavigation = (event) => {
-    setExpandedElement(event._id);
-    router.push(`/calendar`);
-  };
-
   return (
-    <main>
+    <main className={styles.main}>
       <ImageShuffle images={data.images} />
 
       <section className={styles.section}>
@@ -45,21 +35,15 @@ const HomePage = ({ data }) => {
       </section>
 
       <section>
-        <h3>Upcoming</h3>
-        <ul>
-          {data.events.map((event, index) => (
-            <div key={index} onClick={() => handleNavigation(event)}>
-              <Event size="medium" event={event} />
-            </div>
-          ))}
-        </ul>
+        <h3>Current Events</h3>
+        <Accordion array={data.events} size="medium" behavior="navigate" />
       </section>
 
       <section>
         <h3>Features</h3>
         <MediaPair>
-          {data.features.map((feature, index) => (
-            <Figure key={index} item={feature} />
+          {data.features.map((item, index) => (
+            <Figure key={index} item={item} />
           ))}
         </MediaPair>
       </section>

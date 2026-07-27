@@ -1,43 +1,69 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
-const Collapse = ({ children, isExpanded, id, onScroll }) => {
+const Collapse = ({ children, mode, id, onScroll, colorPair }) => {
+  const pathname = usePathname();
+
+  const showBorder = !pathname.includes("/calendar");
+  // console.log(colorPair.text, "text color");
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
 
+  const isExpanding = mode === "expanding";
+  const isCollapsing = mode === "collapsing";
+
   useEffect(() => {
-    if (ref.current && isExpanded) setHeight(ref.current.scrollHeight);
+    if (ref.current && mode === "expanding") setHeight(ref.current.scrollHeight);
   }, [children]);
 
-  const duration = Math.min(Math.max(height / 3000, 0.4), 0.3);
+  // const expandDuration = Math.max(height / 10000, 0.5);
+  const expandDuration = 0.5;
+
+  const [allowOverflow, setAllowOverflow] = useState(false);
 
   return (
     <motion.div
+      className="collapse"
+      key={id}
+      ref={ref}
       onScroll={onScroll}
-      style={{ overflow: isExpanded ? "visible" : "hidden", background: "#000" }}
       initial={false}
-      animate={isExpanded ? "expanded" : "collapsed"}
+      animate={isExpanding ? "expanded" : isCollapsing ? "collapsed" : "collapsed"}
       variants={{
-        collapsed: { maxHeight: 0, transition: { duration: duration, delay: 0.4 } },
+        collapsed: {
+          maxHeight: 0,
+          opacity: 0,
+          transition: {
+            maxHeight: { duration: expandDuration, delay: 0, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 0 },
+          },
+        },
         expanded: {
           maxHeight: height,
-          transition: { duration: duration },
+          opacity: 1,
+          transition: {
+            maxHeight: { duration: expandDuration, delay: 0, ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 0.2, ease: "easeInOut" },
+          },
         },
       }}
+      onAnimationStart={() => {
+        if (isExpanding) {
+          setAllowOverflow(true); // collapsing → lock scroll immediately
+        }
+      }}
+      onAnimationComplete={() => {
+        if (!isExpanding) {
+          setAllowOverflow(false); // expanded → allow scroll AFTER animation
+        }
+      }}
+      style={{
+        overflow: allowOverflow ? "visible" : "hidden",
+        borderBottom: isExpanding && showBorder ? "1.5px solid black" : "none",
+      }}
     >
-      <motion.div
-        key={id}
-        ref={ref}
-        initial={false}
-        animate={isExpanded ? "visible" : "hidden"}
-        variants={{
-          visible: { opacity: 1, transition: { duration: 0.4, delay: duration } },
-          hidden: { opacity: 0, transition: { duration: 0.4 } },
-        }}
-        // style={{ overflowY: "scroll" }}
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.div>
   );
 };

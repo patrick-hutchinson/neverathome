@@ -5,26 +5,40 @@ import { createContext, useState, useEffect } from "react";
 // Create the context
 export const StateContext = createContext();
 
-export const StateProvider = ({ children, colorPairs = [] }) => {
+export const StateProvider = ({ children, colorPairs = [], siteEmail = "" }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [deviceDimensions, setDeviceDimensions] = useState({ width: 0, height: 0 });
   const [isSafari, setIsSafari] = useState(false);
+  const [isTouch, setIsTouch] = useState(null); // ← NEW
 
-  const [expandedElement, setExpandedElement] = useState(null);
+  const [activeItemId, setActiveItemId] = useState(null);
 
   // Detect if the screen is mobile size
   useEffect(() => {
     const handleResize = () => {
-      const newIsMobile = window.innerWidth < 769; // Calculate the new value
-      setIsMobile(newIsMobile); // Update the state
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-      setDeviceDimensions({ width: window.innerWidth, height: window.innerHeight });
+      setIsMobile(width < 769);
+      setIsTablet(width >= 769 && width < 1280);
+      setIsDesktop(width >= 1280);
+
+      setDeviceDimensions({ width, height });
     };
 
-    handleResize(); // Check on initial render
-    window.addEventListener("resize", handleResize); // Listen for window resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const hasTouch =
+      navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+
+    setIsTouch(hasTouch);
   }, []);
 
   useEffect(() => {
@@ -34,7 +48,18 @@ export const StateProvider = ({ children, colorPairs = [] }) => {
 
   return (
     <StateContext.Provider
-      value={{ isMobile, isSafari, deviceDimensions, expandedElement, setExpandedElement, colorPairs }}
+      value={{
+        isMobile,
+        isTablet,
+        isDesktop,
+        isSafari,
+        deviceDimensions,
+        activeItemId,
+        setActiveItemId,
+        colorPairs,
+        isTouch,
+        siteEmail,
+      }}
     >
       {children}
     </StateContext.Provider>

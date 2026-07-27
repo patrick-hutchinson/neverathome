@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import styles from "./TextMarquee.module.css";
 
-const TextMarquee = ({ text, typo, className }) => {
+const TextMarquee = ({ text, typo, duration, className }) => {
   const [width, setWidth] = useState(0);
   const marquee = useRef(null);
 
@@ -34,7 +34,7 @@ const TextMarquee = ({ text, typo, className }) => {
             repeat: Infinity,
             repeatType: "loop",
             ease: "linear",
-            duration: 8,
+            duration: duration ?? 8,
           },
         }}
       >

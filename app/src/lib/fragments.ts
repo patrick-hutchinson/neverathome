@@ -52,3 +52,19 @@ export const galleryFragment = `
     )
   }
 `;
+
+export const portableTextFragment = `
+  ...,
+  markDefs[]{
+    ...,
+    _type == "link" => {
+      ...,
+      url,
+      // if you have an internal reference on the markDef:
+      internalLink->{
+        _type,
+        slug { current }
+      }
+    }
+  }
+`;

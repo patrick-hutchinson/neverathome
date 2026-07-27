@@ -1,4 +1,4 @@
-import NewsletterTemplate from "@/components/email/NewsletterTemplate";
+import NewsletterTemplate from "@/components/Email/NewsletterTemplate";
 import ReactDOMServer from "react-dom/server";
 
 export default async function handler(req, res) {

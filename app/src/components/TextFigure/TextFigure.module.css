@@ -1,0 +1,10 @@
+.textFigure {
+  min-height: 66vh;
+}
+
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+  .textFigure {
+    min-height: unset;
+  }
+}

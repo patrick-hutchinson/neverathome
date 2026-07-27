@@ -5,6 +5,7 @@ export const workshops = defineType({
   title: 'Workshops',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     defineField({
       name: 'description',
       title: 'Description',
@@ -32,6 +33,20 @@ export const workshops = defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'feature'}]}],
       validation: (Rule) => Rule.unique().error('You already selected this event'),
+    }),
+    defineField({
+      name: 'events',
+      title: 'Selected Events/Workshops',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'event'}]}],
+      validation: (Rule) => Rule.unique().error('You already selected this event'),
+    }),
+    defineField({
+      name: 'highlights',
+      title: 'Selected Highlights',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'highlight'}]}],
+      validation: (Rule) => Rule.unique().error('You already selected this highlight'),
     }),
   ],
   preview: {

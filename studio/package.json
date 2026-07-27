@@ -9,23 +9,29 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy-graphql": "sanity graphql deploy",
+    "migrate:programming": "node scripts/migrate-events-to-programming.mjs"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
     "@sanity/icons": "^3.7.4",
-    "@sanity/vision": "^4.15.0",
-    "react": "^19.1",
-    "react-dom": "^19.1",
-    "sanity": "^4.15.0",
+    "@sanity/vision": "^5.18.0",
+    "axios": "^1.13.5",
+    "next": "^16.1.6",
+    "node-html-parser": "^7.0.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^5.18.0",
     "sanity-plugin-mux-input": "^2.9.0",
-    "sanity-plugin-simpler-color-input": "^3.1.1",
+    "sanity-plugin-simpler-color-input": "^4.0.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
+    "@sanity/blueprints": "^0.12.2",
     "@sanity/eslint-config-studio": "^5.0.2",
+    "@sanity/functions": "1.2.0",
     "@types/react": "^19.1",
     "eslint": "^9.28",
     "prettier": "^3.5",

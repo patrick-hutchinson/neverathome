@@ -1,0 +1,15 @@
+.media {
+  position: relative;
+  width: 100vw;
+  left: calc(-1 * var(--margin));
+  top: calc(-1 * var(--margin));
+}
+
+.introduction a {
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+
+.introduction a:hover {
+  opacity: 1;
+}

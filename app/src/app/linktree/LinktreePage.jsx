@@ -10,7 +10,7 @@ const LinktreePage = ({ data }) => {
   return (
     <main className={styles.main}>
       <ul typo="h2">
-        {linktree.map((item) => (
+        {linktree?.map((item) => (
           <li>
             <a href={item.link} target="_blank">
               {item.platform}

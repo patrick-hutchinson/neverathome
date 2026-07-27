@@ -1,18 +1,18 @@
 footer.footer {
   position: relative;
-  height: 270px;
+  height: auto;
   width: 100vw;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto auto auto;
 
   background: var(--foreground);
   color: var(--background);
 
   padding: calc(var(--margin) - 2px) var(--margin) var(--margin) var(--margin);
   z-index: 4;
-  gap: var(--margin);
+  row-gap: 50px;
 }
 
 footer.footer a,
@@ -22,48 +22,72 @@ footer.footer button:visited {
   color: var(--background);
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  margin-bottom: 15%;
-}
-
 .legal {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.main > .newsletter {
+.newsletter {
   display: flex;
   flex-direction: column;
-}
-
-.main > .linktree {
-  display: none;
+  padding-bottom: var(--font-size-3);
 }
 
 .socials {
   display: flex;
   flex-direction: row;
 }
+.principalPartners .heading,
+.generalPartners .heading {
+  margin-bottom: calc(var(--margin) * 2);
+}
 
-.not_allowed {
-  pointer-events: none;
-  opacity: 0.4;
-  cursor: not-allowed !important;
+:global(.invert) .logoContainer {
+  filter: invert(1);
 }
 
 .openingHours {
   display: none;
 }
 
-.external {
-  /* display: flex; */
-  align-items: flex-end;
-  /* flex-direction: column; */
+.mediaLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.mediaLinks a {
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+.mediaLinks a:hover {
+  opacity: 1;
+}
+
+.pageCopyright {
+  grid-column: 1;
+}
+
+.principalPartners {
+  grid-column: 1;
+}
+.generalPartners {
+  grid-column: 2;
+}
+
+.address {
+  grid-column: 1 / 3;
+}
+.inHouseLinks {
+  grid-column: 1 / 3;
+  grid-row: 2;
+}
+
+.generalPartners,
+.principalPartners {
+  display: flex;
+  flex-direction: column;
+  height: 40px;
 }
 
 /* Phones */
@@ -72,41 +96,60 @@ footer.footer button:visited {
 
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
+  footer.footer {
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: 1fr auto;
+    min-height: 250px;
+  }
+  .pageCopyright {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .address {
+    grid-column: 1 / 12;
+  }
+  .inHouseLinks {
+    display: contents;
+  }
+  .newsletter {
+    grid-column: 13 / 20;
+    padding-bottom: 0;
+  }
+  .mediaLinks {
+    grid-column: 20 / 25;
+  }
   .openingHours {
     display: flex;
   }
-
-  .main {
-    margin-bottom: 0%;
+  .pageCopyright {
+    grid-row: 2;
+    grid-column: 1 / 5;
   }
+  .imprint {
+    grid-row: 2;
+    grid-column: 5 / 7;
 
-  footer.footer {
-    gap: unset;
-    height: 250px;
-  }
-
-  .main > .linktree {
     display: flex;
+    align-items: flex-end;
   }
+  .generalPartners,
+  .principalPartners {
+    grid-row: 2;
+    flex-direction: row;
+    gap: 20px;
 
-  .main {
-    display: grid;
-    grid-template-columns: 50% 30% auto;
-    flex-direction: row;
-    justify-content: unset;
+    align-items: flex-end;
   }
-  .external {
-    flex-direction: row;
+  .principalPartners {
+    grid-column: 13 / 20;
   }
-  .socials {
-    flex-direction: row;
+  .generalPartners {
+    grid-column: 20 / 25;
   }
-
-  .legal {
-    display: grid;
-    grid-template-columns: 50% 30% auto;
-    flex-direction: row;
-    justify-content: unset;
+  .principalPartners .heading,
+  .generalPartners .heading {
+    margin-bottom: 0px;
   }
 }
 

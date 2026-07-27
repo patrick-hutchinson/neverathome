@@ -2,17 +2,33 @@
 
 import { useState, useEffect } from "react";
 
-const Icon = ({ path, className }) => {
-  const [content, setContent] = useState("");
+const iconCache = new Map();
+
+const Icon = ({ path, className, height, width }) => {
+  const [content, setContent] = useState(() => iconCache.get(path) || "");
 
   useEffect(() => {
+    if (iconCache.has(path)) {
+      setContent(iconCache.get(path));
+      return;
+    }
+
+    let cancelled = false;
     fetch(path)
       .then((res) => res.text())
-      .then(setContent)
+      .then((svg) => {
+        if (cancelled) return;
+        iconCache.set(path, svg);
+        setContent(svg);
+      })
       .catch(console.error);
+
+    return () => {
+      cancelled = true;
+    };
   }, [path]);
 
-  return <div className={className} dangerouslySetInnerHTML={{ __html: content }} />;
+  return <div style={{ height, width }} className={className} dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 export default Icon;

@@ -15,6 +15,11 @@ export const site = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'domain',
+      title: 'Domain',
+      type: 'string',
+    }),
+    defineField({
       name: 'description',
       title: 'Website Description',
       description: 'As seen on Google Search Results',
@@ -58,6 +63,34 @@ export const site = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'workshopSpaceFile',
+      title: 'Workshopräume PDF',
+      type: 'file',
+    }),
+    defineField({
+      name: 'presskitLink',
+      title: 'Pressekit Link',
+      type: 'string',
+    }),
+    defineField({
+      name: 'mediaarchiveLink',
+      title: 'Mediaarchive Link',
+      type: 'string',
+    }),
+    defineField({
+      name: 'footerLogosFixed',
+      title: 'Footer Logos Fix',
+      type: 'array',
+      of: [{type: 'file'}],
+    }),
+    defineField({
+      name: 'footerLogosInterchangeable',
+      title: 'Footer Logos Wechselnd',
+      type: 'array',
+      of: [{type: 'file'}],
+    }),
+
     defineField({
       name: 'linktree',
       title: 'Linktree',

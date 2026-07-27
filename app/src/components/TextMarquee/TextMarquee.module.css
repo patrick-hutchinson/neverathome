@@ -9,3 +9,7 @@
   flex-direction: row;
   width: 100%;
 }
+
+.marquee_inner div {
+  white-space: nowrap;
+}

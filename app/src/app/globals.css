@@ -7,12 +7,20 @@
 
   --header-height: 40px;
   --filter-height: 80px;
-  --list-height: 40px;
-
+  --accordion-header-height: 40px;
+  --content-vh: calc(100vh - var(--header-height));
+  /* The distance from the top of the screen to the point where the text should stick in the accordion. */
+  --accordion-sticky-distance: calc(var(--header-height) + var(--filter-height) + var(--accordion-header-height));
   --gap: 2px;
   --border: 1.5px;
 
   --selection-color: #f0f;
+  --accordion-height: calc(
+    100vh - (calc(var(--header-height) + var(--filter-height) + (2 * var(--accordion-header-height))))
+  );
+  --accordion-content-height: calc(
+    100vh - (calc(var(--header-height) + var(--filter-height) + (3 * var(--accordion-header-height)) + var(--gap)))
+  );
 }
 
 * {
@@ -31,6 +39,7 @@ html {
   font-size: 10px;
   line-height: 1;
   overscroll-behavior: none;
+  overflow-anchor: none;
 }
 
 body {
@@ -44,8 +53,12 @@ body {
 
   font-size: var(--font-size-3);
   line-height: var(--line-height-3);
-  font-family: TextgyreHeros, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 375;
+  font-family: TextgyreHeros, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+body.artists-infinite-mode footer {
+  display: none !important;
 }
 
 ::selection {
@@ -55,7 +68,7 @@ body {
 }
 
 main {
-  padding: 0 var(--margin);
+  /* padding: 0 var(--margin); */
 
   min-height: calc(100vh - var(--header-height));
 }
@@ -83,6 +96,9 @@ main {
 
 section {
   margin-bottom: 250px;
+}
+section.callToAction {
+  margin-bottom: 150px !important;
 }
 
 section h3 {
@@ -200,6 +216,26 @@ mux-player .mux-spinner {
 .unavailable {
   opacity: 0.2;
   pointer-events: none;
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: opacity;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  animation: none !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
 }
 
 /* Phones */

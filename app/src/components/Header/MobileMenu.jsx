@@ -1,8 +1,7 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import Link from "next/link";
-import TextMarquee from "../TextMarquee/TextMarquee";
+import AnimationLink from "../Animation/AnimationLink";
 
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
@@ -10,6 +9,11 @@ import { usePathname } from "next/navigation";
 const MobileMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
+
+  const isActive = (href) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   useEffect(() => {
     setShowMenu(false);
@@ -20,39 +24,56 @@ const MobileMenu = () => {
       <div className={styles.menuButton} onClick={() => setShowMenu((prev) => !prev)}>
         {showMenu ? "Close" : "Menu"}
       </div>
-      {showMenu && (
-        <AnimatePresence>
-          <div key="menu" className={styles.menu} transition={{ duration: 0.4, ease: "easeInOut" }}>
-            <ul className={styles.mobileMenu} typo="h1">
+
+      <AnimatePresence>
+        {showMenu && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            key="menu"
+            className={styles.menu}
+          >
+            <ul typo="h1" className={styles.mobileMenu}>
               <li>
-                <Link href="/about">About</Link>
-              </li>
-
-              <li className={styles.not_allowed}>
-                <Link href="/studios">Studios</Link>
-              </li>
-
-              <li className={styles.not_allowed}>
-                <Link href="/workshops">Workshops</Link>
-              </li>
-
-              <li className={styles.not_allowed}>
-                <Link href="/programming">Program</Link>
+                <AnimationLink path="/about" className={isActive("/about") ? styles.active : undefined}>
+                  About
+                </AnimationLink>
               </li>
 
               <li>
-                <Link href="/artists">Artists</Link>
+                <AnimationLink path="/studios" className={isActive("/studios") ? styles.active : undefined}>
+                  Studios
+                </AnimationLink>
               </li>
-              <li className={styles.not_allowed}>
-                <Link href="/locations">Locations</Link>
+
+              <li>
+                <AnimationLink path="/workshops" className={isActive("/workshops") ? styles.active : undefined}>
+                  Workshops
+                </AnimationLink>
               </li>
+
+              <li>
+                <AnimationLink path="/program" className={isActive("/program") ? styles.active : undefined}>
+                  Program
+                </AnimationLink>
+              </li>
+
+              <li>
+                <AnimationLink path="/artists" className={isActive("/artists") ? styles.active : undefined}>
+                  Artists
+                </AnimationLink>
+              </li>
+
               <li style={{ cursor: "pointer" }}>
-                <Link href="/calendar">Calendar</Link>
+                <AnimationLink path="/calendar" className={isActive("/calendar") ? styles.active : undefined}>
+                  Calendar
+                </AnimationLink>
               </li>
             </ul>
-          </div>
-        </AnimatePresence>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

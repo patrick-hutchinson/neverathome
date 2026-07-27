@@ -4,7 +4,7 @@ import {type SchemaTypeDefinition} from 'sanity'
 import {site} from './site'
 import {home} from './singletons/home'
 import {contact} from './singletons/contact'
-import {events} from './singletons/events'
+import {programming} from './singletons/programming'
 import {workshops} from './singletons/workshops'
 import {studios} from './singletons/studios'
 import {imprint} from './singletons/imprint'
@@ -19,6 +19,8 @@ import {studio} from './collections/studio'
 
 // Definitions
 import {eventType} from './definitions/eventType'
+import {pageType} from './definitions/page'
+import {portableText} from './components/portableText'
 
 // Object types
 import {thumbnail} from './types/thumbnail'
@@ -28,9 +30,19 @@ import {imageWithMetadata} from './types/imageWithMetadata'
 import {videoWithMetadata} from './types/videoWithMetadata'
 import {medium} from './types/medium'
 import {highlightType} from './definitions/highlightType'
+import {link} from './types/link'
+
+// Newsletter
+import {newsletter} from './newsletter/newsletter'
+
+import {newsletterCalendar} from './newsletter/blocks/newsletterCalendar'
+import {newsletterDoubleFeature} from './newsletter/blocks/newsletterDoubleFeature'
+import {newsletterAnnouncement} from './newsletter/blocks/newsletterAnnouncement'
+import {newsletterShowcase} from './newsletter/blocks/newsletterShowcase'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
+    pageType,
     thumbnail,
     event,
     site,
@@ -42,7 +54,10 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     feature,
     colorPair,
     location,
-    events,
+    programming,
+    portableText,
+    link,
+
     artist,
     workshops,
     studios,
@@ -52,5 +67,12 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     imageWithMetadata,
     videoWithMetadata,
     medium,
+
+    // Newsletter
+    newsletter,
+    newsletterCalendar,
+    newsletterDoubleFeature,
+    newsletterAnnouncement,
+    newsletterShowcase,
   ],
 }

@@ -1,0 +1,36 @@
+.icon,
+.icon * {
+  fill: inherit;
+  /* height: 10px; */
+  /* width: fit-content; */
+}
+
+:global(.invert) .icon,
+:global(.invert) .icon * {
+  fill: #000;
+}
+
+.icon {
+  position: relative;
+  /* width: fit-content; */
+}
+
+.icon svg {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  top: 0;
+  left: 0;
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* Phones */
+@media screen and (min-width: 320px) {
+}
+
+/* iPads and other Tablets */
+@media screen and (min-width: 769px) {
+}

@@ -1,3 +1,7 @@
+.main {
+  padding: 0 var(--margin);
+}
+
 section.section:first-of-type {
   margin-top: 100vh;
 }

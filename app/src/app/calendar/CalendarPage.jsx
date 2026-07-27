@@ -1,22 +1,21 @@
 "use client";
 
-import { useRef, useState, useEffect, useContext } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useState, useEffect, useContext, useRef } from "react";
 
 import { StateContext } from "@/context/StateContext";
 
-import Event from "@/components/Calendar/Event";
 import Filtering from "@/components/Calendar/Filtering";
-
-import ArchivedEvent from "@/components/Calendar/ArchivedEvent";
 
 import styles from "./CalendarPage.module.css";
 
-import { motion } from "framer-motion";
+import Accordion from "@/components/Accordion/Accordion";
+
+import { scrollToHash } from "@/helpers/scrollToHash";
+import { GlobalVariablesContext } from "@/context/GlobalVariablesContext";
 
 const CalendarPage = ({ events }) => {
-  let [eventInView, setEventInView] = useState(null);
-  const { expandedElement, setExpandedElement } = useContext(StateContext);
+  const { setActiveItemId } = useContext(StateContext);
+  const { header_height, filter_height } = useContext(GlobalVariablesContext);
 
   const [query, setQuery] = useState("");
 
@@ -32,8 +31,8 @@ const CalendarPage = ({ events }) => {
         if (event.endDate) years.push(new Date(event.endDate).getFullYear());
         return years;
       })
-    ),
-  ].sort((a, b) => a - b);
+    )
+  ].sort((a, b) => b - a);
 
   // Create an array that stores the active filters
   let [activeTypes, setActiveTypes] = useState([...types]);
@@ -43,6 +42,8 @@ const CalendarPage = ({ events }) => {
 
   // 1️⃣ Filter events by active type & year
   const filteredEvents = events.filter((event) => {
+    if (!event) return;
+
     const eventYears = [];
     if (event.startDate) eventYears.push(new Date(event.startDate).getFullYear());
     if (event.endDate) eventYears.push(new Date(event.endDate).getFullYear());
@@ -50,7 +51,7 @@ const CalendarPage = ({ events }) => {
     const matchesType = activeTypes.includes(event.type);
     const matchesYear = eventYears.some((year) => activeYears.includes(year));
 
-    const matchesQuery = event.title.toLowerCase().includes(query.toLowerCase());
+    const matchesQuery = event.title?.toLowerCase().includes(query?.toLowerCase());
 
     return matchesType && matchesYear && matchesQuery;
   });
@@ -67,12 +68,22 @@ const CalendarPage = ({ events }) => {
   // 3️⃣ Find pinned event
   const pinned = events.find((event) => event.pinned);
 
-  const handleExpand = (id) => (expandedElement === id ? setExpandedElement(null) : setExpandedElement(id));
+  useEffect(() => {
+    if (header_height === 0 || filter_height === 0) return;
 
-  const [imageInView, setImageInView] = useState(null);
+    const hash = window.location.hash; // includes the '#' character
+
+    const cleanHash = hash ? hash.substring(1) : null; // remove the '#'
+
+    const activeEvent = events.find((event) => event?.slug?.current === cleanHash);
+
+    if (activeEvent) setActiveItemId(activeEvent._id);
+
+    scrollToHash(-1 * (filter_height + header_height));
+  }, [header_height, filter_height]);
 
   return (
-    <main>
+    <main className={styles.main}>
       <Filtering
         types={types}
         years={years}
@@ -91,45 +102,19 @@ const CalendarPage = ({ events }) => {
           </div>
         )}
 
-        <section>
-          <ul className={styles.calendar_section}>
-            <AnimatePresence>
-              {current.map((event) => {
-                let isExpanded = event._id === expandedElement;
+        {current.length > 0 && (
+          <section className={styles.currentEvents}>
+            <ul className={styles.calendar_section}>
+              <Accordion array={current} size={"medium"} behavior="expand" />
+            </ul>
+          </section>
+        )}
 
-                return (
-                  <div key={event._id}>
-                    <Event
-                      size="medium"
-                      isExpanded={isExpanded}
-                      event={event}
-                      onClick={() => handleExpand(event._id)}
-                      setEventInView={setEventInView}
-                    />
-                  </div>
-                );
-              })}
-            </AnimatePresence>
-          </ul>
-        </section>
-
-        <section>
+        <section className={styles.archivedEvents}>
           <h3>Archived</h3>
-          <motion.ul className={styles.calendar_section}>
-            <AnimatePresence>
-              {archived.map((event) => (
-                <ArchivedEvent
-                  key={event._id}
-                  event={event}
-                  isExpanded={event._id === expandedElement}
-                  handleExpand={handleExpand}
-                  imageInView={imageInView}
-                  setEventInView={setEventInView}
-                  setImageInView={setImageInView}
-                />
-              ))}
-            </AnimatePresence>
-          </motion.ul>
+          <ul className={styles.calendar_section}>
+            <Accordion array={archived} size={"large"} behavior="expand" />
+          </ul>
         </section>
       </div>
     </main>

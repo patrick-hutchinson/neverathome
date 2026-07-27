@@ -1,3 +1,7 @@
+.main {
+  padding: calc(var(--margin) / 2) var(--margin) var(--margin) var(--margin);
+}
+
 .feature_container:first-of-type {
   margin-bottom: 100px;
 }
@@ -14,7 +18,4 @@ section.introduction {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - var(--header-height));
-  padding-bottom: calc(var(--margin) * 4);
-  margin-bottom: 200px;
 }

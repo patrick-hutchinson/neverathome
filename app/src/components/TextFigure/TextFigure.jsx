@@ -1,15 +1,18 @@
-const TextFigure = ({ item }) => {
+import styles from "./TextFigure.module.css";
+
+const TextFigure = ({ text, colorPair }) => {
   return (
     <div
+      className={styles.textFigure}
       style={{
-        background: "#FF46CB",
+        background: colorPair?.background?.value,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
       }}
     >
-      <h2>{item.text}</h2>
+      <h2 style={{ color: colorPair?.text?.value }}>{text}</h2>
     </div>
   );
 };

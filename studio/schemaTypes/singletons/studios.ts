@@ -8,13 +8,22 @@ export const studios = defineType({
   title: 'Studios',
   type: 'document',
   fields: [
+    defineField({name: 'page', type: 'reference', to: [{type: 'page'}], title: 'Page'}),
     gallery,
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'array',
-      of: [{type: 'block'}],
+      type: 'portableText',
     }),
+
+    defineField({
+      name: 'events',
+      title: 'Selected Events',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'event'}]}],
+      validation: (Rule) => Rule.unique().error('You already selected this event'),
+    }),
+
     defineField({
       name: 'studios',
       title: 'Selected Studios',

@@ -1,6 +1,0 @@
-.media {
-  position: relative;
-  width: 100vw;
-  left: calc(-1 * var(--margin));
-  top: calc(-1 * var(--margin));
-}

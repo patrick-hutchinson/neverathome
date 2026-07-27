@@ -9,10 +9,12 @@ main.main {
   position: relative;
 }
 
-.image {
-  position: fixed;
-  width: 90vw;
-  height: auto;
+.bio {
+  height: calc(100vh - var(--header-height) - var(--accordion-header-height) - 8px);
+}
+
+.mediaPair {
+  gap: 2px !important;
 }
 
 /* Phones */
@@ -22,7 +24,7 @@ main.main {
 /* iPads and other Tablets */
 @media screen and (min-width: 769px) {
   .image {
-    width: 30vw;
+    width: 10vw;
   }
   main.main {
     padding-top: calc(var(--margin) - 3px);

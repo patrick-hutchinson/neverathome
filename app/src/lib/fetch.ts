@@ -1,4 +1,21 @@
-import { client } from "./client";
+import { production } from "./client/production";
+import { preview } from "./client/preview";
+
+const isProduction = process.env.VERCEL_ENV === "production";
+const isPreview = process.env.VERCEL_URL === "preview.never-at-home.at";
+const isLocal = !process.env.VERCEL_ENV;
+
+export const getSanityClient = () => {
+  if (isProduction) return production;
+  if (isPreview || isLocal) return preview;
+
+  return preview;
+};
+
+const client = getSanityClient();
+
+console.log("client:", client.config());
+
 import {
   siteQuery,
   eventQuery,
@@ -13,6 +30,7 @@ import {
   studiosQuery,
   imprintQuery,
   colorPairsQuery,
+  newsletterQuery,
 } from "./queries";
 
 export async function getColorPairs() {
@@ -65,4 +83,8 @@ export async function getHighlights() {
 
 export async function getFeatures() {
   return client.fetch(featureQuery);
+}
+
+export async function getNewsletters() {
+  return client.fetch(newsletterQuery);
 }

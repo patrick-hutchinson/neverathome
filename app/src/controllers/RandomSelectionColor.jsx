@@ -1,15 +1,20 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export default function RandomSelectionColor({ colorPairs }) {
-  const textColors = colorPairs.map((pair) => pair.text.value);
+  const textColors = useMemo(
+    () =>
+      colorPairs
+        .map((pair) => pair.text.value)
+        .filter((color) => color && color.toLowerCase() !== "#000000" && color.toLowerCase() !== "black"),
+    [colorPairs],
+  );
 
   useEffect(() => {
-    const handleSelection = () => {
-      console.log("selecting text!");
-      const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
+    if (!textColors.length) return;
 
-      // You could even pair text color dynamically if you want
+    const handleSelection = () => {
+      const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
       document.documentElement.style.setProperty("--selection-color", randomColor);
     };
 
@@ -17,5 +22,5 @@ export default function RandomSelectionColor({ colorPairs }) {
     return () => document.removeEventListener("selectstart", handleSelection);
   }, [textColors]);
 
-  return null; // no UI output
+  return null;
 }

@@ -1,6 +1,16 @@
+import { useRef } from "react";
 import styles from "@/components/Calendar/Calendar.module.css";
 
 const Filtering = ({ types, years, query, setQuery, activeTypes, activeYears, setActiveTypes, setActiveYears }) => {
+  const yearsRef = useRef(null);
+  const typesRef = useRef(null);
+  const dragStateRef = useRef({
+    pointerId: null,
+    startX: 0,
+    startScrollLeft: 0,
+    moved: false,
+  });
+
   function handleTypes(type) {
     const allActive = activeTypes.length === types.length && types.every((t) => activeTypes.includes(t));
 
@@ -41,32 +51,95 @@ const Filtering = ({ types, years, query, setQuery, activeTypes, activeYears, se
     setActiveYears([...years]);
   };
 
+  const handlePointerDown = (ref) => (event) => {
+    if (!ref.current) return;
+
+    dragStateRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startScrollLeft: ref.current.scrollLeft,
+      moved: false,
+    };
+
+    ref.current.setPointerCapture?.(event.pointerId);
+  };
+
+  const handlePointerMove = (ref) => (event) => {
+    if (!ref.current || dragStateRef.current.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - dragStateRef.current.startX;
+
+    if (Math.abs(deltaX) > 4) {
+      dragStateRef.current.moved = true;
+      ref.current.scrollLeft = dragStateRef.current.startScrollLeft - deltaX;
+    }
+  };
+
+  const handlePointerEnd = (ref) => (event) => {
+    if (!ref.current || dragStateRef.current.pointerId !== event.pointerId) return;
+
+    ref.current.releasePointerCapture?.(event.pointerId);
+    window.setTimeout(() => {
+      dragStateRef.current = {
+        pointerId: null,
+        startX: 0,
+        startScrollLeft: 0,
+        moved: false,
+      };
+    }, 0);
+  };
+
+  const preventClickAfterDrag = (event) => {
+    if (dragStateRef.current.moved) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
+
   return (
     <form className={styles.filtering} onSubmit={(e) => e.preventDefault()}>
       <fieldset className={styles.all}>
         <button onClick={() => handleAll()}>All</button>
       </fieldset>
 
-      <fieldset className={styles.years}>
+      <fieldset
+        ref={yearsRef}
+        className={styles.years}
+        onPointerDown={handlePointerDown(yearsRef)}
+        onPointerMove={handlePointerMove(yearsRef)}
+        onPointerUp={handlePointerEnd(yearsRef)}
+        onPointerCancel={handlePointerEnd(yearsRef)}
+        onClickCapture={preventClickAfterDrag}
+      >
         {years.map((year, index) => (
-          <span key={index}>
+          <span key={year}>
             <button onClick={() => handleYears(year)} className={activeYears.includes(year) ? styles.active : ""}>
-              {year}
+              {index > 0 ? `, ${year}` : year}
             </button>
-            {index < years.length - 1 && ", "}
           </span>
         ))}
       </fieldset>
 
-      <fieldset className={styles.types}>
-        {types.map((type, index) => (
-          <span key={index}>
-            <button onClick={() => handleTypes(type)} className={activeTypes.includes(type) ? styles.active : ""}>
-              {type}
-            </button>
-            {index < types.length - 1 && ", "}
-          </span>
-        ))}
+      <fieldset
+        ref={typesRef}
+        className={styles.types}
+        onPointerDown={handlePointerDown(typesRef)}
+        onPointerMove={handlePointerMove(typesRef)}
+        onPointerUp={handlePointerEnd(typesRef)}
+        onPointerCancel={handlePointerEnd(typesRef)}
+        onClickCapture={preventClickAfterDrag}
+      >
+        {types.map((type, index) => {
+          if (type === null) return;
+
+          return (
+            <span key={type}>
+              <button onClick={() => handleTypes(type)} className={activeTypes.includes(type) ? styles.active : ""}>
+                {index > 0 ? `, ${type}` : type}
+              </button>
+            </span>
+          );
+        })}
       </fieldset>
 
       <div className={styles.search} style={{ alignItems: "center" }}>
