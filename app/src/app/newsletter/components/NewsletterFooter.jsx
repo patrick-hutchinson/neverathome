@@ -1,3 +1,5 @@
+import { getDownloadUrl } from "@/helpers/handleDownload";
+
 const year = new Date().getFullYear();
 
 const portableTextToLines = (value) => {
@@ -20,7 +22,7 @@ const portableTextToLines = (value) => {
 const NewsletterFooter = ({ site }) => {
   const addressLines = portableTextToLines(site?.address);
   const socials = Array.isArray(site?.socials) ? site.socials : [];
-  const workshopSpaceUrl = site?.workshopSpaceFile?.asset?.url;
+  const workshopSpaceUrl = getDownloadUrl(site?.workshopSpaceFile);
   const presskitLink = site?.presskitLink;
   const mediaarchiveLink = site?.mediaarchiveLink;
 

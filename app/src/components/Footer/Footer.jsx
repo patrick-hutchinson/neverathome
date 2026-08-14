@@ -15,6 +15,8 @@ import { handleDownload } from "@/helpers/handleDownload";
 const year = new Date().getFullYear();
 
 const Footer = ({ site }) => {
+  const workshopSpaceFile = site?.workshopSpaceFile?.asset?.url ? site.workshopSpaceFile : null;
+
   return (
     <footer className={styles.footer}>
       <div className={styles.address}>
@@ -35,7 +37,7 @@ const Footer = ({ site }) => {
         </div>
 
         <div className={styles.mediaLinks}>
-          {site.workshopSpaceFile && <a onClick={() => handleDownload(site.workshopSpaceFile)}>Rent a Workshop Space</a>}
+          {workshopSpaceFile && <a onClick={() => handleDownload(workshopSpaceFile)}>Rent a Workshop Space</a>}
           <AnimationLink path="/linktree">Go to Linktree</AnimationLink>
           {site.presskitLink && (
             <a href={site.presskitLink} target="_blank">
