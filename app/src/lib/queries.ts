@@ -32,9 +32,15 @@ export const siteQuery = `*[_type=="site"][0]{
     platform,
     link
   },
-  presskitLink,
   mediaarchiveLink,
   workshopSpaceFile{
+    asset->{
+      _id,
+      url,
+      originalFilename
+    },
+  },
+  presskitLink{
     asset->{
       _id,
       url,

@@ -23,7 +23,7 @@ const NewsletterFooter = ({ site }) => {
   const addressLines = portableTextToLines(site?.address);
   const socials = Array.isArray(site?.socials) ? site.socials : [];
   const workshopSpaceUrl = getDownloadUrl(site?.workshopSpaceFile);
-  const presskitLink = site?.presskitLink;
+  const presskitUrl = getDownloadUrl(site?.presskitLink);
   const mediaarchiveLink = site?.mediaarchiveLink;
 
   return (
@@ -126,10 +126,10 @@ const NewsletterFooter = ({ site }) => {
                         </a>
                       </div>
 
-                      {presskitLink && (
+                      {presskitUrl && (
                         <div>
                           <a
-                            href={presskitLink}
+                            href={presskitUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{ color: "#ffffff", textDecoration: "none", opacity: 0.3 }}

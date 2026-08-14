@@ -70,8 +70,8 @@ export const site = defineType({
     }),
     defineField({
       name: 'presskitLink',
-      title: 'Pressekit Link',
-      type: 'string',
+      title: 'Pressekit PDF',
+      type: 'file',
     }),
     defineField({
       name: 'mediaarchiveLink',

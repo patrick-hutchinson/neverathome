@@ -16,6 +16,7 @@ const year = new Date().getFullYear();
 
 const Footer = ({ site }) => {
   const workshopSpaceFile = site?.workshopSpaceFile?.asset?.url ? site.workshopSpaceFile : null;
+  const presskitFile = site?.presskitLink?.asset?.url ? site.presskitLink : null;
 
   return (
     <footer className={styles.footer}>
@@ -39,11 +40,7 @@ const Footer = ({ site }) => {
         <div className={styles.mediaLinks}>
           {workshopSpaceFile && <a onClick={() => handleDownload(workshopSpaceFile)}>Rent a Workshop Space</a>}
           <AnimationLink path="/linktree">Go to Linktree</AnimationLink>
-          {site.presskitLink && (
-            <a href={site.presskitLink} target="_blank">
-              Download Presskit
-            </a>
-          )}
+          {presskitFile && <a onClick={() => handleDownload(presskitFile)}>Download Presskit</a>}
           {site.mediaarchiveLink && (
             <a href={site.mediaarchiveLink} target="_blank">
               Mediaarchive
