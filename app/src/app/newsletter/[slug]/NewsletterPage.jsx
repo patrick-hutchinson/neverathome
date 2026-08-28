@@ -62,6 +62,12 @@ const NewsletterPage = ({ site, newsletter }) => {
           }
 
           @media screen and (min-width: 769px) {
+            .newsletter-header {
+              padding-top: 12px !important;
+              padding-right: 12px !important;
+              padding-left: 12px !important;
+            }
+
             // .newsletter-header .header-col-main {
             //   width: 75% !important;
             //   max-width: 75% !important;
