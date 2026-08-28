@@ -1,15 +1,16 @@
-import { getNewsletters } from "@/lib/fetch";
+import { getNewsletterBySlug } from "@/lib/fetch";
 import { getSiteData } from "@/lib/fetch";
+import { notFound } from "next/navigation";
 
 import NewsletterPage from "./NewsletterPage";
 
 export default async function Page({ params }) {
   const { slug } = await params;
 
-  const newsletters = await getNewsletters();
+  const newsletter = await getNewsletterBySlug(slug);
   const site = await getSiteData();
 
-  const newsletter = newsletters.find((p) => p.slug.current === slug);
+  if (!newsletter) notFound();
 
-  return <NewsletterPage site={site} newsletters={newsletters} newsletter={newsletter} />;
+  return <NewsletterPage site={site} newsletter={newsletter} />;
 }

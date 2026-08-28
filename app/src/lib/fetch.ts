@@ -14,8 +14,6 @@ export const getSanityClient = () => {
 
 const client = getSanityClient();
 
-console.log("client:", client.config());
-
 import {
   siteQuery,
   eventQuery,
@@ -31,6 +29,7 @@ import {
   imprintQuery,
   colorPairsQuery,
   newsletterQuery,
+  newsletterBySlugQuery,
 } from "./queries";
 
 export async function getColorPairs() {
@@ -87,4 +86,8 @@ export async function getFeatures() {
 
 export async function getNewsletters() {
   return client.fetch(newsletterQuery);
+}
+
+export async function getNewsletterBySlug(slug: string) {
+  return client.fetch(newsletterBySlugQuery, { slug });
 }
