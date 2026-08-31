@@ -461,7 +461,13 @@ export const newsletterQuery = `
         title
       },
       textTitle,
-      text,
+      text[]{
+        ...,
+        markDefs[]{
+          ...,
+          internalLink->{_type, slug, title}
+        }
+      },
       "image": {
         "url": image.asset->url,
         "dimensions": image.asset->metadata.dimensions,
@@ -526,7 +532,13 @@ export const newsletterBySlugQuery = `
         title
       },
       textTitle,
-      text,
+      text[]{
+        ...,
+        markDefs[]{
+          ...,
+          internalLink->{_type, slug, title}
+        }
+      },
       "image": {
         "url": image.asset->url,
         "dimensions": image.asset->metadata.dimensions,

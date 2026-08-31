@@ -1,18 +1,18 @@
-const portableTextToLines = (value) => {
-  if (!value) return [];
-  if (typeof value === "string") return [value];
-  if (!Array.isArray(value)) return [];
+import { PortableText } from "@portabletext/react";
 
-  return value
-    .map((block) => {
-      if (typeof block === "string") return block.trim();
-      if (!block || !Array.isArray(block.children)) return "";
-      return block.children
-        .map((child) => child?.text || "")
-        .join("")
-        .trim();
-    })
-    .filter(Boolean);
+const getInternalHref = (link, site) => {
+  const slug = link?.internalLink?.slug?.current;
+  if (!slug) return null;
+
+  const path = link.internalLink?._type === "event" ? `/calendar#${slug}` : `/${slug}`;
+  return site?.domain ? `https://${site.domain}${path}` : path;
+};
+
+const getLinkHref = (link, site) => {
+  if (!link) return null;
+  if (link.type === "external") return link.url || null;
+  if (link.type === "internal") return getInternalHref(link, site);
+  return link.url || getInternalHref(link, site);
 };
 
 const formatDate = (date) => {
@@ -32,10 +32,9 @@ const formatDate = (date) => {
   return `${monthYear.split(" ")[0]} ${getOrdinal(d.getDate())}, ${d.getFullYear()}`;
 };
 
-const NewsletterShowcase = ({ block }) => {
+const NewsletterShowcase = ({ block, site }) => {
   const eventType = typeof block?.eventType === "string" ? block.eventType : block?.eventType?.title || "";
   const formattedDate = formatDate(block?.date);
-  const runningTextLines = portableTextToLines(block?.text);
 
   return (
     <table
@@ -130,11 +129,31 @@ const NewsletterShowcase = ({ block }) => {
             colSpan="2"
             style={{ padding: 0, border: 0, fontSize: "14px", lineHeight: "15px" }}
           >
-            {runningTextLines.map((line, index) => (
-              <p key={`${line}-${index}`} style={{ margin: index === runningTextLines.length - 1 ? 0 : "0 0 8px 0" }}>
-                {line}
-              </p>
-            ))}
+            <PortableText
+              value={block?.text || []}
+              components={{
+                block: {
+                  normal: ({ children }) => <p style={{ margin: "0 0 8px 0" }}>{children}</p>,
+                },
+                marks: {
+                  link: ({ value, children }) => {
+                    const href = getLinkHref(value, site);
+                    if (!href) return children;
+
+                    return (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#000000", textDecoration: "none", opacity: 0.3 }}
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                },
+              }}
+            />
           </td>
         </tr>
       </tbody>

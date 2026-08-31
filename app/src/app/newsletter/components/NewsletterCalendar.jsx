@@ -201,28 +201,15 @@ const NewsletterCalendar = ({ block, site }) => {
                                       }}
                                     />
                                   ) : (
-                                    <table
-                                      width="100%"
-                                      cellPadding="0"
-                                      cellSpacing="0"
-                                      role="presentation"
-                                      style={{ border: "1px solid #fff", width: "100%", minHeight: "48px" }}
-                                    >
-                                      <tbody>
-                                        <tr>
-                                          <td
-                                            className="newsletter-body-text"
-                                            align="center"
-                                            valign="middle"
-                                            style={{ border: 0, fontSize: "14px", lineHeight: "15px", color: "#ffffff" }}
-                                          >
-                                            <font color="#ffffff">
-                                              <span style={{ color: "#ffffff" }}>{eventType || "Event"}</span>
-                                            </font>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
+                                    <div
+                                      className="event-media-image"
+                                      style={{
+                                        display: "block",
+                                        width: "50%",
+                                        height: "72px",
+                                        border: 0,
+                                      }}
+                                    />
                                   )}
                                 </td>
 

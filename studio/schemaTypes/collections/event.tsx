@@ -180,8 +180,19 @@ export const event = defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .replace(/\+/g, '-')
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, '')
+            .slice(0, 96),
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug) => {
+          if (!slug?.current) return true
+          return slug.current.includes('+') ? 'URL-Teil darf kein + enthalten.' : true
+        }),
     }),
   ],
   preview: {

@@ -19,7 +19,7 @@ export const newsletterShowcase = defineType({
     }),
     defineField({name: 'image', title: 'Image', type: 'image'}),
     defineField({name: 'textTitle', title: 'Text Überschrift', type: 'string'}),
-    defineField({name: 'text', title: 'Fließtext', type: 'array', of: [{type: 'block'}]}),
+    defineField({name: 'text', title: 'Fließtext', type: 'portableText'}),
   ],
   preview: {
     select: {
