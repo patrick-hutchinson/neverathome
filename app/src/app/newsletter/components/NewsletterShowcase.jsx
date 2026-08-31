@@ -1,18 +1,21 @@
 import { PortableText } from "@portabletext/react";
 
 const getInternalHref = (link, site) => {
-  const slug = link?.internalLink?.slug?.current;
+  const slug = link?.internalLink?.slug?.current || link?.internal?.slug?.current || link?.reference?.slug?.current;
   if (!slug) return null;
 
-  const path = link.internalLink?._type === "event" ? `/calendar#${slug}` : `/${slug}`;
+  const type = link?.internalLink?._type || link?.internal?._type || link?.reference?._type;
+  const path = type === "event" ? `/calendar#${slug}` : `/${slug}`;
   return site?.domain ? `https://${site.domain}${path}` : path;
 };
 
 const getLinkHref = (link, site) => {
   if (!link) return null;
-  if (link.type === "external") return link.url || null;
+  const externalHref = link.url || link.href || link.externalLink || link.external;
+
+  if (link.type === "external") return externalHref || null;
   if (link.type === "internal") return getInternalHref(link, site);
-  return link.url || getInternalHref(link, site);
+  return externalHref || getInternalHref(link, site);
 };
 
 const formatDate = (date) => {
