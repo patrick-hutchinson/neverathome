@@ -1,6 +1,6 @@
 import NewsletterFeature from "./NewsletterFeature";
 
-const NewsletterDoubleFeature = ({ block }) => {
+const NewsletterDoubleFeature = ({ block, site }) => {
   const features = Array.isArray(block?.story) ? block.story.slice(0, 2) : [];
 
   return (
@@ -36,6 +36,7 @@ const NewsletterDoubleFeature = ({ block }) => {
               key={feature?._key || `${feature?.featureTitle || "feature"}-${index}`}
               className={`double-feature-col${index === 0 ? " first-mobile-gap" : ""}`}
               feature={feature}
+              site={site}
             />
           ))}
           {features.length < 2 && (

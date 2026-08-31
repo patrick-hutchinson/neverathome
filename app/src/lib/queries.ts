@@ -444,7 +444,13 @@ export const newsletterQuery = `
         _key,
         featureTitle,
         link,
-        runningText,
+        runningText[]{
+          ...,
+          markDefs[]{
+            ...,
+            internalLink->{_type, slug, title}
+          }
+        },
         "colorPair": colorPair->{_id, text, background},
         "image": {
           "url": image.asset->url,
@@ -515,7 +521,13 @@ export const newsletterBySlugQuery = `
         _key,
         featureTitle,
         link,
-        runningText,
+        runningText[]{
+          ...,
+          markDefs[]{
+            ...,
+            internalLink->{_type, slug, title}
+          }
+        },
         "colorPair": colorPair->{_id, text, background},
         "image": {
           "url": image.asset->url,

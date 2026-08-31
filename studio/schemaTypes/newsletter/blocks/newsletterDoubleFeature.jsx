@@ -39,7 +39,7 @@ export const newsletterDoubleFeature = defineType({
               title: 'Link',
               type: 'string',
             }),
-            defineField({name: 'runningText', type: 'array', of: [{type: 'block'}]}),
+            defineField({name: 'runningText', type: 'portableText'}),
           ],
         },
       ],

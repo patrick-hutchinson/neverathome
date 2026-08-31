@@ -1,27 +1,29 @@
-const portableTextToLines = (value) => {
-  if (!value) return [];
-  if (typeof value === "string") return [value];
-  if (!Array.isArray(value)) return [];
+import { PortableText } from "@portabletext/react";
 
-  return value
-    .map((block) => {
-      if (typeof block === "string") return block.trim();
-      if (!block || !Array.isArray(block.children)) return "";
-      return block.children
-        .map((child) => child?.text || "")
-        .join("")
-        .trim();
-    })
-    .filter(Boolean);
+const getInternalHref = (link, site) => {
+  const slug = link?.internalLink?.slug?.current || link?.internal?.slug?.current || link?.reference?.slug?.current;
+  if (!slug) return null;
+
+  const type = link?.internalLink?._type || link?.internal?._type || link?.reference?._type;
+  const path = type === "event" ? `/calendar#${slug}` : `/${slug}`;
+  return site?.domain ? `https://${site.domain}${path}` : path;
 };
 
-const NewsletterFeature = ({ feature, className = "" }) => {
+const getLinkHref = (link, site) => {
+  if (!link) return null;
+  const externalHref = link.url || link.href || link.externalLink || link.external;
+
+  if (link.type === "external") return externalHref || null;
+  if (link.type === "internal") return getInternalHref(link, site);
+  return externalHref || getInternalHref(link, site);
+};
+
+const NewsletterFeature = ({ feature, site, className = "" }) => {
   const title = feature?.featureTitle || "";
   const link = feature?.link;
   const hasImage = Boolean(feature?.image?.url);
   const textColor = feature?.colorPair?.text?.value || "#ffffff";
   const backgroundColor = feature?.colorPair?.background?.value || "#000000";
-  const runningTextLines = portableTextToLines(feature?.runningText);
   const mediaHeightPx = 360;
   const mediaHeight = `${mediaHeightPx}px`;
 
@@ -201,11 +203,31 @@ const NewsletterFeature = ({ feature, className = "" }) => {
                 paddingRight: "8px",
               }}
             >
-              {runningTextLines.map((line, index) => (
-                <p key={`${line}-${index}`} style={{ margin: index === runningTextLines.length - 1 ? 0 : "0 0 8px 0" }}>
-                  {line}
-                </p>
-              ))}
+              <PortableText
+                value={feature?.runningText || []}
+                components={{
+                  block: {
+                    normal: ({ children }) => <p style={{ margin: "0 0 8px 0" }}>{children}</p>,
+                  },
+                  marks: {
+                    link: ({ value, children }) => {
+                      const href = getLinkHref(value, site);
+                      if (!href) return children;
+
+                      return (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "#000000", textDecoration: "none", opacity: 0.3 }}
+                        >
+                          {children}
+                        </a>
+                      );
+                    },
+                  },
+                }}
+              />
             </td>
           </tr>
         </tbody>
