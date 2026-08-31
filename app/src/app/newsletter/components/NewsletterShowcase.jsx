@@ -138,6 +138,18 @@ const NewsletterShowcase = ({ block, site }) => {
                 block: {
                   normal: ({ children }) => <p style={{ margin: "0 0 8px 0" }}>{children}</p>,
                 },
+                list: {
+                  bullet: ({ children }) => (
+                    <div style={{ margin: 0, padding: 0, listStyle: "none" }}>{children}</div>
+                  ),
+                  number: ({ children }) => (
+                    <div style={{ margin: 0, padding: 0, listStyle: "none" }}>{children}</div>
+                  ),
+                },
+                listItem: {
+                  bullet: ({ children }) => <p style={{ margin: "0 0 8px 0", padding: 0 }}>{children}</p>,
+                  number: ({ children }) => <p style={{ margin: "0 0 8px 0", padding: 0 }}>{children}</p>,
+                },
                 marks: {
                   link: ({ value, children }) => {
                     const href = getLinkHref(value, site);
