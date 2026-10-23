@@ -14,7 +14,7 @@ export default function Maintenance() {
         textAlign: "center",
       }}
     >
-      <p style={{ maxWidth: "640px", margin: 0 }}>
+      <p typo="h3" style={{ maxWidth: "640px", margin: 0 }}>
         Our website will be offline for a short while during maintenance. We will be back soon!
       </p>
     </main>
