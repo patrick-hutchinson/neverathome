@@ -1,9 +1,8 @@
 import { getSiteData } from "@/lib/fetch";
 
-const [data] = await Promise.all([getSiteData()]);
-
 import LinktreePage from "./LinktreePage";
 
-export default function Page() {
+export default async function Page() {
+  const data = await getSiteData();
   return <LinktreePage data={data} />;
 }

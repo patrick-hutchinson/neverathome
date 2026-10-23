@@ -17,15 +17,16 @@ import Footer from "@/components/Footer/Footer";
 import { ViewTransitions } from "next-view-transitions";
 
 import LenisProvider from "@/context/LenisContext";
+import Maintenance from "@/components/Maintenance";
 
 // const [site] = await Promise.all([getSiteData()]);
 // const [colorPairs] = await Promise.all([getColorPairs()]);
 
 export async function generateMetadata() {
-  const [site] = await Promise.all([getSiteData()]);
+  const site = await getSiteData().catch(() => null);
 
   return {
-    title: site?.title ?? "",
+    title: site?.title ?? "Never At Home",
     description: site?.description ?? "",
     icons: {
       icon: [
@@ -42,8 +43,20 @@ export async function generateMetadata() {
 export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children, invert = false }) {
-  const [site] = await Promise.all([getSiteData()]);
-  const [colorPairs] = await Promise.all([getColorPairs()]);
+  let site;
+  let colorPairs;
+  try {
+    [site, colorPairs] = await Promise.all([getSiteData(), getColorPairs()]);
+  } catch (error) {
+    console.error("Unable to load site data from Sanity:", error);
+    return (
+      <html lang="en">
+        <body>
+          <Maintenance />
+        </body>
+      </html>
+    );
+  }
 
   return (
     <ViewTransitions>
