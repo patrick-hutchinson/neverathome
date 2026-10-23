@@ -5,6 +5,8 @@ import ScrollToTopOnRouteChange from "@/controllers/ScrollToTopOnRouteChange";
 import { StateProvider } from "@/context/StateContext";
 import { DeviceProvider } from "@/context/DeviceContext";
 
+import { Analytics } from "@vercel/analytics/next";
+
 import { GlobalVariablesProvider } from "@/context/GlobalVariablesContext";
 import "./globals.css";
 import "./fonts.css";
@@ -53,6 +55,7 @@ export default async function RootLayout({ children, invert = false }) {
       <html lang="en">
         <body>
           <Maintenance />
+          <Analytics />
         </body>
       </html>
     );
@@ -72,6 +75,7 @@ export default async function RootLayout({ children, invert = false }) {
                   <div id="hover-preview"></div>
                   <Footer site={site} />
                 </LenisProvider>
+                <Analytics />
               </body>
             </GlobalVariablesProvider>
           </StateProvider>
